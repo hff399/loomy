@@ -7,6 +7,8 @@
 {% comment %} Collect all reima_nav_tab blocks {% endcomment %}
 {% assign nav_tabs = section.blocks | where: "type", "reima_nav_tab" %}
 
+<!-- DEBUG: section.blocks count = {{ section.blocks.size }}, nav_tabs count = {{ nav_tabs.size }} -->
+
 <nav class="reima-static-navigation" aria-label="Main navigation">
   <ul class="reima-static-nav-list">
     {% if nav_tabs.size > 0 %}
@@ -63,6 +65,7 @@
             {% if has_content %}
               <div class="reima-static-dropdown" data-dropdown>
                 <div class="reima-static-dropdown-inner">
+                  <!-- DEBUG: has_content=true, col1_title="{{ block.settings.col1_title }}", col1_menu="{{ block.settings.col1_menu }}" -->
                   {% comment %} Column 1 {% endcomment %}
                   {% if block.settings.col1_title != blank or col1_has_links %}
                     <div class="reima-dropdown-column">
