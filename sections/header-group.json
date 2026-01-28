@@ -48,7 +48,7 @@
             "is_sale": true,
             "has_dropdown": true,
             "col1_title": "123123",
-            "col1_menu": "footer",
+            "col1_menu": "customer-account-main-menu",
             "col2_title": "",
             "col2_menu": "",
             "col3_title": "",
