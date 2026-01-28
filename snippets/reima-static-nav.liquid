@@ -1,268 +1,117 @@
 {% comment %}
-  Reima Static Navigation
-  Static navigation tabs with Reima-style mega menu dropdowns
-
-  This creates a navigation similar to Reima.com with:
-  - Final Sale, Outerwear, Shoes, Base & Midlayers, Skiwear, etc.
-  - Each tab links to a collection and has a dropdown with subcategories
+  Reima Configurable Navigation
+  Uses blocks from header section to create customizable nav tabs
+  Each block of type 'reima_nav_tab' creates a navigation item
 {% endcomment %}
 
-{% comment %} Define navigation structure statically {% endcomment %}
-{% assign nav_items = "final-sale|Outerwear|Shoes|Base & Midlayers|Skiwear|Rainwear|Everyday|Accessories|Babies|Sale" | split: "|" %}
+{% comment %} Collect all reima_nav_tab blocks {% endcomment %}
+{% assign nav_tabs = section.blocks | where: "type", "reima_nav_tab" %}
 
 <nav class="reima-static-navigation" aria-label="Main navigation">
   <ul class="reima-static-nav-list">
-    {% comment %} ====== FINAL SALE TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item reima-sale-item" data-menu-item>
-      <a href="/collections/sale" class="reima-static-nav-link">
-        <span class="sale-text">Final Sale up to -50%</span>
-      </a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/sale">SHOP BY CATEGORY</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/sale?filter.p.product_type=Jackets">Jackets</a></li>
-              <li><a href="/collections/sale?filter.p.product_type=Pants">Pants</a></li>
-              <li><a href="/collections/sale?filter.p.product_type=Fleece">Fleece</a></li>
-              <li><a href="/collections/sale?filter.p.product_type=Accessories">Accessories</a></li>
-            </ul>
-            <a href="/collections/sale" class="reima-see-all">See All Sale Items</a>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/sale">SHOP BY SIZE</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/sale?filter.v.option.size=0-12M">0-12 Months</a></li>
-              <li><a href="/collections/sale?filter.v.option.size=1-2Y">1-2 Years</a></li>
-              <li><a href="/collections/sale?filter.v.option.size=3-6Y">3-6 Years</a></li>
-              <li><a href="/collections/sale?filter.v.option.size=7-14Y">7-14 Years</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </li>
+    {% if nav_tabs.size > 0 %}
+      {% comment %} Use configured blocks {% endcomment %}
+      {% for block in nav_tabs %}
+        <li class="reima-static-nav-item{% if block.settings.is_sale %} reima-sale-item{% endif %}"
+            data-menu-item
+            {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.tab_link | default: '#' }}" class="reima-static-nav-link{% if block.settings.is_sale %} sale-link{% endif %}">
+            {{ block.settings.tab_title }}
+          </a>
 
-    {% comment %} ====== OUTERWEAR TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/outerwear" class="reima-static-nav-link">Outerwear</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/jackets">JACKETS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/winter-jackets">Winter Jackets</a></li>
-              <li><a href="/collections/spring-jackets">Spring Jackets</a></li>
-              <li><a href="/collections/rain-jackets">Rain Jackets</a></li>
-              <li><a href="/collections/fleece-jackets">Fleece Jackets</a></li>
-            </ul>
-            <a href="/collections/jackets" class="reima-see-all">See All Jackets</a>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/pants">PANTS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/snow-pants">Snow Pants</a></li>
-              <li><a href="/collections/rain-pants">Rain Pants</a></li>
-              <li><a href="/collections/softshell-pants">Softshell Pants</a></li>
-            </ul>
-            <a href="/collections/pants" class="reima-see-all">See All Pants</a>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/snowsuits">SNOWSUITS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/one-piece-snowsuits">One-Piece</a></li>
-              <li><a href="/collections/two-piece-snowsuits">Two-Piece Sets</a></li>
-            </ul>
-            <a href="/collections/snowsuits" class="reima-see-all">See All Snowsuits</a>
-          </div>
-        </div>
-      </div>
-    </li>
+          {% if block.settings.has_dropdown %}
+            {% assign has_content = false %}
+            {% if block.settings.col1_menu != blank or block.settings.col2_menu != blank or block.settings.col3_menu != blank or block.settings.promo_image != blank %}
+              {% assign has_content = true %}
+            {% endif %}
 
-    {% comment %} ====== SHOES TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/shoes" class="reima-static-nav-link">Shoes</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/shoes">SHOP BY TYPE</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/winter-boots">Winter Boots</a></li>
-              <li><a href="/collections/rain-boots">Rain Boots</a></li>
-              <li><a href="/collections/sneakers">Sneakers</a></li>
-              <li><a href="/collections/sandals">Sandals</a></li>
-            </ul>
-            <a href="/collections/shoes" class="reima-see-all">See All Shoes</a>
-          </div>
-        </div>
-      </div>
-    </li>
+            {% if has_content %}
+              <div class="reima-static-dropdown" data-dropdown>
+                <div class="reima-static-dropdown-inner">
+                  {% comment %} Column 1 {% endcomment %}
+                  {% if block.settings.col1_menu != blank %}
+                    <div class="reima-dropdown-column">
+                      {% if block.settings.col1_title != blank %}
+                        <h4 class="reima-dropdown-title">
+                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col1_title }}</a>
+                        </h4>
+                      {% endif %}
+                      <ul class="reima-dropdown-list">
+                        {% for link in linklists[block.settings.col1_menu].links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                      <a href="{{ block.settings.tab_link }}" class="reima-see-all">See All</a>
+                    </div>
+                  {% endif %}
 
-    {% comment %} ====== BASE & MIDLAYERS TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/base-midlayers" class="reima-static-nav-link">Base- & Midlayers</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/base-layers">BASE LAYERS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/thermal-underwear">Thermal Underwear</a></li>
-              <li><a href="/collections/wool-base-layers">Wool Base Layers</a></li>
-            </ul>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/midlayers">MIDLAYERS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/fleece">Fleece</a></li>
-              <li><a href="/collections/sweaters">Sweaters</a></li>
-              <li><a href="/collections/hoodies">Hoodies</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </li>
+                  {% comment %} Column 2 {% endcomment %}
+                  {% if block.settings.col2_menu != blank %}
+                    <div class="reima-dropdown-column">
+                      {% if block.settings.col2_title != blank %}
+                        <h4 class="reima-dropdown-title">
+                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col2_title }}</a>
+                        </h4>
+                      {% endif %}
+                      <ul class="reima-dropdown-list">
+                        {% for link in linklists[block.settings.col2_menu].links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
 
-    {% comment %} ====== SKIWEAR TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/skiwear" class="reima-static-nav-link">Skiwear</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/skiwear">SKI COLLECTION</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/ski-jackets">Ski Jackets</a></li>
-              <li><a href="/collections/ski-pants">Ski Pants</a></li>
-              <li><a href="/collections/ski-suits">Ski Suits</a></li>
-              <li><a href="/collections/ski-accessories">Ski Accessories</a></li>
-            </ul>
-            <a href="/collections/skiwear" class="reima-see-all">See All Skiwear</a>
-          </div>
-        </div>
-      </div>
-    </li>
+                  {% comment %} Column 3 {% endcomment %}
+                  {% if block.settings.col3_menu != blank %}
+                    <div class="reima-dropdown-column">
+                      {% if block.settings.col3_title != blank %}
+                        <h4 class="reima-dropdown-title">
+                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col3_title }}</a>
+                        </h4>
+                      {% endif %}
+                      <ul class="reima-dropdown-list">
+                        {% for link in linklists[block.settings.col3_menu].links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
 
-    {% comment %} ====== RAINWEAR TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/rainwear" class="reima-static-nav-link">Rainwear</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/rainwear">RAIN COLLECTION</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/rain-jackets">Rain Jackets</a></li>
-              <li><a href="/collections/rain-pants">Rain Pants</a></li>
-              <li><a href="/collections/rain-boots">Rain Boots</a></li>
-              <li><a href="/collections/rain-accessories">Rain Accessories</a></li>
-            </ul>
-            <a href="/collections/rainwear" class="reima-see-all">See All Rainwear</a>
-          </div>
-        </div>
-      </div>
-    </li>
-
-    {% comment %} ====== EVERYDAY TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/everyday" class="reima-static-nav-link">Everyday</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/tops">TOPS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/t-shirts">T-Shirts</a></li>
-              <li><a href="/collections/long-sleeves">Long Sleeves</a></li>
-              <li><a href="/collections/sweatshirts">Sweatshirts</a></li>
-            </ul>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/bottoms">BOTTOMS</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/leggings">Leggings</a></li>
-              <li><a href="/collections/joggers">Joggers</a></li>
-              <li><a href="/collections/shorts">Shorts</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </li>
-
-    {% comment %} ====== ACCESSORIES TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/accessories" class="reima-static-nav-link">Accessories</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/accessories">HEADWEAR</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/hats">Hats & Beanies</a></li>
-              <li><a href="/collections/balaclavas">Balaclavas</a></li>
-              <li><a href="/collections/sun-hats">Sun Hats</a></li>
-            </ul>
-          </div>
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/accessories">HAND & FOOT</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/gloves">Gloves & Mittens</a></li>
-              <li><a href="/collections/socks">Socks</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </li>
-
-    {% comment %} ====== BABIES TAB ====== {% endcomment %}
-    <li class="reima-static-nav-item" data-menu-item>
-      <a href="/collections/babies" class="reima-static-nav-link">Babies</a>
-      <div class="reima-static-dropdown" data-dropdown>
-        <div class="reima-static-dropdown-inner">
-          <div class="reima-dropdown-column">
-            <h4 class="reima-dropdown-title"><a href="/collections/babies">BABY COLLECTION</a></h4>
-            <ul class="reima-dropdown-list">
-              <li><a href="/collections/baby-outerwear">Outerwear</a></li>
-              <li><a href="/collections/baby-clothing">Clothing</a></li>
-              <li><a href="/collections/baby-accessories">Accessories</a></li>
-              <li><a href="/collections/baby-footwear">Footwear</a></li>
-            </ul>
-            <a href="/collections/babies" class="reima-see-all">See All Baby Products</a>
-          </div>
-        </div>
-      </div>
-    </li>
-
-    {% comment %} ====== SALE TAB (END) ====== {% endcomment %}
-    <li class="reima-static-nav-item reima-sale-end" data-menu-item>
-      <a href="/collections/sale" class="reima-static-nav-link sale-link">Sale</a>
-    </li>
+                  {% comment %} Promotional Image {% endcomment %}
+                  {% if block.settings.promo_image != blank %}
+                    <div class="reima-dropdown-promo">
+                      <a href="{{ block.settings.promo_link | default: block.settings.tab_link }}" class="reima-promo-card">
+                        <div class="reima-promo-image">
+                          {{ block.settings.promo_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                        </div>
+                        {% if block.settings.promo_title != blank %}
+                          <span class="reima-promo-title">{{ block.settings.promo_title }}</span>
+                        {% endif %}
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% else %}
+      {% comment %} Fallback: Show default tabs if no blocks configured {% endcomment %}
+      <li class="reima-static-nav-item reima-sale-item" data-menu-item>
+        <a href="/collections/sale" class="reima-static-nav-link sale-link">Sale</a>
+      </li>
+      <li class="reima-static-nav-item" data-menu-item>
+        <a href="/collections/all" class="reima-static-nav-link">Shop All</a>
+      </li>
+      <li class="reima-static-nav-item">
+        <span class="reima-setup-hint">Add "Reima Nav Tab" blocks in Theme Customizer to configure navigation</span>
+      </li>
+    {% endif %}
   </ul>
 </nav>
 
 <script>
-  // Calculate and set header heights for dropdown positioning
-  function updateHeaderHeights() {
-    const headerSection = document.querySelector('.header-section');
-    const headerMain = document.querySelector('.header-main');
-    const announcementBar = document.querySelector('.announcement-bar-section');
-
-    let headerHeight = 82; // default
-    let announcementHeight = 0;
-
-    if (headerMain) {
-      headerHeight = headerMain.offsetHeight;
-    }
-    if (announcementBar) {
-      announcementHeight = announcementBar.offsetHeight;
-    }
-
-    document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-    document.documentElement.style.setProperty('--announcement-height', announcementHeight + 'px');
-  }
-
-  // Run on load and resize
-  document.addEventListener('DOMContentLoaded', updateHeaderHeights);
-  window.addEventListener('resize', updateHeaderHeights);
-  window.addEventListener('scroll', function() {
-    // Update on scroll in case sticky header changes
-    requestAnimationFrame(updateHeaderHeights);
-  }, { passive: true });
-
   // Simple hover/click handling for dropdown menus
   document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.reima-static-nav-item[data-menu-item]');
@@ -288,19 +137,7 @@
         hoverTimeout = setTimeout(() => {
           item.classList.remove('is-open');
           if (activeItem === item) activeItem = null;
-        }, 150);
-      });
-
-      // Keep dropdown open when hovering over it
-      dropdown.addEventListener('mouseenter', function() {
-        clearTimeout(hoverTimeout);
-      });
-
-      dropdown.addEventListener('mouseleave', function() {
-        hoverTimeout = setTimeout(() => {
-          item.classList.remove('is-open');
-          if (activeItem === item) activeItem = null;
-        }, 150);
+        }, 100);
       });
     });
 
@@ -333,6 +170,7 @@
     padding: 0;
     list-style: none;
     gap: 0;
+    position: relative;
   }
 
   .reima-static-nav-item {
@@ -340,6 +178,11 @@
     height: 100%;
     display: flex;
     align-items: center;
+  }
+
+  /* Make header wrapper position relative for dropdown positioning */
+  .reima-header-style .header-wrapper {
+    position: relative;
   }
 
   .reima-static-nav-link {
@@ -377,29 +220,30 @@
   }
 
   /* Sale tab styling */
-  .reima-sale-item .reima-static-nav-link {
+  .reima-sale-item .reima-static-nav-link,
+  .reima-static-nav-link.sale-link {
     color: #c41230;
     font-weight: 500;
   }
 
-  .reima-sale-item .sale-text {
-    position: relative;
-  }
-
-  .reima-sale-end .sale-link {
-    color: #c41230;
-    font-weight: 500;
+  /* Setup hint */
+  .reima-setup-hint {
+    font-size: 12px;
+    color: #999;
+    padding: 0 16px;
+    font-style: italic;
   }
 
   /* ========================================
-     Dropdown Styles
+     Dropdown Styles - Positioned from header
      ======================================== */
   .reima-static-dropdown {
-    position: fixed;
-    top: calc(var(--header-height, 82px) + var(--announcement-height, 0px));
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background-color: #fff;
     border-top: 3px solid #c41230;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -412,8 +256,8 @@
 
     /* Smooth animation */
     transition:
-      opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-      visibility 0.25s;
+      opacity 0.2s ease,
+      visibility 0.2s;
   }
 
   /* Show dropdown */
@@ -428,7 +272,7 @@
     margin: 0 auto;
     padding: 40px 60px 50px;
     display: flex;
-    gap: 60px;
+    gap: 50px;
   }
 
   /* ========================================
@@ -436,8 +280,8 @@
      ======================================== */
   .reima-dropdown-column {
     flex: 1;
-    min-width: 180px;
-    max-width: 250px;
+    min-width: 160px;
+    max-width: 220px;
   }
 
   .reima-dropdown-title {
@@ -496,6 +340,50 @@
     opacity: 0.8;
   }
 
+  /* Promotional Card */
+  .reima-dropdown-promo {
+    flex: 0 0 280px;
+    max-width: 280px;
+  }
+
+  .reima-promo-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+
+  .reima-promo-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .reima-promo-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .reima-promo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .reima-promo-card:hover .reima-promo-image img {
+    transform: scale(1.05);
+  }
+
+  .reima-promo-title {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+
   /* ========================================
      Mobile - Hide static nav, show hamburger
      ======================================== */
@@ -515,6 +403,11 @@
     .reima-static-dropdown-inner {
       padding: 30px 40px 40px;
       gap: 40px;
+    }
+
+    .reima-dropdown-promo {
+      flex: 0 0 220px;
+      max-width: 220px;
     }
   }
 </style>
