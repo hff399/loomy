@@ -279,16 +279,17 @@
      Dropdown Styles - Positioned from header
      ======================================== */
   .reima-static-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    background-color: #fff;
-    border-top: 3px solid #c41230;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    z-index: 9999;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border-top: 3px solid #c41230 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    z-index: 99999 !important;
 
     /* Hidden state */
     opacity: 0;
@@ -303,17 +304,19 @@
 
   /* Show dropdown */
   .reima-static-nav-item.is-open .reima-static-dropdown {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 
   .reima-static-dropdown-inner {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 60px 50px;
-    display: flex;
+    display: flex !important;
     gap: 50px;
+    background: #ffffff !important;
+    min-height: 100px;
   }
 
   /* ========================================
@@ -323,26 +326,33 @@
     flex: 1;
     min-width: 160px;
     max-width: 220px;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .reima-dropdown-title {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #333;
-    letter-spacing: 0.08em;
-    margin: 0 0 16px;
-    line-height: 1.3;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #333333 !important;
+    letter-spacing: 0.08em !important;
+    margin: 0 0 16px !important;
+    line-height: 1.3 !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .reima-dropdown-title a {
-    color: inherit;
-    text-decoration: none;
+    color: #333333 !important;
+    text-decoration: none !important;
     transition: color 0.2s ease;
+    display: block !important;
   }
 
   .reima-dropdown-title a:hover {
-    color: #c41230;
+    color: #c41230 !important;
   }
 
   .reima-dropdown-list {
