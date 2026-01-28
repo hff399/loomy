@@ -1,1 +1,99 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement_CDVh7E":{"type":"announcement","settings":{"announcement_text":"🏵️Get free home delivery (Order More then $300)🏵️"}}},"block_order":["announcement_CDVh7E"],"settings":{"color_scheme":"primary","section_background":"solid","announcement_container":"container-fullwidth","announcement_bar_visibility":"home_page","enable_border_bottom":false,"auto_rotate":false,"change_slides_speed":3,"enable_social_icons":true,"social_icons_style":"solid","show_location_and_language":true}},"header":{"type":"header","settings":{"header_container":"container-fullwidth","header_styles":"side_reveal_menus","sticky_header_type":"always","border_visibility":"none","enable_icon_background":true,"enable_collapse_menus":true,"logo":"shopify:\/\/shop_images\/logopng_95a4dad1-0f45-41f9-be20-21b4e192f15f.png","logo_width":100,"logo_width_mobile":80,"light_colored_logo_visibility":"none","transparency_pages":"homepage-only","header_transparency":"d-header-transparent","side_reveal_menus_space":"medium","transparent_logo":"shopify:\/\/shop_images\/logopng_95a4dad1-0f45-41f9-be20-21b4e192f15f.png","transparent_color":"#000000","transparent_icon_bg":"#ffffff","transparent_icon_color":"#1a1a1a","menu":"main-menu","menu_navigations":"hover","menu_type":"mega_menu","category_menus":"","enable_social_icons":true,"show_location_and_language":false,"mobile_logo_position":"center"}}},"order":["announcement-bar","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_CDVh7E": {
+          "type": "announcement",
+          "settings": {
+            "announcement_text": "🏵️Get free home delivery (Order More then $300)🏵️"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_CDVh7E"
+      ],
+      "settings": {
+        "color_scheme": "primary",
+        "section_background": "solid",
+        "announcement_container": "container-fullwidth",
+        "announcement_bar_visibility": "home_page",
+        "enable_border_bottom": false,
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "enable_social_icons": true,
+        "social_icons_style": "solid",
+        "show_location_and_language": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "category_mega_menus_nB9dcn": {
+          "type": "category_mega_menus",
+          "settings": {
+            "title": "Example",
+            "image_ratio": "portrait",
+            "overlay_opacity": 0.7,
+            "desktop_text_alignment": "left",
+            "content_heading_1": "",
+            "heading_size_1": "h4",
+            "content_description_1": "",
+            "description_size_1": "text",
+            "content_link_1": "",
+            "content_cta_1": "",
+            "content_heading_2": "",
+            "heading_size_2": "h4",
+            "content_description_2": "",
+            "description_size_2": "text",
+            "content_link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_mega_menus_nB9dcn"
+      ],
+      "settings": {
+        "header_container": "container-fullwidth",
+        "header_styles": "logo_left_menus_left",
+        "sticky_header_type": "always",
+        "border_visibility": "none",
+        "enable_icon_background": true,
+        "enable_collapse_menus": true,
+        "logo": "shopify://shop_images/logopng_95a4dad1-0f45-41f9-be20-21b4e192f15f.png",
+        "logo_width": 100,
+        "logo_width_mobile": 80,
+        "light_colored_logo_visibility": "none",
+        "transparency_pages": "homepage-only",
+        "header_transparency": "d-header-transparent",
+        "side_reveal_menus_space": "medium",
+        "transparent_logo": "shopify://shop_images/logopng_95a4dad1-0f45-41f9-be20-21b4e192f15f.png",
+        "transparent_color": "#000000",
+        "transparent_icon_bg": "#ffffff",
+        "transparent_icon_color": "#1a1a1a",
+        "menu": "main-menu",
+        "menu_navigations": "hover",
+        "menu_type": "reima_mega_menu",
+        "category_menus": "",
+        "enable_social_icons": true,
+        "show_location_and_language": false,
+        "mobile_logo_position": "center"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
