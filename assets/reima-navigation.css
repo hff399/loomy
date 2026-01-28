@@ -265,49 +265,40 @@
 /* ========================================
    Mega Menu Dropdown - Fixed position below header
    ======================================== */
-.reima-mega-menu {
-  position: fixed !important;
-  top: var(--reima-header-height) !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  background-color: var(--reima-bg-white) !important;
+.reima-header-style .header-menu-item.reima-style .reima-mega-menu {
+  position: fixed;
+  top: var(--reima-header-height);
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--reima-bg-white);
   border-top: 3px solid var(--reima-accent-color);
   box-shadow: var(--reima-shadow);
-  z-index: 9999 !important; /* Above body-overlay which is z-index: 2 */
+  z-index: 9999;
   max-height: calc(100vh - var(--reima-header-height));
   overflow-y: auto;
+  max-width: none;
+  padding-top: 0;
+  transform: none;
 
-  /* Hidden state */
-  opacity: 0 !important;
-  visibility: hidden !important;
-  display: block !important;
+  /* Hidden state - NO !important so transitions work */
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+  pointer-events: none;
 
-  /* Simple fade transition */
+  /* Smooth fade transition */
   transition:
     opacity 0.25s var(--reima-timing-smooth),
     visibility 0.25s;
-
-  pointer-events: none !important;
-
-  /* Override any theme positioning */
-  max-width: none !important;
-  padding-top: 0 !important;
-  transform: none !important;
 }
 
 /* Show mega menu on hover OR when JS adds active class */
-.header-menu-item.reima-style:hover .reima-mega-menu,
-.header-menu-item.reima-style.active .reima-mega-menu,
-.header-menu-item.reima-style header-menu.active .reima-mega-menu {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* Ensure the body overlay doesn't cover the mega menu */
-.megamenu-open .reima-mega-menu {
-  z-index: 9999 !important;
+.reima-header-style .header-menu-item.reima-style:hover > header-menu > .reima-mega-menu,
+.reima-header-style .header-menu-item.reima-style > header-menu.active > .reima-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* Mega menu inner container */
