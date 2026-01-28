@@ -205,10 +205,18 @@
    Menu Item Styling - Reima Style
    ======================================== */
 .header-menu-item.reima-style {
-  position: static; /* Changed from relative for mega menu positioning */
+  position: static !important; /* Keep static so mega menu positions from header */
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+/* The header-menu component needs position relative for mega menu */
+.header-menu-item.reima-style > header-menu {
+  position: static !important;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .header-menu-item.reima-style .header-menu-link {
@@ -255,52 +263,51 @@
 }
 
 /* ========================================
-   Mega Menu Dropdown - Slides from Under Header
+   Mega Menu Dropdown - Fixed position below header
    ======================================== */
 .reima-mega-menu {
-  position: absolute;
-  top: 100%; /* Starts exactly at bottom of header */
-  left: 0;
-  right: 0;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  background-color: var(--reima-bg-white);
+  position: fixed !important;
+  top: var(--reima-header-height) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background-color: var(--reima-bg-white) !important;
   border-top: 3px solid var(--reima-accent-color);
   box-shadow: var(--reima-shadow);
-  z-index: 999;
+  z-index: 9999 !important; /* Above body-overlay which is z-index: 2 */
+  max-height: calc(100vh - var(--reima-header-height));
+  overflow-y: auto;
 
   /* Hidden state */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  clip-path: inset(0 0 100% 0); /* Clips content from bottom up */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: block !important;
 
-  /* Smooth reveal animation */
+  /* Simple fade transition */
   transition:
-    opacity 0.3s var(--reima-timing-smooth),
-    transform 0.3s var(--reima-timing-smooth),
-    clip-path 0.3s var(--reima-timing-smooth),
-    visibility 0.3s;
+    opacity 0.25s var(--reima-timing-smooth),
+    visibility 0.25s;
 
-  pointer-events: none;
+  pointer-events: none !important;
+
+  /* Override any theme positioning */
+  max-width: none !important;
+  padding-top: 0 !important;
+  transform: none !important;
 }
 
-/* Show mega menu on hover/active - reveals from top */
+/* Show mega menu on hover OR when JS adds active class */
 .header-menu-item.reima-style:hover .reima-mega-menu,
+.header-menu-item.reima-style.active .reima-mega-menu,
 .header-menu-item.reima-style header-menu.active .reima-mega-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  clip-path: inset(0 0 0 0); /* Fully revealed */
-  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
-/* Fixed position when header is sticky */
-.is-sticky .header-menu-item.reima-style .reima-mega-menu,
-sticky-always .header-menu-item.reima-style .reima-mega-menu {
-  position: fixed;
-  top: var(--reima-header-height);
-  margin-left: 0;
+/* Ensure the body overlay doesn't cover the mega menu */
+.megamenu-open .reima-mega-menu {
+  z-index: 9999 !important;
 }
 
 /* Mega menu inner container */
@@ -504,28 +511,7 @@ sticky-always .header-menu-item.reima-style .reima-mega-menu {
   color: var(--reima-accent-color);
 }
 
-/* ========================================
-   Backdrop overlay when menu is open
-   ======================================== */
-.header-menu-item.reima-style:hover::before {
-  content: '';
-  position: fixed;
-  top: var(--reima-header-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.15);
-  z-index: 998;
-  pointer-events: none;
-  opacity: 0;
-  animation: fadeIn 0.3s var(--reima-timing-smooth) forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
+/* Theme handles body-overlay automatically via JS */
 
 /* ========================================
    Tablet Responsiveness (768px - 1199px)
