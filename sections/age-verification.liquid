@@ -1,0 +1,311 @@
+{% render 'age-verification'
+  , section: section %}
+<style>
+  #shopify-section-{{ section.id }} {
+    --logo-width: {{ section.settings.logo_width }}px;
+  }
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --logo-width: {{ section.settings.logo_width_mobile }}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "t:sections.age-verification.name",
+    "tag": "section",
+    "class": "age-verification",
+    "settings": [
+      {
+        "type": "select",
+        "id": "age_verification_display_mode",
+        "label": "t:sections.age-verification.settings.age_verification_display_mode.label",
+        "default": "enable",
+        "info": "t:sections.age-verification.settings.age_verification_display_mode.info",
+        "options": [
+          {
+            "label": "t:sections.age-verification.settings.age_verification_display_mode.enable.label",
+            "value": "enable"
+          },
+          {
+            "label": "t:sections.age-verification.settings.age_verification_display_mode.test_mode.label",
+            "value": "test_mode"
+          }
+        ]
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "default": "primary",
+        "label": "t:sections.all.colors.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.background"
+      },
+      {
+        "type": "image_picker",
+        "label": "t:sections.all.background.label",
+        "id": "background_image"
+      },
+      {
+        "type": "select",
+        "id": "overlay_style",
+        "label": "t:sections.all.overlay_style.label",
+        "default": "solid",
+        "options": [
+          {
+            "value": "solid",
+            "label": "t:sections.all.overlay_style.solid.label"
+          },
+          {
+            "value": "gradient",
+            "label": "t:sections.all.overlay_style.gradient.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.age-verification.settings.header.content"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:sections.age-verification.settings.logo.label"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 100,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "t:sections.header.settings.logo_width.label",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "logo_width_mobile",
+        "min": 50,
+        "max": 100,
+        "step": 10,
+        "unit": "px",
+        "label": "t:sections.header.settings.logo_width_mobile.label",
+        "default": 70
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Age verification",
+        "info": "t:settings_schema.global.settings.heading.info"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "t:sections.all.heading_size.label",
+        "default": "h4",
+        "options": [
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.h1.label"
+          },
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.h2.label"
+          },
+          {
+            "value": "h3",
+            "label": "t:sections.all.heading_size.h3.label"
+          },
+          {
+            "value": "h4",
+            "label": "t:sections.all.heading_size.h4.label"
+          },
+          {
+            "value": "h5",
+            "label": "t:sections.all.heading_size.h5.label"
+          },
+          {
+            "value": "h6",
+            "label": "t:sections.all.heading_size.h6.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "seo_heading",
+        "label": "t:sections.all.seo_heading.label",
+        "info": "t:sections.all.seo_heading.info",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "div",
+            "label": "div"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          },
+          {
+            "value": "p",
+            "label": "p"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "heading_font",
+        "default": "heading-font",
+        "label": "t:sections.all.heading_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.heading_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.heading_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.heading_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "markers_font",
+        "default": "accent-font",
+        "label": "t:sections.all.markers_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.markers_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.markers_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.markers_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "t:settings_schema.global.settings.description.label",
+        "default": "Add short description for this section."
+      },
+      {
+        "type": "select",
+        "id": "description_size",
+        "label": "t:sections.all.description_size.label",
+        "default": "text",
+        "options": [
+          {
+            "label": "t:sections.all.description_size.text-xsmall.label",
+            "value": "text-xs"
+          },
+          {
+            "label": "t:sections.all.description_size.text-small.label",
+            "value": "text-sm"
+          },
+          {
+            "label": "t:sections.all.description_size.text.label",
+            "value": "text"
+          },
+          {
+            "label": "t:sections.all.description_size.text-medium.label",
+            "value": "text-md"
+          },
+          {
+            "label": "t:sections.all.description_size.text-large.label",
+            "value": "text-lg"
+          },
+          {
+            "label": "t:sections.all.description_size.text-xlarge.label",
+            "value": "text-xl"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "sub_description",
+        "label": "t:sections.age-verification.settings.sub_description.label",
+        "default": "By entering this site you are agreeing to the Terms of Use and Privacy Policy."
+      },
+      {
+        "type": "text",
+        "id": "approve_btn_text",
+        "label": "t:sections.age-verification.settings.approve_btn_text.label",
+        "default": "Yes"
+      },
+      {
+        "type": "text",
+        "id": "decline_btn_text",
+        "label": "t:sections.age-verification.settings.decline_btn_text.label",
+        "default": "No"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "decline_heading",
+        "label": "t:sections.age-verification.settings.decline_heading.label",
+        "default": "Come back when you're older",
+        "info": "t:settings_schema.global.settings.heading.info"
+      },
+      {
+        "type": "textarea",
+        "id": "decline_description",
+        "label": "t:sections.age-verification.settings.decline_description.label",
+        "default": "Sorry, the content of this store can't be seen by a younger audience. Come back when you're older."
+      },
+      {
+        "type": "text",
+        "id": "age_decline_btn_text",
+        "label": "t:sections.age-verification.settings.age_decline_btn_text.label",
+        "default": "Oops, I entered incorrectly"
+      },
+      {
+        "type": "range",
+        "id": "age_verify_popup_cookie",
+        "label": "t:sections.age-verification.settings.age_verify_popup_cookie.label",
+        "default": 7,
+        "step": 1,
+        "min": 1,
+        "max": 30,
+        "info": "t:sections.age-verification.settings.age_verify_popup_cookie.info"
+      }
+    ]
+  }
+{% endschema %}

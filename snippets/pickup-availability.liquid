@@ -1,0 +1,50 @@
+{%- assign pickup_availabilities = currentVariant.store_availabilities | where: 'pick_up_enabled', true -%}
+{% if pickup_availabilities.size > 0 and currentVariant.available %}
+  <div class="pickup-availability-content" data-pickup-availability-content>
+    {%- liquid
+      assign nearest_location = pickup_availabilities.first
+    -%}
+
+    <div class="pickup-availability-inner">
+      <span class="pickup-icon">
+        {% render 'svg-icons', icon: 'pickup-icon-location' %}
+      </span>
+      <div class="pickup-details">
+        <p class="pickup-availability-heading text-xs">
+          {%- if nearest_location.available -%}
+            {{
+              'products.product.pickup_availability.pick_up_available_at_html'
+              | t: location_name: nearest_location.location.name
+            }}
+          {%- else -%}
+            {{
+              'products.product.pickup_availability.pick_up_unavailable_at_html'
+              | t: location_name: nearest_location.location.name
+            }}
+          {%- endif -%}
+        </p>
+        {%- if nearest_location.available -%}
+          <p class="pickup-availability-desc text-xs body-font">
+            {{ nearest_location.pick_up_time }}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <button
+      data-variant-id="{{ currentVariant.id }}"
+      data-id="pickup-side-drawer"
+      id="pickup-availability-button"
+      pickup-availability-button
+      class="pickup-availability-button text-underline text-xs"
+      aria-haspopup="dialog"
+      data-sidedrawer-button
+    >
+      {%- if pickup_availabilities.size == 1 -%}
+        {{ 'products.product.pickup_availability.view_store_info' | t }}
+      {%- else -%}
+        {{ 'products.product.pickup_availability.check_other_stores' | t }}
+      {%- endif -%}
+    </button>
+  </div>
+{% endif %}

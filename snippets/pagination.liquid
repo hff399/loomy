@@ -1,0 +1,34 @@
+<ul class="pagination">
+  <li class="pagination-item{% unless paginate.previous %} disabled{% endunless %}">
+    <{% if paginate.previous %}a href="{{ paginate.previous.url }}{{ anchor }}" aria-label="{{ 'general.pagination.previous' | t }}"{% else %}p{% endif %} class="pagination-link">
+      {% render 'svg-icons'
+        , icon: 'icon-prev' %}
+      </{% if paginate.previous %}a{% else %}p{% endif %}>
+    </li>
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <li class="pagination-item">
+          <a
+            href="{{ part.url }}{{ anchor }}"
+            class="pagination-link"
+            aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+        </li>
+      {%- else -%}
+        {%- if part.title == paginate.current_page -%}
+          <li class="pagination-item active">
+            <p class="pagination-text">{{ part.title }}</p>
+          </li>
+        {%- else -%}
+          <li class="pagination-item">
+            <p class="pagination-text">{{ part.title }}</p>
+          </li>
+        {%- endif -%}
+      {% endif %}
+    {% endfor %}
+    <li class="pagination-item  {% unless paginate.next %} disabled{% endunless %}">
+      <{% if paginate.next %}a href="{{ paginate.next.url }}{{ anchor }}" aria-label="{{ 'general.pagination.next' | t }}"{% else %}p{% endif %} class="pagination-link">
+        {% render 'svg-icons'
+          , icon: 'icon-next' %}
+        </{% if paginate.next %}a{% else %}p{% endif %}>
+      </li>
+    </ul>

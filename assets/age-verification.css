@@ -1,0 +1,59 @@
+ .age-verification-popup .popup-content-body {
+     position: relative;
+     z-index: 1;
+ }
+
+ .age-verification-popup .close-drawer {
+     cursor: default;
+ }
+
+ .age-verification-content .age-verifiction-button {
+     padding-top: 20px;
+     display: grid;
+     gap: 20px;
+ }
+
+ .age-verification-content {
+     text-align: center;
+     gap: 40px;
+     display: grid;
+     overflow: auto;
+     height: 100%;
+ }
+
+ .age-verification-header {
+     padding: 15px 0 0;
+ }
+
+ .age-verification-desc {
+     padding-top: 10px;
+ }
+ .age-verification-footer {
+    padding: 5px;
+}
+ .age-verification-popup .popup-content.popup-dialog {
+     max-width: 615px;
+     border: 1px solid rgba(var(--border-color));
+ }
+
+ .age-verification-logo img {
+     max-width: var(--logo-width);
+     width: 100%;
+     height: auto;
+     margin: 0 auto;
+ }
+
+
+ @media (min-width: 1025px) {
+     .age-verification-popup .popup-content-body {
+         padding: 50px;
+     }
+ }
+
+ @media (max-width: 767px) {
+
+     .age-verification-content .age-verifiction-button,
+     .age-verification-content {
+         gap: 15px;
+     }
+ }

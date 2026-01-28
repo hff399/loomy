@@ -1,0 +1,64 @@
+{% if recommendations.products_count > 0 %}
+  <div class="product-recommendations">
+    <div class="product-recommendation-header">
+      {% if block.settings.heading != blank and recommendations.products_count > 1 %}
+        <p class="product-recommendation-heading heading-font text-large">
+          {{ block.settings.heading }}
+        </p>
+      {% endif %}
+      <div class="swiper-pagination-recommendations-{{ section.id }} swiper-pagination-product-recommendations"></div>
+    </div>
+    <swiper-slideshow>
+      <div class="swiper" data-swiper='
+          {
+            "loop": true,
+            "slidesPerView": 1.45,
+            "spaceBetween": 20,
+            "pagination": {
+                "el": ".swiper-pagination-recommendations-{{ section.id }}",
+                "type": "bullets",
+                "clickable": true,
+                "dynamicBullets" : true
+            },
+              "breakpoints": {
+                  "768": {
+                    "loop": true,
+                    "spaceBetween": 10,
+                    "pagination": {
+                        "el": ".swiper-pagination-recommendations-{{ section.id }}",
+                        "type": "bullets",
+                        "clickable": true
+                    },
+                    "slidesPerView":1.45
+                  },
+                  "1099": {
+                    "slidesPerView":2
+                  }
+              }
+          }
+        '>
+        <div class="product-recommendation-wrapper swiper-wrapper">
+          {%- for product in product_list limit: limit -%}
+            {% liquid
+              if block.id != blank
+                assign recommendation_product_form_id = 'recommendation-product-form-' | append: block.id | append: '-' | append: product.id
+              else
+                assign recommendation_product_form_id = 'recommendation-product-form-' | append: section.id | append: '-' | append: product.id
+              endif
+            %}
+            <div class="swiper-slide">
+              {% render 'product-layout'
+                ,
+ product: product
+                ,
+ product_form_id: recommendation_product_form_id
+                ,
+ currentVariant: product.selected_or_first_available_variant
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </swiper-slideshow>
+  </div>
+{% endif %}

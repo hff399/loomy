@@ -1,0 +1,320 @@
+  {% assign check_grandchildlink_menu = false %}
+  {% assign link_title = link.title | handleize %}
+  {% assign block_id = '' %}
+  {% assign block_scheme = '' %}
+  {% assign block_mega_menu_check = false %}
+  {% assign show_menu_default_image = false %}
+  {% assign menu_default_image = '' %}
+  {% assign mega_menu_products = '' %}
+  {% assign show_mega_menu_products = false %}
+  {% assign mega_menu_products_heading = '' %}
+  {% assign show_product_badge = true %}
+  {% assign show_color_count = true %}
+  {% assign show_rating = false %}
+
+  {%  for block in section.blocks  %}
+  {% assign block_id = block.id %}
+  {% assign block_label = block.settings.title | handleize %}
+  {% if block_label == link_title and block.type == 'mega-menu' %}
+    {% assign block_mega_menu_check = true %}
+    {% assign block_scheme = block.settings.color_scheme %}
+  {% assign block_mega_menus = block.settings.mega_menu %}
+
+  {% if block.settings.show_menu_images %}
+    {% assign show_menu_default_image = true %}
+    {% assign menu_default_image = block.settings.menu_default_image %}
+  {% endif %}
+
+  {% comment %} Capture mega menu products settings {% endcomment %}
+  {% if block.settings.show_products and block.settings.product_list.size > 0 %}
+    {% assign show_mega_menu_products = true %}
+    {% assign mega_menu_products = block.settings.product_list %}
+    {% assign mega_menu_products_heading = block.settings.products_heading %}
+    {% assign show_product_badge = block.settings.show_product_badge %}
+    {% assign show_color_count = block.settings.show_color_count %}
+    {% assign show_rating = block.settings.show_rating %}
+  {% endif %}
+  
+  {% if block.settings.content_image_1 != blank %}
+  {% if block.settings.image_ratio == 'landscape' %}
+    {% if section.settings.header_styles == 'split_menus' -%}
+    {% assign image_ratio = '45'  %}
+  {% else %}
+    {% assign image_ratio = '75'  %}
+  {% endif %}
+  {% elsif block.settings.image_ratio == 'square' %}
+    {% assign image_ratio = '100' %}
+  {% elsif block.settings.image_ratio == 'portrait' %}
+    {% assign image_ratio = '120' %}
+  {% endif %}
+    {% capture mega_menu_image %}
+        <div class="header-mega-menu-images-item">
+
+        {% for i in (1..2) %}
+          {%- liquid
+              assign image_id = 'content_image_' | append: i
+              assign heading_id = 'content_heading_' | append: i
+              assign heading_size_id = 'heading_size_' | append: i
+              assign description_id = 'content_description_' | append: i
+              assign description_size_id = 'description_size_' | append: i
+              assign link_id = 'content_link_' | append: i
+          -%}
+          {% if block.settings[image_id] != blank %} 
+          <{% if block.settings[link_id] != blank %}a href="{{ block.settings[link_id] }}"{% else %}div{% endif %} class="header-mega-menu-images-item-inner">
+            {% if block.settings.image_ratio == 'auto' %}
+              {% assign image_ratio = 1 | divided_by: block.settings[image_id].aspect_ratio | times: 100 %}
+            {% endif %}
+            <div class="header-menu-menu-img media-wrapper media-overlay">
+              <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+                {% render 'lazy-images', image: block.settings[image_id] %}
+              </div>
+            </div>
+            {% if block.settings[heading_id] != blank or block.settings[description_id] != blank or block.settings[button_id] != blank %}
+            <div class="header-menu-menu-image-content d-bottom-left d-text-{{ block.settings.desktop_text_alignment }}">
+              {% if block.settings[heading_id] != blank %}
+              <h5 class="{{ block.settings[heading_size_id] }}">{{ block.settings[heading_id] }}</h5>
+              {% endif %} 
+              {% if block.settings[description_id] != blank %}
+                <p class="{{ block.settings[description_size_id] }}">{{ block.settings[description_id] }}</p>
+              {% endif %}         
+            </div>
+          {% endif %}
+          </{% if block.settings[link_id] != blank %}a{% else %}div{% endif %}>
+        {% endif %}
+        {% endfor %}
+        </div>
+    {% endcapture %}
+  {%  endif %}
+            {% endif %}
+  {% endfor %}
+
+  {%- comment -%} Capture mega menu products section {%- endcomment -%}
+  {% capture mega_menu_products_section %}
+    {%- liquid
+      assign products_to_show = null
+      assign products_heading = mega_menu_products_heading
+
+      comment
+        Priority 1: Manually selected products
+      endcomment
+      if show_mega_menu_products and mega_menu_products.size > 0
+        assign products_to_show = mega_menu_products
+
+      comment
+        Priority 2: Auto-fetch from collection if link points to a collection
+      endcomment
+      elsif link.object.products != blank
+        assign products_to_show = link.object.products | slice: 0, 6
+        if products_heading == blank
+          assign products_heading = 'Featured Products'
+        endif
+      endif
+    -%}
+
+    {% if products_to_show != blank and products_to_show.size > 0 %}
+      <div class="header-mega-menu-products">
+        {% if products_heading != blank %}
+          <h6 class="header-mega-menu-products-title">{{ products_heading }}</h6>
+        {% endif %}
+        <div class="mega-menu-products-wrapper">
+          {% for product in products_to_show limit: 6 %}
+            {% render 'mega-menu-product-card',
+              product: product,
+              show_badge: show_product_badge,
+              show_color_count: show_color_count,
+              show_rating: show_rating
+            %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endcapture %}
+
+  {% if section.settings.header_styles == 'split_menus' -%}
+    <div class="split-menus-header-mega-menu-wrapper"> 
+  {% endif %}
+<div class="header-mega-menu-container{% if block_mega_menu_check %} scheme-{{ block_scheme }} block-mega-menu-true{% endif %}" header-menu-inner>
+  <div class="container">
+<div class="header-mega-menu-submenu-outer{% if block_mega_menus == blank %} header-mega-menu-submenu-outer-without-menu{% endif %}"{% if block_mega_menus != blank %} data-block-mega-menu-parents mega-menu-submenu inert {% endif %}> 
+      {% if block_mega_menus == blank %}
+        {% if link.links.size > 0 %}
+          <div class="header-mega-menu-submenu-wrapper">
+        {% for childlink in link.links %}
+            <div class="header-mega-menu-submenu-vertical-style"> 
+              <a href="{{ childlink.url }}" aria-label="Mega menu child link focus-inside" class="header-mega-menu-link {{ settings.second_level_font_size }} {{ settings.second_level_font }}" title="{{ childlink.title }}">
+                {{ childlink.title }}
+              </a>
+              {% if childlink.links.size > 0 %}
+                  <ul role="menu">
+                    {% for grandchild in childlink.links %}
+                      <li class="header-mega-menu-grandchild-vertical-item text-left" role="menuitem">
+                        <a
+                          href="{{ grandchild.url }}"
+                          title="{{ grandchild.title }}"
+                          class="header-mega-menu-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                        >
+                          {{- grandchild.title -}}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+              {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+          {{ mega_menu_image }}
+          {{ mega_menu_products_section }}
+      {% else %}
+        {% if block_mega_menus != blank %}
+            {% if section.settings.header_styles == 'split_menus' -%}
+              <div class="header-mega-menu-submenu-wrapper">
+                {% for mega_menus in block_mega_menus.links %}
+                  <div class="header-mega-menu-submenu-vertical-style">
+                    <a href="{{ mega_menus.url }}" aria-label="Mega menu link" title="{{ mega_menus.title }}" class="header-mega-menu-link {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
+                        {% if show_menu_default_image %}
+                          {% assign childlink_object = mega_menus.object %}
+                            {% if childlink_object.image != blank or childlink_object.featured_image != blank or menu_default_image != blank %}
+                              <div class="nav-megamenu-image-wrapper">
+                                <div class="media" style="--image-ratio:100%">
+                                  {% if childlink_object.featured_image != blank %}
+                                    {% render 'lazy-images', image: childlink_object.featured_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                  {% elsif childlink_object.image != blank %}
+                                    {% render 'lazy-images', image: childlink_object.image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                  {% else %}  
+                                    {% render 'lazy-images', image: menu_default_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                  {% endif %}
+                                  </div>
+                              </div>
+                            {% endif %}
+                          {% endif %}
+                        {{ mega_menus.title }}
+                    </a>
+                      {% if mega_menus.links.size > 0 %}
+                      <ul role="menu">
+                        {% for childlink in mega_menus.links %}
+                        <li class="header-mega-menu-grandchild-vertical-item text-left" role="menuitem"{% if childlink.links.size > 0 %} data-grandchild-child-parent{% endif %}>
+                            <a
+                              href="{{ childlink.url }}"
+                              title="{{ childlink.title }}"
+                              class="header-mega-menu-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}">
+                              {{- childlink.title -}}
+                              {% if childlink.links.size > 0 %}
+                                <span class="grandchild-mega-menu-arrow" data-grandchild-child tabindex="0">
+                                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                                    <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"/>
+                                  </svg>
+                                </span>
+                              {% endif %}
+                            </a>
+                            {% if childlink.links.size > 0 %}
+                              <ul class="header-mega-menu-grandchild-child" data-grandchild-child-content>
+                                {% for grandchild in childlink.links %}
+                                  <li class="header-mega-menu-grandchild-vertical-item text-left" role="menuitem">
+                                    <a
+                                      href="{{ grandchild.url }}"
+                                      title="{{ grandchild.title }}"
+                                      class="header-mega-menu-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}">
+                                      {{- grandchild.title -}}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+              {{ mega_menu_image }}
+          {{ mega_menu_products_section }}
+             {% else %}
+                        <div class="block-megamenu-left-side">
+                          {% assign check_active_submenu =  true %}
+                          {% for mega_menus in block_mega_menus.links %}
+                          <a href="{{ mega_menus.url }}" aria-label="Mega menu link" class="header-mega-menu-link {{ settings.second_level_font_size }} {{ settings.second_level_font }}{% if mega_menus.links.size > 0 and check_active_submenu %} active{% endif %}" {% if mega_menus.links.size > 0 %}data-submenu-index="mega-menu-index-{{ forloop.index }}-{{ block_id }}"{% endif %} title="{{ childlink.title }}">
+                              {% if show_menu_default_image %}
+                              {% assign childlink_object = mega_menus.object %}
+                                {% if childlink_object.image != blank or childlink_object.featured_image != blank or menu_default_image != blank %}
+                                  <div class="nav-megamenu-image-wrapper">
+                                    <div class="media" style="--image-ratio:100%">
+                                      {% if childlink_object.featured_image != blank %}
+                                        {% render 'lazy-images', image: childlink_object.featured_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                      {% elsif childlink_object.image != blank %}
+                                        {% render 'lazy-images', image: childlink_object.image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                      {% else %}  
+                                        {% render 'lazy-images', image: menu_default_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                      {% endif %}
+                                      </div>
+                                  </div>
+                                {% endif %}
+                              {% endif %}
+                            {{ mega_menus.title }}
+                                {% if mega_menus.links.size > 0 %}  
+                                  {% assign check_active_submenu =  false %}
+                                  <span href="{{ mega_menus.url }}" class="button button-icon button-regular">
+                                    <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+                                      <path d="M0.146659 11.3361L1.12455 12.723L12.5163 4.69029L11.5628 10.2147L13.2392 10.5051L14.6861 2.12213L6.30395 0.669769L6.01458 2.34636L11.5384 3.30346L0.146659 11.3361Z" fill="currentColor"></path>
+                                    </svg>
+                                  </span>     
+                                {% endif %} 
+                              </a>
+                          {% endfor %}
+                        </div>
+                        <div class="header-block-submenu-wrapper{% if mega_menu_image == blank %} header-block-submenu-wrapper-no-image{% endif %}">
+                                {% assign check_active_submenu =  true %}
+                                {% liquid 
+                                 assign checksubmenu = false
+                                  for mega_menus in block_mega_menus.links 
+                                    if mega_menus.links.size > 0 
+                                      assign checksubmenu = true
+                                    endif
+                                   endfor
+                                %}
+                                {% if checksubmenu %}
+                                <div class="header-block-submenu-wrapper-inner">
+                                    {% for mega_menus in block_mega_menus.links %}
+                                  {% if mega_menus.links.size > 0 %}
+                                    <div class="header-block-submenu-items mega-menu-index-{{ forloop.index }}-{{ block_id }}{% if check_active_submenu %} active{% endif %}" header-block-submenu>
+                                      {% assign check_active_submenu =  false %}
+                                    {% for childlink in mega_menus.links %}
+                                      <div class="header-mega-menu-submenu-vertical-style">
+                                        <a href="{{ childlink.url }}" aria-label="Mega menu child link" class="header-mega-menu-link {{ settings.second_level_font_size }} {{ settings.second_level_font }}" title="{{ childlink.title }}">
+                                          {{ childlink.title }}
+                                        </a>
+                                        {% if childlink.links.size > 0 %}
+                                          <ul role="menu"> 
+                                            {% for grandchild in childlink.links %}
+                                              <li class="header-mega-menu-grandchild-vertical-item text-left" role="menuitem">
+                                                <a
+                                                  href="{{ grandchild.url }}"
+                                                  title="{{ grandchild.title }}"
+                                                  class="header-mega-menu-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                                                >
+                                                {{- grandchild.title -}}
+                                                </a>
+                                              </li>
+                                            {% endfor %}
+                                          </ul>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                                    </div>                  
+                                    {% endif %}   
+                                  {% endfor %}
+                              </div>
+                              {% endif %}
+                            {{ mega_menu_image }}
+          {{ mega_menu_products_section }}
+                         </div>
+              {% endif %} 
+        {% endif %}
+    {% endif %}
+  </div>
+  </div>
+</div>
+{% if section.settings.header_styles == 'split_menus' -%}
+  </div> 
+{% endif %}

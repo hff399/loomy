@@ -1,0 +1,41 @@
+<div data-size-chart-content>
+  <template>
+    <size-chart-popup
+      class="popup size-chart-popup scheme-{{ settings.popup_color_scheme }} position-center-center"
+      id="size-chart-{{ section.id }}"
+      data-drawer="size-chart-popup"
+      data-section-id="{{ section.id }}"
+      data-popup-modal
+      data-id="{{ section.id }}"
+      data-onclose-focus=""
+    >
+      <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+        <div class="data-moving-cursor" data-moving-cursor>
+          <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+            <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div> 
+      </div>
+      <div class="popup-content popup-dialog modal-size-large">
+        <div class="popup-wrapper">
+          <div class="size-chart-popup-header popup-content-head d-flex justify-content-between align-items-center border-bottom">
+            <h4 class="heading-font h5">{{ 'products.product.size_chart' | t }}</h4>
+            <close-drawer class="drawer-close-main" data-drawer-close>
+              <button class="drawer-close-btn close-button" aria-label="Close drawer" aria-hidden="true">
+                {% render 'svg-icons', icon: 'close' %}
+                {% render 'svg-icons', icon: 'close-bg' %}
+              </button>
+            </close-drawer>
+          </div>
+          <div class="popup-content-body popup-border-none" data-popup-content>
+            {{
+              pages[block.settings.size_chart].content
+              | replace: '<table', '<div class="table-responsive"><table'
+              | replace: '</table>', '</table></div>'
+            }}
+          </div>
+        </div>
+      </div>
+    </size-chart-popup>
+  </template>
+</div>

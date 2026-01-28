@@ -1,0 +1,346 @@
+<mobile-menu class="drawer-wrapper open-left mobile-menu-side-drawer scheme-{{ settings.mb_menu_color_scheme }}" id="MobileDrawer"
+    data-section-id="{{ section.id }}"
+    data-drawer="mobile-menu-drawer"> 
+    <div class="close-drawer" data-close-drawer=""></div>
+    <div class="drawer-container">
+      <div class="drawer-inner">
+            <div class="drawer-head">
+                <div class="drawer-head-content border-bottom">
+                    <close-drawer class="drawer-close-main" data-drawer-close>
+                        <button class="close-button" aria-label="Close drawer" aria-hidden="true">
+                            {% render 'svg-icons'
+                            , icon: 'close' %}
+                          {% render 'svg-icons'
+                            , icon: 'close-bg' %}
+                  
+                        </button>
+                    </close-drawer>                        
+                  </div>
+            </div>
+           <div class="mobile-menu-content-wrapper">
+            <hamburger-menu-drawer class="hamburger-menu-content-wrapper">
+                {% if section.settings.menu != blank %}
+                    <ul class="hamburger-menu-list main-menu">
+                        {% for link in section.settings.menu.links %}
+                            {% liquid
+                                assign mega_menu_status = false
+                                assign block_mega_menus = '' 
+                                assign show_menu_default_image = false  
+                                assign menu_default_image = '' 
+                                assign check_mega_menu_images = false
+    
+                                assign link_title = link.title | handleize
+                                for block in section.blocks
+                                assign block_label = block.settings.title | handleize
+                                if block_label == link_title and block.type == 'mega-menu'
+                                    if block.settings.content_image_1 != blank
+                                    assign check_mega_menu_images = true
+                                    endif
+                                    assign mega_menu_status = true
+                                    assign block_mega_menus = block.settings.mega_menu
+                                    if block.settings.show_menu_images
+                                      assign show_menu_default_image = true
+                                      assign menu_default_image = block.settings.menu_default_image 
+                                    endif
+                                endif
+                                endfor
+                            %} 
+                            <li class="hamburger-menu-item menu-item-{{ forloop.index }} focus-inside" data-hamburger-item {% if link.links.size > 0 or mega_menu_status %} data-menu-item tabindex="0" {% endif %}>
+                            <{% if link.links.size > 0 or mega_menu_status %}span{% else %}a href="{{ link.url }}"{% endif %} class="main-menu-link hamburger-menu-link text-md body-font cursor-pointer focus-inside">
+                                {{- link.title }}
+                                {% if link.links.size > 0 or mega_menu_status %}
+                                    <span>
+                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                        <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                            </{% if link.links.size > 0 or mega_menu_status %}span{% else %}a{% endif %}>
+    
+                            {% if link.links.size > 0 or mega_menu_status %}
+                                <div class="hamburger-menu-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-child>
+                                    <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                        <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                        </svg>
+                                        <span>Back</span>
+                                    </button>
+    
+                                    <ul class="hamburger-menu-submenu-list">
+                                        {% if block_mega_menus == blank %}
+                                        {% for childLink in link.links %}
+                                            {% assign childIndex = forloop.index %}
+                                            <li class="hamburger-menu-item menu-item-{{ childIndex }} focus-inside" {% if childLink.links.size > 0 %} data-menu-item tabindex="0" {% endif %}>
+                                                <{% if childLink.links.size > 0 %}span{% else %}a href="{{ childLink.url }}"{% endif %} class="hamburger-menu-link text-md body-font cursor-pointer focus-inside">
+                                                {{- childLink.title -}}
+                                                {% if childLink.links.size > 0 %}
+                                                    <span>
+                                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                            <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                {% endif %}
+                                            </{% if childLink.links.size > 0 %}span{% else %}a{% endif %}>
+                                            {% if childLink.links.size > 0 %}
+                                                <div class="hamburger-menu-submenu inner-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-grandchild>
+                                                    <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                            <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                                        </svg>
+                                                        <span>Back</span>
+                                                    </button>
+                                                    <ul class="hamburger-menu-submenu-list inner-submenu-list">
+                                                        {% for grandChildLink in childLink.links %}
+                                                            {% assign grandchildIndex = forloop.index %}
+                                                            <li class="hamburger-menu-item menu-item-{{ grandchildIndex }} focus-inside">
+                                                                <a href="{{ grandChildLink.url }}" class="hamburger-menu-link text-sm body-font focus-inside" aria-label="{{ grandChildLink.title }}">{{- grandChildLink.title -}}</a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                        {% endif %}
+
+                                        {% if mega_menu_status %}
+                                            {% if block_mega_menus != blank %}
+                                                {% for mega_menus in block_mega_menus.links %}
+                                                    <li class="hamburger-menu-item megamenu-menu-wrapper focus-inside" {% if mega_menus.links.size > 0 %} data-menu-item tabindex="0" {% endif %}>
+                                                        <{% if mega_menus.links.size > 0 %}span{% else %}a href="{{ mega_menus.url }}"{% endif %} class="hamburger-menu-link{% if show_menu_default_image %} menu-with-image{% endif %} text-md body-font cursor-pointer focus-inside">
+                                                            {% if show_menu_default_image %}
+                                                                {% assign childlink_object = mega_menus.object %}
+                                                                  {% if childlink_object.image != blank or childlink_object.featured_image != blank or menu_default_image != blank %}
+                                                                    <div class="nav-megamenu-image-wrapper">
+                                                                      <div class="media" style="--image-ratio:100%">
+                                                                        {% if childlink_object.featured_image != blank %}
+                                                                          {% render 'lazy-images', image: childlink_object.featured_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                                                        {% elsif childlink_object.image != blank %}
+                                                                          {% render 'lazy-images', image: childlink_object.image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                                                        {% else %}  
+                                                                          {% render 'lazy-images', image: menu_default_image, sizes: '(max-width: 768px) 100vw, 300px', loading: 'lazy' %}
+                                                                        {% endif %}
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                            {% endif %}
+    
+                                                            {{- mega_menus.title -}}
+                                                            {% if mega_menus.links.size > 0 %}
+                                                                <span>
+                                                                    <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                                        <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>
+                                                            {% endif %}
+                                                        </{% if mega_menus.links.size > 0 %}span{% else %}a{% endif %}>
+    
+                                                        {% if mega_menus.links.size > 0 %}
+                                                            <div class="hamburger-menu-submenu inner-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-grandchild>
+                                                                <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                                                    <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                                        <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                    <span>Back</span>
+                                                                </button>
+                                                                <ul class="hamburger-menu-submenu-list inner-submenu-list">
+                                                                    {% for childLink in mega_menus.links %}
+                                                                        {% assign childLinkindex = forloop.index %}
+                                                                        <li class="grandchildlink-child-wrapper hamburger-menu-item menu-item-{{ childLinkindex }}" {% if childLink.links.size > 0 %} data-grandchild-child{% endif %}>
+                                                                            <{% if childLink.links.size > 0 %}span{% else %}a href="{{ childLink.url }}"{% endif %} class="hamburger-menu-link text-md body-font focus-inside" {% if childLink.links.size > 0 %} data-grandchild-child-trigger tabindex="0"{% endif %} aria-label="{{ childLink.title }}">
+                                                                                {{- childLink.title -}} 
+                                                                                {% if childLink.links.size > 0 %}
+                                                                                    <span>
+                                                                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                                                            <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                {% endif %}
+                                                                            </{% if childLink.links.size > 0 %}span{% else %}a{% endif %}>
+                                                                            {% if childLink.links.size > 0 %}
+                                                                                <ul class="hamburger-menu-submenu-list inner-submenu-list">
+                                                                                    {% for grandchildLink in childLink.links %}
+                                                                                        <li class="hamburger-menu-item focus-inside">
+                                                                                            <a href="{{ grandchildLink.url }}" class="hamburger-menu-link text-sm body-font focus-inside" aria-label="{{ grandchildLink.title }}">{{ grandchildLink.title }}</a>
+                                                                                        </li>
+                                                                                    {% endfor %}
+                                                                                </ul>
+                                                                            {% endif %}
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </div>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if check_mega_menu_images %}
+                                        <li class="hamburger-menu-item menu-item-{{ link.links.size | plus: 1 }} mega-menu-hamburger-images-wrapper">
+                                            {% assign link_title = link.title | handleize %}
+                                            {% for block in section.blocks %}
+                                            {% assign block_label = block.settings.title | handleize %}
+                                            {% if block_label == link_title and block.type == 'mega-menu' %}
+     
+                                                {% if block.settings.image_ratio == 'landscape' %}
+                                                    {% assign image_ratio = '75'  %}
+                                                  {% elsif block.settings.image_ratio == 'square' %}
+                                                    {% assign image_ratio = '100' %}
+                                                  {% elsif block.settings.image_ratio == 'portrait' %}
+                                                    {% assign image_ratio = '120' %}
+                                                {% endif %}
+    
+                                                {%- for i in (1..2) -%}
+                                                {%- liquid
+                                                    assign image_id = 'content_image_' | append: i
+                                                    assign heading_id = 'content_heading_' | append: i
+                                                    assign heading_size_id = 'heading_size_' | append: i
+                                                    assign description_id = 'content_description_' | append: i
+                                                    assign description_size_id = 'description_size_' | append: i
+                                                    assign link_id = 'content_link_' | append: i
+                                                -%}
+    
+                                                {% if block.settings[image_id] != blank %} 
+                                                <{% if block.settings[link_id] != blank %}a href="{{ block.settings[link_id] }}"{% else %}div{% endif %} class="header-mega-menu-images-item-inner">
+                                                  {% if block.settings.image_ratio == 'auto' %}
+                                                    {% assign image_ratio = 1 | divided_by: block.settings[image_id].aspect_ratio | times: 100 %}
+                                                  {% endif %}
+                                                  <div class="header-menu-menu-img media-wrapper media-overlay">
+                                                    <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+                                                      {% render 'lazy-images', image: block.settings[image_id] %}
+                                                    </div>
+                                                  </div>
+                                                  {% if block.settings[heading_id] != blank or block.settings[description_id] != blank or block.settings[button_id] != blank %}
+                                                  <div class="header-menu-menu-image-content d-bottom-left d-text-{{ block.settings.desktop_text_alignment }}">
+                                                    {% if block.settings[heading_id] != blank %}
+                                                    <h5 class="{{ block.settings[heading_size_id] }}">{{ block.settings[heading_id] }}</h5>
+                                                    {% endif %} 
+                                                    {% if block.settings[description_id] != blank %}
+                                                      <p class="{{ block.settings[description_size_id] }}">{{ block.settings[description_id] }}</p>
+                                                    {% endif %}         
+                                                  </div>
+                                                {% endif %}
+                                                </{% if block.settings[link_id] != blank %}a{% else %}div{% endif %}>
+                                              {% endif %}
+                                                {%- endfor -%}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </li> 
+                                        {% endif %}
+                                    {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+    
+                            </li>
+    
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    
+                {% if section.settings.category_menus != blank %}
+                  <ul class="hamburger-menu-list hamburger-category-menus">
+                    {% for link in section.settings.category_menus.links %}
+    
+                        {% liquid
+                            assign category_menu_status = false
+                            assign link_title = link.title | handleize
+                            for block in section.blocks
+                            assign block_label = block.settings.title | handleize
+                            if block_label == link_title and block.type == 'category_mega_menus' and block.settings.content_image_1 != blank
+                                assign category_menu_status = true
+                            endif
+                            endfor
+                        %} 
+                        <li class="hamburger-menu-item category-menu-item-{{ forloop.index }} focus-inside" data-hamburger-item {% if link.links.size > 0 or category_menu_status %} data-menu-item tabindex="0" {% endif %}>
+                            <{% if link.links.size > 0 or category_menu_status %}span{% else %}a href="{{ link.url }}"{% endif %} class="hamburger-menu-link text-md body-font cursor-pointer focus-inside">
+                                {{- link.title }} 
+                                {% if link.links.size > 0 or category_menu_status %}
+                                    <span>
+                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                        <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                            </{% if link.links.size > 0 or category_menu_status %}span{% else %}a{% endif %}>
+    
+                            {% if link.links.size > 0 or category_menu_status %}
+                                <div class="hamburger-menu-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-child>
+                                    <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                        <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                        </svg>
+                                        <span>Back</span>
+                                    </button>
+                                    <ul class="hamburger-menu-submenu-list">
+                                        {% for childLink in link.links %}
+                                           {% assign childIndex = forloop.index %}
+                                        <li class="hamburger-menu-item menu-item-{{ childIndex }} focus-inside" {% if childLink.links.size > 0 %} data-menu-item tabindex="0" {% endif %}>
+                                            <{% if childLink.links.size > 0 %}span{% else %}a href="{{ childLink.url }}"{% endif %} class="hamburger-menu-link text-md body-font cursor-pointer focus-inside">
+                                                {{- childLink.title -}}
+                                                {% if childLink.links.size > 0 %}
+                                                    <span>
+                                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                            <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                {% endif %}
+                                            </{% if childLink.links.size > 0 %}span{% else %}a{% endif %}>
+                                                {% if childLink.links.size > 0 %}
+                                                    <div class="hamburger-menu-submenu inner-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-grandchild>
+                                                        <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                                <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                                            </svg>
+                                                            <span>Back</span>
+                                                        </button>
+                                                        <ul class="hamburger-menu-submenu-list inner-submenu-list">
+                                                            {% for grandChildLink in childLink.links %}
+                                                                {% assign grandchildIndex = forloop.index %}
+                                                                <li class="hamburger-menu-item menu-item-{{ grandchildIndex }} focus-inside">
+                                                                    <a href="{{ grandChildLink.url }}" class="hamburger-menu-link text-sm body-font focus-inside" aria-label="{{ grandChildLink.title }}">{{- grandChildLink.title -}}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                        {% if category_menu_status %}
+                                             <li class="hamburger-menu-item menu-item-{{ link.links.size | plus: 1 }} mega-menu-hamburger-images-wrapper">
+                                                {% render 'category-mega-menu', link_title: link_title, section: section %}
+                                            </li>
+                                        {% endif %}
+                                     </ul>
+                                </div> 
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                 {% endif %}
+                </hamburger-menu-drawer>
+            </div>
+
+            {% if section.settings.show_location_and_language or section.settings.enable_social_icons  %}
+            <div class="mobile-menu-footer-content-wrapper">
+                {% liquid
+                    assign social_icons = true
+                    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_linkedin_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+                      assign social_icons = false
+                    endif
+                %}
+                {% if social_icons and section.settings.enable_social_icons %}
+                <div class="mobile-menu-icons social-icons text-center">
+                    {% render 'social-icons' %}
+                </div>
+                {% endif %}
+
+                {% if section.settings.show_location_and_language %}
+                    <div class="mobile-menu-localization-form">
+                      {% render 'localization-form', section: section %}
+                    </div>
+                  {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</mobile-menu>

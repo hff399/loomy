@@ -1,0 +1,311 @@
+/* search page css start */
+
+.main-search-header {
+    position: relative;
+    z-index: 0;
+    background: var(--body-alt-background);
+    overflow-y: auto;
+    padding: 50px 20px;
+}
+
+.main-search .section-shape-wrapper {
+    color: var(--body-background);
+    z-index: 0;
+}
+
+.main-search-header .background-overlay-image img {
+    z-index: 1;
+}
+
+.round-section.round-top.round-bottom .search-header-without-banner {
+    border-radius: var(--round-section-radius);
+}
+
+.round-section.round-top .main-search-header {
+    border-top-left-radius: var(--round-section-radius);
+    border-top-right-radius: var(--round-section-radius);
+}
+
+.round-section.round-bottom .main-search-header {
+    border-bottom-left-radius: var(--round-section-radius);
+    border-bottom-right-radius: var(--round-section-radius);
+}
+
+.main-search-header-content {
+    max-width: 1107px;
+    margin: 0 auto;
+    display: grid;
+}
+
+.main-search-header-content:has(.main-search-tab-list) {
+    max-width: 800px;
+}
+
+.main-search-wrapper .collection-products-wrapper.filter-main-wrapper-drawer {
+    grid-template-columns: unset;
+}
+
+main-search.main-search-tabs {
+    display: grid;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.main-search-header-content .main-search--desc {
+    margin-top: 10px;
+}
+
+.product-description-box.divider {
+    border-bottom-width: 1px;
+    padding-bottom: 30px;
+    border-style: dashed;
+}
+
+.main-search-tabs:has(.main-search-tab-list) {
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.main-search-tab-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main-search-tab-item {
+    position: relative;
+    min-width: 110px;
+}
+
+.main-search-tab-link {
+    width: 100%;
+    padding: 8px 20px;
+    display: inline-block;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.main-search-tab-link span {
+    position: relative;
+    z-index: 1;
+}
+
+.main-search-tab-item.active .main-search-tab-link {
+    color: var(--body-background);
+    background: var(--text-color);
+}
+
+.background-effect {
+    background: var(--text-color);
+    position: absolute;
+    height: 100%;
+    left: 0;
+    transition: .2s cubic-bezier(.4, 0, .2, 1);
+    border-radius: 30px;
+    transform: translateX(var(--bgeffect-translate, 0%));
+}
+
+.main-search-input-box {
+    flex-grow: 1;
+}
+
+.main-search-input-group {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    border-radius: var(--card-radius);
+    color: var(--form-text);
+    align-items: center;
+    padding: 10px;
+    background: var(--form-background);
+    border: 1px solid rgba(var(--border-color));
+    position: relative;
+}
+
+.main-search-input-group input {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    min-height: auto;
+    padding: 0;
+    height: 100%;
+}
+
+.main-search-result-heading {
+    padding-bottom: 20px;
+}
+
+.search-article-list,
+.search-page-list {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 60px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.search-page-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.search-page-item {
+    width: 100%;
+    background: var(--body-alt-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 300px;
+    border-radius: var(--card-radius);
+    flex-direction: column;
+}
+
+.search-page-icon svg {
+    width: 60px;
+    height: auto;
+}
+
+.search-page-title {
+    display: block;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.search-form-button {
+    display: inline-grid;
+    place-content: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background: var(--text-color-extra-light);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.page-search-item {
+    position: relative;
+    overflow: hidden;
+    transition: var(--smooth-animation);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+    background-color: var(--card-background);
+    border-radius: var(--card-radius);
+}
+
+.page-search-item a {
+    padding: 30px 20px;
+    display: flex;
+    color: var(--card-text);
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+}
+
+.page-search-item:hover {
+    transform: translateY(-5px);
+}
+
+.search-result-pages-list {
+    display: grid;
+    grid-template-columns: repeat(var(--col-count), minmax(0, 1fr));
+    gap: var(--gap);
+}
+
+.page-search-item a span {
+    display: flex;
+}
+
+.page-search-item:hover a {
+    text-decoration: none;
+}
+
+.collection-products-wrapper:has(.search-result-pages-list) {
+    grid-template-columns: unset;
+}
+
+/* search page css end*/
+
+.empty-card {
+    width: 100%;
+    padding: 20px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--heading-color);
+}
+
+.empty-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-search-input-box .main-search-input-group {
+    grid-template-columns: auto 1fr auto;
+}
+
+.main-search-header-content .main-search-heading {
+    color: var(--image-overlay-heading-color);
+}
+
+.main-search-header-content .main-search--desc {
+    color: var(--image-overlay-text-color)
+}
+
+.main-search-input-group .form-control:focus-visible {
+    outline: none !important;
+}
+
+.empty-card-content .empty-card-desc {
+    margin-top: 0;
+}
+
+@media (max-width: 1200px) {
+    .search-result-pages-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-search-item {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .search-result-pages-list {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .page-search-item a {
+        padding: 25px 20px;
+    }
+
+    .search-result-tabs-list {
+        gap: 7px;
+    }
+
+    .search-result-tabs-item a.search-result-tabs-link {
+        min-width: auto;
+        min-height: inherit;
+    }
+
+    .search-page-clear,
+    .search-form-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    main-search.main-search-tabs {
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .main-search-header {
+        padding: 20px 15px;
+    }
+}

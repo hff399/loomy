@@ -1,0 +1,15 @@
+.collection-card-list {
+    display: grid;
+    gap: var(--column-gap, 20px);
+    grid-template-columns: repeat(var(--column-count, 2), 1fr);
+}
+
+.no-container .collection-card-item .collection-card-item-inner .collection-card-media {
+    border-radius: 0;
+}
+
+@media (max-width: 767px) {
+    .collection-card-list {
+        --column-count: 2;
+    }
+}

@@ -1,0 +1,168 @@
+ .text-with-multiple-img-item {
+     position: relative;
+ }
+
+ .image-with-text-content {
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+ }
+
+ .text-with-multiple-images-wrapper .divider {
+     border-color: rgba(var(--border-color));
+     border-style: solid;
+     border-width: 0;
+ }
+
+ .text-with-multiple-images-wrapper .divider.divider-bottom {
+     border-bottom-width: 1px;
+ }
+
+ .text-with-multiple-img-item-inner {
+     border-radius: var(--card-radius);
+     overflow: hidden;
+ }
+
+ .text-with-single-image-layout {
+     grid-template-columns: auto;
+ }
+
+ .text-with-single-image-layout .text-with-multiple-img-item .text-with-multiple-img-item-inner {
+     width: 100%;
+     max-width: 100%;
+ }
+
+ .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) {
+     max-width: 319px;
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     z-index: 2;
+     width: 100%;
+ }
+
+ .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) .text-with-multiple-img-item-inner {
+     outline: 10px solid var(--body-background);
+ }
+
+ .enable-border-true .text-with-multiple-img-item-inner {
+     border: 1px solid rgba(var(--border-color));
+ }
+
+ .text-with-multiple-images-wrap:not(.text-with-single-image-layout) .text-with-multiple-img-item:nth-child(1) {
+     display: block;
+     padding-bottom: 30px;
+     padding-right: 30px;
+ }
+
+ .no-container .text-with-multiple-images-wrapper>.row {
+     margin: 0;
+ }
+
+ .no-container .text-with-multiple-images-wrapper>.row>[class*="col-md"] {
+     padding: 0;
+ }
+
+ .text-with-multiple-images-falling-stars-wrapper .star {
+     position: absolute;
+     pointer-events: none;
+     z-index: 9;
+     top: -20px;
+     animation: fallingstarsanimate 4s linear forwards;
+ }
+
+ .text-with-multiple-images-falling-stars-wrapper .star svg {
+     opacity: var(--animation-colors-opacity, 0);
+ }
+
+ .no-container .text-with-multiple-img-item-inner {
+     border-radius: 0;
+ }
+
+ @keyframes fallingstarsanimate {
+     0% {
+         transform: translateY(0) rotate(0deg);
+         opacity: 1;
+     }
+
+     80% {
+         opacity: 1;
+     }
+
+     100% {
+         transform: translateY(100vh) rotate(360deg);
+         opacity: 0;
+     }
+ }
+
+
+
+
+ @media (min-width: 768px) {
+     .no-container .text-with-multiple-images-wrapper .image-with-text-content {
+         padding: 0 2rem;
+     }
+ }
+
+ @media (min-width: 1200px) {
+     .no-container .text-with-multiple-images-wrapper .image-with-text-content {
+         padding: 0 5rem;
+     }
+ }
+
+ @media (min-width: 1400px) {
+     .no-container .text-with-multiple-images-wrapper .image-with-text-content {
+         padding: 0 7rem;
+     }
+ }
+
+ @media (max-width: 1280px) {
+     .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) {
+         max-width: 220px;
+     }
+
+     .image-with-text-content {
+         gap: 25px;
+     }
+ }
+
+ @media (max-width: 991px) {
+     .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) {
+         max-width: 150px;
+     }
+
+     .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) .text-with-multiple-img-item-inner {
+         outline: 5px solid var(--body-background);
+     }
+ }
+
+ @media (max-width: 767px) {
+     .no-container .text-with-multiple-images-wrapper .image-with-text-content {
+         padding: 0 15px;
+     }
+
+     .image-with-text-content,
+     .image-with-text-wrapper [class*="image-position"],
+     .text-with-multiple-images-wrapper [class*="image-position"] {
+         gap: 18px;
+     }
+
+     .text-with-multiple-images-wrap .text-with-multiple-img-item:nth-child(2) {
+         max-width: 110px;
+         right: 20px;
+     }
+
+     .text-with-multiple-images-wrap:not(.text-with-single-image-layout) .text-with-multiple-img-item:nth-child(1) {
+         padding-right: 0;
+     }
+
+     .testimonial-item-inner-wrapper {
+         max-width: 100%;
+     }
+ }
+
+ @media (max-width: 600px) {
+     .text-with-multiple-images-falling-stars-wrapper .star {
+         font-size: 8px;
+     }
+ }

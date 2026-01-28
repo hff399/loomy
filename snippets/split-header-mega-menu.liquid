@@ -1,0 +1,101 @@
+{% assign check_grandchildlink_menu = false %}
+{% assign link_title = link.title | handleize %}
+{% assign block_id = '' %}
+{% assign block_mega_menu_check = false %}
+{% assign block_scheme = '' %}
+
+{% for block in section.blocks %}
+  {% assign block_id = block.id %}
+  {% assign block_label = block.settings.title | handleize %}
+  {% if block_label == link_title and block.type == 'category_mega_menus' %}
+    {% assign block_mega_menu_check = true %}
+    {% assign block_scheme = settings.hamburger_color_scheme %}
+    {% if block.settings.content_image_1 != blank %}
+      {% if block.settings.image_ratio == 'landscape' %}
+        {% assign image_ratio = '45' %}
+      {% elsif block.settings.image_ratio == 'square' %}
+        {% assign image_ratio = '100' %}
+      {% elsif block.settings.image_ratio == 'portrait' %}
+        {% assign image_ratio = '120' %}
+      {% endif %}
+      {% capture mega_menu_image %}
+      <div class="header-mega-menu-images-item">
+      {% for i in (1..2) %} 
+        {%- liquid
+            assign image_id = 'content_image_' | append: i
+            assign heading_id = 'content_heading_' | append: i
+            assign heading_size_id = 'heading_size_' | append: i
+            assign description_id = 'content_description_' | append: i
+            assign description_size_id = 'description_size_' | append: i
+            assign link_id = 'content_link_' | append: i
+        -%}
+        {% if block.settings[image_id] != blank %} 
+        <{% if block.settings[link_id] != blank %}a href="{{ block.settings[link_id] }}"{% else %}div{% endif %} class="header-mega-menu-images-item-inner">
+          {% if block.settings.image_ratio == 'auto' %}
+            {% assign image_ratio = 1 | divided_by: block.settings[image_id].aspect_ratio | times: 100 %}
+          {% endif %}
+          <div class="header-menu-menu-img media-wrapper media-overlay">
+            <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+              {% render 'lazy-images', image: block.settings[image_id] %}
+            </div>
+          </div>
+          {% if block.settings[heading_id] != blank or block.settings[description_id] != blank or block.settings[button_id] != blank %}
+          <div class="header-menu-menu-image-content d-bottom-left d-text-{{ block.settings.desktop_text_alignment }}">
+            {% if block.settings[heading_id] != blank %}
+            <h5 class="header-menu-menu-image-content-heading {{ block.settings[heading_size_id] }}">{{ block.settings[heading_id] }}</h5>
+            {% endif %} 
+            {% if block.settings[description_id] != blank %}
+              <p class="header-menu-menu-image-content-description {{ block.settings[description_size_id] }}">{{ block.settings[description_id] }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+        </{% if block.settings[link_id] != blank %}a{% else %}div{% endif %}>
+      {% endif %}
+      {% endfor %}
+      </div>
+  {% endcapture %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if section.settings.header_styles == 'split_menus' -%}
+  <div class="split-menus-header-mega-menu-wrapper">
+{% endif %}
+<div class="header-mega-menu-container{% if block_mega_menu_check %} scheme-{{ block_scheme }} block-mega-menu-true{% else %} scheme-{{ settings.hamburger_color_scheme }} category-split-default-mega-menu{% endif %}{% if link.links.size == 1 %} single-submenu-wrapper{% endif %}" header-menu-inner>
+  <div class="container">
+    <div class="header-mega-menu-submenu-outer header-mega-menu-submenu-outer-without-menu">
+      {% if link.links.size > 0 %}
+        <div class="header-mega-menu-submenu-wrapper">
+          {% for childlink in link.links %}
+            <div class="header-mega-menu-submenu-vertical-style">
+              <a
+                href="{{ childlink.url }}"
+                aria-label="Mega menu child link"
+                class="header-mega-menu-link {{ settings.second_level_font_size }} {{ settings.second_level_font }} focus-inside"
+                title="{{ childlink.title }}">
+                {{ childlink.title }}
+              </a>
+              {% if childlink.links.size > 0 %}
+                <ul role="menu">
+                  {% for grandchild in childlink.links %}
+                    <li class="header-mega-menu-grandchild-vertical-item" role="menuitem">
+                      <a
+                        href="{{ grandchild.url }}"
+                        title="{{ grandchild.title }}"
+                        class="header-mega-menu-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}">
+                        {{- grandchild.title -}}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {{ mega_menu_image }}
+    </div>
+  </div>
+</div>
+{% if section.settings.header_styles == 'split_menus' -%}
+  </div>
+{% endif %}

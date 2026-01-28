@@ -1,0 +1,208 @@
+{% if section.settings.logo_text != blank %}
+  {{ 'bottom-bar.css' | asset_url | stylesheet_tag }}
+  <div class="section-wrapper section-spacing section-{{ section.settings.section_background }}">
+    <div class="footer-bottom-logo-text-wrapper {{ section.settings.text_font }}">
+      {% assign logo_text = section.settings.logo_text | split: '' %}
+      {% for text in logo_text %}
+        {% if text != blank %}
+          <div class="footer-bottom-logo-text-item">
+            {{ text }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <style>
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_desktop }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+
+      --logo-text-size: {{ section.settings.text_size }}px;
+      --body-background: {{ section.settings.background }};
+      {% if section.settings.background_gradient != empty %}
+        --gradient-background: {{ section.settings.background_gradient }};
+      {% else %}
+        --gradient-background: {{ section.settings.background }};
+      {% endif %}
+      --highlight-text-color: {{ section.settings.text }};
+    }
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_mobile }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        --logo-text-size: {{ section.settings.mobile_text_size }}px;
+      }
+    }
+
+    {% if section.settings.section_visibility == 'large' %}
+      @media(max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+    @media(min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        display: none !important;
+      }
+    }
+  {% endif %}
+  </style>
+{% endif %}
+{% schema %}
+  {
+    "name": "t:sections.bottom-bar.name",
+    "tag": "section",
+    "class": "bottom-bar-section",
+    "disabled_on": {
+      "groups": ["header"]
+    },
+    "settings": [
+      {
+        "type": "select",
+        "id": "section_visibility",
+        "label": "t:sections.all.section_visibility.label",
+        "default": "always",
+        "options": [
+          {
+            "label": "t:sections.all.section_visibility.always.label",
+            "value": "always"
+          },
+          {
+            "label": "t:sections.all.section_visibility.small.label",
+            "value": "small"
+          },
+          {
+            "label": "t:sections.all.section_visibility.large.label",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "section_background",
+        "label": "t:sections.all.section_background.label",
+        "default": "solid",
+        "options": [
+          {
+            "label": "t:sections.all.section_background.solid.label",
+            "value": "solid"
+          },
+          {
+            "label": "t:sections.all.section_background.gradient.label",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "logo_text",
+        "default": "Logo",
+        "label": "t:sections.bottom-bar.settings.logo_text.label"
+      },
+      {
+        "type": "range",
+        "id": "text_size",
+        "label": "t:sections.bottom-bar.settings.text_size.label",
+        "default": 400,
+        "min": 100,
+        "max": 500,
+        "step": 10,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "mobile_text_size",
+        "label": "t:sections.bottom-bar.settings.mobile_text_size.label",
+        "default": 100,
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "text_font",
+        "default": "heading-font",
+        "label": "t:sections.all.heading_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.heading_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.heading_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.heading_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.colors.settings.color.label"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "t:settings_schema.colors.settings.background.label",
+        "default": "#000000"
+      },
+      {
+        "type": "color_background",
+        "id": "background_gradient",
+        "label": "t:settings_schema.colors.settings.background_gradient.label",
+        "info": "t:settings_schema.colors.settings.background_gradient.info",
+        "default": "linear-gradient(202deg, rgba(183, 183, 183, 1) 11%, rgba(255, 255, 255, 0.28) 84%)"
+      },
+      {
+        "type": "color",
+        "id": "text",
+        "label": "t:settings_schema.colors.settings.text.label",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ]
+  }
+{% endschema %}

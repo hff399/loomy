@@ -1,0 +1,1110 @@
+{% if section.index <= 2 %}
+  {{ 'media-grid.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'media-grid.css' | asset_url | stylesheet_tag }}
+
+{%- capture corner_style -%}
+    {% if section.settings.corner_style == 'top' %}
+        round-section round-top
+        {% elsif section.settings.corner_style == 'bottom' %}
+        round-section round-bottom
+        {% elsif section.settings.corner_style == 'both' %}
+        round-section round-bottom round-top
+    {% endif %}
+  {%- endcapture -%}
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+%}
+
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <clipPath clipPathUnits="objectBoundingBox" id="clip-path-shape_1-{{ section.id }}">
+      <path clip-rule="evenodd" d="M6.43514 18.7025C6.01604 30.4231 5.5718 42.3015 2.14162 53.5168C1.21682 56.5411 0.0700954 59.7577 0.999686 62.7804C1.97198 65.9424 4.96911 68.0147 7.9299 69.4907C10.8907 70.9667 14.1129 72.1721 16.3749 74.5861C17.7303 76.0329 18.6571 77.8346 19.9854 79.3063C23.45 83.1448 28.9908 84.1502 34.1121 84.8607C36.1158 85.1385 38.1658 85.4039 40.1479 85C43.7509 84.2651 46.7073 81.4065 50.3582 80.9675C55.072 80.4007 59.3755 83.9953 64.1212 84.1506C68.2978 84.2871 72.0505 81.7721 76.0834 80.6773C80.4124 79.5018 85.0057 79.9844 89.4573 79.4356C98.5616 78.3124 106.556 72.9736 113.775 67.313C119.063 63.166 124.617 57.7337 124.216 51.0254C123.893 45.6143 119.734 41.2589 117.986 36.1276C117.432 34.5015 117.116 32.7796 116.304 31.2657C114.714 28.2993 111.483 26.595 108.283 25.5529C105.082 24.5107 104.798 21.2458 101.807 19.7031C94.8373 16.1085 88.1729 10.6686 81.5025 6.54595C78.1809 4.49318 74.2841 3.56719 70.4132 3.0547C67.7478 2.70146 65.0265 2.53102 62.3794 3.0036C59.2777 3.558 56.3776 4.97734 53.2691 5.49263C44.7878 6.89879 36.6925 1.46134 28.1286 0.705373C27.3392 0.635923 26.5073 0.61357 25.7949 0.961618C24.9966 1.35118 24.4825 2.13508 23.9557 2.85033C22.213 5.21642 19.924 7.17738 17.3188 8.53684C14.7248 9.89072 11.8195 10.6607 9.42308 12.339C7.02626 14.0174 5.18743 17.0628 6.15255 19.8252" fill="#D8C2FF" transform="scale(0.0078 , 0.0116)"/>  
+    </clipPath>
+
+    <clipPath clipPathUnits="objectBoundingBox" id="clip-path-shape_2-{{ section.id }}">
+      <path clip-rule="evenodd" d="M22.4524 8.40979C17.4669 11.1006 13.4076 15.1955 9.46494 19.2639C6.22993 22.602 2.94321 26.0798 1.23016 30.401C-0.483251 34.7223 -0.27096 40.1377 2.96548 43.4743C3.5262 44.0526 4.17887 44.5774 4.51904 45.3074C4.82113 45.9557 4.84197 46.6939 4.89513 47.4073C5.50901 55.642 11.0709 62.7791 17.6412 67.7806C31.7421 78.5151 51.0763 81.2922 68.1989 76.7223C71.3384 75.8847 74.4275 74.8157 77.6374 74.3088C80.7373 73.8193 83.8933 73.8624 87.0263 73.6763C91.1482 73.4317 95.2467 72.7872 99.2447 71.7553C101.767 71.1044 104.281 70.2843 106.469 68.8712C110.243 66.4336 112.74 62.4242 114.445 58.2678C116.857 52.3858 117.72 45.0994 113.799 40.0953C113.05 39.1391 112.133 38.2748 111.69 37.1437C111.38 36.352 111.327 35.4874 111.156 34.6544C110.643 32.155 109.088 30.0142 107.553 27.9764C99.1714 16.8533 89.3101 5.65074 75.897 1.90028C67.0308 -0.578954 57.6081 0.509437 48.4685 1.61687C44.0467 2.15244 39.562 2.70417 35.4441 4.40106C32.5026 5.61302 29.7184 7.41444 26.5552 7.75353C24.516 7.97229 22.0734 7.71903 20.8129 9.33689" fill="#D8C2FF" transform="scale(0.0078,0.011)"/>  
+    </clipPath>
+
+    <clipPath clipPathUnits="objectBoundingBox" id="clip-path-shape_3-{{ section.id }}">
+      <path clip-rule="evenodd" d="M3.66536 86.4783C9.84714 74.6263 8.53665 59.254 0.437744 48.6192C3.64791 49.0339 6.85723 47.5995 9.37922 45.5708C11.9012 43.542 13.8868 40.9411 16.0425 38.5268C20.3298 33.7249 25.3581 29.5941 29.3388 24.5353C33.3196 19.4764 36.2533 13.1115 35.3484 6.73825C43.6658 11.7443 54.0529 12.3339 63.5657 10.3985C73.0784 8.46305 81.9388 4.21539 90.6835 0C91.5488 10.0954 96.1087 19.8332 103.309 26.9617C110.509 34.0903 120.292 38.553 130.396 39.3175C121.907 45.5812 115.634 54.5733 111.751 64.3826C107.869 74.1919 106.289 84.8045 106.133 95.353C103.45 89.852 97.407 86.8141 91.4904 85.2467C80.1133 82.2324 67.6925 83.33 57.0202 88.2934C56.4811 88.5441 55.9194 88.8101 55.3255 88.7866C54.6661 88.7604 54.08 88.3836 53.5235 88.0291C39.0658 78.822 19.9561 77.399 4.29423 84.3636C3.89781 84.5398 3.43948 84.8193 3.45779 85.2528C3.47611 85.6863 4.36227 85.6562 4.17911 85.2629" fill="#D8C2FF" transform="scale(0.0075,0.0105)"/>  
+    </clipPath>
+
+    <g vector-effect="non-scaling-stroke" id="outline-shape_1-{{ section.id }}" >
+      <path d="M17.3725 9.35001C13.9698 8.20848 10.1026 10.3167 8.30009 13.4204C6.49718 16.5241 6.37704 20.3323 6.84283 23.891C7.30863 27.4497 8.30807 30.9338 8.57589 34.5128C8.8924 38.7421 8.16119 43.0456 6.46565 46.9328C5.14969 49.9495 3.26178 52.7275 2.33258 55.8846C1.40339 59.0418 1.66722 62.8731 4.12511 65.062C6.15193 66.8673 9.11991 67.1191 11.4668 68.4822C17.9181 72.2289 18.1696 83.1553 25.2802 85.4132C30.9719 87.2205 36.3367 81.9678 42.1725 80.7018C47.9815 79.4417 53.7886 82.2269 59.3721 84.2649C64.9556 86.3029 71.8284 87.4244 76.335 83.5484C77.3281 82.6943 78.1511 81.631 79.2615 80.9361C80.6896 80.0424 82.445 79.8512 84.1298 79.8624C90.3747 79.9047 97.1289 82.2971 102.55 79.1954C105.934 77.2592 107.932 73.572 111.016 71.1852C112.843 69.771 115.023 68.8366 116.733 67.284C121.307 63.1326 120.75 54.7028 115.669 51.1896C114.643 50.4803 113.434 49.902 112.84 48.8059C112.064 47.375 112.612 45.6232 113.094 44.0682C114.917 38.1853 115.371 31.1932 111.479 26.4191C110.63 25.377 109.532 24.4494 108.211 24.2027C106.623 23.9062 105.046 24.631 103.46 24.9395C98.4624 25.9126 93.5666 22.6756 90.2414 18.8199C86.9162 14.9643 84.4742 10.3371 80.684 6.93763C76.8938 3.53818 70.9822 1.64188 66.7138 4.41708C65.4749 5.22254 64.4834 6.3505 63.3343 7.27969C58.8975 10.8679 52.5117 11.1198 47.0284 9.5412C41.545 7.96261 36.6775 4.80943 31.6907 2.03622C30.546 1.3996 29.248 0.760981 27.9795 1.08867C26.7594 1.40359 25.9467 2.5116 25.1257 3.46753C22.7532 6.22996 19.5047 8.22844 15.9691 9.10016" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M18.5064 11.2128C15.0886 10.1172 11.2505 12.2773 9.48948 15.405C7.72849 18.5326 7.65944 22.342 8.17313 25.8943C8.68681 29.4466 9.73335 32.9167 10.0491 36.4918C10.4227 40.7162 9.74932 45.0293 8.10607 48.9393C6.83083 51.9735 4.98082 54.7767 4.09394 57.9462C3.20706 61.1158 3.52278 64.9427 6.0098 67.0984C8.06097 68.8762 11.0317 69.0885 13.397 70.4196C19.8986 74.0789 20.2969 85.0013 27.4371 87.163C33.1527 88.8937 38.4461 83.5688 44.2647 82.2245C50.0562 80.8866 55.9004 83.5928 61.5106 85.5557C67.1213 87.5187 74.0084 88.5473 78.4624 84.611C79.4439 83.7436 80.2525 82.6692 81.3533 81.9595C82.7691 81.0467 84.5221 80.8319 86.2069 80.8208C92.4518 80.7789 99.2375 83.0803 104.616 79.9059C107.974 77.9242 109.922 74.2103 112.973 71.7823C114.781 70.3438 116.948 69.3803 118.638 67.8045C123.155 63.5916 122.484 55.1702 117.357 51.7256C116.322 51.0304 115.105 50.4684 114.496 49.3803C113.701 47.9602 114.225 46.2008 114.686 44.6398C116.43 38.7329 116.789 31.7353 112.834 27.0139C111.971 25.9833 110.861 25.0705 109.536 24.8414C107.944 24.5664 106.377 25.3119 104.795 25.642C99.8114 26.6822 94.8725 23.5114 91.4954 19.7013C88.1187 15.8911 85.6145 11.2966 81.7788 7.94908C77.9431 4.60111 72.0063 2.78464 67.7759 5.61692C66.5477 6.43914 65.5719 7.58027 64.4351 8.52503C60.047 12.1723 53.6652 12.5104 48.1611 11.0057C42.657 9.50092 37.7476 6.414 32.7237 3.70824C31.5702 3.08719 30.2638 2.46613 29.0001 2.81058C27.7843 3.14186 26.9869 4.26105 26.1786 5.22776C23.8437 8.02172 20.6222 10.0637 17.0986 10.9833" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M9.2777 12.2035C6.28098 14.295 5.2516 18.3235 5.45237 21.9724C5.65274 25.6213 6.83897 29.1441 7.30277 32.769C8.31738 40.7043 5.81638 48.7054 2.29519 55.8887C1.08142 58.3649 -0.256891 61.3465 1.14847 63.7193C1.91921 65.0209 3.34093 65.7637 4.66048 66.5041C10.986 70.0537 16.5113 75.0197 20.7126 80.9321C22.0844 82.8624 23.6023 85.0824 25.9465 85.4196C28.1944 85.7429 30.2144 84.1891 32.2628 83.2092C37.8523 80.535 44.4724 82.0533 50.3821 83.9161C56.2917 85.7789 62.525 87.9653 68.538 86.469C72.994 85.3602 76.7662 82.3323 81.1823 81.0746C87.3613 79.3152 94.2836 81.1592 100.208 78.6726C102.112 77.8731 103.81 76.6614 105.49 75.46C109.006 72.945 112.522 70.4304 116.038 67.9155C120.004 65.078 124.417 61.3417 124.035 56.4794C123.652 51.6107 118.617 48.4719 116.838 43.9237C115.555 40.6428 116.088 36.9803 116.172 33.4583C116.256 29.9364 115.653 25.9961 112.875 23.8292C109.485 21.1833 104.62 22.3787 100.354 21.8347C95.7304 21.2451 91.6237 18.4759 88.4206 15.0892C84.4732 10.9155 81.314 5.49838 75.9256 3.50629C65.6906 -0.277533 54.5171 10.5798 44.0773 7.40426C39.2126 5.92466 34.8153 1.47148 29.8895 2.73435C25.5653 3.84316 23.1034 9.03234 18.7037 9.78671C18.2104 9.50173 17.7171 9.21634 17.2237 8.93136" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+    </g> 
+    <g vector-effect="non-scaling-stroke" id="outline-shape_2-{{ section.id }}" >
+      <path d="M25.4471 12.0346C24.3001 10.6212 22.2893 10.1233 20.4926 10.4164C18.6962 10.7095 17.0808 11.6794 15.6293 12.7778C9.39887 17.4924 5.50113 24.7469 3.30459 32.2453C1.99134 36.7285 1.48702 42.2528 4.91096 45.431C5.60925 46.0794 6.45626 46.6085 6.92502 47.4383C7.35499 48.1998 7.40528 49.1089 7.48646 49.9796C8.4459 60.2515 15.616 69.6935 25.2527 73.3757C28.8534 74.7515 32.698 75.3647 36.3723 76.5299C38.7068 77.2702 40.968 78.2322 43.315 78.9323C52.362 81.6306 62.174 80.2804 71.1725 77.4236C72.8216 76.9003 74.4872 76.3212 76.2168 76.2864C77.645 76.2576 79.0505 76.6014 80.4601 76.8334C87.6036 78.0102 95.1911 76.2041 101.038 71.9353C102.422 70.9245 103.718 69.7801 105.208 68.9342C106.446 68.2312 107.795 67.7481 109.066 67.1058C113.81 64.7088 117.311 59.9914 118.23 54.7563C119.149 49.5213 117.465 43.8933 113.822 40.0232C113.246 39.4115 112.618 38.8324 112.198 38.1054C111.71 37.2598 111.538 36.2752 111.314 35.3248C109.917 29.3889 106.209 24.1424 101.494 20.2752C96.7795 16.408 91.1001 13.8472 85.2404 12.1596C83.9695 11.7936 82.676 11.4624 81.5007 10.8564C80.1185 10.1438 78.955 9.08018 77.71 8.14804C71.0568 3.1673 62.3267 2.08501 54.0269 1.66115C49.5666 1.43341 44.9882 1.36265 40.7632 2.80989C35.4671 4.62387 31.2583 8.62577 27.2312 12.5145" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M28.2472 10.9536C24.621 8.55514 19.6111 9.23152 15.9156 11.5215C12.2201 13.8114 9.57532 17.4329 7.15104 21.0418C4.25549 25.3523 1.45045 30.032 1.18428 35.2179C0.918113 40.4037 4.08091 46.1251 9.20569 46.9639C8.45531 52.325 10.2154 57.8456 13.311 62.2865C16.4067 66.7273 20.7531 70.1732 25.412 72.9294C35.761 79.0516 48.1662 81.9989 60.0336 80.0617C65.4827 79.172 70.744 77.2901 76.2204 76.5886C84.42 75.5383 93.1796 77.0954 100.682 73.6248C104.595 71.8144 107.793 68.7798 110.822 65.7108C113.812 62.6802 116.76 59.4962 118.599 55.6559C120.438 51.816 121.041 47.1751 119.254 43.3107C117.958 40.5093 115.563 38.3828 113.111 36.5074C112.24 35.8407 111.336 35.1773 110.714 34.2735C110.011 33.2512 109.726 32.0069 109.236 30.8668C108.341 28.7859 106.77 27.0743 105.136 25.5064C96.2526 16.9853 84.8895 11.6113 73.715 6.4484C69.3934 4.45158 65.015 2.44757 60.3411 1.54345C50.2636 -0.405595 39.6566 3.05965 31.4247 9.19092C29.5536 10.5846 27.736 11.5814 25.4475 12.0351" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M27.0159 12.3509C23.292 10.1073 18.3152 10.9945 14.7192 13.4382C11.1232 15.8819 8.63395 19.6118 6.36413 23.3196C3.65285 27.7486 1.04754 32.5421 1.00048 37.7348C0.953426 42.9275 4.35474 48.5103 9.51005 49.132C8.98633 54.5201 10.9778 59.9617 14.2577 64.2679C17.5379 68.5744 22.0255 71.8335 26.7968 74.391C37.3951 80.0715 49.9131 82.4929 61.6882 80.0567C67.0949 78.9382 72.2722 76.8361 77.7141 75.9043C85.8623 74.5092 94.6797 75.6956 102.029 71.9114C105.863 69.9379 108.93 66.7708 111.826 63.5768C114.686 60.4226 117.498 57.1172 119.173 53.2029C120.848 49.2887 121.255 44.6265 119.306 40.8412C117.893 38.0969 115.41 36.0731 112.882 34.3026C111.983 33.6733 111.052 33.0486 110.393 32.1718C109.647 31.18 109.31 29.9487 108.772 28.8305C107.791 26.7891 106.15 25.1454 104.45 23.6479C95.2153 15.509 83.636 10.6188 72.2535 5.93188C67.8514 4.11933 63.3923 2.30139 58.6845 1.59555C48.5337 0.0732426 38.0823 3.98283 30.1162 10.4557C28.3055 11.927 26.5317 12.9996 24.2644 13.5492" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+    </g> 
+    <g vector-effect="non-scaling-stroke" id="outline-shape_3-{{ section.id }}" >
+      <path d="M4.1657 46.1318C4.69339 47.9398 7.39067 47.4658 9.02737 46.5338C25.2601 37.2919 36.7109 20.1046 38.9874 1.56445C41.9332 9.94552 52.7011 12.1426 61.5828 11.9581C75.819 11.662 89.9946 8.68431 103.146 3.22689C101.165 13.5041 106.499 24.163 114.438 30.9823C122.378 37.8017 132.561 41.3926 142.677 44.0742C132.505 45.5094 124.681 53.8539 119.416 62.6754C114.021 71.7145 110.367 81.7886 108.712 92.1844C107.285 87.1915 103.073 83.3319 98.2946 81.2997C93.5157 79.2679 88.2066 78.851 83.0143 78.9299C72.3341 79.0921 61.2466 81.4654 52.9841 88.2351C52.61 84.2499 49.6715 80.8444 46.1329 78.9735C42.5944 77.1026 38.5172 76.5431 34.5216 76.3011C23.1755 75.6129 11.6924 77.2644 1 81.1226C7.77096 71.4612 8.68809 58.0139 3.29173 47.5225" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M8.15582 49.6969C8.72755 51.4915 11.3568 50.9677 12.9329 50.0074C28.5633 40.4812 39.2675 23.1142 40.9404 4.56836C44.08 12.8779 54.6991 14.87 63.3981 14.5203C77.3408 13.9594 91.144 10.7231 103.869 5.03107C102.237 15.3249 107.785 25.8634 115.772 32.5209C123.758 39.179 133.846 42.5727 143.841 45.0603C133.915 46.6821 126.499 55.1565 121.605 64.0587C116.589 73.1807 113.312 83.3032 112.002 93.7095C110.454 88.7527 106.21 84.9795 101.465 83.0406C96.7209 81.1017 91.5046 80.7847 86.4188 80.9604C75.9566 81.3215 65.1621 83.8971 57.2682 90.8072C56.7815 86.8369 53.799 83.4929 50.2748 81.6918C46.7507 79.8906 42.7381 79.4083 38.8149 79.2409C27.6741 78.7655 16.4701 80.6281 6.10742 84.6782C12.4523 74.9095 12.946 61.4713 7.34118 51.1016" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+      <path d="M5.18763 46.39C5.7236 48.226 8.46278 47.7446 10.1252 46.7982C26.6108 37.4124 38.24 19.9573 40.5518 1.12891C43.5435 9.64036 54.4788 11.8719 63.4992 11.6844C77.957 11.3839 92.3532 8.35953 105.71 2.81707C103.698 13.2544 109.114 24.0794 117.178 31.0047C125.241 37.93 135.582 41.5768 145.856 44.3007C135.526 45.7581 127.58 54.233 122.233 63.1914C116.754 72.3714 113.042 82.6024 111.362 93.1601C109.913 88.0895 105.636 84.1698 100.782 82.1062C95.9293 80.0425 90.5368 79.6191 85.2639 79.6993C74.4171 79.8641 63.1573 82.2745 54.7662 89.1493C54.3859 85.1022 51.4017 81.6434 47.8082 79.7433C44.2147 77.8432 40.0739 77.275 36.0163 77.029C24.4936 76.3299 12.8317 78.0077 1.97266 81.9256C8.84916 72.1141 9.78069 58.4571 4.30016 47.8022" stroke="currentColor" stroke-width="0.5" stroke-miterlimit="10"/>
+    </g> 
+  </defs>
+</svg>
+
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing {{ corner_style }} section-{{ section.settings.section_background }}">
+  {% if section.settings.heading != blank or section.settings.description != blank %}
+    <div class="{{ settings.container_width }}">
+      <div class="section-header">
+        <div class="section-header-content-wrapper text-{{ section.settings.alignment }} m-auto">
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.seo_heading }} class="section-heading {{ section.settings.heading_font }} {{ section.settings.heading_size }}{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+              {% if settings.enable_heading_animation %}
+                  <animate-element data-animate="fade-up-large" data-animate-delay="50">
+                {% endif %}
+                {%- capture markersPrefix -%}
+                  <span class="markers-text {{ section.settings.markers_font }}">
+                {%- endcapture -%}
+                {%- capture markersSuffix -%}
+                  </span>
+                {%- endcapture -%}
+                {{- section.settings.heading | replace: '++', '<br/>' | replace: "[", markersPrefix | replace: "]", markersSuffix -}}
+              {% if settings.enable_heading_animation %}
+                  </animate-element>
+                {% endif %}
+            </{{ section.settings.seo_heading }}>
+          {% endif %}
+          {% if section.settings.description != blank %}
+            <div class="section-description{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+              {% if settings.enable_heading_animation %}
+              <animate-element data-animate="fade-up-large" data-animate-delay="100">
+              {% endif %}    
+                <p class="{{ section.settings.description_size }}">
+                    {{ section.settings.description | newline_to_br }}
+                </p>
+              {% if settings.enable_heading_animation %}
+                  </animate-element>
+                {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %} 
+  <div class="{{ containerClass }}">
+    <div class="media-grid-wrapper">
+      {% for block in section.blocks %}
+      <{% if block.settings.button_text == blank and block.settings.button_link != blank %}a href="{{ block.settings.button_link }}" aria-label="Media grid link" {% else %}div {% endif %}
+          class="media-grid-item media-hover scheme-{{ block.settings.color_scheme }} section-{{ block.settings.block_background }}"
+          id="media-grid-{{ block.id }}"
+          >
+          {% if block.settings.media_image != blank or block.settings.video != blank %}
+            <div class="media-grid-image media-overlay overlay-style-{{ block.settings.overlay_style }}">
+              <div class="media media-fixed">
+                {% if block.settings.video != blank %}
+                  {{ block.settings.video
+                    | video_tag:
+                    image_size: '1100x',
+                    class: 'tabbed-collage-video',
+                    autoplay: true,
+                    loop: true,
+                    mute: true,
+                    controls: false,
+                    preload: 'none'
+                  }}
+                {% elsif block.settings.media_image != blank %}
+                  {% render 'lazy-images'
+                    , image: block.settings.media_image
+                    , class: 'media-image' %}
+                {% endif %} 
+              </div>
+            </div> 
+          {% endif %}
+          {% if block.settings.category_text != blank %}
+            <div class="media-grid-shape-wrapper pos-absolute">
+                <div class="media-grid-shape-holder">  
+                  <div class="media-grid-shape pos-absolute" style="clip-path: url(#clip-path-{{ block.settings.category_shape }}-{{ section.id }});-webkit-clip-path: url(#clip-path-{{ block.settings.category_shape }}-{{ section.id }});">
+                  <span class="heading-font text-md">{{ block.settings.category_text | replace: '++', '<br/>' }}</span> 
+                  </div>
+                  <svg class="media-grid-shape-border pos-absolute" viewBox="{% if block.settings.category_shape  == 'shape_3' %}0 0 143 90{% else %}0 0 130 90{% endif %}">
+                    <use style="fill: none" href="#outline-{{ block.settings.category_shape }}-{{ section.id }}"></use>
+                  </svg>  
+                </div>
+            </div>
+          {% endif %}
+          <div class="media-content {{ block.settings.content_width }} d-flex content-position-{{ block.settings.content_position }} text-{{ block.settings.content_alignment }}">
+          {% if block.settings.heading != blank %}
+              <{{ block.settings.seo_heading }} class="media-grid-title {{ block.settings.heading_font }} {{ block.settings.heading_size }}">
+                {{- block.settings.heading | replace: '++', '<br/>' -}}
+                </{{ block.settings.seo_heading }}>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <div class="media-grid-desc">
+                  <p class="{{ block.settings.description_size }}">
+                    {{ block.settings.description | newline_to_br }}
+                  </p>
+                </div>
+              {% endif %}
+              {% if block.settings.button_text != blank %}
+                <div class="media-button-wrap">
+                  {% render 'button-wrapper'
+                    ,
+ block_settings: block
+                    ,
+ button_style: block.settings.button_style
+                    ,
+ button_text: block.settings.button_text
+                    ,
+ button_link: block.settings.button_link
+                    ,
+ button_size: block.settings.button_size
+                  %}
+                </div>
+              {% endif %}
+            </div>
+            </{% if block.settings.button_text == blank and block.settings.button_link != blank %}a{% else %}div{% endif %}>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <style>
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_desktop }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+      --round-section-radius: {{ section.settings.corner_radius }}px;
+      --desktop-height: {{ section.settings.desktop_row_height }}px;
+      --mobile-height: {{ section.settings.mobile_row_height }}px;
+      --column-gap: {{ section.settings.desktop_grid_gap }}px;
+    }
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        #media-grid-{{ block.id }} {
+          --row: {{ block.settings.row }};
+          --column: {{ block.settings.column }};
+          --category-horizontal: {{ block.settings.category_desktop_horizontal }}%;
+          --category-vertical: {{ block.settings.category_desktop_vertical }}%;
+        }
+      {% endfor %}
+    {% endif %}
+
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_mobile }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        --column-gap: {{ section.settings.mobile_grid_gap }}px;
+      }
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          #media-grid-{{ block.id }} {
+            --row: {{ block.settings.row_mobile }};
+            --column: {{ block.settings.column_mobile }};
+            --category-horizontal: {{ block.settings.category_mobile_horizontal }}%;
+            --category-vertical: {{ block.settings.category_mobile_vertical }}%;
+          }
+        {% endfor %}
+      {% endif %}
+    }
+
+    {% if section.settings.section_visibility == 'large' %}
+      @media(max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+    @media(min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        display: none !important;
+      }
+    }
+  {% endif %}
+  </style>
+  {% schema %}
+    {
+      "name": "t:sections.media-grid.name",
+      "tag": "section",
+      "class": "media-grid-section",
+      "disabled_on": {
+        "groups": ["header", "footer", "custom.Overlay"]
+      },
+      "settings": [
+        {
+          "type": "select",
+          "id": "section_visibility",
+          "label": "t:sections.all.section_visibility.label",
+          "default": "always",
+          "options": [
+            {
+              "label": "t:sections.all.section_visibility.always.label",
+              "value": "always"
+            },
+            {
+              "label": "t:sections.all.section_visibility.small.label",
+              "value": "small"
+            },
+            {
+              "label": "t:sections.all.section_visibility.large.label",
+              "value": "large"
+            }
+          ]
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "secondary"
+        },
+        {
+          "type": "select",
+          "id": "section_background",
+          "label": "t:sections.all.section_background.label",
+          "default": "solid",
+          "options": [
+            {
+              "label": "t:sections.all.section_background.solid.label",
+              "value": "solid"
+            },
+            {
+              "label": "t:sections.all.section_background.gradient.label",
+              "value": "gradient"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "section_container_width",
+          "label": "t:sections.all.section_container_width.label",
+          "default": "global",
+          "options": [
+            {
+              "label": "t:sections.all.section_container_width.global.label",
+              "value": "global"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-sm.label",
+              "value": "container-sm"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container.label",
+              "value": "container-md"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-md.label",
+              "value": "container"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-fullwidth.label",
+              "value": "container-fullwidth"
+            },
+            {
+              "label": "t:sections.all.section_container_width.no-container.label",
+              "value": "no-container"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "corner_style",
+          "default": "both",
+          "label": "t:sections.all.section_corner_style.label",
+          "options": [
+            {
+              "value": "top",
+              "label": "t:sections.all.section_corner_style.top.label"
+            },
+            {
+              "value": "bottom",
+              "label": "t:sections.all.section_corner_style.bottom.label"
+            },
+            {
+              "value": "both",
+              "label": "t:sections.all.section_corner_style.both.label"
+            },
+            {
+              "value": "none",
+              "label": "t:sections.all.section_corner_style.none.label"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "corner_radius",
+          "label": "t:settings_schema.global.settings.corner_radius.label",
+          "default": 50,
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.headers.content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:settings_schema.global.settings.heading.label",
+          "default": "Media [grid]",
+          "info": "t:settings_schema.global.settings.heading.info"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:sections.all.heading_size.label",
+          "default": "h3",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_size.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.all.heading_size.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:sections.all.heading_size.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:sections.all.heading_size.h6.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:sections.all.seo_heading.label",
+          "info": "t:sections.all.seo_heading.info",
+          "default": "h3",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            },
+            {
+              "value": "div",
+              "label": "div"
+            },
+            {
+              "value": "span",
+              "label": "span"
+            },
+            {
+              "value": "p",
+              "label": "p"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "heading_font",
+          "default": "heading-font",
+          "label": "t:sections.all.heading_font.label",
+          "options": [
+            {
+              "value": "heading-font",
+              "label": "t:sections.all.heading_font.heading-font.label"
+            },
+            {
+              "value": "body-font",
+              "label": "t:sections.all.heading_font.body-font.label"
+            },
+            {
+              "value": "accent-font",
+              "label": "t:sections.all.heading_font.accent-font.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "markers_font",
+          "default": "accent-font",
+          "label": "t:sections.all.markers_font.label",
+          "options": [
+            {
+              "value": "heading-font",
+              "label": "t:sections.all.markers_font.heading-font.label"
+            },
+            {
+              "value": "body-font",
+              "label": "t:sections.all.markers_font.body-font.label"
+            },
+            {
+              "value": "accent-font",
+              "label": "t:sections.all.markers_font.accent-font.label"
+            }
+          ]
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:settings_schema.global.settings.description.label"
+        },
+        {
+          "type": "select",
+          "id": "description_size",
+          "label": "t:sections.all.description_size.label",
+          "default": "text",
+          "options": [
+            {
+              "label": "t:sections.all.description_size.text-xsmall.label",
+              "value": "text-xs"
+            },
+            {
+              "label": "t:sections.all.description_size.text-small.label",
+              "value": "text-sm"
+            },
+            {
+              "label": "t:sections.all.description_size.text.label",
+              "value": "text"
+            },
+            {
+              "label": "t:sections.all.description_size.text-medium.label",
+              "value": "text-md"
+            },
+            {
+              "label": "t:sections.all.description_size.text-large.label",
+              "value": "text-lg"
+            },
+            {
+              "label": "t:sections.all.description_size.text-xlarge.label",
+              "value": "text-xl"
+            }
+          ]
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment",
+          "label": "t:sections.best-categories.settings.content_alignment.label",
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.headers.column"
+        },
+        {
+          "type": "range",
+          "id": "desktop_row_height",
+          "label": "t:sections.media-grid.settings.desktop_row_height.label",
+          "default": 190,
+          "min": 95,
+          "max": 400,
+          "unit": "px",
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "mobile_row_height",
+          "label": "t:sections.media-grid.settings.mobile_row_height.label",
+          "default": 90,
+          "min": 80,
+          "max": 300,
+          "unit": "px",
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "desktop_grid_gap",
+          "label": "t:sections.media-grid.settings.desktop_grid_gap.label",
+          "default": 17,
+          "min": 0,
+          "max": 20,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "mobile_grid_gap",
+          "label": "t:sections.media-grid.settings.mobile_grid_gap.label",
+          "default": 20,
+          "min": 0,
+          "max": 40,
+          "step": 1
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.spacing.section_spacing_heading"
+        },
+        {
+          "type": "range",
+          "id": "top_space_desktop",
+          "label": "t:sections.all.spacing.top_space_desktop",
+          "default": 60,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_desktop",
+          "label": "t:sections.all.spacing.bottom_space_desktop",
+          "default": 60,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "top_space_mobile",
+          "label": "t:sections.all.spacing.top_space_mobile",
+          "default": 40,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_mobile",
+          "label": "t:sections.all.spacing.bottom_space_mobile",
+          "default": 40,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        }
+      ],
+      "blocks": [
+        {
+          "type": "media",
+          "name": "t:sections.media-grid.blocks.media.name",
+          "settings": [
+            {
+              "type": "header",
+              "content": "t:sections.media-grid.blocks.media.settings.header.layout"
+            },
+            {
+              "type": "color_scheme",
+              "id": "color_scheme",
+              "label": "t:sections.all.colors.label",
+              "default": "primary"
+            },
+            {
+              "type": "select",
+              "id": "block_background",
+              "label": "t:sections.all.block_background.label",
+              "default": "solid",
+              "options": [
+                {
+                  "label": "t:sections.all.section_background.solid.label",
+                  "value": "solid"
+                },
+                {
+                  "label": "t:sections.all.section_background.gradient.label",
+                  "value": "gradient"
+                }
+              ]
+            },
+            {
+              "type": "range",
+              "id": "column",
+              "label": "t:sections.media-grid.blocks.media.settings.column.label",
+              "default": 2,
+              "min": 1,
+              "max": 12,
+              "step": 1
+            },
+            {
+              "type": "range",
+              "id": "row",
+              "label": "t:sections.media-grid.blocks.media.settings.row.label",
+              "default": 4,
+              "min": 1,
+              "max": 8,
+              "step": 1
+            },
+            {
+              "type": "radio",
+              "id": "column_mobile",
+              "label": "t:sections.media-grid.blocks.media.settings.column_mobile.label",
+              "default": "2",
+              "options": [
+                {
+                  "value": "1",
+                  "label": "1"
+                },
+                {
+                  "value": "2",
+                  "label": "2"
+                }
+              ]
+            },
+            {
+              "type": "radio",
+              "id": "row_mobile",
+              "label": "t:sections.media-grid.blocks.media.settings.row_mobile.label",
+              "default": "2",
+              "options": [
+                {
+                  "value": "1",
+                  "label": "1"
+                },
+                {
+                  "value": "2",
+                  "label": "2"
+                }
+              ]
+            },
+            {
+              "type": "header",
+              "content": "t:sections.all.headers.media"
+            },
+            {
+              "type": "image_picker",
+              "id": "media_image",
+              "label": "t:sections.media-grid.blocks.media.settings.media_image.label"
+            },
+            {
+              "type": "video",
+              "id": "video",
+              "label": "t:sections.media-grid.blocks.media.settings.video.label"
+            },
+            {
+              "type": "select",
+              "id": "overlay_style",
+              "label": "t:sections.all.overlay_style.label",
+              "default": "solid",
+              "options": [
+                {
+                  "value": "solid",
+                  "label": "t:sections.all.overlay_style.solid.label"
+                },
+                {
+                  "value": "gradient",
+                  "label": "t:sections.all.overlay_style.gradient.label"
+                }
+              ]
+            },
+            {
+              "type": "header",
+              "content": "t:sections.media-grid.blocks.media.settings.header.category"
+            },
+            {
+              "type": "select",
+              "id": "category_shape",
+              "label": "t:sections.media-grid.blocks.media.settings.category_shape.label",
+              "default": "shape_1",
+              "options": [
+                {
+                  "value": "shape_1",
+                  "label": "t:sections.media-grid.blocks.media.settings.category_shape.shape_1.label"
+                },
+                {
+                  "value": "shape_2",
+                  "label": "t:sections.media-grid.blocks.media.settings.category_shape.shape_2.label"
+                },
+                {
+                  "value": "shape_3",
+                  "label": "t:sections.media-grid.blocks.media.settings.category_shape.shape_3.label"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "category_text",
+              "label": "t:sections.media-grid.blocks.media.settings.category_text.label",
+              "info": "t:sections.media-grid.blocks.media.settings.category_text.info"
+            },
+            {
+                "type": "range",
+                "id": "category_desktop_horizontal",
+                "label": "t:sections.media-grid.blocks.media.settings.category_desktop_horizontal.label",
+                "default": 0,
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%"
+              },
+              {
+                "type": "range",
+                "id": "category_desktop_vertical",
+                "label": "t:sections.media-grid.blocks.media.settings.category_desktop_vertical.label",
+                "default": 0,
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%"
+              },
+              {
+                "type": "range",
+                "id": "category_mobile_horizontal",
+                "label": "t:sections.media-grid.blocks.media.settings.category_mobile_horizontal.label",
+                "default": 0,
+                "min": 0, 
+                "max": 100,
+                "step": 1,
+                "unit": "%"
+              },
+              {
+                "type": "range",
+                "id": "category_mobile_vertical",
+                "label": "t:sections.media-grid.blocks.media.settings.category_mobile_vertical.label",
+                "default": 0,
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%"
+              },
+            {
+              "type": "header",
+              "content": "t:sections.all.headers.content"
+            },
+            {
+              "type": "inline_richtext",
+              "id": "heading",
+              "label": "t:settings_schema.global.settings.heading.label",
+              "default": "Heading",
+              "info": "t:settings_schema.global.settings.heading.info_2"
+            },
+            {
+              "type": "select",
+              "id": "heading_size",
+              "label": "t:sections.all.heading_size.label",
+              "default": "h6",
+              "options": [
+                {
+                  "value": "h1",
+                  "label": "t:sections.all.heading_size.h1.label"
+                },
+                {
+                  "value": "h2",
+                  "label": "t:sections.all.heading_size.h2.label"
+                },
+                {
+                  "value": "h3",
+                  "label": "t:sections.all.heading_size.h3.label"
+                },
+                {
+                  "value": "h4",
+                  "label": "t:sections.all.heading_size.h4.label"
+                },
+                {
+                  "value": "h5",
+                  "label": "t:sections.all.heading_size.h5.label"
+                },
+                {
+                  "value": "h6",
+                  "label": "t:sections.all.heading_size.h6.label"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "seo_heading",
+              "label": "t:sections.all.seo_heading.label",
+              "info": "t:sections.all.seo_heading.info",
+              "default": "h6",
+              "options": [
+                {
+                  "value": "h1",
+                  "label": "H1"
+                },
+                {
+                  "value": "h2",
+                  "label": "H2"
+                },
+                {
+                  "value": "h3",
+                  "label": "H3"
+                },
+                {
+                  "value": "h4",
+                  "label": "H4"
+                },
+                {
+                  "value": "h5",
+                  "label": "H5"
+                },
+                {
+                  "value": "h6",
+                  "label": "H6"
+                },
+                {
+                  "value": "div",
+                  "label": "div"
+                },
+                {
+                  "value": "span",
+                  "label": "span"
+                },
+                {
+                  "value": "p",
+                  "label": "p"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "heading_font",
+              "default": "heading-font",
+              "label": "t:sections.all.heading_font.label",
+              "options": [
+                {
+                  "value": "heading-font",
+                  "label": "t:sections.all.heading_font.heading-font.label"
+                },
+                {
+                  "value": "body-font",
+                  "label": "t:sections.all.heading_font.body-font.label"
+                },
+                {
+                  "value": "accent-font",
+                  "label": "t:sections.all.heading_font.accent-font.label"
+                }
+              ]
+            },
+            {
+              "type": "textarea",
+              "id": "description",
+              "label": "t:settings_schema.global.settings.description.label"
+            },
+            {
+              "type": "select",
+              "id": "description_size",
+              "label": "t:sections.all.description_size.label",
+              "default": "text",
+              "options": [
+                {
+                  "label": "t:sections.all.description_size.text-xsmall.label",
+                  "value": "text-xs"
+                },
+                {
+                  "label": "t:sections.all.description_size.text-small.label",
+                  "value": "text-sm"
+                },
+                {
+                  "label": "t:sections.all.description_size.text.label",
+                  "value": "text"
+                },
+                {
+                  "label": "t:sections.all.description_size.text-medium.label",
+                  "value": "text-md"
+                },
+                {
+                  "label": "t:sections.all.description_size.text-large.label",
+                  "value": "text-lg"
+                },
+                {
+                  "label": "t:sections.all.description_size.text-xlarge.label",
+                  "value": "text-xl"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "content_position",
+              "label": "t:sections.all.content_position.label",
+              "default": "bottom-left",
+              "options": [
+                {
+                  "value": "top-left",
+                  "label": "t:sections.all.content_position.options.top-left.label",
+                  "group": "t:sections.all.content_position.options.top-left.group"
+                },
+                {
+                  "value": "top-center",
+                  "label": "t:sections.all.content_position.options.top-center.label",
+                  "group": "t:sections.all.content_position.options.top-center.group"
+                },
+                {
+                  "value": "top-right",
+                  "label": "t:sections.all.content_position.options.top-right.label",
+                  "group": "t:sections.all.content_position.options.top-right.group"
+                },
+                {
+                  "value": "center-left",
+                  "label": "t:sections.all.content_position.options.center-left.label",
+                  "group": "t:sections.all.content_position.options.center-left.group"
+                },
+                {
+                  "value": "center",
+                   "label": "t:sections.all.content_position.options.center-center.label",
+                  "group": "t:sections.all.content_position.options.center-center.group"
+                },
+                {
+                  "value": "center-right",
+                    "label": "t:sections.all.content_position.options.center-right.label",
+                  "group": "t:sections.all.content_position.options.center-right.group"
+                },
+                {
+                  "value": "bottom-left",
+                  "label": "t:sections.all.content_position.options.bottom-left.label",
+                  "group": "t:sections.all.content_position.options.bottom-left.group"
+                },
+                {
+                  "value": "bottom-center",
+                  "label": "t:sections.all.content_position.options.bottom-center.label",
+                  "group": "t:sections.all.content_position.options.bottom-center.group"
+                },
+                {
+                  "value": "bottom-right",
+                  "label": "t:sections.all.content_position.options.bottom-right.label",
+                  "group": "t:sections.all.content_position.options.bottom-right.group"
+                }
+              ]
+            },
+            {
+              "type": "text_alignment",
+              "id": "content_alignment",
+              "label": "t:sections.all.content_alignment.label",
+              "default": "left"
+            },
+            {
+              "type": "select",
+              "id": "content_width",
+              "label": "t:sections.media-grid.blocks.media.settings.content_width.label",
+              "default": "large",
+              "options": [
+                {
+                  "value": "small",
+                  "label": "t:sections.media-grid.blocks.media.settings.content_width.small.label"
+                },
+                {
+                  "value": "medium",
+                  "label": "t:sections.media-grid.blocks.media.settings.content_width.medium.label"
+                },
+                {
+                  "value": "large",
+                  "label": "t:sections.media-grid.blocks.media.settings.content_width.large.label"
+                }
+              ]
+            },
+            {
+              "type": "header",
+              "content": "t:sections.all.headers.button"
+            },
+            {
+              "type": "text",
+              "id": "button_text",
+              "label":"t:sections.all.button_text.label",
+              "default": "Button"
+            },
+            {
+              "type": "url",
+              "id": "button_link",
+              "label": "t:sections.all.button_link.label"
+            },
+            {
+              "type": "select",
+              "id": "button_style",
+              "default": "global",
+              "label": "t:sections.all.button_style.label",
+              "options": [
+                {
+                  "value": "global",
+                  "label": "t:sections.all.button_style.global.label"
+                },
+                {
+                  "value": "solid",
+                  "label": "t:sections.all.button_style.solid.label"
+                },
+                {
+                  "value": "outline",
+                  "label": "t:sections.all.button_style.outline.label"
+                },
+                {
+                  "value": "solid_animated",
+                  "label": "t:sections.all.button_style.solid_animated.label"
+                },
+                {
+                  "value": "outline_animated",
+                  "label": "t:sections.all.button_style.outline_animated.label"
+                },
+                {
+                  "value": "link",
+                  "label": "t:sections.all.button_style.link.label"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "button_size",
+              "default": "button-sm",
+              "label": "t:sections.all.button_size.label",
+              "options": [
+                {
+                  "value": "global",
+                  "label": "t:sections.all.button_size.global.label"
+                },
+                {
+                  "value": "button-sm",
+                  "label": "t:sections.all.button_size.small-button.label"
+                },
+                {
+                  "value": "button-regular",
+                  "label": "t:sections.all.button_size.regular-button.label"
+                },
+                {
+                  "value": "button-lg",
+                  "label": "t:sections.all.button_size.large-button.label"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "t:sections.media-grid.presets.name",
+          "blocks": [
+            {
+              "type": "media",
+              "settings": {
+                "column": 3,
+                "row": 4
+              }
+            },
+            {
+              "type": "media",
+              "settings": {
+                "color_scheme":"tertiary",
+                "column": 9,
+                "row": 2
+              }
+            },
+            {
+              "type": "media",
+              "settings": {
+                "color_scheme":"quaternary",
+                "column": 6,
+                "row": 2
+              }
+            },
+            {
+              "type": "media",
+              "settings": {
+                "column": 3,
+                "row": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  {% endschema %}

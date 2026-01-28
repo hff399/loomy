@@ -1,0 +1,93 @@
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative section-{{ section.settings.section_background }}">
+  {%- if page.content != blank -%}
+    <div class="{{ settings.container_width }}">
+      <div class="page-content rte">
+        {{ page.content | replace: '<table', '<div class="table-responsive"><table' | replace: '</table>', '</table></div>'
+        }}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    --top-spacing: {{ section.settings.top_space_desktop }}px;
+    --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+  }
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_mobile }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "t:sections.main-page.name",
+    "tag": "section",
+    "class": "main-page-section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "primary"
+      },
+      {
+        "type": "select",
+        "id": "section_background",
+        "label": "t:sections.all.section_background.label",
+        "default": "solid",
+        "options": [
+          {
+            "label": "t:sections.all.section_background.solid.label",
+            "value": "solid"
+          },
+          {
+            "label": "t:sections.all.section_background.gradient.label",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ]
+  }
+{% endschema %}

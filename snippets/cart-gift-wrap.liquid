@@ -1,0 +1,40 @@
+{%- for item in item -%}
+  {% liquid
+    assign gift_product = settings.gift_wrap_product
+    if item.variant.id == settings.gift_wrap_product.selected_or_first_available_variant.id and settings.enable_gift_wrap
+      assign gift_wrap = 1
+    endif
+  %}
+{% endfor %}
+{% if settings.enable_gift_wrap == true and settings.gift_wrap_text != blank %}
+  <gift-wrapping
+    class="d-block"
+    data-gift-wrap-id="{{ gift_product.selected_or_first_available_variant.id}}"
+    cart-items-size="{{ cart.item_count }}"
+    gift-wraps-in-cart="{{gift_wrap}}"
+    gift-template="{{giftWraptemplate}}"
+    item-in-cart="1"
+    gift-wrapping-section>
+    <div class="gift-wrap-box custom-checkbox">
+      <input
+        type="checkbox"
+        class="checkmark-input"
+        name="cart-drawer-gift-wrap"
+        id="gift-wrap-{{ section.id }}">
+      <span class="checkmark">
+         <svg
+            width="35"
+            height="35"
+            viewBox="0 0 35 35"
+            fill="currentColor">
+            <path d="M15.1401 3.99305C16.3026 2.28723 18.8178 2.28723 19.9803 3.99305V3.99305C20.7317 5.0955 22.1331 5.55086 23.3889 5.10057V5.10057C25.3321 4.40384 27.3669 5.88222 27.3047 7.94558V7.94558C27.2646 9.27909 28.1307 10.4712 29.4114 10.8451V10.8451C31.3929 11.4236 32.1702 13.8157 30.9071 15.4484V15.4484C30.0908 16.5036 30.0908 17.9772 30.9071 19.0324V19.0324C32.1702 20.6652 31.3929 23.0572 29.4114 23.6357V23.6357C28.1307 24.0096 27.2646 25.2017 27.3047 26.5352V26.5352C27.3669 28.5986 25.3321 30.077 23.3889 29.3803V29.3803C22.1331 28.93 20.7317 29.3853 19.9803 30.4878V30.4878C18.8178 32.1936 16.3026 32.1936 15.1401 30.4878V30.4878C14.3888 29.3853 12.9874 28.93 11.7315 29.3803V29.3803C9.78839 30.077 7.75356 28.5986 7.81573 26.5352V26.5352C7.8559 25.2017 6.98976 24.0096 5.70911 23.6357V23.6357C3.72753 23.0572 2.95029 20.6652 4.2134 19.0324V19.0324C5.02972 17.9772 5.02972 16.5036 4.2134 15.4484V15.4484C2.95029 13.8157 3.72753 11.4236 5.70911 10.8451V10.8451C6.98976 10.4712 7.8559 9.27909 7.81573 7.94558V7.94558C7.75356 5.88222 9.78839 4.40384 11.7315 5.10057V5.10057C12.9874 5.55086 14.3888 5.0955 15.1401 3.99305V3.99305Z" class="custom-radio-bg"/>
+            <g clip-path="url(#clip0_129_4169)">
+            <path d="M22.5385 13.5761C22.2154 13.2388 21.6906 13.2391 21.367 13.5761L16.094 19.0723L13.7504 16.6296C13.4268 16.2923 12.9023 16.2923 12.5786 16.6296C12.255 16.9669 12.255 17.5136 12.5786 17.8509L15.508 20.9042C15.6697 21.0727 15.8817 21.1572 16.0938 21.1572C16.3059 21.1572 16.5181 21.073 16.6798 20.9042L22.5385 14.7975C22.8622 14.4604 22.8622 13.9134 22.5385 13.5761Z" fill="currentColor" class="tick-radio">
+            </g>
+        </svg></span>
+      {% if settings.gift_wrap_text %}
+        <label for="gift-wrap-{{ section.id }}" class="gift-wrap-text cursor-pointer">{{ settings.gift_wrap_text }}</label>
+      {% endif %}
+    </div>
+  </gift-wrapping>
+{% endif %}

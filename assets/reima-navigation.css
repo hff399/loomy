@@ -1,0 +1,645 @@
+/**
+ * Reima-Style Navigation Mega Menu
+ * Clean, editorial design with red accent and smooth interactions
+ */
+
+/* ========================================
+   CSS Custom Properties (Theme Variables)
+   ======================================== */
+:root {
+  --reima-accent-color: #c41230;
+  --reima-text-color: #333;
+  --reima-text-light: #666;
+  --reima-text-lighter: #999;
+  --reima-border-color: #e5e5e5;
+  --reima-bg-white: #fff;
+  --reima-bg-hover: #f8f8f8;
+  --reima-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --reima-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Timing functions */
+  --reima-timing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --reima-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Spacing */
+  --reima-spacing-xs: 0.5rem;
+  --reima-spacing-sm: 1rem;
+  --reima-spacing-md: 1.5rem;
+  --reima-spacing-lg: 2rem;
+  --reima-spacing-xl: 3rem;
+
+  /* Header height */
+  --reima-header-height: 82px;
+}
+
+/* ========================================
+   Reima Header - Non-Overlay, Fixed Height
+   ======================================== */
+
+/* Header takes its own space - NOT transparent/overlay */
+.reima-header-style.header-main {
+  position: relative !important;
+  min-height: var(--reima-header-height) !important;
+  height: var(--reima-header-height) !important;
+  padding: 0 !important;
+  background-color: var(--reima-bg-white) !important;
+  border-bottom: 1px solid var(--reima-border-color);
+  z-index: 1000;
+}
+
+/* Remove any transparency classes */
+.reima-header-style.header-main.d-header-transparent,
+.reima-header-style.header-main.m-header-transparent,
+.reima-header-style.header-main[class*="transparent"] {
+  background-color: var(--reima-bg-white) !important;
+}
+
+/* When sticky, header stays fixed at top with own space */
+.reima-header-style.header-main.is-sticky,
+sticky-always.reima-header-style.header-main,
+sticky-on-scroll.reima-header-style.header-main.is-sticky {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--reima-bg-white) !important;
+  box-shadow: var(--reima-shadow-sm);
+}
+
+/* Ensure container has proper horizontal padding */
+.reima-header-style .container,
+.reima-header-style .page-width {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Add spacer when header is sticky to prevent content jump */
+.reima-header-style.header-main.is-sticky ~ *,
+sticky-always.reima-header-style ~ * {
+  /* Content flows naturally */
+}
+
+/* Header wrapper - override grid with flexbox layout */
+.reima-header-style .header-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: var(--reima-header-height) !important;
+  min-height: var(--reima-header-height) !important;
+  padding: 0 !important;
+  gap: 0;
+  /* Override any grid settings */
+  grid-template-columns: unset !important;
+  grid-template-areas: unset !important;
+}
+
+.reima-header-style .header-wrapper.logo-menu-icons,
+.reima-header-style .header-wrapper.category-logo-menu-icons,
+.reima-header-style .header-wrapper.menu-logo-icons,
+.reima-header-style .header-wrapper.category-menu-logo-icons {
+  display: flex !important;
+  grid-template-columns: unset !important;
+  grid-template-areas: unset !important;
+}
+
+/* Logo section */
+.reima-header-style .header-logo {
+  flex: 0 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  order: 1;
+  grid-area: unset !important;
+  margin-right: 20px;
+}
+
+/* Hide mobile toggler on desktop */
+.reima-header-style .mobile-toggler {
+  display: none !important;
+}
+
+/* Navigation section - grows to fill space */
+.reima-header-style .header-navigation {
+  flex: 1 1 auto;
+  display: flex !important;
+  align-items: center;
+  height: 100%;
+  order: 2;
+  grid-area: unset !important;
+}
+
+.reima-header-style .header-navigation-list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Icons section - fixed on right */
+.reima-header-style .header-right-icons {
+  flex: 0 0 auto;
+  display: flex !important;
+  align-items: center;
+  margin-left: auto !important;
+  /* Ensure it's always on the right */
+  order: 99;
+  grid-area: unset !important;
+}
+
+.reima-header-style .header-buttons-list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reima-header-style .header-button-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reima-header-style .header-button-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--reima-text-color);
+  transition: color 0.2s var(--reima-timing-smooth);
+}
+
+.reima-header-style .header-button-action:hover {
+  color: var(--reima-accent-color);
+}
+
+.reima-header-style .header-button-action svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Cart count badge */
+.reima-header-style .cart-count {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  color: #fff;
+  background-color: var(--reima-accent-color);
+  border-radius: 9px;
+}
+
+/* ========================================
+   Menu Item Styling - Reima Style
+   ======================================== */
+.header-menu-item.reima-style {
+  position: static; /* Changed from relative for mega menu positioning */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header-menu-item.reima-style .header-menu-link {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  height: var(--reima-header-height);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--reima-text-color);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  position: relative;
+  transition: color 0.2s var(--reima-timing-smooth);
+  white-space: nowrap;
+}
+
+.header-menu-item.reima-style .header-menu-link:hover {
+  color: var(--reima-text-color);
+}
+
+/* Active menu item underline - Reima red bar */
+.header-menu-item.reima-style .header-menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  right: 18px;
+  height: 3px;
+  background-color: var(--reima-accent-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s var(--reima-timing-smooth);
+}
+
+.header-menu-item.reima-style:hover .header-menu-link::after,
+.header-menu-item.reima-style header-menu.active .header-menu-link::after {
+  transform: scaleX(1);
+}
+
+/* Hide default dropdown arrow for Reima style */
+.header-menu-item.reima-style .header-menu-icon {
+  display: none;
+}
+
+/* ========================================
+   Mega Menu Dropdown - Slides from Under Header
+   ======================================== */
+.reima-mega-menu {
+  position: absolute;
+  top: 100%; /* Starts exactly at bottom of header */
+  left: 0;
+  right: 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: var(--reima-bg-white);
+  border-top: 3px solid var(--reima-accent-color);
+  box-shadow: var(--reima-shadow);
+  z-index: 999;
+
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  clip-path: inset(0 0 100% 0); /* Clips content from bottom up */
+
+  /* Smooth reveal animation */
+  transition:
+    opacity 0.3s var(--reima-timing-smooth),
+    transform 0.3s var(--reima-timing-smooth),
+    clip-path 0.3s var(--reima-timing-smooth),
+    visibility 0.3s;
+
+  pointer-events: none;
+}
+
+/* Show mega menu on hover/active - reveals from top */
+.header-menu-item.reima-style:hover .reima-mega-menu,
+.header-menu-item.reima-style header-menu.active .reima-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0); /* Fully revealed */
+  pointer-events: auto;
+}
+
+/* Fixed position when header is sticky */
+.is-sticky .header-menu-item.reima-style .reima-mega-menu,
+sticky-always .header-menu-item.reima-style .reima-mega-menu {
+  position: fixed;
+  top: var(--reima-header-height);
+  margin-left: 0;
+}
+
+/* Mega menu inner container */
+.reima-mega-menu-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 60px 50px;
+  display: flex;
+  gap: 60px;
+}
+
+/* ========================================
+   Category Columns (~55% width)
+   ======================================== */
+.reima-mega-menu-categories {
+  --menu-columns: 2;
+  flex: 1 1 55%;
+  display: grid;
+  grid-template-columns: repeat(var(--menu-columns), minmax(150px, 1fr));
+  gap: 32px 50px;
+  align-content: start;
+}
+
+.reima-mega-menu-categories-full {
+  flex: 1 1 100%;
+}
+
+.reima-category-column {
+  min-width: 0;
+  break-inside: avoid;
+}
+
+/* Category group - contains title + links */
+.reima-category-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.reima-category-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--reima-text-color);
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+.reima-category-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s var(--reima-timing-smooth);
+}
+
+.reima-category-title a:hover {
+  color: var(--reima-accent-color);
+}
+
+.reima-category-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reima-subcategory-link {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--reima-text-color);
+  text-decoration: none;
+  transition: color 0.2s var(--reima-timing-smooth);
+  display: inline-block;
+  line-height: 1.4;
+}
+
+.reima-subcategory-link:hover {
+  color: var(--reima-accent-color);
+}
+
+/* Single category link (no subcategories) */
+.reima-single-link {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--reima-text-color);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  transition: color 0.2s var(--reima-timing-smooth);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.reima-single-link:hover {
+  color: var(--reima-accent-color);
+}
+
+/* See All Link */
+.reima-see-all {
+  margin-top: 14px;
+}
+
+.reima-see-all-link {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--reima-text-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0.05em;
+  transition: color 0.2s var(--reima-timing-smooth);
+}
+
+.reima-see-all-link:hover {
+  color: var(--reima-accent-color);
+}
+
+/* Empty state message */
+.reima-empty-message {
+  font-size: 13px;
+  color: var(--reima-text-light);
+  margin: 8px 0 0;
+  font-style: italic;
+}
+
+/* ========================================
+   Promotional Blocks (~45% width)
+   ======================================== */
+.reima-mega-menu-promos {
+  flex: 0 0 45%;
+  display: flex;
+  gap: 24px;
+}
+
+.reima-promo-block {
+  flex: 1;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.reima-promo-image {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.reima-promo-image .media {
+  padding-bottom: var(--image-ratio, 100%);
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.reima-promo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s var(--reima-timing-smooth);
+}
+
+.reima-promo-block:hover .reima-promo-image img {
+  transform: scale(1.03);
+}
+
+.reima-promo-content {
+  padding: 0;
+}
+
+.reima-promo-heading {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 6px;
+  color: var(--reima-text-color);
+  line-height: 1.3;
+}
+
+.reima-promo-description {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 6px;
+  color: var(--reima-text-color);
+  line-height: 1.4;
+}
+
+.reima-promo-cta {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--reima-text-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s var(--reima-timing-smooth);
+}
+
+.reima-promo-block:hover .reima-promo-cta {
+  color: var(--reima-accent-color);
+}
+
+/* ========================================
+   Backdrop overlay when menu is open
+   ======================================== */
+.header-menu-item.reima-style:hover::before {
+  content: '';
+  position: fixed;
+  top: var(--reima-header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 998;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 0.3s var(--reima-timing-smooth) forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   Tablet Responsiveness (768px - 1199px)
+   ======================================== */
+@media (max-width: 1199px) {
+  .reima-mega-menu-inner {
+    padding: 30px 40px 40px;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .reima-mega-menu-categories {
+    gap: 24px 30px;
+  }
+
+  .reima-mega-menu-promos {
+    flex: 1 1 100%;
+  }
+
+  .header-menu-item.reima-style .header-menu-link {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 991px) {
+  .reima-mega-menu-inner {
+    padding: 24px;
+  }
+
+  .reima-mega-menu-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reima-mega-menu-promos {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* ========================================
+   Mobile Responsiveness (<768px)
+   ======================================== */
+@media (max-width: 767px) {
+  /* Mega menu hidden on mobile (drawer menu used instead) */
+  .reima-mega-menu {
+    display: none !important;
+  }
+
+  /* Show mobile toggle, hide desktop nav */
+  .reima-header-style .header-navigation {
+    display: none !important;
+  }
+
+  .reima-header-style .mobile-toggler {
+    display: flex !important;
+  }
+
+  /* Mobile header adjustments */
+  .reima-header-style.header-main {
+    height: 60px !important;
+    min-height: 60px !important;
+  }
+
+  .reima-header-style .header-wrapper {
+    height: 60px !important;
+    min-height: 60px !important;
+  }
+}
+
+/* ========================================
+   Accessibility & Motion Preferences
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .reima-mega-menu {
+    transition: opacity 0.01ms, visibility 0.01ms !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .header-menu-item.reima-style .header-menu-link::after {
+    transition: none !important;
+  }
+
+  .reima-promo-image img {
+    transition: none !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.reima-subcategory-link:focus-visible,
+.reima-category-title a:focus-visible,
+.reima-see-all-link:focus-visible,
+.reima-promo-block:focus-visible,
+.header-menu-item.reima-style .header-menu-link:focus-visible {
+  outline: 2px solid var(--reima-accent-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .reima-mega-menu {
+    border-top-width: 4px;
+  }
+
+  .header-menu-item.reima-style .header-menu-link::after {
+    height: 4px;
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+  .reima-mega-menu {
+    display: none !important;
+  }
+}

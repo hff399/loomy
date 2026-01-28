@@ -1,0 +1,57 @@
+<a
+  class="header-logo d-flex align-items-center justify-content-center{% if section.settings.transparent_logo != blank %} transparent-logo-available{% endif %}"
+  href="{{ routes.root_url }}"
+  aria-label="{{ shop.name }}">
+  {%- if section.settings.logo != blank -%}
+    {% comment %}{%- assign image_2x_size = section.settings.logo_width | times: 2 | at_most: 2560 -%}
+          <img
+            class="header-logo-img"
+            srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }} 1x, {{ section.settings.logo | image_url: width: image_2x_size }} 2x"
+            src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+            width="{{ section.settings.logo_width }}"
+            height="{{ section.settings.logo_width | divided_by : section.settings.logo.aspect_ratio | round }}"
+            alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+        {% endcomment %}
+    {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio | round -%}
+    {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+    {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+    {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+    {{ section.settings.logo | image_url: width: 600 | image_tag:
+ class: 'header-logo-img',
+ widths: widths,
+ height: logo_height,
+ width: section.settings.logo_width,
+ alt: logo_alt,
+ sizes: sizes,
+ preload: true
+    }}
+    {% liquid
+      if section.settings.transparent_logo != blank
+        assign transparent_image = section.settings.transparent_logo
+      else
+        assign transparent_image = section.settings.logo
+      endif
+    %}
+    {%- assign image_2x_size = section.settings.logo_width | times: 2 | at_most: 2560 -%}
+    {%- assign logo_alt = transparent_image.alt | default: shop.name | escape -%}
+    {{ transparent_image | image_url: width: 600 | image_tag:
+ class: 'header-logo-img header-logo-img-transparent',
+ widths: widths,
+ height: logo_height,
+ width: section.settings.logo_width,
+ alt: logo_alt,
+ sizes: sizes,
+ preload: true
+    }}
+
+  {% comment %}<img
+          class="header-logo-img header-logo-img-transparent"
+          srcset="{{ transparent_image | image_url: width: section.settings.logo_width }} 1x, {{ transparent_image | image_url: width: image_2x_size }} 2x"
+          src="{{ transparent_image | image_url: width: section.settings.logo_width }}"
+          width="{{ section.settings.logo_width }}"
+          height="{{ section.settings.logo_width | divided_by : transparent_image.aspect_ratio | round }}"
+        alt="{{ transparent_image.alt | default: shop.name | escape }}">{% endcomment %}
+  {%- else -%}
+    <span class="logo-text">{{ shop.name }}</span>
+  {%- endif -%}
+</a>

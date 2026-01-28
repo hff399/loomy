@@ -1,0 +1,391 @@
+{% liquid
+  if product == null
+    assign placeholder = true
+  endif
+
+  assign currentVariant = product.selected_or_first_available_variant
+  assign product_form_id = 'main-product-form-' | append: section.id
+  assign quick_first_3d_model = product.media | where: 'media_type', 'model' | first
+%}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'query_form' %}
+      {% if share_block != true %}
+        {% assign share_block = false %}
+      {% endif %}
+      {% assign help_block_heading = false %}
+      {% assign show_with_share_icons = false %}
+      {% if block.settings.title != blank %}
+        {% assign help_block_heading = true %}
+        {% if block.settings.with_share_icons == true %}
+          {% assign show_with_share_icons = true %}
+        {% endif %}
+        {% capture queryForm %}
+             <div class="query-form">
+               <query-form class="query-form" data-queryForm="{{ block.id }}" id="query-form-{{ block.id }}" data-section="{{ section.id }}" {{ block.shopify_attributes }}>
+                 <div class="product-query-hyperlink">
+                   <button type="button" is="query-Form" aria-label="Product query link" class="body-font text-button product-query-form-title cursor-pointer">{{ block.settings.title }}</button>
+                 </div>
+                 {% render 'query-form-drawer'
+                 , block: block,
+                 section: section %}
+               </query-form>
+             </div>  
+           {% endcapture %}
+      {% endif %}
+    {% when 'social_sharing' %}
+      {% assign share_block = true %}
+  {% endcase %}
+{% endfor %}
+
+<quick-view-drawer
+  class="popup quickview-popup scheme-{{ section.settings.color_scheme }} position-bottom-right"
+  id="QuickViewDrawer"
+  data-drawer="quick-view-drawer"
+  data-section-id="{{ section.id }}"
+  quick-view-drawer-section
+  data-id="{{ section.id }}"
+  data-onclose-focus=""
+>
+  {%- if quick_first_3d_model -%}
+    <script type="application/json" id="ProductJSON-{{ product.id }}">
+      {{ product.media | where: 'media_type', 'model' | json }}
+    </script>
+  {%- endif -%}
+  <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+    <div class="data-moving-cursor" data-moving-cursor>
+      <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+        <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="popup-content popup-dialog modal-size-large">
+    <div class="popup-content-body" quickview-drawer-content>
+      <div class="row">
+        <div class="col-6">
+          <div class="product-media-gallery-wrapper border-true border-radius-true">
+            {% render 'product-media-gallery',
+              product: product,
+              section: section,
+              currentVariant: currentVariant,
+              source: 'quick-view',
+              video_autoplay: section.settings.enable_video_autoplay,
+              video_looping: section.settings.enable_video_looping
+            %}
+          </div>
+        </div>
+        <div class="col-6">
+          <product-info
+            id="main-product-info-{{ product.id }}-{{ section.id }}"
+            data-section-id="{{ section.id }}"
+            data-section="{{ section.id }}"
+            data-product-id="{{ product.id }}"
+            data-update-url="true"
+            data-url="{{ product.url }}"
+            class="main-product-content "
+          >
+            <div class="product-info-wrap">
+              {% assign show_quantity_with_addtocart = false %}
+              {% capture quantity_picker %}
+                {%- for block in section.blocks -%}
+                   {% if block.type == 'quantity_picker' %}
+                    {% assign show_quantity_with_addtocart = block.settings.show_quantity_picker_with_buybutton %}
+                     {% render 'quantity', section: section, block: block, product_form_id: product_form_id %}
+                   {% endif %}
+                {%- endfor -%}
+                {% endcapture %}
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+                  {%- when 'title' -%}
+                    <div class="product-title-box m-0" {{ block.shopify_attributes }}>
+                      {%- unless placeholder -%}
+                        <a
+                          href="{{ product.url }}"
+                          class="{{ block.settings.title_size }} {{ block.settings.title_heading_font }}"
+                        >
+                          {{ product.title | strip_html }}
+                        </a>
+                      {% else %}
+                        <h6 class="{{ block.settings.title_size }} {{ block.settings.title_heading_font }}">
+                          {{ 'onboarding.product_title' | t }}
+                        </h6>
+                      {% endunless %}
+                    </div>
+                  {%- when 'price' -%}
+                    <div class="product-price-box" {{ block.shopify_attributes }}>
+                      {% render 'price',
+                        product: product,
+                        use_variant: true,
+                        currentVariant: currentVariant,
+                        block: block
+                      %}
+                    </div>
+                    {% unless placeholder %}
+                      <div class="product-form-installment" {{ block.shopify_attributes }}>
+                        {%- assign product_form_installment_id = 'main-product-form-installment-'
+                          | append: section.id
+                        -%}
+                        {%- form 'product',
+                          product,
+                          id: product_form_installment_id,
+                          class: 'installment caption-large'
+                        -%}
+                          <input
+                            type="hidden"
+                            name="id"
+                            value="{{ product.selected_or_first_available_variant.id }}"
+                          >
+                          {{ form | payment_terms }}
+                        {%- endform -%}
+                      </div>
+                    {% endunless %}
+
+                  {%- when 'sku' -%}
+                    {% if currentVariant.sku != blank %}
+                      <p
+                        class="product-sku text-sm"
+                        id="sku-wrapper-{{ section.id }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        {{ currentVariant.sku }}
+                      </p>
+                    {% endif %}
+                  {%- when 'pickup_availability' -%}
+                    {%- assign pickup_availabilities = currentVariant.store_availabilities
+                      | where: 'pick_up_enabled', true
+                    -%}
+                    <div
+                      class="product-pickup-info"
+                      id="pickup-availability-wraper-{{ section.id }}"
+                      data-main-pickup-info
+                      {{ block.shopify_attributes }}
+                    >
+                      <pickup-availability
+                        class="product-pickup-availability"
+                        id="pickup-availability-{{ section.id }}"
+                        data-root-url="{{ routes.root_url }}"
+                        data-variant-id="{{ currentVariant.id }}"
+                        data-has-only-default-variant="{{ product.has_only_default_variant }}"
+                        data-section-scheme="scheme-{{ section.settings.color_scheme }}"
+                        {% if currentVariant.available and pickup_availabilities.size > 0 %}
+                          available
+                        {% endif %}
+                        data-pickup-availability
+                        {{ block.shopify_attributes }}
+                      >
+                        {% render 'pickup-availability', product: product, currentVariant: currentVariant %}
+                      </pickup-availability>
+                    </div>
+                  {%- when 'variant_picker' -%}
+                    {% unless product.has_only_default_variant %}
+                      <div class="product-varients" {{ block.shopify_attributes }}>
+                        {%- render 'product-variant-picker',
+                          block: block,
+                          product: product,
+                          product_form_id: product_form_id,
+                          section_id: section.id,
+                          update_url: false
+                        -%}
+                      </div>
+                    {% endunless %}
+                  {% when 'custom_content' %}
+                    {% if block.settings.content != blank or block.settings.heading != blank %}
+                      <div class="product-custom-content-box" {{ block.shopify_attributes }}>
+                        {% if block.settings.heading != blank %}
+                          <div class="product-info-title heading-font {{ block.settings.heading_size }}">
+                            {{ block.settings.heading }}
+                          </div>
+                        {% endif %}
+                        {% if block.settings.content != blank %}
+                          <div class="product-custom-content-desc rte {{ block.settings.content_size }}">
+                            {{
+                              block.settings.content
+                              | replace: '<table', '<div class="table-responsive"><table'
+                              | replace: '</table>', '</table></div>'
+                            }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  {% when 'social_sharing' %}
+                    {% if show_with_share_icons == true %}
+                      <div class="product-social-share-help">
+                    {% endif %}
+                    {% if settings.share_facebook
+                      or settings.tweet_twitter
+                      or settings.pin_pinterest
+                      or settings.share_telegram
+                      or settings.share_email
+                    %}
+                      {% assign share_url = request.origin | append: product.url %}
+                      <div
+                        class="product-social-sharing social-icons-style-{{ block.settings.social_icons_style }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        {% render 'social-share', share_link: share_url, product: product %}
+                      </div>
+                    {% endif %}
+                    {% if help_block_heading == true and show_with_share_icons == true %}
+                      {{ queryForm }}
+                    {% endif %}
+                    {% if show_with_share_icons == true %}
+                      </div>
+                    {% endif %}
+                  {% when 'query_form' %}
+                    {% if help_block_heading == true and show_with_share_icons == false %}
+                      {{ queryForm }}
+                    {% elsif help_block_heading == true and show_with_share_icons == true and share_block == false %}
+                      {{ queryForm }}
+                    {% endif %}
+                  {% when 'quantity_picker' %}
+                    {% unless block.settings.show_quantity_picker_with_buybutton %}
+                      <div class="product-quantity-single-block">
+                        <div class="quantity-header product-info-title text-xs">
+                          {{ 'products.product.quantity.label' | t }}
+                        </div>
+                        {{ quantity_picker }}
+                      </div>
+                    {% endunless %}
+                  {% when 'buy_button' %}
+                    <div class="product-buy-buttons-wrapper" {{ block.shopify_attributes }}>
+                      {% unless placeholder %}
+                        {% render 'card-purchase-buttons',
+                          product: product,
+                          section_id: section.id,
+                          section: section,
+                          block: block,
+                          currentVariant: currentVariant,
+                          product_form_id: product_form_id,
+                          quantity_picker: quantity_picker,
+                          show_quantity: show_quantity_with_addtocart
+                        %}
+                      {% else %}
+                        <div class="product-checkout-buttons">
+                          <button
+                            type="submit"
+                            name="add"
+                            aria-label="Add to cart"
+                            id="product-submit-btn-{{ section.id }}"
+                            class="button button-block medium-button buttonHover"
+                            disabled="disabled"
+                          >
+                            <span data-atc-text>{{ 'products.product.sold_out' | t }}</span>
+                          </button>
+                        </div>
+                      {% endunless %}
+                    </div>
+                  {% when 'back_in_stock' %}
+                    <div
+                      id="back-in-stock-wrapper-{{ section.id }}"
+                      class="product-stock-notify-box stock-notify-box{% unless request.design_mode %}{% if currentVariant.available %} hidden{% endif %}{% endunless %}"
+                      data-back-in-stock
+                      {{ block.shopify_attributes }}
+                    >
+                      <back-in-stock class="stock-notify">
+                        {% if block.settings.heading != blank %}
+                          <legend class="stock-notify__heading">{{ block.settings.heading }}</legend>
+                        {% endif %}
+                        {% assign formId = 'productBackInStockForm'
+                          | append: product.id
+                          | append: '_'
+                          | append: section.id
+                        %}
+                        {%- form 'contact', id: formId, class: 'stock-notify__form' -%}
+                          <input
+                            type="hidden"
+                            name="return_to"
+                            value="{{ product.url }}?variant={{ currentVariant.id }}&contact_posted=true"
+                            data-variant-url
+                          >
+                          <input
+                            type="hidden"
+                            name="contact[Message]"
+                            value="Customer has filled the notify me form."
+                          >
+                          <input
+                            type="hidden"
+                            name="contact[Product]"
+                            value="{{ product.id }}"
+                          >
+                          <input
+                            type="hidden"
+                            name="contact[Product Title]"
+                            value="{{ product.title }} - {{ currentVariant.title }}"
+                            data-variant-title
+                          >
+
+                          <div class="form-group">
+                            <label class="hidden" for="backInStockEmail">
+                              {{- 'templates.contact.form.email' | t -}}
+                            </label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              name="contact[email]"
+                              id="backInStockEmail"
+                              autocomplete="email"
+                              autocapitalize="off"
+                              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                              aria-required="true"
+                              spellcheck="false"
+                              {% if form.errors contains 'email' %}
+                                aria-invalid="true"
+                                aria-describedby="ContactForm-email-error"
+                              {% endif %}
+                              placeholder="{% if block.settings.placeholder != blank %}{{block.settings.placeholder}}{% else %}email@example.com{% endif %}"
+                              pattern="^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$"
+                              required
+                            >
+                          </div>
+                          <button type="submit" class="button button-sm buttonHover">
+                            {% assign buttonText = block.settings.btn_text | default: 'Notify me' %}
+                            <span>
+                              {{ buttonText }}
+                            </span>
+                          </button>
+                          {%- if form.errors -%}
+                            <div class="form-group" autofocus>
+                              <div class="form-message error" tabindex="-1">
+                                {{ form.errors.translated_fields.email | capitalize }}
+                                {{ form.errors.messages.email }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if form.posted_successfully? -%}
+                            <div
+                              class="form-group"
+                              role="status"
+                              tabindex="-1"
+                              autofocus
+                            >
+                              <p class="form-message success" tabindex="-1">
+                                {% if block.settings.success_message != blank %}
+                                  {{ block.settings.success_message }}
+                                {% else %}
+                                  {{- 'templates.contact.form.post_success' | t -}}
+                                {% endif %}
+                              </p>
+                            </div>
+                          {%- endif -%}
+                        {% endform %}
+                      </back-in-stock>
+                    </div>
+                {% endcase %}
+              {%- endfor -%}
+            </div>
+          </product-info>
+        </div>
+      </div>
+    </div>
+
+    <close-drawer class="drawer-close-main pos-absolute right-0 top-0" data-drawer-close>
+      <button class="drawer-close-btn close-button" aria-label="Close drawer" aria-hidden="true">
+        {% render 'svg-icons', icon: 'close' %}
+        {% render 'svg-icons', icon: 'close-bg' %}
+      </button>
+    </close-drawer>
+  </div>
+</quick-view-drawer>

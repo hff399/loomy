@@ -1,0 +1,94 @@
+ span.color1,
+ span.color2,
+ span.color3,
+ span.color4 {
+     cursor: cell;
+     transition: color 3s;
+     transition-delay: 1s;
+ }
+
+ .animated-highlight-image-style {
+     line-height: 1.5;
+ }
+
+ .animated-text-on_hover span.color1:hover {
+     color: var(--animated-color-1);
+     transition: color .5s;
+ }
+
+ .animated-text-on_hover span.color4:hover {
+     color: var(--animated-color-2);
+     transition: color 0s;
+ }
+
+ .animated-text-on_hover span.color2:hover {
+     color: var(--animated-color-3);
+     transition: color 0s;
+ }
+
+ .animated-text-on_hover span.color3:hover {
+     color: var(--animated-color-4);
+     transition: color 0s;
+ }
+
+ .animated-text-default span.color1.animated-color,
+ .animated-text-marker_based span.color1.animated-color {
+     color: var(--animated-color-1);
+     transition: color .5s;
+ }
+
+ .animated-text-default span.color4.animated-color,
+ .animated-text-marker_based span.color4.animated-color {
+     color: var(--animated-color-2);
+     transition: color .5s;
+ }
+
+ .animated-text-default span.color2.animated-color,
+ .animated-text-marker_based span.color2.animated-color {
+     color: var(--animated-color-3);
+     transition: color .5s;
+ }
+
+ .animated-text-default span.color3.animated-color,
+ .animated-text-marker_based span.color3.animated-color {
+     color: var(--animated-color-4);
+     transition: color .5s;
+ }
+
+ .animated-text-wrapper:not(.animated-highlight-image-style).text-center {
+     justify-content: center;
+ }
+
+ .animated-text-wrapper:not(.animated-highlight-image-style).text-left {
+     justify-content: flex-start;
+ }
+
+ .animated-text-wrapper:not(.animated-highlight-image-style).text-right {
+     justify-content: flex-end;
+ }
+
+ .animated-text-wrapper:not(.animated-highlight-image-style) {
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ .animated-highlight-image-style .animated-image-wrapper {
+     width: auto;
+     height: auto;
+     background: unset;
+     margin: 4px;
+     display: inline-flex;
+     vertical-align: middle;
+ }
+
+ .animated-highlight-image-style .animated-image-wrapper svg.placeholder-svg,
+ .animated-highlight-image-style .animated-image-wrapper img {
+     height: auto;
+     width: var(--media-width);
+ }
+
+ @media (max-width: 767px) {
+     .animated-highlight-image-style .animated-image-wrapper {
+         margin: 3px;
+     }
+ }

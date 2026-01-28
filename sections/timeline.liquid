@@ -1,0 +1,844 @@
+{% if section.index <= 2 %}
+  {{ 'image-with-text.css' | asset_url | preload_tag: as: 'style' }}
+  {{ 'timeline.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'timeline.css' | asset_url | stylesheet_tag }}
+
+{%- capture corner_style -%}
+    {% if section.settings.corner_style == 'top' %}
+      round-section round-top
+      {% elsif section.settings.corner_style == 'bottom' %}
+      round-section round-bottom
+      {% elsif section.settings.corner_style == 'both' %}
+      round-section round-bottom round-top
+    {% endif %}
+  {%- endcapture -%}
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+%}
+{% liquid
+  assign image_size = section.settings.image_ratio
+  if image_size == 'landscape'
+    assign image_ratio = '75'
+  elsif image_size == 'square'
+    assign image_ratio = '100'
+  elsif image_size == 'portrait'
+    assign image_ratio = '130'
+  else
+    assign image_ratio = '100'
+  endif
+%}
+
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing {{ corner_style }} pos-relative section-timeline-wrapper section-{{ section.settings.section_background }}">
+  <div class="{{ containerClass }}">
+    <timeline-slideshow>
+      <div class="timeline-header-wrapper">
+        {% if section.settings.heading != blank %}
+          <div class="section-header {{ section.settings.heading_alignment }}">
+            <{{ section.settings.seo_heading }} class="{{ section.settings.heading_font }} {{ section.settings.heading_size }}">
+              {%- capture markersPrefix -%}
+                <span class="markers-text {{ section.settings.markers_font }}">
+              {%- endcapture -%} 
+              {%- capture markersSuffix -%}
+                </span>
+              {%- endcapture -%}
+              {{- section.settings.heading | replace: '++', '<br/>' | replace: "[", markersPrefix | replace: "]", markersSuffix -}}
+              </{{ section.settings.seo_heading }}>
+            </div>
+          {% endif %}
+          {% if section.blocks.size > 1 %}
+            <div class="timeline-container">
+              <timeline-steps>
+                <div class="timeline">
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill"
+                      id="progress-fill"
+                      data-progress-fill></div>
+                  </div>
+                  {% for block in section.blocks %}
+                    <div
+                      class="timeline-step{% if forloop.index == 1 %} active{% endif %}"
+                      data-step="{{ forloop.index }}"
+                      data-timeline-step>
+                      <span class="timeline-step-label">{{ block.settings.navigation_label }}</span>
+                    </div>
+                  {% endfor %}
+                </div> 
+              </timeline-steps>
+            </div> 
+          {% endif %}
+        </div>
+        {% if section.blocks.size > 0 %}
+          {% if section.blocks.size > 1 %}
+            <div class="swiper" data-timeline-swiper=''>
+          {% endif %}
+          <div class="timeline-wrapper{% if section.blocks.size > 1 %} swiper-wrapper{% endif %}">
+            {% for block in section.blocks %}
+              <div class="{% if section.blocks.size > 1 %} swiper-slide{% endif %}">
+                <div class="row no-gutters align-items-center timeline-card image-position-{{ block.settings.desktop_image_postition }}">
+                  <div class="col-lg-6 col-md-6 col-12">
+                    <div class="image-with-text-media-wrap">
+                      {% liquid
+                        capture current
+                          cycle section.id: 1, 2, 3, 4
+                        endcapture
+                        assign placeholder_image = 'collection-apparel-' | append: current | placeholder_svg_tag: 'placeholder-svg'
+                        if image_size == 'auto' and block.settings.image != blank
+                          assign image_ratio = 1 | divided_by: block.settings.image.aspect_ratio | times: 100
+                        endif
+                      %}
+                      <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+                        {% if block.settings.image != blank %}
+                          {% render 'lazy-images'
+                            , image: block.settings.image %}
+                        {% else %}
+                          {{ placeholder_image }}
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-12">
+                    <div class="image-with-text-content text-{{ block.settings.desktop_image_postition }}">
+                      {% if block.settings.sub_heading != blank %}
+                        <p class="body-font {{ block.settings.sub_heading_size }} sub-heading">
+                          {{ block.settings.sub_heading }}
+                        </p>
+                      {% endif %}
+                      {% if block.settings.heading != blank %}
+                        <{{ block.settings.seo_heading }} class="timeline-heading heading-font {{ block.settings.heading_size }}">
+                          {{- block.settings.heading | replace: '++', '<br/>' -}}
+                          </{{ block.settings.seo_heading }}>
+                        {% endif %}
+                        {% if block.settings.description != blank %}
+                          <div class="image-with-text-desc">
+                            <p class="{{ block.settings.description_size }}">
+                              {{ block.settings.description | newline_to_br }}
+                            </p>
+                          </div>
+                        {% endif %}
+                        {% if block.settings.button_text != blank and block.settings.button_link != blank%}
+                          <div class="section-buttons">
+                            {% render 'button-wrapper'
+                              , block_settings: block
+                              , button_style: block.settings.button_style
+                              , button_text: block.settings.button_text
+                              , button_link: block.settings.button_link
+                              , button_size: block.settings.button_size %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            {% if section.blocks.size > 1 %}
+              </div>
+
+            {% endif %}
+          {% endif %}
+        </timeline-slideshow>
+      </div>
+    </div>
+    <style>
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_desktop }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+        --round-section-radius: {{ section.settings.corner_radius }}px;
+      }
+      @media only screen and (max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          --top-spacing: {{ section.settings.top_space_mobile }}px;
+          --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        }
+      }
+      {% if section.settings.section_visibility == 'large' %}
+        @media(max-width: 767px) {
+          #shopify-section-{{ section.id }} {
+            display: none !important;
+          }
+        }
+      {% elsif section.settings.section_visibility == 'small' %}
+      @media(min-width: 768px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% endif %}
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+         if (!customElements.get('timeline-slideshow')) {
+                class TimelineSlideshow extends HTMLElement {
+                  constructor() {
+                    super();
+                    this.timelineSwiper = this.querySelector('[data-timeline-swiper]');
+                    this._initSwiperSlide();
+                    this.timelineSteps = this.querySelectorAll('[data-timeline-step]');
+                    this.progressFill = this.querySelector('[data-progress-fill]');
+                    this.timelineSteps.forEach((step, index) => {
+                      step.setAttribute('tabindex', '0'); 
+                      step.addEventListener('click', () => {
+                        this.swiper.slideTo(index); // Sync the Swiper with the clicked step
+                        this.updateProgress(index + 1);
+                      });
+                      step.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          this.swiper.slideTo(index);
+                          this.updateProgress(index + 1);
+                        }
+                      });
+                    });
+                  }
+
+                  updateProgress(activeStep) {
+                    this.timelineSteps.forEach((step, index) => {
+                      if (index < activeStep) {
+                        step.classList.add('active');
+                      } else {
+                        step.classList.remove('active');
+                      }
+                    });
+                    const progressPercentage = ((activeStep - 1) / (this.timelineSteps.length - 1)) * 100;
+                    this.progressFill.style.width = `${progressPercentage}%`;
+                  }
+
+                  _initSwiperSlide() {
+                    if (this.swiper) {
+                      this.swiper.destroy(true, true); // Destroy the existing Swiper instance if it exists
+                      this.swiper = null;
+                    }
+
+        // Initialize a new Swiper instance
+                    this.swiper = new Swiper(this.timelineSwiper, {
+                      loop: false,
+                      speed: 850,
+                      slidesPerView: 1,
+                      grabCursor: true
+                    });
+
+        // Update progress when slide transition ends
+                    this.swiper.on('transitionEnd', () => {
+                      this.updateProgress(this.swiper.activeIndex + 1);
+                    });
+                  }
+                }
+
+        // Define the custom element
+                customElements.define('timeline-slideshow', TimelineSlideshow);
+          }
+      });
+  
+   </script>
+    {% schema %}
+      {
+        "name": "t:sections.timeline.name",
+        "tag": "section",
+        "class": "timeline-section",
+        "disabled_on": {
+          "groups": ["header", "footer", "custom.Overlay"]
+        },
+        "settings": [
+          {
+            "type": "select",
+            "id": "section_visibility",
+            "label": "t:sections.all.section_visibility.label",
+            "default": "always",
+            "options": [
+              {
+                "label": "t:sections.all.section_visibility.always.label",
+                "value": "always"
+              },
+              {
+                "label": "t:sections.all.section_visibility.small.label",
+                "value": "small"
+              },
+              {
+                "label": "t:sections.all.section_visibility.large.label",
+                "value": "large"
+              }
+            ]
+          },
+          {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "secondary"
+          },
+          {
+            "type": "select",
+            "id": "section_background",
+            "label": "t:sections.all.section_background.label",
+            "default": "solid",
+            "options": [
+              {
+                "label": "t:sections.all.section_background.solid.label",
+                "value": "solid"
+              },
+              {
+                "label": "t:sections.all.section_background.gradient.label",
+                "value": "gradient"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "section_container_width",
+            "label": "t:sections.all.section_container_width.label",
+            "default": "global",
+            "options": [
+              {
+                "label": "t:sections.all.section_container_width.global.label",
+                "value": "global"
+              },
+              {
+                "label": "t:sections.all.section_container_width.container-sm.label",
+                "value": "container-sm"
+              },
+              {
+              "label": "t:sections.all.section_container_width.container.label",
+              "value": "container-md"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-md.label",
+              "value": "container"
+            },
+              {
+                "label": "t:sections.all.section_container_width.container-fullwidth.label",
+                "value": "container-fullwidth"
+              },
+              {
+                "label": "t:sections.all.section_container_width.no-container.label",
+                "value": "no-container"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "corner_style",
+            "default": "none",
+            "label": "t:sections.all.section_corner_style.label",
+            "options": [
+              {
+                "value": "top",
+                "label": "t:sections.all.section_corner_style.top.label"
+              },
+              {
+                "value": "bottom",
+                "label": "t:sections.all.section_corner_style.bottom.label"
+              },
+              {
+                "value": "both",
+                "label": "t:sections.all.section_corner_style.both.label"
+              },
+              {
+                "value": "none",
+                "label": "t:sections.all.section_corner_style.none.label"
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "id": "corner_radius",
+            "label": "t:settings_schema.global.settings.corner_radius.label",
+            "default": 70,
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "px"
+          },
+          {
+            "type": "select",
+            "id": "image_ratio",
+            "label": "t:sections.all.image_ratio.label",
+            "default": "landscape",
+            "options": [
+              {
+                "value": "auto",
+                "label": "t:sections.all.image_ratio.auto_ratio.label"
+              },
+              {
+                "value": "landscape",
+                "label": "t:sections.all.image_ratio.landscape.label"
+              },
+              {
+                "value": "square",
+                "label": "t:sections.all.image_ratio.square.label"
+              },
+              {
+                "value": "portrait",
+                "label": "t:sections.all.image_ratio.portrait.label"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "t:sections.all.headers.heading"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "heading",
+            "label": "t:settings_schema.global.settings.heading.label",
+            "info": "t:settings_schema.global.settings.heading.info",
+            "default": "Timeline"
+          },
+          {
+            "type": "select",
+            "id": "heading_size",
+            "label": "t:sections.all.heading_size.label",
+            "default": "h3",
+            "options": [
+              {
+                "value": "h1",
+                "label": "t:sections.all.heading_size.h1.label"
+              },
+              {
+                "value": "h2",
+                "label": "t:sections.all.heading_size.h2.label"
+              },
+              {
+                "value": "h3",
+                "label": "t:sections.all.heading_size.h3.label"
+              },
+              {
+                "value": "h4",
+                "label": "t:sections.all.heading_size.h4.label"
+              },
+              {
+                "value": "h5",
+                "label": "t:sections.all.heading_size.h5.label"
+              },
+              {
+                "value": "h6",
+                "label": "t:sections.all.heading_size.h6.label"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "seo_heading",
+            "label": "t:sections.all.seo_heading.label",
+            "info": "t:sections.all.seo_heading.info",
+            "default": "h3",
+            "options": [
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              },
+              {
+                "value": "h5",
+                "label": "H5"
+              },
+              {
+                "value": "h6",
+                "label": "H6"
+              },
+              {
+                "value": "div",
+                "label": "div"
+              },
+              {
+                "value": "span",
+                "label": "span"
+              },
+              {
+                "value": "p",
+                "label": "p"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "heading_font",
+            "default": "heading-font",
+            "label": "t:sections.all.heading_font.label",
+            "options": [
+              {
+                "value": "heading-font",
+                "label": "t:sections.all.heading_font.heading-font.label"
+              },
+              {
+                "value": "body-font",
+                "label": "t:sections.all.heading_font.body-font.label"
+              },
+              {
+                "value": "accent-font",
+                "label": "t:sections.all.heading_font.accent-font.label"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "markers_font",
+            "default": "accent-font",
+            "label": "t:sections.all.markers_font.label",
+            "options": [
+              {
+                "value": "heading-font",
+                "label": "t:sections.all.markers_font.heading-font.label"
+              },
+              {
+                "value": "body-font",
+                "label": "t:sections.all.markers_font.body-font.label"
+              },
+              {
+                "value": "accent-font",
+                "label": "t:sections.all.markers_font.accent-font.label"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "t:sections.all.spacing.section_spacing_heading"
+          },
+          {
+            "type": "range",
+            "id": "top_space_desktop",
+            "label": "t:sections.all.spacing.top_space_desktop",
+            "default": 50,
+            "min": 0,
+            "max": 150,
+            "step": 5
+          },
+          {
+            "type": "range",
+            "id": "bottom_space_desktop",
+            "label": "t:sections.all.spacing.bottom_space_desktop",
+            "default": 50,
+            "min": 0,
+            "max": 150,
+            "step": 5
+          },
+          {
+            "type": "range",
+            "id": "top_space_mobile",
+            "label": "t:sections.all.spacing.top_space_mobile",
+            "default": 40,
+            "min": 0,
+            "max": 100,
+            "step": 5
+          },
+          {
+            "type": "range",
+            "id": "bottom_space_mobile",
+            "label": "t:sections.all.spacing.bottom_space_mobile",
+            "default": 40,
+            "min": 0,
+            "max": 100,
+            "step": 5
+          }
+        ],
+        "blocks": [
+          {
+            "type": "timeline",
+            "name": "t:sections.timeline.blocks.timeline.name",
+            "limit": 5,
+            "settings": [
+              {
+                "type": "text",
+                "id": "navigation_label",
+                "label": "t:sections.timeline.blocks.timeline.settings.navigation_label.label",
+                "default": "Label"
+              },
+              {
+                "type": "header",
+                "content": "t:sections.timeline.blocks.timeline.settings.header.text"
+              },
+              {
+                "type": "text",
+                "id": "sub_heading",
+                "label": "t:settings_schema.global.settings.sub_heading.label",
+                "default": "Sub heading"
+              },
+              {
+                "type": "select",
+                "id": "sub_heading_size",
+                "label": "t:sections.all.sub_heading_size.label",
+                "default": "h2",
+                "options": [
+                  {
+                    "value": "h1",
+                    "label": "t:sections.all.heading_size.h1.label"
+                  },
+                  {
+                    "value": "h2",
+                    "label": "t:sections.all.heading_size.h2.label"
+                  },
+                  {
+                    "value": "h3",
+                    "label": "t:sections.all.heading_size.h3.label"
+                  },
+                  {
+                    "value": "h4",
+                    "label": "t:sections.all.heading_size.h4.label"
+                  },
+                  {
+                    "value": "h5",
+                    "label": "t:sections.all.heading_size.h5.label"
+                  },
+                  {
+                    "value": "h6",
+                    "label": "t:sections.all.heading_size.h6.label"
+                  }
+                ]
+              },
+              {
+                "type": "inline_richtext",
+                "id": "heading",
+                "label": "t:settings_schema.global.settings.heading.label",
+                "default": "Timeline",
+                "info": "t:settings_schema.global.settings.heading.info_2"
+              },
+              {
+                "type": "select",
+                "id": "heading_size",
+                "label": "t:sections.all.heading_size.label",
+                "default": "h3",
+                "options": [
+                  {
+                    "value": "h1",
+                    "label": "t:sections.all.heading_size.h1.label"
+                  },
+                  {
+                    "value": "h2",
+                    "label": "t:sections.all.heading_size.h2.label"
+                  },
+                  {
+                    "value": "h3",
+                    "label": "t:sections.all.heading_size.h3.label"
+                  },
+                  {
+                    "value": "h4",
+                    "label": "t:sections.all.heading_size.h4.label"
+                  },
+                  {
+                    "value": "h5",
+                    "label": "t:sections.all.heading_size.h5.label"
+                  },
+                  {
+                    "value": "h6",
+                    "label": "t:sections.all.heading_size.h6.label"
+                  }
+                ]
+              },
+              {
+                "type": "select",
+                "id": "seo_heading",
+                "label": "t:sections.all.seo_heading.label",
+                "info": "t:sections.all.seo_heading.info",
+                "default": "h3",
+                "options": [
+                  {
+                    "value": "h1",
+                    "label": "H1"
+                  },
+                  {
+                    "value": "h2",
+                    "label": "H2"
+                  },
+                  {
+                    "value": "h3",
+                    "label": "H3"
+                  },
+                  {
+                    "value": "h4",
+                    "label": "H4"
+                  },
+                  {
+                    "value": "h5",
+                    "label": "H5"
+                  },
+                  {
+                    "value": "h6",
+                    "label": "H6"
+                  },
+                  {
+                    "value": "div",
+                    "label": "div"
+                  },
+                  {
+                    "value": "span",
+                    "label": "span"
+                  },
+                  {
+                    "value": "p",
+                    "label": "p"
+                  }
+                ]
+              },
+              {
+                "type": "textarea",
+                "id": "description",
+                "label": "t:settings_schema.global.settings.description.label",
+                "default": "Add short description for this block."
+              },
+              {
+                "type": "select",
+                "id": "description_size",
+                "label": "t:sections.all.description_size.label",
+                "default": "text",
+                "options": [
+                  {
+                    "label": "t:sections.all.description_size.text-xsmall.label",
+                    "value": "text-xs"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-small.label",
+                    "value": "text-sm"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text.label",
+                    "value": "text"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-medium.label",
+                    "value": "text-md"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-large.label",
+                    "value": "text-lg"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-xlarge.label",
+                    "value": "text-xl"
+                  }
+                ]
+              },
+              {
+                "type": "header",
+                "content": "t:sections.all.headers.button"
+              },
+              {
+                "type": "text",
+                "id": "button_text",
+                "label": "t:sections.all.button_text.label"
+              },
+              {
+                "type": "url",
+                "id": "button_link",
+                "label": "t:sections.all.button_link.label"
+              },
+              {
+                "type": "select",
+                "id": "button_style",
+                "default": "global",
+                "label": "t:sections.all.button_style.label",
+                "options": [
+                  {
+                    "value": "global",
+                    "label": "t:sections.all.button_style.global.label"
+                  },
+                  {
+                    "value": "solid",
+                    "label": "t:sections.all.button_style.solid.label"
+                  },
+                  {
+                    "value": "outline",
+                    "label": "t:sections.all.button_style.outline.label"
+                  },
+                  {
+                    "value": "solid_animated",
+                    "label": "t:sections.all.button_style.solid_animated.label"
+                  },
+                  {
+                    "value": "outline_animated",
+                    "label": "t:sections.all.button_style.outline_animated.label"
+                  },
+                  {
+                    "value": "link",
+                    "label": "t:sections.all.button_style.link.label"
+                  }
+                ]
+              },
+              {
+                "type": "select",
+                "id": "button_size",
+                "default": "global",
+                "label": "t:sections.all.button_size.label",
+                "options": [
+                  {
+                    "value": "global",
+                    "label": "t:sections.all.button_size.global.label"
+                  },
+                  {
+                    "value": "button-sm",
+                    "label": "t:sections.all.button_size.small-button.label"
+                  },
+                  {
+                    "value": "button-regular",
+                    "label": "t:sections.all.button_size.regular-button.label"
+                  },
+                  {
+                    "value": "button-lg",
+                    "label": "t:sections.all.button_size.large-button.label"
+                  }
+                ]
+              },
+              {
+                "type": "header",
+                "content": "t:sections.all.headers.image"
+              },
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "t:sections.all.headers.image"
+              },
+              {
+                "type": "select",
+                "id": "desktop_image_postition",
+                "label": "t:sections.timeline.blocks.timeline.settings.desktop_image_postition.label",
+                "default": "right",
+                "options": [
+                  {
+                    "label": "t:sections.timeline.blocks.timeline.settings.desktop_image_postition.left.label",
+                    "value": "left"
+                  },
+                  {
+                    "label": "t:sections.timeline.blocks.timeline.settings.desktop_image_postition.right.label",
+                    "value": "right"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "presets": [
+          {
+            "name": "t:sections.timeline.presets.name",
+            "blocks": [
+              {
+                "type": "timeline"
+              },
+              {
+                "type": "timeline"
+              },
+              {
+                "type": "timeline"
+              },
+              {
+                "type": "timeline"
+              }
+            ]
+          }
+        ]
+      }
+    {% endschema %}

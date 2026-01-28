@@ -1,0 +1,135 @@
+{% liquid
+  assign search_behaviour = settings.search_behaviour
+  if settings.search_behaviour == 'drawer' and request.page_type contains 'search'
+    assign search_behaviour = 'page'
+  endif
+%}
+<div class="header-right-icons">
+  <ul class="header-buttons-list d-flex align-items-center justify-content-end icon-background-{{ section.settings.enable_icon_background }}">
+    <li class="header-button-item{% if hide_search %} small-search-icon{% endif %}">
+      <list-set class="d-block" data-source="search-drawer" data-behaviour="{{ search_behaviour }}">
+        <a
+          href="{{ routes.search_url }}"
+          class="header-button-action d-inline-flex align-items-center justify-content-center"
+          aria-label="Open settings"
+          title="Search"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.707 22.293L17.738 16.324C19.3646 14.3346 20.1644 11.7961 19.9719 9.23359C19.7793 6.67106 18.6092 4.28056 16.7036 2.55655C14.798 0.832537 12.3026 -0.0930816 9.73367 -0.0288498C7.16472 0.035382 4.71873 1.08455 2.90164 2.90164C1.08455 4.71873 0.035382 7.16472 -0.0288498 9.73367C-0.0930816 12.3026 0.832537 14.798 2.55655 16.7036C4.28056 18.6092 6.67106 19.7793 9.23359 19.9719C11.7961 20.1644 14.3346 19.3646 16.324 17.738L22.293 23.707C22.4816 23.8892 22.7342 23.99 22.9964 23.9877C23.2586 23.9854 23.5094 23.8803 23.6948 23.6948C23.8803 23.5094 23.9854 23.2586 23.9877 22.9964C23.99 22.7342 23.8892 22.4816 23.707 22.293ZM10 18C8.41778 18 6.87106 17.5308 5.55546 16.6518C4.23987 15.7727 3.21449 14.5233 2.60899 13.0615C2.00349 11.5997 1.84506 9.99115 2.15374 8.4393C2.46243 6.88746 3.22435 5.46199 4.34317 4.34317C5.46199 3.22435 6.88746 2.46243 8.4393 2.15374C9.99115 1.84506 11.5997 2.00349 13.0615 2.60899C14.5233 3.21449 15.7727 4.23987 16.6518 5.55546C17.5308 6.87106 18 8.41778 18 10C17.9976 12.121 17.154 14.1545 15.6542 15.6542C14.1545 17.154 12.121 17.9976 10 18Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </list-set>
+
+      {% comment %} drawer search {% endcomment %}
+      <search-drawer
+        class="search-drawer scheme-{{ settings.search_drawer_color_scheme }} full-width-search"
+        data-drawer="search-drawer"
+        data-drawer-popup=""
+        data-section-id="{{ section.id }}"
+      >
+        <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+          <div class="data-moving-cursor" data-moving-cursor>
+            <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+              <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+        <predictive-search
+          class="drawer-search-wrapper"
+          data-source="search-drawer"
+        >
+          <form
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search"
+            class="search pos-absolute d-grid align-items-center"
+            data-search-form=""
+          >
+            <button
+              type="submit"
+              class="drawer-search-icon d-inline-flex align-items-center justify-content-center"
+              aria-label="Open settings"
+            >
+              <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                <circle cx="16.9883" cy="16.9883" r="16.422" stroke="currentColor" stroke-width="1.13255"></circle>
+                <path d="M24.6151 23.5063L21.4373 20.3285C22.5758 18.9361 23.1356 17.1594 23.0008 15.3659C22.8661 13.5724 22.0471 11.8992 20.7133 10.6926C19.3796 9.48594 17.6331 8.8381 15.835 8.88305C14.037 8.92801 12.325 9.66233 11.0533 10.9341C9.78147 12.2059 9.04715 13.9179 9.00219 15.7159C8.95724 17.5139 9.60508 19.2604 10.8117 20.5942C12.0184 21.928 13.6915 22.7469 15.485 22.8817C17.2786 23.0164 19.0553 22.4567 20.4477 21.3182L23.6254 24.4959C23.7574 24.6234 23.9342 24.694 24.1177 24.6924C24.3012 24.6908 24.4768 24.6172 24.6065 24.4874C24.7363 24.3576 24.8099 24.1821 24.8115 23.9986C24.8131 23.8151 24.7426 23.6383 24.6151 23.5063ZM16.0215 21.5016C14.914 21.5016 13.8315 21.1732 12.9107 20.5579C11.9899 19.9427 11.2722 19.0682 10.8484 18.0451C10.4246 17.0219 10.3138 15.8961 10.5298 14.81C10.7458 13.7238 11.2791 12.7261 12.0622 11.9431C12.8453 11.16 13.843 10.6267 14.9291 10.4107C16.0152 10.1946 17.1411 10.3055 18.1642 10.7293C19.1873 11.1531 20.0618 11.8708 20.6771 12.7915C21.2923 13.7123 21.6207 14.7949 21.6207 15.9023C21.619 17.3868 21.0286 18.81 19.9789 19.8597C18.9292 20.9094 17.506 21.4999 16.0215 21.5016Z" fill="currentColor"></path>
+              </svg>
+            </button>
+            <input name="type" type="hidden" value="product">
+            <div class="search-input-holder">
+               <label for="header-search-input" class="hidden">{{ settings.search_placeholder_heading }}</label>
+              <input
+                type="search"
+                id="header-search-input"
+                name="q"
+                placeholder="{{ settings.search_placeholder_heading }}"
+                value=""
+                data-search-input
+                aria-label="Search"
+              >
+            </div>
+            <div class="search-buttons-wrapper">
+              <button
+                class="close-button cursor-pointer search-drawer-clear hidden"
+                data-input-clear=""
+                aria-label="Search bar close"
+                type="button" aria-hidden="true"
+              >
+                {% render 'svg-icons', icon: 'close' %}
+                <div class="shape-cross-bg closeIconBg">
+                  <svg width="40" width="40" viewBox="0 0 40 40" fill="currentColor">
+                    <path d="M18.9183 0.94771C19.3133 0.346551 20.1947 0.346551 20.5898 0.94771L22.1431 3.31176C22.4547 3.78595 23.0979 3.9062 23.5597 3.57658L25.8622 1.9333C26.4477 1.51542 27.2696 1.83385 27.4208 2.5371L28.0152 5.30264C28.1345 5.85737 28.6908 6.20186 29.2406 6.06134L31.9811 5.36075C32.678 5.1826 33.3294 5.77645 33.2164 6.48682L32.7716 9.28034C32.6824 9.84068 33.0768 10.3629 33.6402 10.4304L36.4487 10.7672C37.1629 10.8528 37.5558 11.6419 37.1938 12.2634L35.7699 14.7076C35.4843 15.1979 35.6634 15.8273 36.1644 16.0938L38.6616 17.4224C39.2967 17.7603 39.378 18.638 38.8159 19.0868L36.6052 20.8516C36.1618 21.2056 36.1014 21.8572 36.4722 22.2866L38.321 24.4276C38.7911 24.9721 38.5498 25.8199 37.8635 26.0353L35.1646 26.8824C34.6233 27.0523 34.3316 27.6381 34.5222 28.1725L35.4727 30.8367C35.7144 31.5142 35.1832 32.2176 34.4654 32.1706L31.6428 31.9855C31.0766 31.9484 30.593 32.3892 30.5777 32.9564L30.5016 35.7841C30.4822 36.5032 29.7328 36.9672 29.0804 36.664L26.5153 35.4718C26.0007 35.2327 25.3905 35.4691 25.1714 35.9924L24.0789 38.6016C23.8011 39.2652 22.9346 39.4271 22.4359 38.9088L20.4746 36.8704C20.0812 36.4615 19.4268 36.4615 19.0334 36.8704L17.0721 38.9088C16.5734 39.4271 15.7069 39.2652 15.4291 38.6016L14.3366 35.9924C14.1175 35.4691 13.5073 35.2327 12.9928 35.4718L10.4276 36.664C9.77527 36.9672 9.02583 36.5032 9.00646 35.7841L8.93031 32.9564C8.91503 32.3892 8.43143 31.9484 7.86524 31.9855L5.04261 32.1706C4.32483 32.2176 3.79362 31.5142 4.03532 30.8367L4.98578 28.1725C5.17643 27.6381 4.88474 27.0523 4.34338 26.8824L1.64449 26.0353C0.958184 25.8199 0.716956 24.9721 1.18707 24.4276L3.03578 22.2866C3.40661 21.8572 3.34623 21.2056 2.90281 20.8516L0.692165 19.0868C0.130017 18.638 0.211348 17.7603 0.846389 17.4224L3.34367 16.0938C3.8446 15.8273 4.02368 15.1979 3.73808 14.7076L2.31425 12.2634C1.95218 11.6419 2.34509 10.8528 3.05929 10.7672L5.86787 10.4304C6.43124 10.3629 6.8256 9.84068 6.7364 9.28034L6.29167 6.48682C6.17858 5.77644 6.83 5.1826 7.5269 5.36075L10.2675 6.06134C10.8172 6.20186 11.3736 5.85737 11.4928 5.30264L12.0873 2.5371C12.2384 1.83385 13.0604 1.51542 13.6459 1.9333L15.9483 3.57658C16.4101 3.9062 17.0534 3.78595 17.365 3.31176L18.9183 0.94771Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+              </button>
+              <close-drawer>
+                <button class="search-close-btn close-btn d-flex button buttonHover" data-close-drawer>
+                  <span class="close-icon"> Close </span>
+                </button>
+              </close-drawer>
+            </div>
+          </form>
+        </predictive-search>
+        {% render 'predictive-search', section: section %}
+      </search-drawer>
+      {% comment %}header search{% endcomment %}
+    </li>
+
+    {% if shop.customer_accounts_enabled %}
+      <li class="header-button-item" data-source="account-drawer">
+        <a
+          href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+          class="header-button-action d-inline-flex align-items-center justify-content-center"
+          title="{% if customer %}Account{% else %}Login{% endif %}"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12C13.1867 12 14.3467 11.6481 15.3334 10.9888C16.3201 10.3295 17.0892 9.39246 17.5433 8.2961C17.9974 7.19975 18.1162 5.99335 17.8847 4.82946C17.6532 3.66558 17.0818 2.59648 16.2426 1.75736C15.4035 0.918247 14.3344 0.346802 13.1705 0.115291C12.0067 -0.11622 10.8003 0.00259972 9.7039 0.456726C8.60754 0.910851 7.67047 1.67989 7.01118 2.66658C6.35189 3.65328 6 4.81331 6 6C6.00159 7.59081 6.63424 9.11602 7.75911 10.2409C8.88399 11.3658 10.4092 11.9984 12 12ZM12 2C12.7911 2 13.5645 2.2346 14.2223 2.67412C14.8801 3.11365 15.3928 3.73836 15.6955 4.46927C15.9983 5.20017 16.0775 6.00444 15.9231 6.78036C15.7688 7.55629 15.3878 8.26902 14.8284 8.82843C14.269 9.38784 13.5563 9.7688 12.7804 9.92314C12.0044 10.0775 11.2002 9.99827 10.4693 9.69552C9.73836 9.39277 9.11365 8.88008 8.67412 8.22228C8.2346 7.56449 8 6.79113 8 6C8 4.93914 8.42143 3.92172 9.17157 3.17158C9.92172 2.42143 10.9391 2 12 2Z" fill="currentColor"/>
+            <path d="M16.4922 14H7.50778C6.04757 14.0016 4.64767 14.5244 3.61514 15.4536C2.58261 16.3829 2.00176 17.6428 2 18.957L2 24H4.22222V18.957C4.2231 18.173 4.56954 17.4213 5.18551 16.867C5.80148 16.3126 6.63667 16.0008 7.50778 16H16.4922C17.3633 16.0008 18.1985 16.3126 18.8145 16.867C19.4305 17.4213 19.7769 18.173 19.7778 18.957V24H22V18.957C21.9982 17.6428 21.4174 16.3829 20.3849 15.4536C19.3523 14.5244 17.9524 14.0016 16.4922 14Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+    <li class="header-button-item">
+      <list-set class="d-block" data-source="cart-drawer" data-behaviour="{{ settings.cart_type }}">
+        <a
+          href="{{ routes.cart_url }}"
+          class="header-button-action d-inline-flex align-items-center justify-content-center"
+          id="header-cart-icon"
+          aria-label="Cart settings"
+          title="Cart"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path xmlns="" d="M21 6H18C18 4.4087 17.3679 2.88258 16.2426 1.75736C15.1174 0.632141 13.5913 0 12 0C10.4087 0 8.88258 0.632141 7.75736 1.75736C6.63214 2.88258 6 4.4087 6 6H3C2.20435 6 1.44129 6.31607 0.87868 6.87868C0.31607 7.44129 0 8.20435 0 9L0 19C0.00158786 20.3256 0.528882 21.5964 1.46622 22.5338C2.40356 23.4711 3.6744 23.9984 5 24H19C20.3256 23.9984 21.5964 23.4711 22.5338 22.5338C23.4711 21.5964 23.9984 20.3256 24 19V9C24 8.20435 23.6839 7.44129 23.1213 6.87868C22.5587 6.31607 21.7956 6 21 6ZM12 2C13.0609 2 14.0783 2.42143 14.8284 3.17157C15.5786 3.92172 16 4.93913 16 6H8C8 4.93913 8.42143 3.92172 9.17157 3.17157C9.92172 2.42143 10.9391 2 12 2ZM22 19C22 19.7956 21.6839 20.5587 21.1213 21.1213C20.5587 21.6839 19.7956 22 19 22H5C4.20435 22 3.44129 21.6839 2.87868 21.1213C2.31607 20.5587 2 19.7956 2 19V9C2 8.73478 2.10536 8.48043 2.29289 8.29289C2.48043 8.10536 2.73478 8 3 8H6V10C6 10.2652 6.10536 10.5196 6.29289 10.7071C6.48043 10.8946 6.73478 11 7 11C7.26522 11 7.51957 10.8946 7.70711 10.7071C7.89464 10.5196 8 10.2652 8 10V8H16V10C16 10.2652 16.1054 10.5196 16.2929 10.7071C16.4804 10.8946 16.7348 11 17 11C17.2652 11 17.5196 10.8946 17.7071 10.7071C17.8946 10.5196 18 10.2652 18 10V8H21C21.2652 8 21.5196 8.10536 21.7071 8.29289C21.8946 8.48043 22 8.73478 22 9V19Z" fill="currentColor"/>
+          </svg>
+
+          <span
+            class="cart-count{% if cart == empty %} hidden{% elsif cart.item_count > 99 %} large-items{% endif %}"
+            data-cart-count=""
+          >
+            {{ cart.item_count }}
+          </span>
+        </a>
+      </list-set>
+    </li>
+  </ul>
+</div>

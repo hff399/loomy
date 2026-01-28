@@ -1,0 +1,124 @@
+{%- comment -%}
+  Mega Menu Product Card - Static Layout
+  All info displayed below the product image
+
+  Required params:
+  - product: The product object
+
+  Optional params:
+  - show_badge: Show product badges (default: true)
+  - show_color_count: Show color variant count (default: true)
+  - show_rating: Show product rating (default: true)
+  - badge_text: Custom badge text (displayed above image)
+{%- endcomment -%}
+
+{%- liquid
+  assign show_badge = show_badge | default: true
+  assign show_color_count = show_color_count | default: true
+  assign show_rating = show_rating | default: true
+
+  assign color_option_names = settings.media_grouping_option | default: 'Color' | downcase | split: ','
+  assign color_count = 0
+
+  if show_color_count
+    for option in product.options_with_values
+      assign option_name_lower = option.name | downcase
+      for color_name in color_option_names
+        assign color_name_clean = color_name | strip
+        if option_name_lower contains color_name_clean
+          assign color_count = option.values.size
+          break
+        endif
+      endfor
+      if color_count > 0
+        break
+      endif
+    endfor
+  endif
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign compare_at_price = current_variant.compare_at_price
+  assign price = current_variant.price
+  assign on_sale = false
+  if compare_at_price > price
+    assign on_sale = true
+    assign savings = compare_at_price | minus: price
+    assign savings_percent = savings | times: 100.0 | divided_by: compare_at_price | round
+  endif
+-%}
+
+<div class="mega-menu-product-card {{ card_class }}">
+  <a href="{{ product.url }}" class="mega-menu-product-card-link">
+    {%- comment -%} Badge above image {%- endcomment -%}
+    {%- if show_badge and badge_text != blank -%}
+      <div class="mega-menu-product-card-top-badge">
+        <span class="mega-menu-product-badge-top">{{ badge_text }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Product Image {%- endcomment -%}
+    <div class="mega-menu-product-card-image">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 400 | image_tag:
+          loading: 'lazy',
+          sizes: '200px',
+          widths: '200, 300, 400',
+          class: 'mega-menu-product-img'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg mega-menu-product-img' }}
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product Info - All Static Below Image {%- endcomment -%}
+    <div class="mega-menu-product-card-info">
+      {%- comment -%} Product Title {%- endcomment -%}
+      <h4 class="mega-menu-product-card-title">{{ product.title }}</h4>
+
+      {%- comment -%} Color Count {%- endcomment -%}
+      {%- if show_color_count and color_count > 1 -%}
+        <p class="mega-menu-product-card-colors">{{ color_count }} colors</p>
+      {%- endif -%}
+
+      {%- comment -%} Price Row {%- endcomment -%}
+      <div class="mega-menu-product-card-price-row">
+        {%- if on_sale -%}
+          <span class="mega-menu-product-price-current">{{ price | money }}</span>
+          <span class="mega-menu-product-price-was">{{ compare_at_price | money }}</span>
+          <span class="mega-menu-product-discount">-{{ savings_percent }}%</span>
+        {%- else -%}
+          <span class="mega-menu-product-price-current">{{ price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Rating {%- endcomment -%}
+      {%- if show_rating -%}
+        <div class="mega-menu-product-card-rating">
+          {%- if product.metafields.reviews.rating.value != blank -%}
+            {%- assign rating_value = product.metafields.reviews.rating.value | round: 1 -%}
+            {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
+            <div class="mega-menu-product-stars">
+              {%- for i in (1..5) -%}
+                {%- if i <= rating_value -%}
+                  <svg class="star-icon star-filled" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>
+                {%- elsif i == rating_value | ceil and rating_value != rating_value | floor -%}
+                  <svg class="star-icon star-half" width="14" height="14" viewBox="0 0 24 24"><defs><linearGradient id="half-{{ product.id }}"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#half-{{ product.id }})" stroke="currentColor" stroke-width="1"/></svg>
+                {%- else -%}
+                  <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <span class="mega-menu-product-rating-text">{{ rating_value }} ({{ rating_count }})</span>
+          {%- else -%}
+            {%- comment -%} Show empty stars if no rating {%- endcomment -%}
+            <div class="mega-menu-product-stars">
+              {%- for i in (1..5) -%}
+                <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </a>
+</div>

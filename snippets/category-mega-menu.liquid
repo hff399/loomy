@@ -1,0 +1,49 @@
+{% for block in section.blocks %}
+  {% assign block_label = block.settings.title | handleize %}
+  {% if block_label == link_title and block.type == 'category_mega_menus' %}
+    {% if block.settings.content_image_1 != blank %}
+      {% if block.settings.image_ratio == 'landscape' %}
+        {% assign image_ratio = '75' %}
+      {% elsif block.settings.image_ratio == 'square' %}
+        {% assign image_ratio = '100' %}
+      {% elsif block.settings.image_ratio == 'portrait' %}
+        {% assign image_ratio = '120' %}
+      {% endif %}
+      <div class="header-mega-menu-images-item">
+        {% for i in (1..2) %}
+          {%- liquid
+            assign image_id = 'content_image_' | append: i
+            assign heading_id = 'content_heading_' | append: i
+            assign heading_size_id = 'heading_size_' | append: i
+            assign description_id = 'content_description_' | append: i
+            assign description_size_id = 'description_size_' | append: i
+            assign link_id = 'content_link_' | append: i
+          -%}
+          {% if block.settings[image_id] != blank %}
+            <{% if block.settings[link_id] != blank %}a href="{{ block.settings[link_id] }}"{% else %}div{% endif %} class="header-mega-menu-images-item-inner">
+              {% if block.settings.image_ratio == 'auto' %}
+                {% assign image_ratio = 1 | divided_by: block.settings[image_id].aspect_ratio | times: 100 %}
+              {% endif %}
+              <div class="header-menu-menu-img media-wrapper media-overlay">
+                <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+                  {% render 'lazy-images'
+                    , image: block.settings[image_id] %}
+                </div>
+              </div>
+              {% if block.settings[heading_id] != blank or block.settings[description_id] != blank or block.settings[button_id] != blank %}
+                <div class="header-menu-menu-image-content d-bottom-left d-text-{{ block.settings.desktop_text_alignment }}">
+                  {% if block.settings[heading_id] != blank %}
+                    <h5 class="{{ block.settings[heading_size_id] }}">{{ block.settings[heading_id] }}</h5>
+                  {% endif %}
+                  {% if block.settings[description_id] != blank %}
+                    <p class="{{ block.settings[description_size_id] }}">{{ block.settings[description_id] }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </{% if block.settings[link_id] != blank %}a{% else %}div{% endif %}>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}

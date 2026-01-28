@@ -1,0 +1,763 @@
+{% comment %} {{ 'search-page.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'filter.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'main-blog.css' | asset_url | preload_tag: as: 'style' }} {% endcomment %}
+
+{{ 'main-blog.css' | asset_url | stylesheet_tag }}
+{{ 'search-page.css' | asset_url | stylesheet_tag }}
+{{ 'filter.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'filters.js' | asset_url }}" defer="defer"></script>
+
+
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+%}
+{%- capture corner_style -%}
+  {% if section.settings.corner_style == 'top' %}
+      round-section round-top
+      {% elsif section.settings.corner_style == 'bottom' %}
+      round-section round-bottom
+      {% elsif section.settings.corner_style == 'both' %}
+      round-section round-bottom round-top
+  {% endif %}
+{%- endcapture -%}
+
+{% liquid
+  assign isfiltersAlways = false
+  if section.settings.show_filters_always
+    assign isfiltersAlways = true
+  endif
+%}
+
+<div class="section-wrapper section-{{ section.settings.section_background }} {{ corner_style }} scheme-{{ section.settings.color_scheme }}">
+  <div class="main-search-header search-header-without-banner">
+    <div class="main-search-header-content-wrapper">
+      <div class="{{ settings.container_width }}">
+        <div class="main-search-header-content">
+          <h4 class="main-search-heading heading-font h4 text-center">{{ 'templates.search.title' | t }}</h4>
+          {%- if search.performed -%}
+            <p class="main-search--desc text-large text-center">
+              {% if search.results_count > 0 %}
+                {{
+                  'templates.search.results_with_count_and_term'
+                  | t: count: search.results_count, terms: search.terms
+                }}
+              {% else %}
+                {{ 'templates.search.no_results' | t: terms: search.terms }}
+              {% endif %}
+            </p>
+          {%- endif -%}
+          <main-search class="main-search-tabs">
+            <div class="main-search-input-box active">
+              <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+                <div class="main-search-input-group">
+                  <button class="arrow-btn search-tab-button search-form-button" aria-label="Search icon">
+                    {% render 'svg-icons', icon: 'search' %}
+                  </button>
+                  <input type="hidden" name="type" value="product">
+                  <input
+                    type="search"
+                    class="form-control"
+                    id="Search-In-Template-page"
+                    name="q"
+                    value="{{ search.terms | escape }}"
+                    placeholder="{{ 'templates.search.placeholder' | t }}"
+                    search-page-input=""
+                  >
+                  <label class="hidden" for="Search-In-Template-page">{{ 'templates.search.placeholder' | t }}</label>
+                  <button
+                    class="close-button cursor-pointer search-page-clear{% unless search.performed %} hidden{% endunless %}"
+                    data-input-clear aria-hidden="true"
+                    aria-label="Search bar clear"
+                    type="button"
+                  >
+                    <svg class="main-search-clear-icon closeIcon" width="18" height="18" viewBox="0 0 23.691 22.723">
+                      <g transform="translate(-126.154 -143.139)">
+                          <line x2="23" y2="22" transform="translate(126.5 143.5)" fill="none" stroke="CurrentColor" stroke-width="4"></line>
+                          <path d="M0,22,23,0" transform="translate(126.5 143.5)" fill="none" stroke="CurrentColor" stroke-width="4"></path>
+                      </g>
+                    </svg>
+                    <div class="search-page-shape-cross-bg closeIconBg">
+                      <svg width="40" width="40" viewBox="0 0 40 40" fill="currentColor">
+                        <path d="M18.9183 0.94771C19.3133 0.346551 20.1947 0.346551 20.5898 0.94771L22.1431 3.31176C22.4547 3.78595 23.0979 3.9062 23.5597 3.57658L25.8622 1.9333C26.4477 1.51542 27.2696 1.83385 27.4208 2.5371L28.0152 5.30264C28.1345 5.85737 28.6908 6.20186 29.2406 6.06134L31.9811 5.36075C32.678 5.1826 33.3294 5.77645 33.2164 6.48682L32.7716 9.28034C32.6824 9.84068 33.0768 10.3629 33.6402 10.4304L36.4487 10.7672C37.1629 10.8528 37.5558 11.6419 37.1938 12.2634L35.7699 14.7076C35.4843 15.1979 35.6634 15.8273 36.1644 16.0938L38.6616 17.4224C39.2967 17.7603 39.378 18.638 38.8159 19.0868L36.6052 20.8516C36.1618 21.2056 36.1014 21.8572 36.4722 22.2866L38.321 24.4276C38.7911 24.9721 38.5498 25.8199 37.8635 26.0353L35.1646 26.8824C34.6233 27.0523 34.3316 27.6381 34.5222 28.1725L35.4727 30.8367C35.7144 31.5142 35.1832 32.2176 34.4654 32.1706L31.6428 31.9855C31.0766 31.9484 30.593 32.3892 30.5777 32.9564L30.5016 35.7841C30.4822 36.5032 29.7328 36.9672 29.0804 36.664L26.5153 35.4718C26.0007 35.2327 25.3905 35.4691 25.1714 35.9924L24.0789 38.6016C23.8011 39.2652 22.9346 39.4271 22.4359 38.9088L20.4746 36.8704C20.0812 36.4615 19.4268 36.4615 19.0334 36.8704L17.0721 38.9088C16.5734 39.4271 15.7069 39.2652 15.4291 38.6016L14.3366 35.9924C14.1175 35.4691 13.5073 35.2327 12.9928 35.4718L10.4276 36.664C9.77527 36.9672 9.02583 36.5032 9.00646 35.7841L8.93031 32.9564C8.91503 32.3892 8.43143 31.9484 7.86524 31.9855L5.04261 32.1706C4.32483 32.2176 3.79362 31.5142 4.03532 30.8367L4.98578 28.1725C5.17643 27.6381 4.88474 27.0523 4.34338 26.8824L1.64449 26.0353C0.958184 25.8199 0.716956 24.9721 1.18707 24.4276L3.03578 22.2866C3.40661 21.8572 3.34623 21.2056 2.90281 20.8516L0.692165 19.0868C0.130017 18.638 0.211348 17.7603 0.846389 17.4224L3.34367 16.0938C3.8446 15.8273 4.02368 15.1979 3.73808 14.7076L2.31425 12.2634C1.95218 11.6419 2.34509 10.8528 3.05929 10.7672L5.86787 10.4304C6.43124 10.3629 6.8256 9.84068 6.7364 9.28034L6.29167 6.48682C6.17858 5.77644 6.83 5.1826 7.5269 5.36075L10.2675 6.06134C10.8172 6.20186 11.3736 5.85737 11.4928 5.30264L12.0873 2.5371C12.2384 1.83385 13.0604 1.51542 13.6459 1.9333L15.9483 3.57658C16.4101 3.9062 17.0534 3.78595 17.365 3.31176L18.9183 0.94771Z" fill="currentColor"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </form>
+            </div>
+            {% if search.performed %}
+              {% assign search_terms = search.terms | escape %}
+              <div class="search-result-tabs text-center">
+                <ul class="list-inline search-result-tabs-list">
+                  <li class="search-result-tabs-item{% if search.types contains 'product' %} active{% endif %}">
+                    <a
+                      href="{{ '?type=product&options%5Bprefix%5D=last&q=' | append: search_terms }}"
+                      class="search-result-tabs-link heading-font text-medium"
+                    >
+                      {{- 'templates.search.products' | t -}}
+                    </a>
+                  </li>
+                  {% if settings.search_results == 'products_articles'
+                    or settings.search_results == 'products_articles_pages'
+                    or settings.search_results == 'all'
+                  %}
+                    <li class="search-result-tabs-item{% if search.types contains 'article' %} active{% endif %}">
+                      <a
+                        href="{{ '?type=article&options%5Bprefix%5D=last&q=' | append: search_terms }}"
+                        class="search-result-tabs-link heading-font text-medium"
+                      >
+                        {{- 'templates.search.blog_post' | t -}}
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if settings.search_results == 'products_pages'
+                    or settings.search_results == 'products_articles_pages'
+                    or settings.search_results == 'all'
+                  %}
+                    <li class="search-result-tabs-item{% if search.types contains 'page' %} active{% endif %}">
+                      <a
+                        href="{{ '?type=page&options%5Bprefix%5D=last&q=' | append: search_terms }}"
+                        class="search-result-tabs-link heading-font text-medium"
+                      >
+                        {{- 'templates.search.pages' | t -}}
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            {% endif %}
+          </main-search>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-wrapper section-spacing section-{{ section.settings.section_background }} scheme-{{ section.settings.color_scheme }}">
+  <div class="main-search-wrapper">
+    <div class="{{ containerClass }}">
+      {%- if search.performed and search.results_count > 0 -%}
+        {% paginate search.results by 12 %}
+          <div
+            class="main-collection-wrapper{% unless section.settings.filters %} main-collection-wrapper-without-filters{% endunless %}"
+            data-collection-wrapper
+          >
+            {% if search.types contains 'product' and search.results_count > 0 %}
+              {% if section.settings.filters or section.settings.enable_count or section.settings.sorting %}
+              <div class="collection-filter-head" data-custom-dropdown-wrapper>
+                <div class="collection-filter-head-left">
+                  {% if section.settings.filters %}
+                    <filter-toggler
+                      class="collection-filter-button"
+                      data-filter-style="{{ section.settings.filter_style }}"
+                    >
+                      <button
+                        type="button"
+                        class="collection-filter-btn{% unless section.settings.filter_style == 'drawer' %} active{% endunless %}"
+                        data-filters-nav
+                      >
+                        <span class="collection-filter-btn-icon">
+                          {% render 'svg-icons', icon: 'hide-filters' %}
+                        </span>
+                        <span data-filter-text>
+                          {% if section.settings.filter_style == 'drawer' -%}
+                            {{ 'products.facets.show_filter' | t }}
+                          {%- else -%}
+                            {{ 'products.facets.hide_filter' | t }}
+                          {%- endif %}
+                        </span>
+                      </button>
+                    </filter-toggler>
+                  {% endif %}
+                  {% if section.settings.enable_count %}
+                    <p class="collection-products-count" data-product-count>
+                      {{ 'products.facets.product_count_simple' | t: count: search.results_count }}
+                    </p>
+                  {% endif %}
+                </div>
+                <div class="collection-filter-head-right">
+                  <div class="collection-filter-button pos-relative" data-sorting>
+                    {% if section.settings.sorting %}
+                      <filter-faced-form>
+                        <form id="horizontalFilterForm" class="horizontal-filters-bar" data-editor-form-attribute="">
+                          <custom-dropdown>
+                            {% render 'sorting', section: section, collection: search %}
+                          </custom-dropdown>
+                        </form>
+                      </filter-faced-form>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            {% endif %}
+            <div
+              class="collection-products-wrapper{% if section.settings.filters and section.settings.filter_style == 'drawer' and search.types contains 'product' and search.results_count > 0 %} filter-main-wrapper-drawer{% endif %}{% if section.settings.filter_style != 'drawer' and search.types contains 'product' and search.results_count > 0 and section.settings.filters%} open-filter{% endif %}"
+              data-products-wrapper
+            >
+              {% if search.types contains 'product' and search.results_count > 0 %}
+                {% if section.settings.filters %}
+                  <filter-close class="filter-drawer-overlay{% if section.settings.filter_style == 'sidebar' %} d-md-none{% endif %}">
+                    <div class="close-drawer" data-mobile-filter-toggle is="data-moving-cursor-area">
+                    <div class="data-moving-cursor" data-moving-cursor>
+                      <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+                        <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  </filter-close>
+
+                  <div
+                    class="filter-sidebar filters-style-{{ section.settings.filter_style }}"
+                    data-filter-always="{{ isfiltersAlways }}"
+                    data-filters-sidebar=""
+                  >
+                    <filter-faced-form class="filters-sidebar-inner">
+                      <form class="filter-sidebar-content height-100" id="filter-sorting-form">
+                        <div class="filter-drawer-header d-grid{% if section.settings.filter_style == 'sidebar' %} d-md-none{% endif %}">
+                          <h5 class="filter-drawer-heading h5">{{ 'products.facets.filter_button' | t }}</h5>
+                          <button
+                            type="button"
+                            class="drawer-close close-button"
+                            aria-label="Close drawer"
+                            data-mobile-filter-toggle
+                            aria-hidden="true" >
+                          {% render 'svg-icons'
+                          , icon: 'close' %}
+                        {% render 'svg-icons'
+                          , icon: 'close-bg' %}
+                          </button>
+                        </div>
+                        <div class="filter-accordion">
+                          {% render 'filters', section: section, collection: search, isfiltersAlways: isfiltersAlways %}
+                        </div>
+                        <div class="view-products-filter-drawer{% if section.settings.filter_style == 'sidebar' %} d-md-none{% endif %}">
+                          <button
+                            type="button"
+                            class="button button-outline buttonHover button-secondary"
+                            aria-label="{{ 'products.facets.view_products' | t }}"
+                            data-mobile-filter-toggle
+                          >
+                            {{ 'products.facets.view_products' | t }}
+                          </button>
+                        </div>
+                      </form>
+                    </filter-faced-form>
+                  </div>
+                {% endif %}
+                <div
+                  class="collection-products-list-grid"
+                  id="collection--list-grid"
+                  data-id="{{ section.id }}"
+                  data-collections-grid
+                >
+                  {% assign is_appiled_filters = false %}
+                  {% capture applied_filters %}
+                    {%- for filter in search.filters -%}
+                      {%- for value in filter.active_values -%}
+                        <li class="filter-applied-item">
+                          <filter-remove>
+                            <a href="{{ value.url_to_remove }}" class="filter-applied-item-link" aria-label="Remove filter">
+                              <span>
+                                {{ value.label | escape }}
+                              </span>
+                              {% render 'svg-icons', icon: 'close' %}
+                              <span class="hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                            </a>
+                          </filter-remove>
+                        </li>
+                        {% assign is_appiled_filters = true %}
+                      {%- endfor -%}
+                      {% if filter.type == 'price_range' %}
+                        {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                          {% assign is_appiled_filters = true %}
+                          <li class="filter-applied-item">
+                            <filter-remove>
+                              <a href="{{ filter.url_to_remove }}" class="filter-applied-item-link" aria-label="Remove filter"> 
+                                <span>
+                                  {%- if filter.min_value.value -%}
+                                    {{ filter.min_value.value | money }}
+                                  {%- else -%}
+                                    {{ 0 | money }}
+                                  {%- endif -%}
+                                  - 
+                                  {%- if filter.max_value.value -%}
+                                    {{ filter.max_value.value | money }}
+                                  {%- else -%}
+                                    {{ filter.range_max | money }}
+                                  {%- endif -%}
+                                </span>
+                                {% render 'svg-icons', icon: 'close' %}
+                                <span class="hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                              </a>
+                            </filter-remove>
+                          </li>
+                        {%- endif -%}
+                      {% endif %}
+                    {%- endfor -%}
+                  {% endcapture %}
+                  {% if is_appiled_filters %}
+                    {%  assign search_terms = search.terms | escape %}
+                    <div class="filter-applied-list">
+                      <ul data-applied-filters>
+                        {{ applied_filters }}
+                      </ul>
+                      <filter-remove>
+                        <a
+                          class="clear-filter-button text-underline"
+                          href="{{ '?type=product&options%5Bprefix%5D=last&q=' | append: search_terms }}"
+                        >
+                          Clear filters
+                        </a>
+                      </filter-remove>
+                    </div>
+                  {% endif %}
+
+                  <div class=".main-collection-list-section .no-container .collection-list-container {
+    padding: 0;
+}">
+                    <div class="collection-list-container">
+                      <div class="product-list-wrapper" main-collection-products="">
+                        {%- for item in search.results -%}
+                          {%- case item.object_type -%}
+                            {%- when 'product' -%}
+                              {% render 'product-card',
+                                cardproduct: item,
+                                section: section,
+                                source: 'collection-search',
+                                cardImageSize: section.settings.image_ratio
+                              %}
+                          {% endcase %}
+                        {% endfor %}
+                      </div>
+                      {% if paginate.pages > 1 %}
+                        {% render 'pagination', paginate: paginate, anchor: '' %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              {% if settings.search_results == 'products_articles'
+                or settings.search_results == 'products_articles_pages'
+                or settings.search_results == 'all'
+              %}
+                {% if search.types contains 'article' %}
+                  <div
+                    class="articles-col{% if search.types contains 'article' %} active{% else %} hidden{% endif %}"
+                    id="collection--list-grid"
+                    data-id="{{ section.id }}"
+                    data-collections-grid
+                  >
+                    <h6 class="main-search--result-heading">
+                      {{ 'templates.search.results_articles_with_count' | t: count: search.results_count }}
+                    </h6>
+                    {% if search.results_count > 0 %}
+                      <div class="search-result-articles-list blogs-list d-grid">
+                        {%- for item in search.results -%}
+                          {%- case item.object_type -%}
+                            {%- when 'article' -%}
+                               {% assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 %}
+                                {% assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index %}
+                              {% render 'blog-card',
+                                article: item,
+                                section: section,
+                                blog_style: "normal"
+                                show_excerpt: true,
+                                show_date: true,
+                                show_author: true,
+                                hover_content: "background",
+                                placeholder_image: placeholder_image,
+                                show_tags: false,
+                                overlay_style: 'solid'
+                              %}
+                          {%- endcase -%}
+                        {%- endfor -%}
+                      </div>
+                    {% else %}
+                      {% render 'empty-card', source: 'search' %}
+                    {% endif %}
+                    {% if search.types contains 'article' and paginate.pages > 1 %}
+                      {% render 'pagination', paginate: paginate, anchor: '' %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endif %}
+              {% if settings.search_results == 'products_pages'
+                or settings.search_results == 'products_articles_pages'
+                or settings.search_results == 'all'
+              %}
+                {% if search.types contains 'page' %}
+                  <div
+                    class="pages-col{% if search.types contains 'page' %} active{% else %} hidden{% endif %}"
+                    id="collection--list-grid"
+                    data-id="{{ section.id }}"
+                    data-collections-grid
+                  >
+                    <h6 class="main-search--result-heading">
+                      {{ 'templates.search.results_pages_with_count' | t: count: search.results_count }}
+                    </h6>
+                    {% if search.results_count > 0 %}
+                      <div class="search-result-pages-list">
+                        {%- for page in search.results -%}
+                          <div class="page-search-item">
+                            <a
+                              href="{{ page.url }}"
+                              class="text-md"
+                              title="{{- page.title | escape -}}"
+                            >
+                              <span>
+                                <svg width="27" height="27" viewBox="0 0 27 27" fill="currentColor">
+                                  <path d="M16.3302 1.05486L16.324 1.04883C16.2104 0.931688 16.0537 0.866147 15.8902 0.868031C15.8701 0.867089 15.8498 0.868972 15.83 0.874246H6.57513C4.91155 0.874622 3.56325 2.22311 3.5625 3.88688V23.1676C3.56325 24.8312 4.91155 26.1797 6.57513 26.1803H19.9935C21.6571 26.1797 23.0056 24.8312 23.0062 23.1676V7.9717C23.005 7.81218 22.9425 7.65907 22.8314 7.54418L16.3302 1.05486ZM16.4927 2.92278L20.9635 7.38146H18.3004C17.3033 7.37844 16.4956 6.57086 16.4927 5.57399V2.92278ZM19.9996 24.9693H6.57513C5.57808 24.9664 4.77068 24.1587 4.76748 23.1616V3.88066C4.77068 2.8838 5.57808 2.07602 6.57513 2.0732H15.2878V5.57399C15.2883 7.23738 16.6368 8.58587 18.3004 8.58662H21.8012V23.1616C21.8031 24.1583 20.9962 24.9679 19.9996 24.9693Z"/>
+                                  <path d="M7.42671 12.4968H13.9401C14.2727 12.4968 14.5428 12.2271 14.5428 11.8944C14.5428 11.5616 14.2727 11.2919 13.9401 11.2919H7.42671C7.09392 11.2919 6.82422 11.5616 6.82422 11.8944C6.82422 12.2271 7.09392 12.4968 7.42671 12.4968Z"/>
+                                  <path d="M19.152 15.847H7.42671C7.09392 15.847 6.82422 16.1167 6.82422 16.4495C6.82422 16.7821 7.09392 17.052 7.42671 17.052H19.152C19.4846 17.052 19.7546 16.7821 19.7546 16.4495C19.7546 16.1167 19.4846 15.847 19.152 15.847Z"/>
+                                  <path d="M19.152 20.4081H7.42671C7.09392 20.4081 6.82422 20.6778 6.82422 21.0106C6.82422 21.3434 7.09392 21.6131 7.42671 21.6131H19.152C19.4846 21.6131 19.7546 21.3434 19.7546 21.0106C19.7546 20.6778 19.4846 20.4081 19.152 20.4081Z" />
+                                </svg>
+                              </span>
+                              {{- page.title | escape -}}
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {% render 'empty-card', source: 'search' %}
+                    {% endif %}
+                    {% if search.types contains 'article' and paginate.pages > 1 %}
+                      {% render 'pagination', paginate: paginate, anchor: '' %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        {% endpaginate %}
+      {% else %}
+        {% render 'empty-card', source: 'search' %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    --top-spacing: {{ section.settings.top_space_desktop }}px;
+    --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+    --round-section-radius:{{ section.settings.corner_radius }}px;
+    --column-count: {{ section.settings.desktop_column_count  }};
+    --col-count: {{ section.settings.desktop_column_count  }};
+    --gap: {{ section.settings.columns_gap }}px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --column-count: 2;
+      --col-count: 2;
+      --top-spacing: {{ section.settings.top_space_mobile }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+</style>
+<script>
+  class MainSearch extends HTMLElement {
+    constructor() {
+      super();
+      this.input = this.querySelector('input[type="search"]');
+      this.clearInput = this.querySelector('[data-input-clear]');
+
+      if (this.input) {
+        this.input.addEventListener('input', this.debounce(this.onChange.bind(this), 300));
+        this.clearInput?.addEventListener('click', this.clearSearch.bind(this));
+      }
+
+      this.handleMouseOver = this.handleMouseOver.bind(this);
+    }
+
+    connectedCallback() {
+      this.backgroundEffect = this.querySelector('[background-effect]');
+      this.activeElement = this.querySelector('[product-tab-item].active');
+
+      if (this.activeElement) {
+        this.onMouseLeaveHover(this.activeElement);
+      }
+
+      this.tabItems = this.querySelectorAll('[product-tab-item]');
+      this.addEventListeners();
+    }
+
+    disconnectedCallback() {
+      // Clean up event listeners when component is removed
+      this.tabItems?.forEach((item) => item.removeEventListener('mouseover', this.handleMouseOver));
+      this.clearInput?.removeEventListener('click', this.clearSearch);
+    }
+
+    addEventListeners() {
+      this.tabItems?.forEach((item) => item.addEventListener('mouseover', this.handleMouseOver));
+    }
+
+    handleMouseOver(event) {
+      const target = event.currentTarget;
+      this.onMouseLeaveHover(target);
+
+      if (!target.classList.contains('animate')) {
+        target.classList.add('animate');
+      }
+    }
+
+    onMouseLeaveHover(target) {
+      if (!target || !this.backgroundEffect) return;
+
+      this.backgroundEffect.style.setProperty('--bgeffect-translate', `${target.offsetLeft}px`);
+    }
+
+    getQuery() {
+      return this.input?.value.trim() || '';
+    }
+
+    onChange() {
+      const hasText = this.getQuery() !== '';
+      this.clearInput?.classList.toggle('hidden', !hasText);
+    }
+
+    clearSearch() {
+      if (this.input) {
+        this.input.value = '';
+        this.onChange();
+      }
+    }
+
+    debounce(fn, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn.apply(this, args), delay);
+      };
+    }
+  }
+
+  customElements.define('main-search', MainSearch);
+  </script>
+{%- schema -%}
+{
+  "name": "t:sections.main-search.name",
+  "tag": "section",
+  "class": "main-search",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "primary",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "select",
+      "id": "section_background",
+      "label": "t:sections.all.section_background.label",
+      "default": "solid",
+      "options": [
+        {
+          "label": "t:sections.all.section_background.solid.label",
+          "value": "solid"
+        },
+        {
+          "label": "t:sections.all.section_background.gradient.label",
+          "value": "gradient"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_container_width",
+      "label": "t:sections.all.section_container_width.label",
+      "default": "global",
+      "options": [
+        {
+          "label": "t:sections.all.section_container_width.global.label",
+          "value": "global"
+        },
+        {
+          "label": "t:sections.all.section_container_width.container-sm.label",
+          "value": "container-sm"
+        },
+        {
+              "label": "t:sections.all.section_container_width.container.label",
+              "value": "container-md"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-md.label",
+              "value": "container"
+            },
+        {
+          "label": "t:sections.all.section_container_width.container-fullwidth.label",
+          "value": "container-fullwidth"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "corner_style",
+      "default": "none",
+      "label": "t:sections.all.section_corner_style.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.section_corner_style.top.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.section_corner_style.bottom.label"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.section_corner_style.both.label"
+        },
+        {
+          "value": "none",
+          "label": "t:sections.all.section_corner_style.none.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:settings_schema.global.settings.corner_radius.label",
+      "default": 70,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:sections.all.image_ratio.label",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:sections.all.image_ratio.auto_ratio.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:sections.all.image_ratio.landscape.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.image_ratio.square.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.image_ratio.portrait.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_count",
+      "label": "t:sections.main-search.settings.desktop_column_count.label",
+      "max": 4,
+      "min": 2,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "label": "t:sections.main-search.settings.columns_gap.label",
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-search.settings.header.sorting_and_filters"
+    },
+    {
+      "type": "checkbox",
+      "id": "sorting",
+      "default": true,
+      "label": "t:sections.main-search.settings.sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "filters",
+      "default": true,
+      "label": "t:sections.main-search.settings.filters.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_count",
+      "default": true,
+      "label": "t:sections.main-search.settings.enable_count.label"
+    },
+    {
+      "type": "select",
+      "id": "filter_style",
+      "label": "t:sections.main-search.settings.filter_style.label",
+      "default": "sidebar",
+      "options": [
+        {
+          "label": "t:sections.main-search.settings.filter_style.sidebar.label",
+          "value": "sidebar"
+        },
+        {
+          "label": "t:sections.main-search.settings.filter_style.drawer.label",
+          "value": "drawer"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters_always",
+      "default": true,
+      "label": "t:sections.main-search.settings.show_filters_always.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing.section_spacing_heading"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:sections.all.spacing.top_space_desktop",
+      "default": 70,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:sections.all.spacing.bottom_space_desktop",
+      "default": 70,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:sections.all.spacing.top_space_mobile",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:sections.all.spacing.bottom_space_mobile",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ]
+}
+{%- endschema -%}

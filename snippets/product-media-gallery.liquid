@@ -1,0 +1,448 @@
+{% liquid
+ if source == 'quick-view'
+  assign image_size = 'square'
+ else
+   assign image_size = section.settings.image_ratio
+ endif
+  if image_size == 'landscape'
+    assign imageratio = '70'
+  elsif image_size == 'square'
+    if media_style and media_style == 'split_view'
+      assign imageratio = '90'
+    else
+      assign imageratio = '100'
+    endif
+  elsif image_size == 'portrait'
+    assign imageratio = '130'
+  else
+    assign imageratio = '120'
+  endif
+
+  comment
+    Build variant media mapping for variant images feature
+    Maps each media ID to the variant option values that use it
+  endcomment
+  assign enable_variant_images = settings.enable_variant_images
+  assign variant_media_map = ''
+  assign media_grouping_options = settings.media_grouping_option | default: 'Color' | downcase | split: ','
+  assign color_option_name = media_grouping_options | first | strip
+  assign color_option_index = nil
+
+  if enable_variant_images
+    for option in product.options_with_values
+      assign option_name_lower = option.name | downcase
+      for grouping_option in media_grouping_options
+        assign grouping_option_clean = grouping_option | strip
+        if option_name_lower contains grouping_option_clean
+          assign color_option_index = forloop.parentloop.index0
+          break
+        endif
+      endfor
+      if color_option_index != nil
+        break
+      endif
+    endfor
+  endif
+%}
+<product-media-gallery
+  data-id="{{ section.id }}"
+  data-media-gallery-style="media-swiper"
+  data-thumbnails-style="{{ thumbnails_style }}"
+  data-source="{{ source }}"
+  {% if media_style %}
+   data-layout="{{ media_style }}"
+  {% endif %}
+  data-media-count="{{ product.media.size }}"
+  {% if enable_variant_images and color_option_index != nil %}
+  data-enable-variant-images="true"
+  data-color-option-index="{{ color_option_index }}"
+  {% endif %}
+>
+  {%- comment -%}
+    Variant Media Mapping: Maps media IDs to variant option values
+    Format: { mediaId: [optionValue1, optionValue2, ...], ... }
+  {%- endcomment -%}
+  <script type="application/json" data-variant-media-map>
+    {%- liquid
+      assign media_variant_map = '{'
+      assign first_media = true
+
+      for media in product.media
+        assign media_variants = ''
+        assign first_variant = true
+
+        comment
+          Check which variants use this media as featured_media
+        endcomment
+        for variant in product.variants
+          if variant.featured_media.id == media.id
+            if color_option_index != nil
+              assign option_value = variant.options[color_option_index] | escape | json
+              unless media_variants contains option_value
+                unless first_variant
+                  assign media_variants = media_variants | append: ','
+                endunless
+                assign media_variants = media_variants | append: option_value
+                assign first_variant = false
+              endunless
+            endif
+          endif
+        endfor
+
+        comment
+          Also check if media alt text contains option values (common convention)
+        endcomment
+        if media.alt != blank and color_option_index != nil
+          assign media_alt_lower = media.alt | downcase
+          for option in product.options_with_values
+            assign option_name_lower = option.name | downcase
+            if option_name_lower contains color_option_name
+              for value in option.values
+                assign value_lower = value | downcase
+                if media_alt_lower contains value_lower
+                  assign escaped_value = value | escape | json
+                  unless media_variants contains escaped_value
+                    unless first_variant
+                      assign media_variants = media_variants | append: ','
+                    endunless
+                    assign media_variants = media_variants | append: escaped_value
+                    assign first_variant = false
+                  endunless
+                endif
+              endfor
+              break
+            endif
+          endfor
+        endif
+
+        if media_variants != ''
+          unless first_media
+            assign media_variant_map = media_variant_map | append: ','
+          endunless
+          assign media_variant_map = media_variant_map | append: '"' | append: media.id | append: '":[' | append: media_variants | append: ']'
+          assign first_media = false
+        endif
+      endfor
+
+      assign media_variant_map = media_variant_map | append: '}'
+    -%}
+    {{ media_variant_map }}
+  </script>
+  
+  <div class="product-main-media-wrapper {{ image_size }}{% if media_style and media_style == 'split_view' and product.media.size == 2  %} split-view-with-two-media{% endif %}">
+    {% if product != empty %}
+      {% if product.media.size > 0 %}
+        <a class="skip-to-content-link button" href="#main-product-info-{{ product.id }}-{{ section.id }}" aria-label="Skip content">  {{ 'accessibility.skip_to_product_info' | t }}</a>
+        {% if product.media.size > 1 %}
+          <div class="swiper" data-main-media>
+            <div class="swiper-wrapper">
+        {% endif %}
+        {%- if product.selected_or_first_available_variant.featured_media != null -%}
+          {% liquid
+            if image_size == 'auto'
+              assign imageratio = 1 | divided_by: product.selected_or_first_available_variant.featured_media.aspect_ratio | times: 100 | minus: 1
+            endif
+          %}
+          {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+          {%- comment -%} Get variant option values for this media {%- endcomment -%}
+          {%- capture featured_media_variants -%}
+            {%- for variant in product.variants -%}
+              {%- if variant.featured_media.id == featured_media.id and color_option_index != nil -%}
+                {{ variant.options[color_option_index] | escape }},
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- assign featured_media_variants = featured_media_variants | strip | split: ',' | uniq | join: ',' -%}
+          <div
+            class="product-image-slideshow-item{% if product.media.size > 1 %} swiper-slide{% endif %}"
+            data-media-id="{{ section.id }}-{{ featured_media.id }}"
+            data-media-raw-id="{{ featured_media.id }}"
+            {% if featured_media_variants != blank %}data-variant-options="{{ featured_media_variants }}"{% endif %}
+          >
+            <div class="product-image-slideshow-media">
+              {% if enable_zoom %}
+                <media-zoom-button data-section="{{ section.id }}" data-image="{{ section.id }}-{{ featured_media.id }}"></media-zoom-button>
+              {% endif %}
+              <div class="media" style="--image-ratio:{{ imageratio }}%;">
+                {% comment %} {% render 'lazy-images', image: featured_media %} {% endcomment %}
+                {{
+                  featured_media
+                  | image_url: width: 1946
+                  | image_tag: sizes: '50vw', widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
+                }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {% for media in product.media %}
+          {% unless media.id == currentVariant.featured_media.id %}
+            {% liquid
+              if image_size == 'auto'
+                assign imageratio = 1 | divided_by: media.preview_image.aspect_ratio | times: 100 | minus: 1
+              endif
+            %}
+            {%- comment -%} Get variant option values for this media {%- endcomment -%}
+            {%- capture media_variants -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.featured_media.id == media.id and color_option_index != nil -%}
+                  {{ variant.options[color_option_index] | escape }},
+                {%- endif -%}
+              {%- endfor -%}
+              {%- comment -%} Also check alt text for option value {%- endcomment -%}
+              {%- if media.alt != blank and color_option_index != nil -%}
+                {%- assign media_alt_lower = media.alt | downcase -%}
+                {%- for option in product.options_with_values -%}
+                  {%- assign option_name_lower = option.name | downcase -%}
+                  {%- if option_name_lower contains color_option_name -%}
+                    {%- for value in option.values -%}
+                      {%- assign value_lower = value | downcase -%}
+                      {%- if media_alt_lower contains value_lower -%}
+                        {{ value | escape }},
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endcapture -%}
+            {%- assign media_variants = media_variants | strip | split: ',' | uniq | join: ',' -%}
+            <div
+              class="product-image-slideshow-item{% if product.media.size > 1 %} swiper-slide{% endif %}"
+              data-media-id="{{ section.id }}-{{ media.id }}"
+              data-media-raw-id="{{ media.id }}"
+              {% if media_variants != blank %}data-variant-options="{{ media_variants }}"{% endif %}
+            >
+              <div class="product-image-slideshow-media">
+                {% if enable_zoom and media.media_type == 'image' %}
+                  <media-zoom-button data-section="{{ section.id }}" data-image="{{ section.id }}-{{ media.id }}"></media-zoom-button>
+                {% endif %}
+                <div class="media" style="--image-ratio:{{ imageratio }}%;">
+                  {% case media.media_type %}
+                    {% when 'image' %}
+                      {% comment %} {% if forloop.index > 3 %}
+                        {% render 'lazy-images', image: media %}
+                      {% else %} {% endcomment %}
+                        {{
+                          media
+                          | image_url: width: 1946
+                          | image_tag: sizes: '50vw', widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
+                        }}
+                      {% comment %} {% endif %} {% endcomment %}
+                    {%- when 'video' -%}
+                      <deferred-media-video
+                        class="deferred-media"
+                        class="deferred-media autoplay-status-true"
+                        id="deffered-{{ media.media_type }}-{{ section.id }}"
+                        data-type="{{ media.media_type }}"
+                      >
+                        {{
+                          media
+                          | media_tag:
+                            loading: 'lazy',
+                            class: 'no-js-hidden product-media-video',
+                            autoplay: video_autoplay,
+                            loop: video_looping,
+                            controls: true,
+                            preload: 'none'
+                        }}
+                      </deferred-media-video>
+                    {%- when 'external_video' -%}
+                      {% liquid
+                      assign videourl =  media | external_video_url
+                        assign videoclass = 'youtube-video'
+                        if videourl contains 'vimeo'
+                          assign videoclass = 'vimeo-video'
+                        endif
+                      %}
+
+                      <deferred-media-video
+                        class="deferred-media autoplay-status-true external-video"
+                        id="deffered-{{ media.media_type }}-{{ section.id }}"
+                        data-type="{{ media.media_type }}"
+                        data-autoplay="{{ video_autoplay }}"
+                        data-loop="{{ video_looping }}"
+                      >
+                         {%- if media.host == 'youtube' -%}
+                          {%- assign youtube_origin = shop.url  -%}
+                          {% if video_autoplay %}
+                            {% assign autoplay_count = 1 %}
+                          {% else %}
+                            {% assign autoplay_count = 0 %}
+                          {% endif %}
+                          {%- assign youtube_url = "https://www.youtube.com/embed/" | append: media.external_id | append: "?autoplay="| append: autoplay_count | append: "&controls=1&enablejsapi=1&loop=" | append: video_looping | append: "&playlist=" | append: media.external_id | append: "&modestbranding=1&playsinline=1&rel=0&origin=" | append: youtube_origin -%}
+                          <iframe src="{{ youtube_url }}" class="{{ videoclass }}" id="youtube-video-iframe-{{ media.external_id }}-{{ section.id }}" loading="lazy" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+                        {%- elsif media.host == 'vimeo' -%}
+                          {{ media | external_video_url: autoplay: video_autoplay, loop: video_looping, api: true | external_video_tag: class: videoclass, loading: 'lazy' }}
+                        {%- endif -%}
+                      </deferred-media-video> 
+                    {%- when 'model' -%}
+                      <product-model>
+                        {{
+                          media
+                          | model_viewer_tag:
+                            image_size: true,
+                            reveal: 'interaction',
+                            toggleable: true,
+                            data-model-id: media.id
+                        }}
+                        <button class="close-product-model hidden">
+                          <svg width="12" height="12" viewBox="0 0 22 22" fill="none">
+                            <path d="M21.7987 20.826L11.9721 10.9958L21.7987 1.16552C22.0561 0.899047 22.0561 0.476499 21.7987 0.20994C21.5349 -0.0632507 21.0997 -0.0708067 20.8266 0.193065L11 10.0233L1.17343 0.193149C0.907055 -0.0642582 0.484664 -0.0642582 0.218204 0.193149C-0.0548867 0.457021 -0.0624398 0.892415 0.201335 1.16561L10.0279 10.9958L0.201335 20.826C0.0724268 20.9549 1.71925e-08 21.1298 1.71925e-08 21.3122C-8.39964e-05 21.692 0.307751 21.9999 0.687425 22C0.869793 22.0002 1.04469 21.9276 1.17343 21.7984L11 11.9682L20.8266 21.7985C20.9553 21.9277 21.1303 22.0002 21.3127 22C21.4949 21.9999 21.6696 21.9275 21.7985 21.7987C22.0671 21.5301 22.0672 21.0946 21.7987 20.826Z" fill="currentColor"></path>
+                          </svg>
+                        </button>
+                        <button
+                          class="button button--full-width product__xr-button"
+                          type="button"
+                          aria-label="{{ 'products.product.xr_button_label' | t }}"
+                          data-shopify-xr
+                          data-shopify-model3d-id="{{ media.id }}"
+                          data-shopify-title="{{ product.title | escape }}"
+                          data-shopify-xr-hidden
+                        >
+                          {{ 'products.product.xr_button' | t }}
+                        </button>
+                      </product-model>
+                  {% endcase %}
+                </div>
+              </div>
+            </div>
+          {% endunless %}
+        {% endfor %}
+        {% if product.media.size > 1 %}
+          </div>
+          {% if source != 'quick-view' %}
+            <div class="swiper-button-wrapper">
+              <div class="slideshow-nav-btn slideshow-prev cursor-pointer swiper-main-button-prev-{{ section.id }} arrow-style-{{ settings.arrow_style }}" data-product-swiper-prev>
+                {% if settings.arrow_style == 'star' %}
+                  {% render 'svg-icons', icon: 'star-arrow-prev' %}
+                {% else %}
+                  {% render 'svg-icons', icon: 'arrow-icon-prev' %}
+                {% endif %}
+              </div>
+              <div class="slideshow-nav-btn slideshow-next cursor-pointer swiper-main-button-next-{{ section.id }} arrow-style-{{ settings.arrow_style }}" data-product-swiper-next>
+                {% if settings.arrow_style == 'star' %}
+                  {% render 'svg-icons', icon: 'star-arrow-next' %}
+                {% else %}
+                  {% render 'svg-icons', icon: 'arrow-icon-next' %}
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          </div> 
+          {% if source == 'quick-view' %}
+            <div class="swiper-button-wrapper">
+              <div class="slideshow-nav-btn slideshow-prev cursor-pointer swiper-main-button-prev-{{ section.id }} arrow-style-{{ settings.arrow_style }}" data-product-swiper-prev>
+                {% if settings.arrow_style == 'star' %}
+                  {% render 'svg-icons', icon: 'star-arrow-prev' %}
+                {% else %}
+                  {% render 'svg-icons', icon: 'arrow-icon-prev' %}
+                {% endif %}
+              </div>
+              <div class="slideshow-nav-btn slideshow-next cursor-pointer swiper-main-button-next-{{ section.id }} arrow-style-{{ settings.arrow_style }}" data-product-swiper-next>
+                {% if settings.arrow_style == 'star' %}
+                  {% render 'svg-icons', icon: 'star-arrow-next' %}
+                {% else %}
+                  {% render 'svg-icons', icon: 'arrow-icon-next' %}
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% else %}
+        <div class="product-image-slideshow-item">
+          <div class="product-image-slideshow-media">
+            <div class="media" style="--image-ratio:{{ imageratio }}%;">
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="product-image-slideshow-item">
+        <div class="product-image-slideshow-media">
+          <div class="media" style="--image-ratio:{{ imageratio }}%;">
+            {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  {% if product.media.size > 1 %}
+    <div class="product-thumbnails-media-wrapper{% if thumbnails_style == 'none' %} hidden{% endif %}{% if hide_thumbnails_mobile %} hide-thumbnails-mobile{% endif %}">
+      <div
+        class="swiper"
+        data-thumbnails-media
+      >
+        <div class="swiper-wrapper">
+          {%- if product.selected_or_first_available_variant.featured_media != null -%}
+            {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+            {%- capture thumb_featured_variants -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.featured_media.id == featured_media.id and color_option_index != nil -%}
+                  {{ variant.options[color_option_index] | escape }},
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- assign thumb_featured_variants = thumb_featured_variants | strip | split: ',' | uniq | join: ',' -%}
+            <div class="product-thumbnails-media-item swiper-slide" data-thumb-media-id="{{ featured_media.id }}" {% if thumb_featured_variants != blank %}data-variant-options="{{ thumb_featured_variants }}"{% endif %}>
+              <div class="product-thumbnails-media-img">
+                <div class="media media-fixed media-overlay">
+                  {%- render 'lazy-images', image: featured_media -%}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          {% for media in product.media %}
+            {% unless media.id == currentVariant.featured_media.id %}
+              {%- capture thumb_media_variants -%}
+                {%- for variant in product.variants -%}
+                  {%- if variant.featured_media.id == media.id and color_option_index != nil -%}
+                    {{ variant.options[color_option_index] | escape }},
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if media.alt != blank and color_option_index != nil -%}
+                  {%- assign thumb_alt_lower = media.alt | downcase -%}
+                  {%- for option in product.options_with_values -%}
+                    {%- assign option_name_lower = option.name | downcase -%}
+                    {%- if option_name_lower contains color_option_name -%}
+                      {%- for value in option.values -%}
+                        {%- assign value_lower = value | downcase -%}
+                        {%- if thumb_alt_lower contains value_lower -%}
+                          {{ value | escape }},
+                        {%- endif -%}
+                      {%- endfor -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endcapture -%}
+              {%- assign thumb_media_variants = thumb_media_variants | strip | split: ',' | uniq | join: ',' -%}
+              <div class="product-thumbnails-media-item swiper-slide" data-thumb-media-id="{{ media.id }}" {% if thumb_media_variants != blank %}data-variant-options="{{ thumb_media_variants }}"{% endif %}>
+                <div class="product-thumbnails-media-img">
+                  <div class="media media-fixed media-overlay">
+                    {%- render 'lazy-images', image: media -%}
+                  </div>
+                </div>
+              </div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+
+         {% if media_style and media_style == 'split_view' and product.media.size > 3  %}
+            <div class="thumbnails-swiper-button-wrapper">
+              <div class="slideshow-nav-btn slideshow-prev cursor-pointer thumbnails-swiper-main-button-prev-{{ section.id }}" data-product-thumbnails-swiper-prev>
+                <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                  <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="slideshow-nav-btn slideshow-next cursor-pointer thumbnails-swiper-main-button-next-{{ section.id }}" data-product-thumbnails-swiper-next>
+                <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                  <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+         {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</product-media-gallery>

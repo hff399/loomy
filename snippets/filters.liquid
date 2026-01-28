@@ -1,0 +1,438 @@
+{%- for filter in collection.filters -%}
+  {% liquid
+    assign color_options = settings.color_name | downcase
+    assign filter_label = filter.label | downcase
+    assign filter_limit = 6
+    assign color_filter_class = ''
+    assign size_filter_class = ''
+    assign is_color_swatch = false
+    if color_options contains filter_label
+      assign filter_limit = 100
+      assign is_color_swatch = true
+      assign color_filter_class = 'filter-color-item'
+    endif
+    assign swatchStatus = false
+    if filter.presentation == 'swatch' or filter.presentation == 'image'
+      assign swatchStatus = true
+    endif
+  %}
+  {%- case filter.type -%}
+    {% when 'boolean', 'list' %}
+      <div class="filter-accordion-item{% if color_filter_class != blank and swatchStatus == false %} {{ color_filter_class }}{% elsif swatchStatus %} swatch-list{% endif %}">
+        <details
+          class="accordion-item"
+          data-detail-button
+          {% if isfiltersAlways %}
+            open
+          {% endif %}
+        >
+          <summary class="accordion-heading detail-summary">
+            <p class="filter-accordion-head heading-font text">{{ filter.label }}</p>
+            <span class="filter-accordion-icon">
+              <svg width="10" height="10" viewBox="0 0 10 6" fill="none">
+                <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="filter-accordion-body"
+            data-accordion-content
+          >
+            {% if is_color_swatch and swatchStatus == false %}
+              <div class="filter-options-list color-option color-circle">
+                {% for value in filter.values %}
+                  <div class="filter-option-item{% if value.count == 0 and value.active == false %} disabled{% endif %}{% if value.active %} active{% endif %}">
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id="Vertical-Filter-{{ filter.label | handle }}-{{ forloop.index }}"
+                        value="{{ value.value }}"
+                        name="{{ value.param_name }}"
+                        title="{{ value.label | escape }}"
+                        class="checkmark-input productOption"
+                        {% if value.count == 0 and value.active == false %}
+                          disabled
+                        {% endif %}
+                        {% if value.active %}
+                          checked="checked"
+                        {% endif %}
+                      >
+                      <label
+                        for="Vertical-Filter-{{ filter.label | handle }}-{{ forloop.index }}"
+                        class="cursor-pointer {% if value.count == 0 and value.active == false %} disabled{% endif %}"
+                        style="--swatch-color: {{ value.value | downcase }}"
+                      >
+                        <div class="tooltip body-font text-xxs">{{- value.label | escape -}}</div>
+                      </label>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+            {% else %}
+              <div class="filter-options-list{% if swatchStatus == true %} swatch-items{% endif %}">
+                {%- for value in filter.values -%}
+                  {% liquid
+                    assign is_disabled = false
+                    if value.count == 0 and value.active == false
+                      assign is_disabled = true
+                    endif
+                  %}
+                  <div class="filter-option-item{% if is_disabled %} disabled{% endif %}">
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id="Vertical-Filter-{{ filter.label | handle }}-{{ forloop.index }}"
+                        value="{{ value.value }}"
+                        name="{{ value.param_name }}"
+                        title="{{ value.label | escape }}"
+                        class="checkmark-input"
+                        {% if is_disabled %}
+                          disabled
+                        {% endif %}
+                        {% if value.active %}
+                          checked="checked"
+                        {% endif %}
+                      >
+                      {% if swatchStatus == true %}
+                        <span
+                          class="checkmark swatch-color-circle"
+                          data-pallet-color="{{ value.label | downcase }}"
+                          style="--swatch-color:{{ value.label | escape }}"
+                        ></span>
+                      {% else %}
+                        <span class="checkmark">
+                          <svg
+                            width="35"
+                            height="35"
+                            viewBox="0 0 35 35"
+                            fill="currentColor"
+                          >
+                            <path d="M15.1401 3.99305C16.3026 2.28723 18.8178 2.28723 19.9803 3.99305V3.99305C20.7317 5.0955 22.1331 5.55086 23.3889 5.10057V5.10057C25.3321 4.40384 27.3669 5.88222 27.3047 7.94558V7.94558C27.2646 9.27909 28.1307 10.4712 29.4114 10.8451V10.8451C31.3929 11.4236 32.1702 13.8157 30.9071 15.4484V15.4484C30.0908 16.5036 30.0908 17.9772 30.9071 19.0324V19.0324C32.1702 20.6652 31.3929 23.0572 29.4114 23.6357V23.6357C28.1307 24.0096 27.2646 25.2017 27.3047 26.5352V26.5352C27.3669 28.5986 25.3321 30.077 23.3889 29.3803V29.3803C22.1331 28.93 20.7317 29.3853 19.9803 30.4878V30.4878C18.8178 32.1936 16.3026 32.1936 15.1401 30.4878V30.4878C14.3888 29.3853 12.9874 28.93 11.7315 29.3803V29.3803C9.78839 30.077 7.75356 28.5986 7.81573 26.5352V26.5352C7.8559 25.2017 6.98976 24.0096 5.70911 23.6357V23.6357C3.72753 23.0572 2.95029 20.6652 4.2134 19.0324V19.0324C5.02972 17.9772 5.02972 16.5036 4.2134 15.4484V15.4484C2.95029 13.8157 3.72753 11.4236 5.70911 10.8451V10.8451C6.98976 10.4712 7.8559 9.27909 7.81573 7.94558V7.94558C7.75356 5.88222 9.78839 4.40384 11.7315 5.10057V5.10057C12.9874 5.55086 14.3888 5.0955 15.1401 3.99305V3.99305Z" class="custom-radio-bg"/>
+                            <g clip-path="url(#clip0_129_4169)">
+                            <path d="M22.5385 13.5761C22.2154 13.2388 21.6906 13.2391 21.367 13.5761L16.094 19.0723L13.7504 16.6296C13.4268 16.2923 12.9023 16.2923 12.5786 16.6296C12.255 16.9669 12.255 17.5136 12.5786 17.8509L15.508 20.9042C15.6697 21.0727 15.8817 21.1572 16.0938 21.1572C16.3059 21.1572 16.5181 21.073 16.6798 20.9042L22.5385 14.7975C22.8622 14.4604 22.8622 13.9134 22.5385 13.5761Z" fill="currentColor" class="tick-radio">
+                            </g>
+                          </svg>
+                        </span>
+                      {% endif %}
+                      <label
+                        class="cursor-pointer{% if is_disabled %} disabled{% endif %}"
+                        for="Vertical-Filter-{{ filter.label | handle }}-{{ forloop.index }}"
+                        title="{{ value.label | escape }}"
+                      >
+                        {% liquid
+                          if swatchStatus
+                            render 'swatch-display', value: value, presentation: filter.presentation
+                          else
+                            echo value.label | escape
+                          endif
+                        %}
+                      </label>
+                      {% comment %}
+                        <span class="checkmark" data-color="color-beige">
+                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                 <path d="M11.7212 1.96133C11.3499 1.58955 10.747 1.58979 10.3752 1.96133L4.31744 8.01933L1.62503 5.32694C1.25325 4.95516 0.650609 4.95516 0.278832 5.32694C-0.0929441 5.69871 -0.0929441 6.30136 0.278832 6.67313L3.6442 10.0385C3.82998 10.2243 4.07357 10.3174 4.31719 10.3174C4.5608 10.3174 4.80463 10.2245 4.9904 10.0385L11.7212 3.3075C12.0929 2.93598 12.0929 2.33308 11.7212 1.96133Z" fill="currentColor"></path>
+                             </svg>
+                         </span>
+                         <label for="-{{ filter.label | handle }}-{{ forloop.index }}" class="cursor-pointer text-xl{% if value.count == 0 and value.active == false %} disabled{% endif %}">
+                         {{- value.label | escape -}}
+                        </label>
+                      {% endcomment %}
+                    </div>
+                    <div class="available-filtered-products">({{ value.count }})</div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </details>
+      </div>
+    {% when 'price_range' %}
+      {%- liquid
+        assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+        assign uses_comma_decimals = false
+        if currencies_using_comma_decimals contains cart.currency.iso_code
+          assign uses_comma_decimals = true
+        endif
+      -%}
+      {%- liquid
+        if uses_comma_decimals
+          assign max_value = filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+          assign min_value = filter.range_min | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+        else
+          assign max_value = filter.range_max | money_without_currency
+          assign min_value = filter.range_min | money_without_currency
+        endif
+
+        if filter.max_value.value
+          assign max_value = filter.max_value.value | money_without_currency
+        endif
+        if filter.min_value.value
+          assign min_value = filter.min_value.value | money_without_currency
+        endif
+
+        if uses_comma_decimals
+          assign minpricevalue = min_value | replace: '.', '' | replace: ',', '.' | floor
+          assign maxpricevalue = min_value | replace: '.', '' | replace: ',', '.' | floor
+          assign filtermax = filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+        else
+          assign minpricevalue = min_value | replace: ',', '' | floor
+          assign maxpricevalue = max_value | replace: ',', '' | floor
+          assign filtermax = filter.range_max | money_without_currency | replace: ',', '' | floor
+        endif
+
+        assign minRange = minpricevalue | times: 100.0 | divided_by: filtermax
+        assign maxrangeminus = maxpricevalue | times: 100.0 | divided_by: filtermax
+        assign maxRange = 100 | minus: maxrangeminus
+      -%}
+      <div class="filter-accordion-item">
+        <details
+          class="accordion-item"
+          data-detail-button
+          {% if isfiltersAlways %}
+            open
+          {% endif %}
+        >
+          <summary class="accordion-heading detail-summary">
+            <p class="filter-accordion-head heading-font text">{{ filter.label }}</p>
+
+            <span class="filter-accordion-icon">
+              <svg width="10" height="10" viewBox="0 0 10 6" fill="none">
+                <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </summary>
+
+          <div
+            class="filter-accordion-body"
+            data-accordion-content
+          >
+            <price-range-bar>
+              <div class="filter-price-range" data-range-bars>
+                {% liquid
+                  if uses_comma_decimals
+                    assign range_min_value = filter.range_min | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+                    assign range_max_value = filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+                    assign min_input_current_value = min_value | replace: '.', '' | replace: ',', '.' | floor
+                    assign max_input_current_value = max_value | replace: '.', '' | replace: ',', '.' | floor
+                  else
+                    assign range_min_value = filter.range_min | money_without_currency | replace: ',', '' | floor
+                    assign range_max_value = filter.range_max | money_without_currency | replace: ',', '' | floor
+                    assign min_input_current_value = min_value | replace: ',', '' | floor
+                    assign max_input_current_value = max_value | replace: ',', '' | floor
+                  endif
+                  assign range_value = range_max_value | minus: range_min_value
+                  if range_value == 0
+                    assign min_bar_percentage = 0
+                    assign max_bar_percentage = 0
+                  else
+                    assign min_bar_percentage = min_input_current_value | minus: range_min_value | times: 100.0 | divided_by: range_value | round: 2
+                    assign max_bar_percentage = max_input_current_value | minus: range_min_value | times: 100.0 | divided_by: range_value | round: 2
+                    assign max_bar_percentage = 100.0 | minus: max_bar_percentage
+                  endif
+                  assign max_price_amount = filter.range_max | money | strip_html | escape
+                %}
+                <label>The highest price is {{ max_price_amount }}</label>
+                <div class="filter-opation-price-slider-labels">
+                  <div class="filter-option-price-slider">
+                    <div
+                      class="progress"
+                      id="price-silder-progress"
+                      data-filter-progress
+                      style="left: {{ minRange }}%; right: {{ maxRange }}%"
+                    ></div>
+                  </div>
+                  <div
+                    class="small-slider-handles price-range-select no-js-hidden filter-option-range-input"
+                    id="slider-round"
+                    data-target="price"
+                  >
+                    {%- if uses_comma -%}
+                      {% assign filter_min_range = filter.range_min
+                        | money_without_currency
+                        | replace: '.', ''
+                        | replace: ',', '.'
+                        | floor
+                      %}
+                      {% assign filter_max_range = filter.range_max
+                        | money_without_currency
+                        | replace: '.', ''
+                        | replace: ',', '.'
+                        | floor
+                      %}
+                      {% assign filter_min_value = min_value | replace: '.', '' | replace: ',', '.' | floor %}
+                      {% assign filter_max_value = max_value | replace: '.', '' | replace: ',', '.' | floor %}
+                      <input
+                        type="range"
+                        aria-label="filter-range"
+                        class="price-slider-range-min input-min"
+                        min="{{ filter_min_range }}"
+                        max="{{ filter_max_range }}"
+                        value="{{ filter_min_value }}"
+                        step="1"
+                      >
+                      <input
+                        type="range"
+                        aria-label="filter-range"
+                        class="price-slider-range-max input-max"
+                        min="{{ filter_min_range }}"
+                        max="{{ filter_max_range }}"
+                        value="{{ filter_max_value }}"
+                        step="1"
+                      >
+                    {%- else -%}
+                      {% assign filter_min_range = filter.range_min
+                        | money_without_currency
+                        | replace: ',', ''
+                        | floor
+                      %}
+                      {% assign filter_max_range = filter.range_max
+                        | money_without_currency
+                        | replace: ',', ''
+                        | floor
+                      %}
+                      {% assign filter_min_value = min_value | replace: ',', '' | floor %}
+                      {% assign filter_max_value = max_value | replace: ',', '' | floor %}
+                      <input
+                        type="range"
+                        aria-label="filter-range"
+                        class="price-slider-range-min input-min"
+                        min="{{ filter_min_range }}"
+                        max="{{ filter_max_range }}"
+                        value="{{ filter_min_value }}"
+                        step="1"
+                      >
+                      <input
+                        type="range"
+                        aria-label="filter-range"
+                        class="price-slider-range-min input-max"
+                        min="{{ filter_min_range }}"
+                        max="{{ filter_max_range }}"
+                        value="{{ filter_max_value }}"
+                        step="1"
+                      >
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="price-inputs">
+                <div class="price-input-item">
+                  <div class="price-input-field">
+                    <span class="field-currency">{{ cart.currency.symbol }}</span>
+                    <label for="Vertical-Filter-{{ filter.label | escape }}-GTE" class="visually-hidden hidden"
+                      >{{ 'products.facets.minimum_price' | t }}</label
+                    >
+                    <input
+                      class="field--input"
+                      name="{{ filter.min_value.param_name }}"
+                      id="Vertical-Filter-{{ filter.label | escape }}-GTE"
+                      type="number"
+                      min="0"
+                      {%- if uses_comma_decimals -%}
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '.' | floor }}"
+                        placeholder="{{ min_value | replace: ',', '.' | floor }}"
+                        {% if filter.min_value.value %}
+                          value="{{ min_value | replace: ',', '.' | floor }}"
+                          data-min-value="{{ min_value | replace: ',', '.' | floor }}"
+                        {% endif %}
+                      {%- else -%}
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' | floor }}"
+                        placeholder="{{ min_value | replace: ',', '' | floor }}"
+                        {% if filter.min_value.value %}
+                          value="{{ min_value | replace: ',', '' | floor }}"
+                          data-min-value="{{ min_value | replace: ',', '' | floor }}"
+                        {% endif %}
+                      {% endif %}
+                    >
+                  </div>
+                </div>
+                <div class="price-input-item">
+                  <div class="price-input-field">
+                    <span class="field-currency">{{ cart.currency.symbol }}</span>
+                    <label for="Vertical-Filter-{{ filter.label | escape }}-LTE" class="hidden">{{ 'products.facets.maximum_Price' | t }}</label>
+                    <input
+                      class="field--input"
+                      name="{{ filter.max_value.param_name }}"
+                      id="Vertical-Filter-{{ filter.label | escape }}-LTE"
+                      type="number"
+                      min="0"
+                      {% if uses_comma_decimals %}
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '.' | floor }}"
+                        placeholder="{{ max_value | replace: ',', '.' | floor }}"
+                        {% if filter.max_value.value %}
+                          value="{{ max_value | replace: ',', '.' | floor }}"
+                          data-max-value="{{ max_value | replace: ',', '.' | floor }}"
+                        {% endif %}
+                      {% else %}
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' | floor }}"
+                        placeholder="{{ max_value | replace: ',', '' | floor }}"
+                        {% if filter.min_value.value %}
+                          value="{{ max_value | replace: ',', '' | floor }}"
+                          data-max-value="{{ max_value | replace: ',', '' | floor }}"
+                        {% endif %}
+                      {% endif %}
+                    >
+                  </div>
+                </div>
+              </div>
+            </price-range-bar>
+          </div>
+        </details>
+      </div>
+  {% endcase %}
+{% endfor %}
+
+<script>
+  class PriceRangeFilters extends HTMLElement {
+    constructor() {
+      super();
+      if (!this.querySelector('[data-range-bars]')) return;
+      this.rangeBars = this.querySelectorAll('input[type=range]');
+      this.numberFields = this.querySelectorAll('input[type=number]');
+      this.progress = this.querySelector('[data-filter-progress]');
+      this.thumbsGap = 1;
+      this.rangeBars.forEach((rangeBar) => {
+        rangeBar.addEventListener('input', this.rangeBarHandle.bind(this));
+      });
+      this.numberFields.forEach((numberField) => {
+        numberField.addEventListener('input', this.numberFieldHandle.bind(this));
+      });
+    }
+
+    rangeBarHandle(event) {
+      this.rangeBars.forEach((el) => {
+        let minVal = parseInt(this.rangeBars[0].value),
+          maxVal = parseInt(this.rangeBars[1].value);
+        if (maxVal - minVal < this.thumbsGap) {
+          if (el.target.className === 'input-min') {
+            this.rangeBars[0].value = maxVal - this.thumbsGap;
+          } else {
+            this.rangeBars[1].value = minVal + this.thumbsGap;
+          }
+        } else {
+          this.numberFields[0].value = minVal;
+          this.numberFields[1].value = maxVal;
+          this.progress.style.left = (minVal / this.rangeBars[0].max) * 100 + '%';
+          this.progress.style.right = 100 - (maxVal / this.rangeBars[1].max) * 100 + '%';
+        }
+      });
+    }
+
+    numberFieldHandle(event) {
+      this.numberFields.forEach((el) => {
+        let minPrice = parseFloat(this.numberFields[0].value),
+          maxPrice = parseFloat(this.numberFields[1].value);
+        if (maxPrice - minPrice >= this.thumbsGap && maxPrice <= this.rangeBars[1].max) {
+          if (el.target.className === 'input-min') {
+            this.rangeBars[0].value = minPrice;
+            this.progress.style.left = (minPrice / this.rangeBars[0].max) * 100 + '%';
+          } else {
+            this.rangeBars[1].value = maxPrice;
+            this.progress.style.right = 100 - (maxPrice / this.rangeBars[1].max) * 100 + '%';
+          }
+        }
+      });
+    }
+  }
+  customElements.define('price-range-bar', PriceRangeFilters);
+</script>

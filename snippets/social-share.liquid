@@ -1,0 +1,70 @@
+<ul class="list-inline social-icons-list icons-small">
+  {%- if settings.share_facebook -%}
+    <li class="social-icons-item">
+      <a
+        target="_blank"
+        href="//facebook.com/sharer.php?u={{ share_link }}"
+        aria-label="Share on Facebook"
+        title="Share on Facebook"
+        class="social-icons-link facebook">
+        {% render 'svg-icons'
+          , icon: 'facebook' %}
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.tweet_twitter -%}
+    <li class="social-icons-item">
+      <a
+        target="_blank"
+        href="//x.com/intent/tweet?text={{ product.title | escape }}&amp;url={{ share_link }}"
+        aria-label="Tweet on Twitter"
+        title="Tweet on Twitter"
+        class="social-icons-link twitter">
+        {% render 'svg-icons'
+          , icon: 'x' %}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.share_telegram %}
+    <li class="social-icons-item">
+      <a
+        target="_blank"
+        href="//telegram.me/share/url?url={{ share_link }}&amp;media={{ product.featured_image | img_url }}&amp;description={{ product.title | escape }}"
+        title="Share on Telegram"
+        aria-label="Share on Telegram"
+        class="social-icons-link telegram">
+        {% render 'svg-icons'
+          , icon: 'telegram' %}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.pin_pinterest %}
+    <li class="social-icons-item">
+      <a
+        target="_blank"
+        href="//pinterest.com/pin/create/link/?url={{ share_link }}&amp;media={{ product.featured_image |  img_url:'1024x1024'  }}?crop=center&amp;height=1024&amp;width=1024&amp;description={{ product.title | escape }}"
+        aria-label="Pin on Pinterest"
+        title="Pin on Pinterest"
+        class="social-icons-link pinterest">
+        {% render 'svg-icons'
+          , icon: 'pinterest' %}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.share_email %}
+    <li class="social-icons-item">
+      <a
+        target="_blank"
+        href="mailto:?&amp;subject={{ product.title | escape }}&amp;body={{share_link}}"
+        class="social-icons-link email"
+        aria-label="Share on Email"
+        title="Share on Email">
+        {% render 'svg-icons'
+          , icon: 'email' %}
+      </a>
+    </li>
+  {%- endif -%}
+</ul>

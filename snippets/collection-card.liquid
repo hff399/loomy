@@ -1,0 +1,66 @@
+{% liquid
+  if image_size == 'landscape'
+    assign image_ratio = '70'
+  elsif image_size == 'square'
+    assign image_ratio = '100'
+  elsif image_size == 'portrait'
+    assign image_ratio = '125'
+  else
+    if block.settings.image != blank
+      assign image_ratio = 1 | divided_by: block.settings.image.aspect_ratio | times: 100 | plus: 1
+    elsif collection.featured_image != blank
+      assign image_ratio = 1 | divided_by: collection.featured_image.aspect_ratio | times: 100 | plus: 1
+    else
+      assign image_ratio = 120
+    endif
+  endif
+
+  if block.settings.image != blank
+    assign collection_img = block.settings.image
+  elsif collection.featured_image != blank
+    assign collection_img = collection.featured_image
+  endif
+
+  assign cardClass = 'collection-background-enabled collection-border-enabled'
+  if card_layout == 'border-with-background'
+    assign cardClass = 'collection-background-enabled collection-border-enabled'
+  elsif card_layout == 'only-border'
+    assign cardClass = 'collection-border-enabled'
+  elsif card_layout == 'only-background'
+    assign cardClass = 'collection-background-enabled'
+  elsif card_layout == 'none'
+    assign cardClass = 'collection-background-none'
+  elsif card_layout == 'overlay-content'
+    assign cardClass = 'collection-background-none collection-content-overlay'
+  endif
+%}
+<{% if collection.url != blank %}a
+                                              href="{{ collection.url }}"
+                                              tabindex="0"
+                                            aria-label="Collection page link"{% else %}div{% endif %} class="collection-card-item {{ cardClass }}" data-motion-list>
+  <div class="collection-card-item-inner">
+    <div class="collection-card-media media-wrapper{% if card_layout == 'overlay-content' and overlay_style %} media-overlay overlay-style-{{ overlay_style }}{% endif %}">
+      <div class="media" style="--image-ratio: {{ image_ratio }}%;">
+        {% liquid
+          if collection_img != blank
+            render 'lazy-images', image: collection_img
+          else
+            echo placeholder_image | placeholder_svg_tag: 'placeholder-svg'
+          endif
+        %}
+      </div>
+    </div>
+    <div class="collection-card-content text-left">
+      {% liquid
+        if block.settings.title != blank
+          assign collectionTitle = block.settings.title
+        elsif collection != blank
+          assign collectionTitle = collection.title
+        else
+          assign collectionTitle = 'onboarding.collection_title' | t
+        endif
+      %}
+      <p class="collection-card-title heading-font {% if title_size %} {{ title_size  }}{% else %} text-sm{% endif %}">{{ collectionTitle }}</p>
+    </div>
+  </div>
+</{% if collection.url != blank %}a{% else %}div{% endif %}>

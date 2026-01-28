@@ -1,0 +1,72 @@
+{%  liquid 
+  assign image_size = block.settings.image_ratio
+  if image_size == 'landscape'
+    assign image_ratio = '75'
+  elsif image_size == 'square'
+    assign image_ratio = '100'
+  elsif image_size == 'portrait'
+    assign image_ratio = '130'
+  elsif image_size == 'auto'
+   if block.settings.image != blank 
+    assign image_ratio = 1 | divided_by: block.settings.image.aspect_ratio | times: 100 | plus: 1
+   else 
+    assign image_ratio = '100'
+   endif
+  endif
+%}
+{% if block.settings.image_link != blank %}
+<a href="{{ block.settings.image_link }}">
+{% endif %}
+<div class="media" style="--image-ratio: {{ image_ratio }}%;">
+  {%- if block.settings.image != blank -%}
+    {%- render 'lazy-images'
+      , image: block.settings.image -%}
+  {%- else -%}
+    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%- endif %}
+</div>
+{% if block.settings.image_link != blank %}
+</a>
+{% endif %}
+{% schema %}
+  {
+    "name": "t:blocks.image.name",
+    "tag": null,
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:blocks.image.settings.image.label"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "label": "t:sections.all.image_ratio.label",
+        "default": "square",
+        "options": [
+          {
+            "value": "auto",
+            "label": "t:sections.all.image_ratio.auto_ratio.label"
+          },
+          {
+            "value": "landscape",
+            "label": "t:sections.all.image_ratio.landscape.label"
+          },
+          {
+            "value": "square",
+            "label": "t:sections.all.image_ratio.square.label"
+          },
+          {
+            "value": "portrait",
+            "label": "t:sections.all.image_ratio.portrait.label"
+          }
+        ]
+      },
+      {
+        "type": "url",
+        "id": "image_link",
+        "label": "t:blocks.image.settings.image_link.label"
+      }
+    ]
+  }
+{% endschema %}

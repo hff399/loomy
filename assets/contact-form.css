@@ -1,0 +1,130 @@
+.contact-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+
+
+.contact-col {
+  position: relative;
+  padding: 30px;
+  background: var(--body-alt-background);
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(var(--border-color));
+}
+
+.contact-wrapper .form-group label {
+  color: var(--form-text);
+}
+
+
+.contact-wrapper .column-header h2 {
+  margin-bottom: 10px;
+}
+
+.contact-content-col-inner {
+  max-width: 910px;
+}
+
+.contact-wrapper .form-buttons {
+  padding-top: 10px;
+}
+
+.contact-wrapper .icon-with-text-icon {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  display: grid;
+  place-content: center;
+  border: 2px solid rgba(var(--border-color));
+  transition: var(--smooth-animation);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: calc(var(--card-radius) * 5);
+}
+
+.icon-with-text-item:hover .icon-with-text-icon {
+  border-color: rgba(var(--border-color));
+}
+
+.icon-with-text {
+  gap: 20px;
+}
+
+.icon-with-text-item {
+  gap: 30px;
+}
+
+.contact-form-spam-detection p {
+  font-size: var(--text-sm);
+}
+
+.contact-form-spam-detection {
+  margin-top: 10px;
+}
+
+.content-image-contact-form .media {
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(var(--border-color));
+}
+
+.content-image-contact-form {
+  margin-top: 20px;
+}
+
+
+.contact-content-col-inner .icon-with-text-icon svg {
+  color: var(--text-color);
+}
+
+@media (min-width: 1025px) {
+
+  .contact-wrapper .icon-with-text-item:hover .icon-with-text-icon svg {
+    animation: shake .5s ease-in-out infinite;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .contact-row.content-form-without-content {
+    grid-template-columns: max-content;
+    place-content: center;
+  }
+}
+
+@media (max-width: 991px) {
+
+  .contact-row,
+  .icon-with-text-item {
+    gap: 20px;
+  }
+
+  .contact-col {
+    padding: 20px;
+  }
+
+  .icon-with-text-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .icon-with-text-icon svg {
+    width: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-wrapper .icon-with-text-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon-with-text-item {
+    gap: 15px;
+  }
+}

@@ -1,0 +1,37 @@
+<div class="product-collapsible-tiles-wrapper">
+  <product-collapsible-tiles class="collapsible-tiles-cards" data-section="{{ section.id }}">
+    {% for block in section.blocks %}
+      {% if block.type == 'collapsible_content' %}
+        {% liquid
+          assign check_content = false
+          if block.settings.heading != blank and block.settings.description != blank
+            assign check_content = true
+          elsif block.settings.heading != blank and block.settings.collapsible_page_content != blank
+            assign check_content = true
+          endif
+        %}
+        {% if check_content %}
+          <div
+            class="collapsible-tiles-card"
+            data-collapsible-item
+            data-trigger-id="product-collapsible-tiles-tab-{{ block.id }}"
+            {{ block.shopify_attributes }}>
+            {% if block.settings.collapsible_content_icon != blank %}
+              <div class="collapsible-tiles-card-icon">
+                {% liquid
+                  assign height = block.settings.collapsible_content_icon.width | divided_by: block.settings.collapsible_content_icon.aspect_ratio | round
+                  assign sizes = '100vw'
+                  assign widths = '375, 550, 750, 1100, 1500'
+                  echo block.settings.collapsible_content_icon | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: 'high', loading: 'eager'
+                %}
+              </div>
+            {% endif %}
+            <div class="collapsible-tiles-card-label">{{ block.settings.heading }}</div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% render 'collapsible-content-tiles-drawer'
+      , section: section %}
+  </product-collapsible-tiles>
+</div>

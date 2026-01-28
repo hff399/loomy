@@ -1,0 +1,470 @@
+.countdown-section .countdown-box:not(:last-child):after {
+  content: ":";
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--h6);
+  font-weight: 600;
+  color: var(--card-text);
+}
+
+.countdown-section .countdown-box {
+  gap: 3px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px dotted currentColor;
+  border-radius: calc(var(--card-radius) / 1.5);
+  justify-content: center;
+  position: relative;
+  aspect-ratio: 1/1;
+  background: var(--card-background);
+}
+
+.countdown.countdown-style-round .countdown-box {
+  border-radius: 100%;
+}
+
+.countdown-section .countdown-box .grid-card-item {
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  margin: 10px;
+}
+
+.countdown-section .countdown-expired {
+  width: 100%;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: max-content;
+  overflow-y: auto;
+  justify-content: flex-start;
+  aspect-ratio: unset;
+  height: unset;
+}
+
+.countdown {
+  grid-template-columns: repeat(4, auto);
+  gap: 20px;
+}
+
+.countdown-product-list .grid-card-image {
+  width: 110px;
+}
+
+.countdown-box :where(.countdown-unit-text, .countdown-unit-value) {
+  color: var(--card-text);
+}
+
+.countdown-section .section-wrapper {
+  z-index: 1;
+}
+
+
+/* animated plane animation */
+.shape-plane-animated {
+  position: absolute;
+  left: -500px;
+  top: 1%;
+  animation: movingplane 14s linear 0s infinite reverse;
+  z-index: 2;
+}
+
+path.plane-blades {
+  animation: animate-rotate 1s linear infinite;
+  transform-origin: 16px 49px;
+}
+
+.shape-plane-animated svg {
+  animation: moveupdown 6s ease-in-out infinite;
+  transform-style: preserve-3d
+}
+
+
+/* .track-moving-train {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  z-index: 0;
+  display: flex;
+}
+
+.track-moving-train svg {
+  width: 100%;
+  height: 100%;
+} */
+
+.product-cut-price.line-through {
+  font-size: var(--text-xs);
+}
+
+span.product-badge.discount {
+  display: inline-grid;
+}
+
+.grid-card-item .product-pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  line-height: normal;
+  margin-top: 5px;
+}
+
+.grid-card-content .product-quickview-button {
+  padding: 3px 15px;
+  min-height: 35px;
+  border: 1px solid;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.grid-card-content .product-quickview-button span.quick-add-icon {
+  margin-right: 5px;
+}
+
+.grid-card-content .product-quickview-button span.quick-add-icon svg {
+  width: var(--text-xs);
+}
+
+.countdown-section .section-header {
+  margin-bottom: 50px;
+}
+
+.countdown-product-card-wrapper:has(.swiper-button-lock) {
+  padding: 0;
+}
+
+/* moving train */
+.moving_train_engine.main_engine {
+  position: relative;
+  z-index: 1;
+}
+
+.moving_car,
+.moving_train {
+  animation: move-train 24s linear infinite;
+  right: calc(100% + 1.3rem);
+  bottom: 0;
+  display: flex;
+  align-items: first baseline;
+  gap: 10px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+}
+
+.moving_car {
+  animation: move-train 10s linear infinite;
+  bottom: -5px;
+  right: 100%;
+}
+
+.face {
+  animation: movingFace .6s linear alternate infinite;
+  transform-box: border-box;
+  transform-origin: 30px;
+}
+
+
+@keyframes movingFace {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+
+    transform: rotateZ(6deg);
+  }
+}
+
+@keyframes move-smoke {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+  }
+
+  50% {
+    filter: blur(.2rem);
+    opacity: .6;
+    transform: translate(-1rem, -2rem) scale(2);
+  }
+
+  100% {
+    filter: blur(.3rem);
+    opacity: 0;
+    transform: translate(-2rem, -6rem) scale(3);
+  }
+}
+
+/* smoke effect */
+.smoke {
+  animation: move-smoke .4s linear infinite;
+  background: rgba(0, 0, 0, .1);
+  border-radius: 50%;
+  height: 1.4rem;
+  right: 1.4rem;
+  position: absolute;
+  top: 0rem;
+  width: .8rem;
+  z-index: -1;
+}
+
+.smoke-2 {
+  animation-delay: .1s;
+  right: 1.2rem;
+}
+
+.smoke-3 {
+  animation-delay: .2s;
+  right: 1.3rem;
+}
+
+.smoke-4 {
+  right: 1.4rem;
+}
+
+.compartment::before,
+.compartment::after {
+  background: #345F96;
+  border: .4rem solid transparent;
+  bottom: .4rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1);
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 10px;
+  bottom: 30px;
+  z-index: -1;
+  animation: body-upDown .3s .1s infinite;
+}
+
+
+.compartment::before {
+  border-left: .4rem solid rgba(255, 255, 255, .3);
+  left: 115px;
+}
+
+.compartment::after {
+  border-right: .4rem solid rgba(255, 255, 255, .3);
+  left: 103px;
+}
+
+.compartment {
+  position: relative;
+}
+
+.upper-roof {
+  animation: up-Down .3s .1s infinite;
+}
+
+.body-compartment {
+  animation: body-upDown .3s .1s infinite;
+}
+
+
+/* car moving animation */
+.carWheel {
+  animation: spin 1s infinite linear;
+}
+
+.wheelfront {
+  transform-origin: 149.5px 128px;
+}
+
+.wheelback {
+  transform-origin: 28px 128px;
+}
+
+@keyframes up-Down {
+
+  0%,
+  100% {
+    transform: translate(0%, -5px);
+  }
+
+  50% {
+    transform: translate(0%, 2px);
+  }
+}
+
+@keyframes body-upDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes move-train {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(150vw);
+  }
+}
+
+.countdown-section>.section-wrapper:not(.no-container) {
+  max-width: calc(100% - 40px);
+}
+
+/* .countdown-section .container-fullwidth {
+  max-width: calc(100% - 40px);
+} */
+
+/* grass */
+.background-grass-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+
+.background-grass-wrapper svg {
+  height: auto;
+  position: absolute;
+  bottom: -2px;
+  left: -25px;
+}
+
+.countdown-product-card-wrapper {
+  margin-top: 70px;
+  padding: 0 60px;
+  position: relative;
+}
+
+/* countdown horizontal */
+
+.countdown-horizontal-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countdown-horizontal-content-wrapper .countdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.countdown-horizontal-content-wrapper .section-header {
+  margin: 0;
+}
+
+.countdown-horizontal-content-wrapper .countdown-wrapper .countdown-button-wrap {
+  text-align: left;
+  padding-top: 0;
+}
+
+.countdown-wrapper .countdown-button-wrap {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.countdown-glass-effect-true.countdown-style-star .countdown-box:before,
+.countdown-glass-effect-true:not(.countdown-style-star) .countdown-box {
+  background: rgb(255 255 255 / 20%);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 1280px) {
+  .countdown-product-list .grid-card-image {
+    width: 80px;
+  }
+}
+
+@media (max-width: 991px) {
+  .countdown-section .plane-with-lines {
+    inset-inline-start: 0%;
+  }
+
+  .countdown-product-card-wrapper {
+    padding: 0 45px;
+  }
+
+  .countdown-horizontal-content-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .countdown-horizontal-content-wrapper .countdown-wrapper .countdown-button-wrap,
+  .countdown-horizontal-content-wrapper .section-header-content-wrapper {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .countdown {
+    gap: 15px;
+  }
+
+  .countdown-section .countdown-box .countdown-unit-text {
+    font-size: var(--text-xs);
+  }
+
+  .countdown-section .countdown-box:not(.countdown-expired),
+  .countdown-style-star .countdown-box:not(.countdown-expired) {
+    width: 70px;
+    height: 70px;
+  }
+
+  .moving_car svg {
+    width: 100px;
+    height: 93px;
+  }
+
+  .shape-plane-animated {
+    top: 0;
+  }
+
+  .shape-plane-animated svg {
+    width: 190px;
+  }
+
+  .countdown-product-card-wrapper {
+    margin-top: 40px;
+    padding: 0;
+  }
+
+  .countdown-product-card-wrapper .swiper--button-wrapper {
+    display: none
+  }
+
+  .countdown-section .section-header {
+    margin-bottom: 10px;
+  }
+
+  /* .countdown-section .background-overlay-image {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+  } */
+}
+
+@media (max-width: 575px) {
+
+  .countdown-section .countdown:not(.countdown-style-star) .countdown-box:not(.countdown-expired)
+
+  /* .countdown-section .countdown-box:not(.countdown-expired) ,
+  .countdown-style-star .countdown-box:not(.countdown-expired)  */
+    {
+    width: 55px;
+    height: 55px;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown-section .countdown-box:not(:last-child):after {
+    left: calc(100% + 4px);
+  }
+}

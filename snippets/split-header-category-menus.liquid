@@ -1,0 +1,186 @@
+{% if section.settings.category_menus != blank %}
+  <nav class="header-navigation d-flex align-items-center">
+    {% if section.settings.header_styles == 'split_menus' -%}
+      <button class="menu-arrow left" data-arrow-left role="button" type="submit" style="display: none;">
+        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+          <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+        </svg>
+      </button>
+    {%- endif %}
+    {% if section.settings.header_styles == 'split_menus' %}
+      <div class="split-header-navigation">
+        <div class="split-header-navigation-inner">
+    {% endif %}
+    <ul
+      class="header-navigation-list list-inline"
+      role="menu"
+      {% if section.settings.header_styles == 'split_menus' %}
+        is="menu-slide"
+      {% endif %}
+    >
+      {%- for link in section.settings.category_menus.links -%}
+        {% liquid
+          assign mega_menu_status = false
+          assign mega_menu_data = false
+          assign link_title = link.title | handleize
+
+          for block in section.blocks
+            assign block_label = block.settings.title | handleize
+            if block_label == link_title and block.type == 'category_mega_menus'
+              assign mega_menu_status = true
+              assign mega_menu_data = true
+              break
+            endif
+          endfor
+
+          if section.settings.menu_type == 'mega_menu'
+            assign mega_menu_status = true
+          endif
+
+          assign dropdown_class = 'open-side-dropdown-hover'
+        %}
+        <li
+          class="header-menu-item{% if mega_menu_status%} has-mega-menu has-children{%  else %}{% if link.links.size > 0 %} has-children dropdown{% endif %}{% endif %}"
+          role="menuitem"
+        >
+          {% if link.links.size > 0 or mega_menu_data == true %}
+            <header-menu
+              class="{% if mega_menu_status %}header-megamenu{% else %}header-dropdown{% endif %}{% if link.links.size == 1 and mega_menu_status %} data-megamenu-single-submenu{% endif %}"
+              data-header-navigation="{{ section.settings.menu_navigations }}"
+            >
+              <a
+                href="{{ link.url }}"
+                class="header-menu-link focus-inside {% if link.active %} current-link{% endif %} {{ settings.first_level_font_size }} {{ settings.first_level_font }}"
+                aria-label="{{ link.title }}"
+              >
+                <span class="header-menu-text">
+                  {{- link.title }}
+                </span>
+                <span class="header-menu-icon">
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                    <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"/>
+                  </svg>
+                </span>
+              </a>
+              {% if mega_menu_status %}
+                {% render 'split-header-mega-menu', link: link, section: section %}
+              {% else %}
+                {% if link.links.size > 0 %}
+                  {% if section.settings.header_styles == 'split_menus' -%}
+                    <div class="split-menus-header-dropdown-wrapper">
+                  {% endif %}
+                  <div class="header-menu-submenu" header-menu-inner>
+                    <ul class="header-menu-submenu-list" role="menu">
+                      {% for childlink in link.links %}
+                        <li
+                          class="header-menu-submenu-item menu-drop-down-style-side_dropdown {{ dropdown_class }}{% if childlink.links.size > 0 %} sub-menu-children{% endif %}"
+                          data-menu-dropdown-hover
+                          data-submenu-dropdown
+                          role="menuitem"
+                        >
+                          <a
+                            href="{{ childlink.url }}"
+                            title="{{- childlink.title }}"
+                            class="header-menu-submenu-link focus-inside {{ settings.second_level_font_size }} {{ settings.second_level_font }}"
+                          >
+                            <span>{{- childlink.title -}}</span>
+                            {% if childlink.links.size > 0 %}
+                              <span class="sub-menu-icon">
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                                  <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"></path>
+                                </svg>
+                              </span>
+                            {% endif %}
+                          </a> 
+                          {% if childlink.links.size > 0 %}
+                            <ul class="header-menu-submenu-list-inner" role="menu">
+                              {% for grandchild in childlink.links %}
+                                <li class="header-menu-submenu-item" role="menuitem">
+                                  <a
+                                    href="{{ grandchild.url }}"
+                                    title="{{ grandchild.title }}"
+                                    class="header-menu-submenu-link focus-inside {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                                  >
+                                    {{- grandchild.title -}}
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% if section.settings.header_styles == 'split_menus' -%}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </header-menu>
+          {% else %}
+            <a
+              href="{{ link.url }}"
+              class="header-menu-link focus-inside {{ settings.first_level_font_size }} {{ settings.first_level_font }}{% if link.active %} current-link{% endif %}"
+              aria-label="{{ link.title }}"
+            >
+              <span class="header-menu-text">
+                {{- link.title }}
+              </span>
+            </a>
+          {% endif %}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {% if section.settings.header_styles == 'split_menus' %}
+      </div>
+      </div>
+    {% endif %}
+    {% if section.settings.header_styles == 'split_menus' -%}
+      <button
+        class="menu-arrow right"
+        data-arrow-right
+        aria-label="Next"
+        role="button"
+        type="button"
+        style="display: none;"
+      >
+        <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+          <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+        </svg>
+      </button>
+    {%- endif %}
+  </nav>
+
+  {% capture nojslinks %}
+      {% for link in section.settings.category_menus.links %}
+        <li class="">
+          <a class="header-menu-link" href="{{ link.url }}" aria-label="Header menu link">{{ link.title }}</a>
+        </li>
+        
+        {% if link.links != blank %}
+          {% for childlink in link.links %}
+            <li class="child-link">
+              <a class="header-menu-link" href="{{ childlink.url }}" aria-label="Header menu child link">{{ childlink.title }}</a>
+            </li>
+    
+            {% if childlink.links != blank %}
+              {% for grandchildlink in childlink.links %}
+                <li class="grandchild-link">
+                  <a class="header-menu-link" href="{{ grandchildlink.url }}" aria-label="Header menu grand child link">{{ grandchildlink.title }}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+            
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+
+  <div class="no-js-menu">
+    <nav>
+      <ul class="">
+        {{ nojslinks }}
+      </ul>
+    </nav>
+  </div>
+{% endif %}

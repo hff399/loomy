@@ -1,0 +1,279 @@
+.shop-by-category-content-wrapper .swiper:not(.swiper-initialized)>.swiper-wrapper,
+.no-js .shop-by-category-main-wrapper .swiper-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(25%, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+}
+
+html.no-js .shop-by-category-section .section-slideshow-nav-wrapper .slideshow-nav-btn {
+    display: none;
+}
+
+.shop-by-category-main-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.shop-by-category-content-wrapper {
+    width: 100%;
+    max-width: calc(100% - 550px);
+}
+
+.shop-by-category-header-wrapper {
+    max-width: 550px;
+    width: 100%;
+    padding-right: 50px;
+}
+
+.shop-by-category-section {
+    overflow: hidden;
+}
+
+.shop-by-category-items.category-card-style-capsule-card {
+    border: 10px solid var(--card-background);
+}
+
+.shop-by-category-items {
+    background: var(--card-background);
+    border-radius: 230px;
+    overflow: hidden;
+}
+
+.shop-by-category-items-content {
+    padding: 20px 30px 50px;
+    text-align: center;
+}
+
+.shop-by-category-items.category-card-style-card:has(.media-overlay) .shop-by-category-items-title {
+    color: var(--image-overlay-heading-color);
+}
+
+.shop-by-category-items.category-card-style-card:has(.media-overlay) .shop-by-category-items-description * {
+    color: var(--image-overlay-text-color);
+}
+
+
+.shop-by-category-content-wrapper swiper-slideshow {
+    width: calc(50% + 36vw);
+    display: block;
+    overflow-x: hidden;
+}
+
+.without-header-content .shop-by-category-content-wrapper {
+    max-width: 100%;
+}
+
+.without-header-content .shop-by-category-content-wrapper swiper-slideshow {
+    width: auto;
+    display: block;
+    overflow-x: unset;
+}
+
+.section-slideshow-nav-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.shop-by-category-section .slideshow-nav-btn {
+    position: relative;
+}
+
+.shop-by-category-section .slideshow-nav-btn[aria-label="Previous slide"] {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.shop-by-category-content-wrapper .slideshow-nav-btn[aria-label="Next slide"] {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.shop-by-category-items-description p,
+.shop-by-category-items-title {
+    color: var(--card-text);
+}
+
+.shop-by-category-items-description {
+    padding-top: 5px;
+}
+
+.shop-by-category-items-content .col-button-wrap {
+    padding-top: 15px;
+}
+
+.category-card-media-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.category-card-style-card:has(.category-card-media-wrapper:focus-within) {
+    outline: 2px solid #ff9e45;
+}
+
+.category-card-style-card {
+    background: none;
+}
+
+
+/* card style circle */
+.category-card-style-circle-card .shop-by-category-items-content {
+    padding: 20px 35px 50px;
+}
+
+.category-card-style-floating-circle .category-card-media-wrapper,
+.category-card-style-circle-card .category-card-media-wrapper {
+    border-radius: 50%;
+    max-width: 270px;
+    display: block;
+    margin: 30px auto 0;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.category-card-style-circle-card .category-card-media-wrapper {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.swiper:has(.category-card-style-floating-circle) .section-slideshow-nav-wrapper {
+    margin-top: 0;
+}
+
+/* floating card circle style */
+
+.category-card-style-floating-circle {
+    background: none;
+    overflow: visible;
+}
+
+.category-card-style-floating-circle .shop-by-category-items-content {
+    padding: 20px 0;
+}
+
+.shop-by-category-header-wrapper .section-slideshow-nav-wrapper {
+    width: max-content;
+}
+
+
+/* New card Style */
+
+.category-card-style-card {
+    border-radius: var(--card-radius);
+    position: relative;
+}
+
+.category-card-style-card .shop-by-category-items-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px 15px;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    text-align: left;
+    z-index: 1;
+}
+
+.no-container .shop-by-category-main-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+    .swiper:has(.category-card-style-card) {
+        padding: 2px;
+    }
+}
+
+@media (min-width: 992px) {
+    .shop-by-category-content-wrapper .category-card-style-card.card-index-1 {
+        margin-top: 50px;
+    }
+
+    /* .no-container .shop-by-category-header-wrapper {
+        padding: 25px;
+    } */
+}
+
+
+@media (max-width: 1440px) {
+    .shop-by-category-header-wrapper {
+        max-width: 480px;
+    }
+
+    .shop-by-category-content-wrapper {
+        max-width: calc(100% - 480px);
+    }
+
+}
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .category-card-style-circle-card .shop-by-category-items-content {
+        padding: 30px 20px 50px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .shop-by-category-header-wrapper {
+        max-width: 380px;
+        padding-right: 30px;
+    }
+
+    .shop-by-category-content-wrapper {
+        max-width: calc(100% - 380px);
+    }
+
+    .shop-by-category-content-wrapper swiper-slideshow {
+        width: calc(50% + 32vw);
+    }
+}
+
+@media (max-width: 991px) {
+    .shop-by-category-content-wrapper swiper-slideshow {
+        width: 100%;
+    }
+
+    .shop-by-category-header-wrapper {
+        max-width: 100%;
+        padding-right: 0;
+        padding-bottom: 30px;
+    }
+
+    .shop-by-category-content-wrapper {
+        max-width: 100%;
+    }
+
+    .shop-by-category-content-wrapper .swiper-wrapper {
+        padding-bottom: 20px;
+    }
+
+    .shop-by-category-header-wrapper :where(.section-description, .section-buttons) {
+        padding-top: 15px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .shop-by-category-items.category-card-style-capsule-card {
+        border: 5px solid var(--card-background);
+    }
+
+    .category-card-style-circle-card .category-card-media-wrapper {
+        margin: 10px auto;
+    }
+
+    .category-card-style-circle-card .shop-by-category-items-content {
+        padding: 20px 15px 35px;
+    }
+}

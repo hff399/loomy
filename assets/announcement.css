@@ -1,0 +1,91 @@
+.announcement-left,
+.announcement-middle,
+.announcement-right {
+    padding: 6px 0;
+}
+
+.announcement-right .custom-select-content {
+    left: auto;
+    right: 0;
+    transform: unset;
+}
+
+.border-bottom-true {
+    border-bottom: 1px solid rgba(var(--border-color));
+}
+
+@media (min-width: 1025px) {
+    /* body:has(.header-style-side-reveal-menu) .announcement-section .section-wrapper { 
+        padding-right: 10px;
+    } */
+    body:has(.header-space-large.header-style-side-reveal-menu) .announcement-section .section-wrapper {
+        padding: 0 40px 0 30px;
+    }
+    body:has(.header-space-medium.header-style-side-reveal-menu) .announcement-section .section-wrapper {
+        padding: 0 40px 0 30px;
+    }
+    body:has(.header-space-small.header-style-side-reveal-menu) .announcement-section .section-wrapper {
+        padding: 0 20px 0 10px;
+    }
+    body.content-scrolled .header-section+.announcement-section,
+    body.side-menu-active .header-section+.announcement-section {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    body:has(.header-section+.announcement-section) .side-reveal-menu-wrapper {
+        top: 0;
+        z-index: 0;
+    }
+
+    .header-main:has(.header-menu-item.active) {
+        z-index: 4;
+    }
+
+
+    .announcement-section:has(.custom-select-content.show) {
+        z-index: 9;
+        position: relative;
+    }
+
+    .header-section:has(.d-header-transparent)+.announcement-section {
+        position: absolute;
+        top: var(--header-height, 0px);
+        width: 100%;
+    }
+
+    .header-section:has(.d-header-transparent)+.announcement-section:not(:has(.custom-select-content.show)) {
+        z-index: 2;
+    }
+
+    .announcement-wrapper {
+        display: grid;
+        grid-template: "socials announcement localization" / 1.2fr 2fr 1.2fr;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .announcement-left {
+        grid-area: socials;
+    }
+
+    .announcement-middle {
+        grid-area: announcement;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .announcement-right {
+        grid-area: localization;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .announcement-left,
+    .announcement-right {
+        display: none;
+    }
+
+}

@@ -1,0 +1,9 @@
+<ul class="payment-icons-list list-inline gap-5 ml-auto d-flex">
+  {%- for type in shop.enabled_payment_types -%}
+    <li class="payment-icon-item">
+      <span class="payment-icon d-flex">
+        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+      </span>
+    </li>
+  {%- endfor -%}
+</ul>

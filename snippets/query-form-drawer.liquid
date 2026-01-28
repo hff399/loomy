@@ -1,0 +1,124 @@
+<div data-query-form-content>
+  <template>
+    <query-form-drawer
+      class="drawer-wrapper queryform-side-drawer  scheme-{{ settings.popup_color_scheme }}"
+      id="queryForm-{{ section.id }}"
+      data-drawer="query-form-drawer"
+      data-section-id="{{ section.id }}"
+      query-form-drawer-section
+      data-id="{{ section.id }}">
+      <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+    <div class="data-moving-cursor" data-moving-cursor>
+      <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+        <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+      <div class="drawer-container">
+        <div class="drawer-inner">
+          <div class="drawer-head">
+            <div class="drawer-head-content border-bottom">
+              <h4 class="heading-font h5">Need help?</h4>
+              <close-drawer class="drawer-close-main" data-drawer-close>
+                <button class="drawer-close-btn close-button" aria-label="Close drawer" aria-hidden="true">
+                  {% render 'svg-icons'
+                    , icon: 'close' %}
+                  {% render 'svg-icons'
+                    , icon: 'close-bg' %}
+                </button>
+              </close-drawer>
+            </div>
+          </div>
+          <div class="drawer-body">
+            <div class="drawer-body-main">
+              {% assign formId = 'productQueryForm' | append: product.id | append: '_' | append: section.id %}
+              {%- form 'contact'
+                , id: formId
+                , class: 'get-in-touch-form' -%}
+                <input
+                  type="hidden"
+                  name="contact[form title]"
+                  value="{{ block.settings.title }}">
+                <input
+                  type="hidden"
+                  name="contact[product]"
+                  value="{{ product.title | strip_html | escape }}">
+                <input
+                  type="hidden"
+                  name="contact[product url]"
+                  value="{{ shop.url }}{{ product.url }}">
+                <div class="form-group">
+                  <label for="ContactName-{{section.id}}" class="heading-font font-normal">Name</label>
+                  <input
+                    type="text"
+                    class="form-control input-md"
+                    name="contact[name]"
+                    id="ContactName-{{section.id}}"
+                    autocomplete="name"
+                    placeholder="Name"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label for="ContactEmail-{{section.id}}" class="heading-font font-normal">Email</label>
+                  <input
+                    type="text"
+                    class="form-control input-md"
+                    name="contact[email]"
+                    id="ContactEmail-{{section.id}}"
+                    autocomplete="email"
+                    placeholder="Email"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label for="ContactNumber-{{section.id}}" class="heading-font font-normal">Phone</label>
+                  <input
+                    type="text"
+                    class="form-control input-md"
+                    name="contact[number]"
+                    id="ContactNumber-{{section.id}}"
+                    autocomplete="number"
+                    placeholder="Phone"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="heading-font font-normal" for="ContactForm-body-{{section.id}}">Message</label>
+                  <textarea
+                    id="ContactForm-body-{{section.id}}"
+                    name="contact[message]"
+                    rows="3"
+                    placeholder="Message"
+                    class="form-control input-md"
+                    required></textarea>
+                  {%- if form.errors -%}
+                    <div
+                      class="form-message error"
+                      autofocus
+                      data-contact-message>
+                      <div class="form-message-title" tabindex="-1">
+                        <p>something went wrong</p>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if form.posted_successfully? -%}
+                    <div
+                      class="form-message success"
+                      role="status"
+                      tabindex="-1"
+                      autofocus
+                      data-contact-message>
+                      <p class="form-message-title" tabindex="-1">Posted successfully</p>
+                    </div>
+                    <script></script>
+                  {%- endif -%}
+                  <button type="submit" class="button width-100">
+                    Send
+                  </button>
+                </div>
+              {% endform %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </query-form-drawer>
+  </template>
+</div>

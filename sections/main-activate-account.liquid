@@ -1,0 +1,156 @@
+{{ 'account.css' | asset_url | stylesheet_tag }}
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative overflow-hidden">
+  <div class="container">
+    <div class="auth-wrapper login-wrapper">
+      <div class="auth-container">
+        <div class="auth-body">
+          <div class="section-header">
+            <h4 class="heading-font">{{ 'customer.activate_account.title' | t }}</h4>
+          </div>
+          {%- form 'activate_customer_password'
+            , class: 'account-form' -%}
+            {%- if form.errors -%}
+              <div
+                class="form-message error"
+                tabindex="-1"
+                autofocus>
+                <ul>
+                  {%- for field in form.errors -%}
+                    <li>
+                      {%- if field == 'form' -%}
+                        {{ form.errors.messages[field] }}
+                      {%- else -%}
+                        <a
+                          href="#{{ field }}"
+                          class="text-small"
+                          aria-label="Error message">
+                          {{ form.errors.translated_fields[field] | capitalize }}
+                          {{ form.errors.messages[field] }}
+                        </a>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+            <div class="form-group">
+              <label for="password" class="heading-font font-normal">
+                {{- 'customer.activate_account.password' | t -}}
+              </label>
+              <input
+                type="password"
+                class="form-control input-md"
+                name="customer[password]"
+                id="password"
+                autocomplete="new-password"
+                placeholder="{{ 'customer.activate_account.password' | t  }}"
+                {% if form.errors contains 'password' %}
+                aria-invalid="true"
+                aria-describedby="password-error"
+                {% endif %}>
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation" class="heading-font font-normal">
+                {{- 'customer.activate_account.password_confirm' | t -}}
+              </label>
+              <input
+                type="password"
+                class="form-control input-md"
+                name="customer[password_confirmation]"
+                id="password_confirmation"
+                autocomplete="new-password"
+                placeholder="{{ 'customer.activate_account.password_confirm' | t }}"
+                {% if form.errors contains 'password' %}
+                aria-invalid="true"
+                aria-describedby="password_confirmation-error"
+                {% endif %}>
+            </div>
+            <button type="submit" class="button button-sm">{{ 'customer.activate_account.title' | t }}</button>
+          {%- endform -%}
+        </div>
+        <div class="auth-footer text-center">
+          <a href="{{ routes.root_url }}" class="button text-button body-font text-normal gap-10 text-underline font-semibold">
+            <span class="button-icon">
+              {% render 'svg-icons'
+                , icon: 'home' %}
+            </span>
+            <span class="button-text">{{ 'customer.login_page.back_to_home' | t }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    --top-spacing: {{ section.settings.top_space_desktop }}px;
+    --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+  }
+  @media only screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_desktop }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_mobile }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "t:sections.main-activate-account.name",
+    "tag": "section",
+    "class": "main-activate-account-section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "primary"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,720 @@
+{{ 'account.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+%}
+
+{%- capture corner_style -%}
+  {% if section.settings.corner_style == 'top' %}
+      round-section round-top
+      {% elsif section.settings.corner_style == 'bottom' %}
+      round-section round-bottom
+      {% elsif section.settings.corner_style == 'both' %}
+      round-section round-bottom round-top
+  {% endif %}
+{%- endcapture -%}
+
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} {{ corner_style }} pos-relative overflow-hidden">
+  <div class="account-page-header-wrapper">
+    {% if section.settings.background_image != blank %}
+      <div class="background-overlay-image media-overlay">
+        {% render 'lazy-images'
+          , image: section.settings.background_image %}
+      </div>
+    {% endif %}
+    <div class="{{ containerClass }}">
+      <div class="account-page-header-content d-grid align-items-end">
+        <div class="account-page-header-content-inner">
+          <{{ section.settings.seo_heading }} class="account-page-header-heading heading-font {{ section.settings.heading_size }}">
+            {% if section.settings.heading != blank %}
+              {{ section.settings.heading }}
+            {% else %}
+              {{ 'customer.orders.title' | t }}
+            {% endif %}
+          </{{ section.settings.seo_heading }}>
+          {% if section.settings.description != blank %}
+            <p class="account-page-header-description {{ section.settings.description_size }}">
+              {{ section.settings.description | newline_to_br }}
+            </p>
+          {% endif %}
+        </div>
+        <div class="account-page-header-content-right">
+          <a
+            href="{{ routes.account_logout_url }}"
+            type="button"
+            class="button button-sm buttonHover button-secondary"
+            aria-label="Account log out">
+            <span>{{ 'customer.log_out' | t }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% if section.settings.shape != 'none' %}
+      <div class="section-shape-wrapper shape-position-bottom shape-flip-false">
+        {% render 'shapes'
+          , shape: section.settings.shape %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative overflow-hidden section-{{ section.settings.section_background }}">
+  <div class="{{ containerClass }}">
+    <div class="account-orders-section" id="account">
+      <div class="section-header">
+        <h4 class="heading-font">{{ 'customer.order.title' | t: name: order.name }}</h4>
+      </div>
+      <div class="account-orders-wrapper">
+        <div class="account-orders-block">
+          <div class="account-orders-block-inner order cart-products-main">
+            <div class="account-col-header border-bottom pattern-shape-table d-grid pos-relative table-header">
+              <h5 class="heading-font text-left text">{{ 'customer.order.product' | t }}</h5>
+              <h5 class="heading-font text-center text">{{ 'customer.order.price' | t }}</h5>
+              <h5 class="heading-font text-center text">{{ 'customer.order.quantity' | t }}</h5>
+              <h5 class="heading-font text-right text">{{ 'customer.order.total' | t }}</h5>
+            </div>
+            <div class="order-products-list  table-body">
+              {%- for line_item in order.line_items -%}
+                <div class="order-product-item d-grid">
+                  <div class="order-product-mediabox">
+                    {% if line_item.image != blank %}
+                      <a
+                        href="{{ line_item.url }}"
+                        class="order-product-media media-wrapper"
+                        aria-label="Item link">
+                        <div class="media" style="--image-ratio: 100%">
+                          {% render 'lazy-images'
+                            , image: line_item.image %}
+                        </div>
+                      </a>
+                    {% endif %}
+                    <div class="order-product-info">
+                      <div class="order-product-info-content">
+                        {%- if line_item.url != blank -%}
+                          <a
+                            href="{{ line_item.url }}"
+                            class="heading-font text"
+                            aria-label="Line item link">
+                            {{- line_item.product.title -}}
+                          </a>
+                        {% else %}
+                          <p class="product-title heading-font">{{ line_item.product.title }}</p>
+                        {% endif %}
+                        {%- assign property_size = line_item.properties | size -%}
+                        {%- unless line_item.selling_plan_allocation == null and property_size == 0 -%}
+                          <ul class="variation-selected-list">
+                            {%- unless line_item.product.has_only_default_variant -%}
+                              <li class="variation-selected-item text-sm">
+                                {{ line_item.variant.title }}
+                              </li>
+                            {%- endunless -%}
+                            {%- unless line_item.selling_plan_allocation == null -%}
+                              <li class="variation-selected-item text-sm">
+                                {{ line_item.selling_plan_allocation.selling_plan.name }}
+                              </li>
+                            {%- endunless -%}
+
+                            {%- if property_size != 0 -%}
+                              {%- for property in line_item.properties -%}
+                                {% assign property_first_char = property.first | slice: 0 %}
+                                {%- if property.last != blank and property_first_char != '_' -%}
+                                  <li class="variation-selected-item text-sm">
+                                    <span>{{ property.first }}:</span>
+                                    <span>
+                                      {%- if property.last contains '/uploads/' -%}
+                                        <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                                      {%- else -%}
+                                        {{ property.last }}
+                                      {%- endif -%}
+                                    </span>
+                                  </li>
+                                {%- endif -%}
+                              {%- endfor -%}
+                            {%- endif -%}
+                          </ul>
+                        {%- endunless -%}
+                        {%- if line_item.line_level_discount_allocations != blank -%}
+                          <ul
+                            class="variation-selected-list product-discounts"
+                            role="list"
+                            aria-label="{{ 'customer.order.discount' | t }}">
+                            {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                              <li class="variation-selected-item text-sm">
+                                {{- discount_allocation.discount_application.title }} (-
+                                {{- discount_allocation.amount | money -}}
+                                )
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+
+                        {%- if line_item.fulfillment -%}
+                          <div class="fulfillment">
+                            {%- assign created_at = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
+                            <span>{{ 'customer.order.fulfilled_at_html' | t: date: created_at }}</span>
+
+                            {%- if line_item.fulfillment.tracking_url -%}
+                              <a href="{{ line_item.fulfillment.tracking_url }}" aria-label="Line item track link">
+                                {{ 'customer.order.track_shipment' | t }}
+                              </a>
+                            {%- endif -%}
+                            <span>
+                              {{ line_item.fulfillment.tracking_company }}
+                              {%- if line_item.fulfillment.tracking_number -%}
+                                #{{ line_item.fulfillment.tracking_number }}
+                              {%- endif -%}
+                            </span>
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="order-product-price text-center">
+                    {%- if line_item.original_price != line_item.final_price or line_item.unit_price_measurement -%}
+                      {%- if line_item.original_price != line_item.final_price -%}
+                        <span class="hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                        <span class="product-cut-price line-through">
+                          {{- line_item.original_price | money -}}
+                        </span>
+                        <span class="hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                        <span class="actual-price">
+                          {{- line_item.final_price | money -}}
+                        </span>
+                      {%- else -%}
+                        <span class="hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                        <span class="actual-price">
+                          {{- line_item.original_price | money -}}
+                        </span>
+                      {%- endif -%}
+                      {%- if line_item.unit_price_measurement -%}
+                        <span class="hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                        <span class="product-unit-price">
+                          {%- capture unit_price_separator -%}
+                                            <span aria-hidden="true">/</span><span class="hidden">{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                                          {%- endcapture -%}
+                          {%- capture unit_price_base_unit -%}
+                                            {%- if line_item.unit_price_measurement.reference_value != 1 -%}
+                                              {{- line_item.unit_price_measurement.reference_value -}}
+                                            {%- endif -%}
+                                            {{ line_item.unit_price_measurement.reference_unit }}
+                                          {%- endcapture -%}
+                          <span data-unit-price>{{ line_item.unit_price | money }}</span>
+                          {{- unit_price_separator -}}
+                          {{- unit_price_base_unit -}}
+                        </span>
+                      {%- endif -%}
+                    {%- else -%}
+                      <span class="actual-price text">{{ line_item.final_price | money }}</span>
+                    {%- endif -%}
+                  </div>
+                  <div class="order-product-quantity text-center">
+                    <span class="quantity text">{{ line_item.quantity }}</span>
+                  </div>
+                  <div class="order-product-total text-right">
+                    {%- if line_item.original_line_price != line_item.final_line_price -%}
+                      <span class="hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                      <span class="product-cut-price line-through">
+                        {{- line_item.original_line_price | money -}}
+                      </span>
+                      <span class="hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                      <span class="actual-price text">
+                        {{- line_item.final_line_price | money -}}
+                      </span>
+                    {%- else -%}
+                      <span class="actual-price text">
+                        {{- line_item.original_line_price | money -}}
+                      </span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+          </div>
+          <div class="order-product-summary">
+            <div class="order-product-sum-info">
+              <h6 class="heading-font text">{{ 'customer.order.subtotal' | t }}</h6>
+              <span class="text">{{ order.line_items_subtotal_price | money }}</span>
+            </div>
+            {%- if order.cart_level_discount_applications != blank -%}
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <div class="order-product-sum-info">
+                  <h6 class="heading-font text">
+                    {{ 'customer.order.discount' | t }}
+                    <span>(
+                      {{- discount_application.title -}}
+                      )</span>
+                  </h6>
+                  <span class="text">{{ discount_application.total_allocated_amount | money }}</span>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            {%- for shipping_method in order.shipping_methods -%}
+              <div class="order-product-sum-info">
+                <h6 class="heading-font text">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</h6>
+                <span class="text">{{ shipping_method.price | money }}</span>
+              </div>
+            {%- endfor -%}
+            {%- for tax_line in order.tax_lines -%}
+              <div class="order-product-sum-info">
+                <h6 class="heading-font text">
+                  {{ 'customer.order.tax' | t }} ({{ tax_line.title }}
+                  {{ tax_line.rate | times: 100 }}%)
+                </h6>
+                <span class="text">{{ tax_line.price | money }}</span>
+              </div>
+            {%- endfor -%}
+
+            {%- if order.total_duties -%}
+              <div class="order-product-sum-info">
+                <h6 class="heading-font text">{{ 'customer.order.total_duties' | t }}</h6>
+                <span class="text">{{ order.total_duties | money_with_currency }}</span>
+              </div>
+            {%- endif -%}
+
+            {%- if order.total_refunded_amount > 0 -%}
+              <div class="order-product-sum-info">
+                <h6 class="heading-font text">{{ 'customer.order.total_refunded' | t }}</h6>
+                <span class="text">{{ order.total_refunded_amount | money_with_currency }}</span>
+              </div>
+            {%- endif -%}
+            <hr>
+            <div class="order-product-sum-info">
+              <h5 class="heading-font">{{ 'customer.order.total' | t }}</h5>
+              <span class="h5">
+                <strong>{{ order.total_net_amount | money }}</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="address-block d-grid">
+          <div class="address-block-inner">
+            <div class="address-block-header d-flex border-bottom">
+              <h5 class="heading-font text-left text d-flex gap-10 align-items-center">
+                <span class="icon-address">{% render 'svg-icons'
+, icon: 'address_home' %}</span>
+                {{ 'customer.order.billing_address' | t }}
+              </h5>
+            </div>
+            <div class="address-block-body">
+              <div class="address-list">
+                <div class="address-item">
+                  <span class="text">
+                    {{ order.billing_address | format_address }}
+                  </span>
+                </div>
+              </div>
+              <div class="address-block-footer">
+                <div class="text-sm">
+                  <strong>{{ 'customer.order.payment_status' | t }}</strong>
+                </div>
+                <div class="text-sm paid">
+                  <span class="badge">{{ order.financial_status_label }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="address-block-inner">
+            <div class="address-block-header d-flex border-bottom">
+              <h5 class="heading-font text-left text d-flex gap-10 align-items-center">
+                <span class="icon-address">{% render 'svg-icons'
+, icon: 'address_home' %}</span>
+                {{ 'customer.order.shipping_address' | t }}
+              </h5>
+            </div>
+            <div class="address-block-body">
+              <div class="address-list">
+                <div class="address-item">
+                  <span class="text">
+                    {{ order.shipping_address | format_address }}
+                  </span>
+                </div>
+              </div>
+              <div class="address-block-footer">
+                <div class="text-sm">
+                  <strong>{{ 'customer.order.fulfillment_status' | t }}</strong>
+                </div>
+                <div class="text-sm unfulfilled">
+                  <span class="badge">{{ order.fulfillment_status_label }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    --top-spacing: {{ section.settings.top_space_desktop }}px;
+    --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+    --round-section-radius: {{ section.settings.corner_radius }}px;
+    --media-height: {{ section.settings.banner_height_desktop }};
+  }
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_mobile }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+      --media-height: {{ section.settings.banner_height_mobile }};
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "t:sections.main-order.name",
+    "tag": "section",
+    "class": "main-order-section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "primary"
+      },
+      {
+        "type": "select",
+        "id": "section_background",
+        "label": "t:sections.all.section_background.label",
+        "default": "solid",
+        "options": [
+          {
+            "label": "t:sections.all.section_background.solid.label",
+            "value": "solid"
+          },
+          {
+            "label": "t:sections.all.section_background.gradient.label",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "section_container_width",
+        "label": "t:sections.all.section_container_width.label",
+        "default": "global",
+        "options": [
+          {
+            "label": "t:sections.all.section_container_width.global.label",
+            "value": "global"
+          },
+          {
+            "label": "t:sections.all.section_container_width.container-sm.label",
+            "value": "container-sm"
+          },
+          {
+            "label": "t:sections.all.section_container_width.container.label",
+            "value": "container-md"
+          },
+          {
+            "label": "t:sections.all.section_container_width.container-md.label",
+            "value": "container"
+          },
+          {
+            "label": "t:sections.all.section_container_width.container-fullwidth.label",
+            "value": "container-fullwidth"
+          },
+          {
+            "label": "t:sections.all.section_container_width.no-container.label",
+            "value": "no-container"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "corner_style",
+        "default": "none",
+        "label": "t:sections.all.section_corner_style.label",
+        "options": [
+          {
+            "value": "top",
+            "label": "t:sections.all.section_corner_style.top.label"
+          },
+          {
+            "value": "bottom",
+            "label": "t:sections.all.section_corner_style.bottom.label"
+          },
+          {
+            "value": "both",
+            "label": "t:sections.all.section_corner_style.both.label"
+          },
+          {
+            "value": "none",
+            "label": "t:sections.all.section_corner_style.none.label"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "corner_radius",
+        "label": "t:settings_schema.global.settings.corner_radius.label",
+        "default": 70,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-order.settings.header.header"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "t:sections.main-account.settings.background_image.label"
+      },
+      {
+        "type": "select",
+        "id": "banner_height_desktop",
+        "label": "t:sections.main-order.settings.banner_height_desktop.label",
+        "default": "250px",
+        "options": [
+          {
+            "value": "250px",
+            "label": "t:sections.main-order.settings.banner_height_desktop.option__1.label"
+          },
+          {
+            "value": "350px",
+            "label": "t:sections.main-order.settings.banner_height_desktop.option__2.label"
+          },
+          {
+            "value": "500px",
+            "label": "t:sections.main-order.settings.banner_height_desktop.option__3.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "banner_height_mobile",
+        "label": "t:sections.main-order.settings.banner_height_mobile.label",
+        "default": "200px",
+        "options": [
+          {
+            "value": "100px",
+            "label": "t:sections.main-order.settings.banner_height_mobile.option__1.label"
+          },
+          {
+            "value": "200px",
+            "label": "t:sections.main-order.settings.banner_height_mobile.option__2.label"
+          },
+          {
+            "value": "350px",
+            "label": "t:sections.main-order.settings.banner_height_mobile.option__3.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-order.settings.header.header_shape"
+      },
+      {
+        "type": "select",
+        "id": "shape",
+        "default": "none",
+        "label": "t:sections.all.shape.label",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.all.shape.none.label"
+          },
+          {
+            "value": "curve",
+            "label": "t:sections.all.shape.curve.label"
+          },
+          {
+            "value": "deep_curve",
+            "label": "t:sections.all.shape.deep_curve.label"
+          },
+          {
+            "value": "cloud",
+            "label": "t:sections.all.shape.cloud.label"
+          },
+          {
+            "value": "wavelong",
+            "label": "t:sections.all.shape.wave_long.label"
+          },
+          {
+            "value": "wave",
+            "label": "t:sections.all.shape.wave.label"
+          },
+          {
+            "value": "mountain",
+            "label": "t:sections.all.shape.mountain.label"
+          },
+          {
+            "value": "brush-effect",
+            "label": "t:sections.all.shape.brush-effect.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "t:sections.all.headers.heading",
+        "default": "Welcome to Your Account"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "t:sections.all.heading_size.label",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.h1.label"
+          },
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.h2.label"
+          },
+          {
+            "value": "h3",
+            "label": "t:sections.all.heading_size.h3.label"
+          },
+          {
+            "value": "h4",
+            "label": "t:sections.all.heading_size.h4.label"
+          },
+          {
+            "value": "h5",
+            "label": "t:sections.all.heading_size.h5.label"
+          },
+          {
+            "value": "h6",
+            "label": "t:sections.all.heading_size.h6.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "seo_heading",
+        "label": "t:sections.all.seo_heading.label",
+        "info": "t:sections.all.seo_heading.info",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "div",
+            "label": "div"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          },
+          {
+            "value": "p",
+            "label": "p"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "t:settings_schema.global.settings.description.label"
+      },
+      {
+        "type": "select",
+        "id": "description_size",
+        "label": "t:sections.all.description_size.label",
+        "default": "text",
+        "options": [
+          {
+            "label": "t:sections.all.description_size.text-xsmall.label",
+            "value": "text-xs"
+          },
+          {
+            "label": "t:sections.all.description_size.text-small.label",
+            "value": "text-sm"
+          },
+          {
+            "label": "t:sections.all.description_size.text.label",
+            "value": "text"
+          },
+          {
+            "label": "t:sections.all.description_size.text-medium.label",
+            "value": "text-md"
+          },
+          {
+            "label": "t:sections.all.description_size.text-large.label",
+            "value": "text-lg"
+          },
+          {
+            "label": "t:sections.all.description_size.text-xlarge.label",
+            "value": "text-xl"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ]
+  }
+{% endschema %}

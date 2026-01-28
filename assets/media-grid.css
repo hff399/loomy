@@ -1,0 +1,222 @@
+.media-grid-wrapper {
+    display: grid;
+    grid-auto-rows: minmax(var(--mobile-height), auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--column-gap);
+}
+
+.media-grid-wrapper .media-button-wrap {
+    padding-top: 10px;
+}
+
+.media-grid-item {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    grid-area: span var(--row)/span var(--column);
+    border-radius: var(--card-radius);
+    background: var(--body-background);
+}
+
+.media-grid-item.section-gradient {
+    background: var(--gradient-background);
+}
+
+/* .media-grid-item.media-hover {
+    overflow: hidden;
+} */
+
+.media-grid-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    border-radius: var(--card-radius);
+}
+
+.media-grid-item:has(.media-overlay) .media-grid-title {
+    color: var(--image-overlay-heading-color);
+}
+
+.media-grid-item:has(.media-overlay) .media-grid-desc * {
+    color: var(--image-overlay-text-color);
+}
+
+.media-grid-image .media-box-fixed {
+    height: 100%;
+}
+
+.media-content {
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    z-index: 1;
+}
+
+
+.media-grid-item .media,
+.media-grid-item {
+    transition: var(--smooth-animation);
+}
+
+
+.content-position-top-right {
+    margin-left: auto;
+}
+
+.content-position-top-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-position-center-left {
+    justify-content: center;
+}
+
+.content-position-center-right {
+    justify-content: center;
+    margin-left: auto;
+}
+
+.content-position-center {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-position-bottom-left {
+    justify-content: flex-end;
+}
+
+.content-position-bottom-right {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.content-position-bottom-center {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* shapes media  */
+.media-grid-shape-wrapper .media-grid-shape,
+.media-grid-shape-border {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.media-grid-shape-wrapper .media-grid-shape {
+    background: var(--card-background);
+}
+
+.media-grid-shape-wrapper .media-grid-shape span {
+    color: var(--card-text);
+    text-align: center;
+    display: grid;
+    height: 100%;
+    place-content: center;
+    padding: 10px;
+}
+
+.media-grid-shape-border {
+    color: var(--card-text);
+}
+
+.media-grid-shape-wrapper {
+    top: calc(max(-15px, var(--category-vertical) - 70px));
+    left: calc(max(-15px, var(--category-horizontal) - 100px));
+    z-index: 1;
+}
+
+
+@media (min-width:768px) {
+    .no-container .media-grid-wrapper .media-grid-shape-wrapper {
+        top: max(0px, var(--category-vertical) - 70px);
+        left: max(0px, var(--category-horizontal) - 100px);
+    }
+
+    .media-grid-wrapper {
+        grid-auto-rows: minmax(var(--desktop-height), auto);
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .media-content.small {
+        max-width: 70%;
+    }
+
+    .media-content.medium {
+        max-width: 80%;
+    }
+
+    .media-content.large {
+        max-width: 100%;
+    }
+
+    .media-grid-item:hover .media {
+        transform: scale(1.1);
+    }
+
+    /* .media-grid-item:hover {
+        transform: translateY(-5px);
+    } */
+
+    .media-grid-desc {
+        padding-top: 5px;
+        max-height: 10rem;
+        overflow-y: auto;
+    }
+
+
+    .media-grid-shape-holder {
+        width: 118px;
+        height: 84px;
+    }
+}
+
+@media (min-width:1200px) {
+    .media-content {
+        padding: 20px;
+    }
+
+    .media-content.small {
+        max-width: 65%;
+    }
+
+    .media-content.medium {
+        max-width: 75%;
+    }
+}
+
+@media (min-width:1441px) {
+    .media-content.small {
+        max-width: 50%;
+    }
+
+    .media-content.medium {
+        max-width: 70%;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .media-grid-shape-holder {
+        width: 74px;
+        height: 55px;
+    }
+
+    .media-grid-shape-wrapper {
+        top: max(-10px, var(--category-vertical) - 55px);
+        left: max(-10px, var(--category-horizontal) - 74px);
+    }
+
+    .no-container .media-grid-shape-wrapper {
+        top: max(0px, var(--category-vertical) - 55px);
+        left: max(0px, var(--category-horizontal) - 74px);
+    }
+}

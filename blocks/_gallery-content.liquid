@@ -1,0 +1,164 @@
+<style>
+    #shopify-section-{{ section.id }}{
+     --shopify-block-{{ block.id }}-1: {{ block.settings.row_start }};
+     --mobile-shopify-block-{{ block.id }}-1: {{ block.settings.mobile_row_start }};
+    }
+    #shopify-block-{{ block.id }}{
+      --dynamic-grid-grid-area: {{ block.settings.row_start }} / {{ block.settings.column_start }} / -1 / {{ block.settings.column_end | plus : 1 }};
+      --dynamic-grid-horizontal-adjustment: {{ block.settings.horizontal_adjustment }}vw;
+      --dynamic-grid-vertical-adjustment: {{ block.settings.vertical_adjustment }}vw;
+    }
+    @media (max-width: 991px){
+        #shopify-block-{{ block.id }} {
+        --dynamic-grid-grid-area: {{ block.settings.mobile_row_start }}
+        /{{ block.settings.mobile_column_start }}
+        / -1 /{{ block.settings.mobile_column_end | plus : 1 }};
+        --dynamic-grid-horizontal-adjustment: {{ block.settings.mobile_horizontal_adjustment }}vw;
+        --dynamic-grid-vertical-adjustment: {{ block.settings.mobile_vertical_adjustment }}vw;
+    } 
+    }
+</style>
+
+    <div class="showcase-gallery-content section-header-content-wrapper text-{{ block.settings.alignment }} m-auto">
+        {% content_for 'blocks' %}
+    </div>
+
+{% schema %}
+{
+  "name": "t:blocks.gallery-content.name",
+  "class": "dynamic-cell",
+  "blocks": [{"type": "_heading"},{"type": "_description"},{"type": "_button"}],
+  "tag": "div",
+  "settings": [
+    {
+        "type": "text_alignment",
+        "id": "alignment",
+        "label": "t:sections.best-categories.settings.content_alignment.label",
+        "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.gallery-content.settings.header.desktop"
+    },
+    {
+      "type": "range",
+      "id": "row_start",
+      "min": 1,
+      "max": 99,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.row_start.label",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_start",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.column_start.label",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_end",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.column_end.label",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "horizontal_adjustment",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "label": "t:blocks.gallery-content.settings.horizontal_adjustment.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "vertical_adjustment",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "label": "t:blocks.gallery-content.settings.vertical_adjustment.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.gallery-content.settings.header.mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_row_start",
+      "min": 1,
+      "max": 40,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.row_start.label",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_start",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.column_start.label",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_end",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "t:blocks.gallery-content.settings.column_end.label",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_horizontal_adjustment",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "label": "t:blocks.gallery-content.settings.horizontal_adjustment.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_vertical_adjustment",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "label": "t:blocks.gallery-content.settings.vertical_adjustment.label",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+       "name": "t:blocks.gallery-content.presets.name",
+       "blocks": [
+         {
+          "type": "_heading",
+          "settings": {
+            "heading": "Section heading"    
+          }
+        },
+        {
+          "type": "_description",
+          "settings": {
+                
+          }
+        },
+        {
+          "type": "_button",
+          "settings": {
+                
+          }
+        }
+       ]
+    }
+  ]
+}
+{% endschema %}

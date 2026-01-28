@@ -1,0 +1,45 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  capture placeholderIndex
+    cycle cycleGroup: '1', '2', '3', '4'
+  endcapture
+  if image_ratio
+    assign image_ratio = image_ratio
+  else
+    assign image_ratio = '100%'
+  endif
+%}
+<div class="product-card-item">
+  <div class="product-card background-enabled ">
+    <div class="product-card-img border radius-10 overflow-hidden">
+      <{% if product != blank %}a href="{{ product.url }}"{% else %}div{% endif %} class="product-img do-not-change" tabindex="-1">
+        <div class="media" style="--image-ratio:{{ image_ratio }};">
+          {% if product.featured_media != blank %}
+            {% render 'lazy-images'
+              , image: product.featured_media.preview_image
+              , class: 'product-image' %}
+          {% else %}
+            {{ 'product-apparel-' | append: placeholderIndex | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      </{% if product != blank %}a{% else %}div{% endif %}>
+      <div class="product-badges-card"></div>
+    </div>
+    <div class="product-card-detail">
+      <div class="product-card-detail-info">
+        <a
+          href=""
+          title="The Multi-location Snowboard"
+          class="product-title heading-font"
+          aria-label="{{ product.title | escape }}">
+          {{ product.title | escape }}
+        </a>
+        {% render 'product-card-price'
+          , product: product
+          , section: section
+          , currentVariant: current_variant
+          , source: 'horizontal' %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<product-form
+  data-section-id="{{ section_id }}"
+  class="product-checkout-buttons-outer{% if source == 'product-card' %} product-card-form{% endif %}"
+  data-product-id="{{ product.id }}"
+>
+  <div class="product-form-error-message-wrapper form-message error hidden" role="alert" data-add-cart-error></div>
+  {% liquid
+    assign preorder = false
+    if settings.enable_preorder and currentVariant.inventory_policy == 'continue' and currentVariant.inventory_quantity <= 0
+      assign preorder = true
+    endif
+  %} 
+  {%- form 'product',
+    product,
+    id: product_form_id,
+    class: 'form main-product-form',
+    novalidate: 'novalidate',
+    data-type: 'add-to-cart-form'
+  -%}
+    {%- liquid
+      assign check_against_inventory = true
+      if currentVariant.inventory_management != 'shopify' or currentVariant.inventory_policy == 'continue'
+        assign check_against_inventory = false
+      endif
+      if currentVariant.quantity_rule.min > currentVariant.inventory_quantity and check_against_inventory
+        assign quantity_rule_soldout = true
+      endif
+    -%}
+
+    <input
+      type="hidden"
+      name="id"
+      value="{{ currentVariant.id }}"
+      {% unless product.has_only_default_variant %}
+        disabled
+      {% endunless %}
+    >
+    {% comment %}
+    {% if product.selected_or_first_available_variant.available == false
+      or quantity_rule_soldout
+      or product.selected_or_first_available_variant == null
+    %}
+      disabled
+    {% endif %}
+    {% endcomment %}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
+    -%}
+
+    {%- if gift_card_recipient_feature_active -%}
+      {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+    {%- endif -%}
+
+    <form-buy-buttons
+      class="{% if show_quantity %}form-buy-buttons-with-quantity{% else %}form-buy-buttons-without-quantity{% endif %}"
+    >
+      {% if show_quantity %}
+        {{ quantity_picker }}
+      {% endif %} 
+      <button
+        type="submit"
+        name="add"
+        data-button="product-submit-{{ product.id }}"
+        id="product-submit-btn-{{ section_id }}"
+        aria-label="Add product to cart"
+        class="add-to-cart {% if source != 'product-card-layout' %} button button-block buttonHover{% if page == 'collection-tabs' or page == 'featured-collection' or source == 'product-card' %} button-secondary button-sm{% else %} button-medium{% endif %}{% endif %}"
+        data-add-to-cart
+        form="{{ product_form_id }}"
+        {% if product.selected_or_first_available_variant.available == false
+          or quantity_rule_soldout
+          or product.selected_or_first_available_variant == null
+        %}
+          disabled="disabled"
+        {% endif %}
+        {%- if preorder %}
+          data-pre-order="true"
+        {% endif -%}
+      >
+
+      {% if source == 'product-card-layout' %}
+        <span class="product-card-layout-quick-add-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M13.6457 5.72707V8.30029H0.416016V5.72707H13.6457ZM8.33963 0.665039V13.8947H5.76571V0.665039H8.33963Z" fill="currentColor"></path>
+          </svg>
+        </span>
+      {% endif %}
+      {% comment %}
+        {% if page == 'collection-tabs' or page == 'featured-collection' or source == 'product-card' %}
+          <span class="quick-add-icon">
+            {% render 'svg-icons', icon: 'quick-add' %}
+          </span>
+        {% endif %}
+        {% endcomment %}
+        <span data-atc-text data-product-button>
+          {%- if product.selected_or_first_available_variant == null -%}
+            {{ 'products.product.unavailable' | t }}
+          {% elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            {{ 'products.product.sold_out' | t }}
+          {%- elsif preorder -%}
+            {{ 'products.product.preorder' | t }}
+          {%- else -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- endif -%}
+        </span>
+        <span class="adding-loader">
+          </span>
+      </button>
+      {% if block.settings.show_dynamic_checkout %}
+        {{ form | payment_button }}
+      {% endif %}
+    </form-buy-buttons>
+    <script type="application/json" data-name="product-options">
+      {{ product.options_with_values | json }}
+    </script>
+
+    {% comment %}
+      <script type="application/json" data-name="product-inventories">
+        [
+            {% for variant in product.variants %}
+                {
+                    "id": {{- variant.id -}},
+                    "inventory_management": "{{- variant.inventory_management -}}",
+                    "inventory_policy": "{{- variant.inventory_policy -}}",
+                    "inventory_quantity": "{{- variant.inventory_quantity -}}"
+                }{%- unless forloop.last -%},{%- endunless -%}
+            {% endfor %}
+        ]
+      </script>
+    {% endcomment %} 
+  {%- endform -%}
+</product-form>

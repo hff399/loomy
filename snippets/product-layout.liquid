@@ -1,0 +1,87 @@
+{% liquid
+  unless placeholderIndex
+    capture placeholderIndex
+      cycle cycleGroup: '1', '2', '3', '4'
+    endcapture
+  endunless
+  if image_ratio
+    assign image_ratio = image_ratio
+  else
+    assign image_ratio = '100'
+  endif
+
+  if block.id != blank
+    assign product_form_id = 'main-product-form-' | append: block.id | append: '-' | append: product.id
+    assign section_id = block.id | append: '-' | append: product.id
+  else
+    assign product_form_id = 'main-product-form-' | append: section.id | append: '-' | append: product.id
+    assign section_id = section.id | append: '-' | append: product.id
+  endif
+%}
+
+<div class="grid-card-item">
+  <div class="grid-card-image">
+    <div class="media" style="--image-ratio: {{ image_ratio }}%">
+      {% if product.featured_media != blank %}
+        {% comment %} {% render 'lazy-images'
+          , image: product.featured_media.preview_image
+          , sizes: '(max-width: 768px) 100vw, 300px'
+          , loading: 'lazy'
+        %} {% endcomment %}
+        <img
+        src="{{ product.featured_media.preview_image | image_url: width: 300 }}"
+        class="cart-item__image"
+        alt="{{ product.featured_media.preview_image.alt | escape }}"
+        loading="lazy"
+        width="150"
+        height="{{ 150 | divided_by: product.featured_media.preview_image.aspect_ratio | ceil }}"
+      >
+      {% else %}
+        {{ 'product-apparel-' | append: placeholderIndex | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    {% if enable_quick_add %}
+      {% render 'card-purchase-buttons'
+        , product: product
+        , section_id: section_id
+        , currentVariant: product.selected_or_first_available_variant
+        , product_form_id: product_form_id
+        , source: 'product-card-layout'
+      %}
+    {% endif %}
+  </div>
+  <div class="grid-card-content">
+    {% if product != blank %}
+      <a
+        href="{{ product.url }}"
+        class="product-name grid-card-product-name text-sm"
+        aria-label="{{ product.title | escape }}">
+        {{ product.title | escape -}}
+      </a>
+      {% render 'product-card-price', product: product, section: section, currentVariant: product.selected_or_first_available_variant, source: 'horizontal'
+      %}
+      {% if quickview and settings.show_quick_view %}
+        <quick-view
+          id="QuickView-{{ product.id }}"
+          data-product-url="{{ product.url }}"
+          data-product-id="{{ product.id }}">
+          <a
+            href="{{ product.url }}"
+            class="button button-secondary product-quickview-button button-sm buttonHover"
+            aria-label="Quick view of {{ product.title | escape }}"
+            data-handle="{{ product.handle }}"
+            product-quickview-btn>
+            <span>
+              {{ 'products.product.quick_view' | t }}
+            </span>
+          </a>
+        </quick-view>
+      {% endif %}
+    {% else %}
+      <div class="product-name grid-card-product-name text-sm">{{ 'Example Title' }}</div>
+      <div class="product-pricing" id="price-title-wrapper-{{section.id}}-{{product.id}}">
+        <span class="product-actual-price font-bold">{{ 1999 | money_with_currency }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>

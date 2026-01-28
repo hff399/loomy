@@ -1,0 +1,64 @@
+{% if block.settings.description != blank %}
+    <div class="section-description{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+    {% if settings.enable_heading_animation %}
+        <animate-element data-animate="fade-up-large" data-animate-delay="100">
+        {% endif %}  
+        <p class="{{ section.settings.description_size }}">
+            {{ block.settings.description | newline_to_br }}
+        </p>
+    {% if settings.enable_heading_animation %}
+            </animate-element>
+        {% endif %}
+    </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "t:blocks.description.name",
+    "tag": null,
+    "settings": [
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:settings_schema.global.settings.description.label",
+          "default": "Add short description for this section."
+        },
+        {
+          "type": "select",
+          "id": "description_size",
+          "label": "t:sections.all.description_size.label",
+          "default": "text-sm",
+          "options": [
+            {
+              "label": "t:sections.all.description_size.text-xsmall.label",
+              "value": "text-xs"
+            },
+            {
+              "label": "t:sections.all.description_size.text-small.label",
+              "value": "text-sm"
+            },
+            {
+              "label": "t:sections.all.description_size.text.label",
+              "value": "text"
+            },
+            {
+              "label": "t:sections.all.description_size.text-medium.label",
+              "value": "text-md"
+            },
+            {
+              "label": "t:sections.all.description_size.text-large.label",
+              "value": "text-lg"
+            },
+            {
+              "label": "t:sections.all.description_size.text-xlarge.label",
+              "value": "text-xl"
+            }
+          ]
+        }
+    ],
+     "presets": [
+        {
+          "name": "t:blocks.description.presets.name"
+        }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,81 @@
+{% liquid
+  assign show_date = section.settings.show_date
+  assign show_excerpt = section.settings.show_excerpt
+%}
+
+{% if article and article != empty %}
+  <div class="featured-blog-item" id="featuredBlogItem-{{ block.id }}" tabindex="0">
+    <div class="featured-blog-image pos-relative">
+      <div
+        class="media"
+        style="--image-ratio:100%;clip-path: url(#clip-path-{{ image_shape }}-{{ section.id }});-webkit-clip-path: url(#clip-path-{{ image_shape }}-{{ section.id }});"
+      >
+        {% if article.image %}
+          {% render 'lazy-images', image: article.image %}
+        {% else %}
+          {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+
+      {% if show_border %}
+        <svg class="media__svg pos-absolute" viewBox="0 0 200 250">
+          <use style="fill: none" href="#outline-{{ image_shape }}-{{ section.id }}"></use>
+        </svg>
+      {% endif %}
+    </div>
+    <div class="featured-blog-content">
+      {% if show_date %}
+        <div class="blog-info">
+          <span class="blog-data">{{ article.published_at | date: '%B %d, %Y' }}</span>
+        </div>
+      {% endif %}
+      <h5 class="blog-title {{ section.settings.blog_heading_size }}">{{ article.title }}</h5>
+      {% if show_excerpt and article.excerpt_or_content != blank %}
+        <p class="blog-description">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+      {% endif %}
+    </div>
+    <div class="featured-blog-arrow-btn">
+      <a href="{{ article.url }}" class="button button-icon button-regular" aria-label="Article page link">
+        <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+          <path d="M0.146659 11.3361L1.12455 12.723L12.5163 4.69029L11.5628 10.2147L13.2392 10.5051L14.6861 2.12213L6.30395 0.669769L6.01458 2.34636L11.5384 3.30346L0.146659 11.3361Z" fill="currentColor"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+{% else %}
+  <div class="featured-blog-item" id="featuredBlogItem-{{ block.id }}" tabindex="0">
+    <div class="featured-blog-image pos-relative">
+      <div
+        class="media"
+        style="--image-ratio:100%;clip-path: url(#clip-path-{{ image_shape }}-{{ section.id }});-webkit-clip-path: url(#clip-path-{{ image_shape }}-{{ section.id }});"
+      >
+        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+      {% if show_border %}
+        <svg class="media__svg pos-absolute" viewBox="0 0 200 250">
+          <use style="fill: none" href="#outline-{{ image_shape }}-{{ section.id }}"></use>
+        </svg>
+      {% endif %}
+    </div>
+    <div class="featured-blog-content">
+      {% if show_date %}
+        <div class="blog-info">
+          <span class="blog-data">{{ 'onboarding.blog_date' | t }}</span>
+        </div>
+      {% endif %}
+      <h5 class="blog-title h5">{{ 'onboarding.blog_title' | t }}</h5>
+      {% if show_excerpt %}
+        <p class="blog-description">
+          {{ 'onboarding.blog_desc' | t }}
+        </p>
+      {% endif %}
+    </div>
+    <div class="featured-blog-arrow-btn">
+      <div class="button button-icon button-regular">
+        <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+          <path d="M0.146659 11.3361L1.12455 12.723L12.5163 4.69029L11.5628 10.2147L13.2392 10.5051L14.6861 2.12213L6.30395 0.669769L6.01458 2.34636L11.5384 3.30346L0.146659 11.3361Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+{% endif %}

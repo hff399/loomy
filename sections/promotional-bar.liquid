@@ -1,0 +1,389 @@
+{% if section.index <= 2 %}
+  {{ 'promotional-bar.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'promotional-bar.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign launch_month = section.settings.months
+  assign launch_date = section.settings.day
+  assign launch_year = section.settings.year
+  assign launch_hour = section.settings.hours
+  assign launch_minute = section.settings.minutes
+
+  if launch_minute <= 9
+    assign launch_minute = 0 | append: launch_minute
+  endif
+  if launch_hour <= 9
+    assign launch_hour = 0 | append: launch_hour
+  endif
+  if launch_date <= 9
+    assign launch_date = 0 | append: launch_date
+  endif
+  assign combined_datetime = launch_month | append: '/' | append: launch_date | append: '/' | append: launch_year
+  assign combined_datetimer = combined_datetime | date: '%s'
+
+  assign now = 'now' | date: '%s'
+  if now > combined_datetimer
+    assign hide_countdown = false
+  else
+    assign hide_countdown = true
+  endif
+%}
+
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative overflow-hidden">
+  <div class="no-container">
+    <div class="promotional-bar-content-holder pos-relative overflow-hidden d-grid align-items-center">
+      {% if section.settings.background_img != blank or section.settings.video != blank %}
+        <div class="background-overlay-image media-overlay overlay-style-{{ section.settings.overlay_style }} blur-background-{{ section.settings.blur_background_image }}">
+          {% if section.settings.video != blank %}
+            <div class="promotional-background-video">
+              {{
+                section.settings.video
+                | video_tag:
+                  controls: false,
+                  playsinline: true,
+                  muted: true,
+                  autoplay: true,
+                  loop: true,
+                  preload: 'none'
+              }}
+            </div>
+          {% else %}
+            <div class="promotional-desktop-background">
+              {% render 'lazy-images', image: section.settings.background_img %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="promotional-bar-content-wrapper">
+        {% if section.settings.enable_countdown
+          and section.settings.months != blank
+          and section.settings.day != blank
+          and section.settings.year != blank
+          and section.settings.hours != blank
+          and section.settings.minutes != blank
+        %}
+          <countdown-timer data-source="promotional-bar">
+            <div
+              class="countdown d-flex justify-content-center align-items-center hide-countdown"
+              data-countdown-input="{{ launch_month }}/{{ launch_date }}/{{ launch_year }} {{ launch_hour }}:{{ launch_minute }}:00"
+            >
+              {% if section.settings.countdown_text != blank %}
+                <p class="countdown-text text-xs">{{ section.settings.countdown_text }}</p>
+              {% endif %}
+              <div class="countdown-units d-grid justify-content-center align-items-center">
+                <div class="countdown-box countdown-days pos-relative" data-time-wraper="">
+                  <div class="countdown-value">
+                    <span class="countdown-unit-value heading-font text d-block" data-days="days">0</span>
+                  </div>
+                </div>
+                <div class="countdown-box countdown-hours pos-relative" data-time-wraper="">
+                  <div class="countdown-value">
+                    <span class="countdown-unit-value heading-font text d-block" data-hours="hours">0</span>
+                  </div>
+                </div>
+                <div class="countdown-box countdown-minutes pos-relative" data-time-wraper="">
+                  <div class="countdown-value">
+                    <span class="countdown-unit-value heading-font text d-block" data-minutes="minutes">0</span>
+                  </div>
+                </div>
+                <div class="countdown-box countdown-seconds pos-relative" data-time-wraper="">
+                  <div class="countdown-value">
+                    <span class="countdown-unit-value heading-font text d-block" data-seconds="seconds">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="countdown-expired hidden countdown-box pos-relative" data-expire-message>
+              <p class="countdown-expired-text body-font text-xs d-block text-center">
+                {% if section.settings.time_expire != blank %}
+                  {{ section.settings.time_expire }}
+                {% else %}
+                  {{ 'sections.countdown.time_expire' | t }}
+                {% endif %}
+              </p>
+            </div>
+          </countdown-timer>
+        {% elsif section.settings.countdown_text != blank %}
+          <p class="countdown-text body-font text-xs countdown-offer-text text-center">
+            {{ section.settings.countdown_text }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_desktop }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+      --border-radius: 0px;
+      --promotional-bar-height: {{ section.settings.desktop_bar_height }};
+    }
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_mobile }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        --promotional-bar-height: {{ section.settings.mobile_bar_height }};
+      }
+    }
+    {% if section.settings.section_visibility == 'large' %}
+      @media(max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+    @media(min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        display: none !important;
+      }
+    }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.promotional-bar.name",
+  "tag": "section",
+  "class": "promotional-bar-section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.Overlay"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:sections.all.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:sections.all.section_visibility.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:sections.all.section_visibility.small.label",
+          "value": "small"
+        },
+        {
+          "label": "t:sections.all.section_visibility.large.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "quaternary"
+    },
+    {
+      "type": "select",
+      "id": "desktop_bar_height",
+      "label": "t:sections.promotional-bar.settings.desktop_bar_height.label",
+      "default": "45px",
+      "options": [
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.small.label",
+          "value": "45px"
+        },
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.medium.label",
+          "value": "75px"
+        },
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.large.label",
+          "value": "100px"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_bar_height",
+      "label": "t:sections.promotional-bar.settings.mobile_bar_height.label",
+      "default": "30px",
+      "options": [
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.small.label",
+          "value": "30px"
+        },
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.medium.label",
+          "value": "50px"
+        },
+        {
+          "label": "t:sections.promotional-bar.settings.desktop_bar_height.large.label",
+          "value": "70px"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.promotional-bar.settings.header.background_media"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_img",
+      "label": "t:sections.promotional-bar.settings.desktop_image.label"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.promotional-bar.settings.video.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.promotional-bar.settings.header.countdown_settings"
+    },
+    {
+      "type": "text",
+      "id": "countdown_text",
+      "label": "t:sections.promotional-bar.settings.countdown_text.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_countdown",
+      "label": "t:sections.promotional-bar.settings.enable_countdown.label",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "year",
+      "label": "t:sections.countdown.settings.year.label",
+      "default": 2025
+    },
+    {
+      "type": "select",
+      "id": "months",
+      "label": "t:sections.countdown.settings.months.label",
+      "options": [
+        {
+          "value": "01",
+          "label": "t:sections.countdown.settings.months.01.label"
+        },
+        {
+          "value": "02",
+          "label": "t:sections.countdown.settings.months.02.label"
+        },
+        {
+          "value": "03",
+          "label": "t:sections.countdown.settings.months.03.label"
+        },
+        {
+          "value": "04",
+          "label": "t:sections.countdown.settings.months.04.label"
+        },
+        {
+          "value": "05",
+          "label": "t:sections.countdown.settings.months.05.label"
+        },
+        {
+          "value": "06",
+          "label": "t:sections.countdown.settings.months.06.label"
+        },
+        {
+          "value": "07",
+          "label": "t:sections.countdown.settings.months.07.label"
+        },
+        {
+          "value": "08",
+          "label": "t:sections.countdown.settings.months.08.label"
+        },
+        {
+          "value": "09",
+          "label": "t:sections.countdown.settings.months.09.label"
+        },
+        {
+          "value": "10",
+          "label": "t:sections.countdown.settings.months.10.label"
+        },
+        {
+          "value": "11",
+          "label": "t:sections.countdown.settings.months.11.label"
+        },
+        {
+          "value": "12",
+          "label": "t:sections.countdown.settings.months.12.label"
+        }
+      ],
+      "default": "10"
+    },
+    {
+      "type": "range",
+      "id": "day",
+      "label": "t:sections.countdown.settings.day.label",
+      "min": 1,
+      "max": 31,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "hours",
+      "label": "t:sections.countdown.settings.hours.label",
+      "min": 0,
+      "max": 23,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "minutes",
+      "label": "t:sections.countdown.settings.minutes.label",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "textarea",
+      "id": "time_expire",
+      "label": "t:sections.countdown.settings.time_expire_text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing.section_spacing_heading"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:sections.all.spacing.top_space_desktop",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:sections.all.spacing.bottom_space_desktop",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:sections.all.spacing.top_space_mobile",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:sections.all.spacing.bottom_space_mobile",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.promotional-bar.presets.name"
+    }
+  ]
+}
+{% endschema %}

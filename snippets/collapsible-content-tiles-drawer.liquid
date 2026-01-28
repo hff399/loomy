@@ -1,0 +1,122 @@
+<div class="hidden" product-collapsible-tiles-content>
+    <template>
+         <product-collapsible-tiles-drawer
+      class="drawer-wrapper product-collapsible-tiles-side-drawer scheme-{{ settings.popup_color_scheme }}"
+      id="product-collapsible-tiles-{{ section.id }}"
+      data-drawer="product-collapsible-tiles-drawer"
+      data-section-id="{{ section.id }}"
+      product-collapsible-tiles-drawer-section
+      data-id="{{ section.id }}"
+    >
+      <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+        <div class="data-moving-cursor" data-moving-cursor>
+          <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+            <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="drawer-container">
+        <div class="drawer-inner">
+            <div class="drawer-head">
+                <div class="drawer-head-content border-bottom">
+                <h4 class="heading-font h5"></h4>
+                <close-drawer class="drawer-close-main" data-drawer-close>
+                    <button class="drawer-close-btn close-button" aria-label="Close drawer" aria-hidden="true">
+                    {% render 'svg-icons', icon: 'close' %}
+                    {% render 'svg-icons', icon: 'close-bg' %}
+                    </button>
+                </close-drawer>
+                </div>
+            </div>
+             <div class="drawer-body">
+                <div class="drawer-body-main">
+                    <div class="product-collapsible-tiles-tabs-wrapper" data-tabs-parent>
+                        <div class="product-collapsible-tiles-tabs-header d-flex justify-content-center">
+                            <tabs-header class="width-100">
+                                <ul class="product-collapsible-tiles-tabs-list d-flex">
+                                {% assign count = 1 %}
+                                {% for block in section.blocks %}
+                                    {% if block.type == 'collapsible_content' %}
+                                        {%  liquid 
+                                          assign check_content = false
+                                          if block.settings.heading != blank and block.settings.description != blank
+                                            assign check_content = true
+                                          elsif block.settings.heading != blank and block.settings.collapsible_page_content != blank
+                                            assign check_content = true
+                                          endif
+                                        %}
+                                    {% if check_content %}
+                                        <li
+                                        class="product-collapsible-tiles-tabs-list-item cursor-pointer {% if count == 1 %} active{% endif %}"
+                                        data-tab-id="product-collapsible-tiles-tab-{{ block.id }}"
+                                        data-index="{{ count }}"
+                                        tabindex="0"
+                                        >
+                                        {% if block.settings.collapsible_content_icon != blank %}
+                                            <div class="collapsible-tiles-card-icon">
+                                                {% liquid
+                                                assign height = block.settings.collapsible_content_icon.width | divided_by: block.settings.collapsible_content_icon.aspect_ratio | round
+                                                assign sizes = '100vw'
+                                                assign widths = '375, 550, 750, 1100, 1500'
+                                                echo block.settings.collapsible_content_icon | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: 'high', loading: 'eager'
+                                                %}
+                                            </div>
+                                        {% endif %}
+                                        <div class="collapsible-tiles-card-content text-sm">
+                                            {{ block.settings.heading }}
+                                        </div>
+                                        </li>
+                                        {% assign count = count | plus: 1 %}
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </tabs-header>
+                        </div>
+                        <div class="product-collapsible-tiles-block-content">
+                               {% assign newcount = 1 %}
+                                {% for block in section.blocks %}
+                                    {% if block.type == 'collapsible_content' %}
+                                        {%  liquid 
+                                          assign check_content = false
+                                          if block.settings.heading != blank and block.settings.description != blank
+                                            assign check_content = true
+                                          elsif block.settings.heading != blank and block.settings.collapsible_page_content != blank
+                                            assign check_content = true
+                                          endif
+                                        %}
+                                        {% if check_content %}
+                                            <div
+                                                class="text-sm rte{% if newcount > 1 %} hidden{% endif %}"
+                                                data-content-id="product-collapsible-tiles-tab-{{ block.id }}"
+                                                >
+                                                {% if block.settings.description != blank  %}
+                                                    {{
+                                                        block.settings.description
+                                                        | replace: '<table', '<div class="table-responsive"><table'
+                                                        | replace: '</table>', '</table></div>'
+                                                    }}
+                                                {% endif %}
+                                                {% if block.settings.collapsible_page_content != blank %}
+                                                    {% assign page = pages[block.settings.collapsible_page_content] %}
+                                                        {% if page.content != blank %}
+                                                            {{ page.content
+                                                                | replace: '<table', '<div class="table-responsive"><table'
+                                                                | replace: '</table>', '</table></div>'
+                                                            }}
+                                                        {% endif %}
+                                            {% endif %}
+                                                </div>
+                                                {% assign newcount = newcount | plus: 1 %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                        </div>
+                    </div>
+                 </div>
+                </div>
+            </div>
+        </div>
+    </product-collapsible-tiles-drawer> 
+    </template>
+</div>

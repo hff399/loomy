@@ -1,0 +1,49 @@
+{%- if settings.enable_shipping and settings.shipping_rate != blank and cart.item_count > 0 -%}
+  {% liquid
+    assign status = false
+    assign shippingRate = settings.shipping_rate | times: 100
+    assign cartTotal = cart.total_price
+    assign shippingPrice = shippingRate | minus: cartTotal
+    if shippingPrice > 0
+      assign sprice = shippingPrice
+      assign shippingPrice = shippingPrice | abs | money
+      assign shippingMessage = settings.shipping_message | replace: '[amount]', shippingPrice
+    else
+      assign shippingMessage = settings.free_shipping_text
+      assign status = true
+    endif
+    assign shippingPercentage = cartTotal | times: 100 | divided_by: shippingRate
+    if shippingPercentage > 10 and shippingPercentage < 100
+      assign shippingPercentage = shippingPercentage | abs
+    elsif shippingPercentage > 100
+      assign shippingPercentage = 100
+    endif
+  %}
+  <div class="drawer-body-head">
+    {% if status %}
+      <span>{{ shippingMessage }}</span>
+    {% else %}
+      <span>{{ shippingMessage }}</span>
+      <span class="cart-progress">
+        {% if settings.shipping_bar_style != 'none' %}
+          <div class="cart-progress-animation-style" style="--progress-width: {{ shippingPercentage }}%">
+            {% if settings.shipping_bar_style == 'duck' %}
+              {% render 'duck-svg' %}
+            {% else %}
+              {% render 'truck-svg' %}
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="progress-bar">
+          <div class="progress" style="width: {{ shippingPercentage }}%"></div>
+        </div>
+      {% comment %} 
+        <svg width="530" height="5" viewBox="0 0 548 5" fill="none"> 
+        <rect width="530" height="5" rx="2.5" fill="currentColor"></rect> 
+        <rect width="{{ shippingPercentage }}%" height="5" rx="2.5" fill="#089260"></rect>
+        </svg> 
+      {% endcomment %}
+      </span>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,190 @@
+.hamburger-menu-submenu {
+    background: var(--body-background);
+    z-index: 1;
+    max-height: calc(100vh - var(--dynamic-header-height, 75px) - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transform: translateX(120%);
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    transition: var(--smooth-animation);
+}
+
+.hamburger-menu-content-wrapper .active>.hamburger-menu-submenu {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: all;
+}
+
+.hamburger-menu-submenu>.hamburger-menu-submenu-list {
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px 5px 5px 0;
+}
+
+.hamburger-menu-item .hamburger-menu-link {
+    transform: translateY(100%);
+    display: flex;
+    opacity: 0;
+    transition: .9s ease all;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    color: var(--text-color);
+}
+
+.open .hamburger-menu-item .hamburger-menu-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hamburger-menu-link span {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    background: var(--text-color-extra-light);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    color: var(--text-color);
+    margin-left: auto;
+    transition: var(--smooth-animation);
+}
+
+.hamburger-menu-list>.hamburger-menu-item:not(:last-child)>.hamburger-menu-link,
+.hamburger-menu-submenu .hamburger-menu-submenu-list>.hamburger-menu-item:not(:last-child)>.hamburger-menu-link,
+.hamburger-menu-submenu-list.inner-submenu-list>.hamburger-menu-item:not(:last-child)>.hamburger-menu-link {
+    border-bottom: 1px dashed rgba(var(--border-color));
+}
+
+/* 
+.hamburger-menu-item.active>.hamburger-menu-link>span {
+    transform: rotate(90deg);
+} */
+
+
+
+
+.hamburger-menu-content-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    position: relative;
+    height: 100%;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.hamburger-menu-content-wrapper:has(.hamburger-category-menus) {
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/* submenu images */
+.nav-megamenu-image-wrapper {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.mega-menu-hamburger-images-wrapper .header-mega-menu-images-item {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.grandchildlink-child-wrapper .hamburger-menu-submenu-list.inner-submenu-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .35s;
+    padding-left: 20px;
+    visibility: hidden;
+}
+
+.grandchildlink-child-wrapper.active .hamburger-menu-submenu-list.inner-submenu-list {
+    max-height: 30rem;
+    visibility: visible;
+}
+
+
+.grandchildlink-child-wrapper .hamburger-menu-link.active span {
+    transform: rotate(90deg);
+}
+
+.hamburger-menu-submenu .hamburger-menu-back {
+    max-width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--button-background);
+    color: var(--button-text-color);
+    border-radius: var(--card-radius);
+    padding: 2px 10px;
+    transition: var(--smooth-animation);
+    margin: 8px;
+}
+
+.hamburger-menu-submenu:has(.megamenu-menu-wrapper.active) {
+    overflow: hidden;
+}
+
+.mega-menu-hamburger-images-wrapper .header-mega-menu-images-item {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.mega-menu-hamburger-images-wrapper .header-mega-menu-images-item-inner {
+    margin-top: 15px;
+    display: block;
+}
+
+@media (min-width: 1025px) {
+    .hamburger-menu-submenu .hamburger-menu-back {
+        opacity: .8;
+    }
+
+    .hamburger-menu-list:hover .hamburger-menu-item {
+        opacity: .5;
+        transition: .3s ease opacity;
+    }
+
+    .hamburger-menu-list .hamburger-menu-item:hover,
+    .hamburger-menu-submenu .hamburger-menu-back:hover {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .mobile-menu-side-drawer button.drawer-close-btn {
+        position: relative;
+        transform: unset;
+        top: 0;
+        right: 0;
+    }
+
+    .hamburger-menu-content-wrapper {
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .hamburger-menu-submenu .hamburger-menu-back {
+        margin: 0;
+    }
+
+    .hamburger-menu-item .hamburger-menu-link {
+        padding: 12px 0;
+    }
+
+    .hamburger-menu-submenu {
+        max-height: 100vh;
+    }
+
+    .mega-menu-hamburger-images-wrapper .header-mega-menu-images-item {
+        display: block
+    }
+}

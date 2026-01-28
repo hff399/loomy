@@ -1,0 +1,863 @@
+{% if section.index <= 2 %}
+  {{ 'contact-form.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'contact-form.css' | asset_url | stylesheet_tag }}
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+
+
+  assign show_content = false
+
+  if section.settings.heading != blank or section.settings.description != blank 
+   assign show_content = true 
+  elsif section.settings.phone_number != blank and section.settings.phone_number_label != blank
+   assign show_content = true
+  elsif section.settings.email != blank and section.settings.email_label != blank
+   assign show_content = true
+  elsif section.settings.address != blank and section.settings.address_label != blank
+   assign show_content = true  
+  elsif section.settings.content_image != blank
+   assign show_content = true   
+  endif
+
+%}
+{%- capture corner_style -%}
+  {% if section.settings.corner_style == 'top' %}
+      round-section round-top
+      {% elsif section.settings.corner_style == 'bottom' %}
+      round-section round-bottom
+      {% elsif section.settings.corner_style == 'both' %}  
+      round-section round-bottom round-top
+  {% endif %}
+  {%- endcapture -%}
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing {{ corner_style }} pos-relative section-{{ section.settings.section_background }}">
+  <div class="{{ containerClass }}">
+    <div class="contact-wrapper">
+      <div class="contact-row{% unless show_content %} content-form-without-content{% endunless %}">
+        <div class="contact-col contact-form-col">
+          <div class="contact-form-col-inner">
+            {% if section.settings.form_heading != blank or section.settings.form_description != blank %}
+              <div class="column-header">
+                {% if section.settings.form_heading != blank %}
+                  <{{ section.settings.form_seo_heading }} class="{{ section.settings.form_heading_font }} {{ section.settings.form_heading_size }}">
+                    {%- capture markersPrefix -%}
+                      <span class="markers-text {{ section.settings.form_markers_font }}">
+                    {%- endcapture -%} 
+                    {%- capture markersSuffix -%}
+                      </span>
+                    {%- endcapture -%}
+                    {{- section.settings.form_heading | replace: '++', '<br/>' | replace: "[", markersPrefix | replace: "]", markersSuffix  -}}
+                    </{{ section.settings.form_seo_heading }}>
+                  {% endif %}
+                  {% if section.settings.form_description != blank %}
+                    <p class="{{ section.settings.form_description_size }}">
+                      {{ section.settings.form_description | newline_to_br }}
+                    </p>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {%- form 'contact'
+                , id: 'ContactForm'
+                , class: 'contact-form'
+                , data-shopify-captcha: 'true' -%}
+                <div class="form-group">
+                  <label class="heading-font font-normal" for="ContactName-{{ section.id }}">
+                    {{- 'templates.contact.form.name' | t -}}
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control input-md"
+                    name="contact[name]"
+                    id="ContactName-{{ section.id }}"
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    autocomplete="name"
+                    autocapitalize="off"
+                    placeholder="{{ 'templates.contact.form.name' | t }}"
+                    required="">
+                </div>
+                <div class="form-group">
+                  <label class="heading-font font-normal" for="ContactEmail-{{ section.id }}">
+                    {{- 'templates.contact.form.email' | t -}}
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control input-md"
+                    name="contact[email]"
+                    id="ContactEmail-{{ section.id }}"
+                    autocomplete="email"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    spellcheck="false"
+                    {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    placeholder="email@example.com"
+                    pattern="^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$"
+                    required="">
+                </div>
+                <div class="form-group">
+                  <label class="heading-font font-normal" for="ContactPhone-{{ section.id }}">
+                    {{- 'templates.contact.form.phone' | t -}}
+                  </label>
+                  <input
+                    type="tel"
+                    class="form-control input-md"
+                    name="contact[phone]"
+                    id="ContactPhone-{{ section.id }}"
+                    autocomplete="phone"
+                    autocapitalize="off"
+                    value=""
+                    aria-required="true"
+                    spellcheck="false"
+                    placeholder="{{ 'templates.contact.form.phone' | t }}"
+                    pattern="[0-9\-]*">
+ 
+                </div>
+                <div class="form-group">
+                  <label class="heading-font font-normal" for="ContactForm-body-{{ section.id }}">
+                    {{- 'templates.contact.form.comment' | t -}}
+                  </label>
+                  <textarea
+                    id="ContactForm-body-{{ section.id }}"
+                    name="contact[Message]"
+                    rows="8"
+                    placeholder="{{- 'templates.contact.form.comment' | t -}}"
+                    class="textarea-contactform"
+                    required=""></textarea>
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <div class="form-group">
+                    <p
+                      class="form-message success"
+                      id="form-message__success-{{ section.id }}"
+                      tabindex="-1"
+                      role="status"
+                      autofocus>
+                      {{- 'templates.contact.form.post_success' | t -}}
+                    </p>
+                  </div>
+                {%- endif -%}
+                {%- if form.errors -%}
+                  <div class="form-group">
+                    <p
+                      class="form-message error"
+                      id="form-message__error-{{ section.id }}"
+                      autofocus>
+                      {{ form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email }}
+                    </p>
+                  </div>
+                {%- endif -%}
+                <button
+                  type="submit"
+                  name="commit"
+                  id="send-{{ section.id }}"
+                  class="button button-sm"
+                  aria-label="{{ 'templates.contact.form.send' | t }}">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
+                <div class="contact-form-spam-detection">
+                  {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
+                </div>
+              {%- endform -%}
+            </div>
+        </div>
+          {% if show_content %}
+            <div class="contact-col contact-content-col">
+              <div class="contact-content-col-inner d-flex flex-column">
+                {% if section.settings.heading != blank or section.settings.description != blank %}
+                  <div class="column-header">
+                    {% if section.settings.heading != blank %}
+                      <{{ section.settings.seo_heading }} class="{{ section.settings.heading_font }} {{ section.settings.heading_size }}">
+                      {%- capture markersPrefix -%}
+                        <span class="markers-text {{ section.settings.markers_font }}">
+                      {%- endcapture -%} 
+                      {%- capture markersSuffix -%}
+                        </span>
+                      {%- endcapture -%}
+                
+                        {{- section.settings.heading | replace: '++', '<br/>'  | replace: "[", markersPrefix | replace: "]", markersSuffix  -}}
+                        </{{ section.settings.seo_heading }}>
+                      {% endif %}
+                      {% if section.settings.description != blank %}
+                        <p class="{{ section.settings.description_size }}">
+                          {{ section.settings.description | newline_to_br }}
+                        </p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  <div class="icon-with-text d-grid grid-col-2">
+                    {% if section.settings.phone_number != blank and section.settings.phone_number_label != blank %}
+                      <div class="icon-with-text-item d-flex icon-left align-items-center">
+                        <div class="icon-with-text-icon icon-circle">
+                          {% render 'svg-icons'
+                            , icon: 'phone' %}
+                        </div>
+                        <div class="icon-with-text-text">
+                          <h6 class="heading-font text-md">{{ section.settings.phone_number_label }}</h6>
+                          <p class="text-sm">
+                            <a href="tel:{{ section.settings.phone_number }}" aria-label="Phone number">
+                              {{- section.settings.phone_number -}}
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.email != blank and section.settings.email_label != blank %}
+                      <div class="icon-with-text-item d-flex icon-left align-items-center">
+                        <div class="icon-with-text-icon icon-circle">
+                          {% render 'svg-icons'
+                            , icon: 'contact-email' %}
+                        </div>
+                        <div class="icon-with-text-text">
+                          <h6 class="heading-font text-md">{{ section.settings.email_label }}</h6>
+                          <p class="text-sm">
+                            <a href="mailto:{{ section.settings.email }}" aria-label="Mail to">
+                              {{- section.settings.email -}}
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.address != blank and section.settings.address_label != blank %}
+                      <div class="icon-with-text-item d-flex icon-left align-items-center">
+                        <div class="icon-with-text-icon icon-circle">
+                          {% render 'svg-icons'
+                            , icon: 'location' %}
+                        </div>
+                        <div class="icon-with-text-text">
+                          <h6 class="heading-font text-md">{{ section.settings.address_label }}</h6>
+                          <p class="text-sm">{{ section.settings.address }}</p>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.content_image != blank %}
+                      <div class="content-image-contact-form">
+                        {%  liquid 
+                          assign image_size = section.settings.image_ratio
+                          if image_size == 'landscape'
+                            assign image_ratio = '75'
+                          elsif image_size == 'square'
+                            assign image_ratio = '100'
+                          elsif image_size == 'portrait'
+                            assign image_ratio = '130'
+                          elsif image_size == 'auto'
+                            if section.settings.content_image != blank
+                              assign image_ratio = 1 | divided_by: section.settings.content_image.aspect_ratio | times: 100
+                            else
+                              assign image_ratio = '100'
+                            endif
+                          endif
+                        %}
+                        <div class="media" style="--image-ratio: {{ image_ratio }}%">
+                          {% render 'lazy-images'
+                            , image: section.settings.content_image %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <style> 
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_desktop }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+        --round-section-radius: {{ section.settings.corner_radius }}px;
+      }
+      @media only screen and (max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          --top-spacing: {{ section.settings.top_space_mobile }}px;
+          --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        }
+      }
+      {% if section.settings.section_visibility == 'large' %}
+        @media(max-width: 767px) {
+          #shopify-section-{{ section.id }} {
+            display: none !important;
+          }
+        }
+      {% elsif section.settings.section_visibility == 'small' %}
+      @media(min-width: 768px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% endif %}
+
+    </style>
+{% schema %}
+  {
+    "name": "t:sections.contact-form.name",
+    "tag": "section",
+    "class": "contact-form-section",
+    "disabled_on": {
+      "groups": ["header", "footer", "custom.Overlay"]
+    },
+    "settings": [
+      {
+        "type": "select",
+        "id": "section_visibility",
+        "label": "t:sections.all.section_visibility.label",
+        "default": "always",
+        "options": [
+          {
+            "label": "t:sections.all.section_visibility.always.label",
+            "value": "always"
+          },
+          {
+            "label": "t:sections.all.section_visibility.small.label",
+            "value": "small"
+          },
+          {
+            "label": "t:sections.all.section_visibility.large.label",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "primary"
+      },
+      {
+        "type": "select",
+        "id": "section_background",
+        "label": "t:sections.all.section_background.label",
+        "default": "solid",
+        "options": [
+          {
+            "label": "t:sections.all.section_background.solid.label",
+            "value": "solid"
+          },
+          {
+            "label": "t:sections.all.section_background.gradient.label",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "section_container_width",
+        "label": "t:sections.all.section_container_width.label",
+        "default": "global",
+        "options": [
+          {
+            "label": "t:sections.all.section_container_width.global.label",
+            "value": "global"
+          },
+          {
+            "label": "t:sections.all.section_container_width.container-sm.label",
+            "value": "container-sm"
+          },
+          {
+              "label": "t:sections.all.section_container_width.container.label",
+              "value": "container-md"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-md.label",
+              "value": "container"
+            },
+          {
+            "label": "t:sections.all.section_container_width.container-fullwidth.label",
+            "value": "container-fullwidth"
+          },
+          {
+            "label": "t:sections.all.section_container_width.no-container.label",
+            "value": "no-container"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "corner_style",
+        "default": "none",
+        "label": "t:sections.all.section_corner_style.label",
+        "options": [
+          {
+            "value": "top",
+            "label": "t:sections.all.section_corner_style.top.label"
+          },
+          {
+            "value": "bottom",
+            "label": "t:sections.all.section_corner_style.bottom.label"
+          },
+          {
+            "value": "both",
+            "label": "t:sections.all.section_corner_style.both.label"
+          },
+          {
+            "value": "none",
+            "label": "t:sections.all.section_corner_style.none.label"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "corner_radius",
+        "label": "t:settings_schema.global.settings.corner_radius.label",
+        "default": 70,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.form"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "form_heading",
+        "label": "t:settings_schema.global.settings.heading.label",
+        "default": "Contact form",
+        "info": "t:settings_schema.global.settings.heading.info"
+      },
+      {
+        "type": "select",
+        "id": "form_heading_size",
+        "label": "t:sections.all.heading_size.label",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.h1.label"
+          },
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.h2.label"
+          },
+          {
+            "value": "h3",
+            "label": "t:sections.all.heading_size.h3.label"
+          },
+          {
+            "value": "h4",
+            "label": "t:sections.all.heading_size.h4.label"
+          },
+          {
+            "value": "h5",
+            "label": "t:sections.all.heading_size.h5.label"
+          },
+          {
+            "value": "h6",
+            "label": "t:sections.all.heading_size.h6.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "form_seo_heading",
+        "label": "t:sections.all.seo_heading.label",
+        "info": "t:sections.all.seo_heading.info",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "div",
+            "label": "div"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          },
+          {
+            "value": "p",
+            "label": "p"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "form_heading_font",
+        "default": "heading-font",
+        "label": "t:sections.all.heading_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.heading_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.heading_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.heading_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "form_markers_font",
+        "default": "accent-font",
+        "label": "t:sections.all.markers_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.markers_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.markers_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.markers_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "form_description",
+        "label": "t:settings_schema.global.settings.description.label"
+      },
+      {
+        "type": "select",
+        "id": "form_description_size",
+        "label": "t:sections.all.description_size.label",
+        "default": "text",
+        "options": [
+          {
+            "label": "t:sections.all.description_size.text-xsmall.label",
+            "value": "text-xs"
+          },
+          {
+            "label": "t:sections.all.description_size.text-small.label",
+            "value": "text-sm"
+          },
+          {
+            "label": "t:sections.all.description_size.text.label",
+            "value": "text"
+          },
+          {
+            "label": "t:sections.all.description_size.text-medium.label",
+            "value": "text-md"
+          },
+          {
+            "label": "t:sections.all.description_size.text-large.label",
+            "value": "text-lg"
+          },
+          {
+            "label": "t:sections.all.description_size.text-xlarge.label",
+            "value": "text-xl"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "t:sections.all.headers.heading",
+        "info": "t:settings_schema.global.settings.heading.info"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "t:sections.all.heading_size.label",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.h1.label"
+          },
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.h2.label"
+          },
+          {
+            "value": "h3",
+            "label": "t:sections.all.heading_size.h3.label"
+          },
+          {
+            "value": "h4",
+            "label": "t:sections.all.heading_size.h4.label"
+          },
+          {
+            "value": "h5",
+            "label": "t:sections.all.heading_size.h5.label"
+          },
+          {
+            "value": "h6",
+            "label": "t:sections.all.heading_size.h6.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "seo_heading",
+        "label": "t:sections.all.seo_heading.label",
+        "info": "t:sections.all.seo_heading.info",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "div",
+            "label": "div"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          },
+          {
+            "value": "p",
+            "label": "p"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "heading_font",
+        "default": "heading-font",
+        "label": "t:sections.all.heading_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.heading_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.heading_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.heading_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "markers_font",
+        "default": "accent-font",
+        "label": "t:sections.all.markers_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.markers_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.markers_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.markers_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "t:settings_schema.global.settings.description.label"
+      },
+      {
+        "type": "select",
+        "id": "description_size",
+        "label": "t:sections.all.description_size.label",
+        "default": "text",
+        "options": [
+          {
+            "label": "t:sections.all.description_size.text-xsmall.label",
+            "value": "text-xs"
+          },
+          {
+            "label": "t:sections.all.description_size.text-small.label",
+            "value": "text-sm"
+          },
+          {
+            "label": "t:sections.all.description_size.text.label",
+            "value": "text"
+          },
+          {
+            "label": "t:sections.all.description_size.text-medium.label",
+            "value": "text-md"
+          },
+          {
+            "label": "t:sections.all.description_size.text-large.label",
+            "value": "text-lg"
+          },
+          {
+            "label": "t:sections.all.description_size.text-xlarge.label",
+            "value": "text-xl"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.phone_number"
+      },
+      {
+        "type": "text",
+        "id": "phone_number_label",
+        "label": "t:sections.all.headers.phone_number_label"
+      },
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "t:sections.all.headers.phone_number"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.email"
+      },
+      {
+        "type": "text",
+        "id": "email_label",
+        "label": "t:sections.all.headers.email_label"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "t:sections.all.headers.email"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.headers.address"
+      },
+      {
+        "type": "text",
+        "id": "address_label",
+        "label": "t:sections.contact-form.settings.address_label.label"
+      },
+      {
+        "type": "text",
+        "id": "address",
+        "label": "t:sections.all.headers.address"
+      },
+      {
+        "type": "image_picker",
+        "id": "content_image",
+        "label": "t:sections.contact-form.settings.content_image.label"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "label": "t:sections.all.image_ratio.label",
+        "default": "auto",
+        "options": [
+          {
+            "value": "auto",
+            "label": "t:sections.all.image_ratio.auto_ratio.label"
+          },
+          {
+            "value": "landscape",
+            "label": "t:sections.all.image_ratio.landscape.label"
+          },
+          {
+            "value": "square",
+            "label": "t:sections.all.image_ratio.square.label"
+          },
+          {
+            "value": "portrait",
+            "label": "t:sections.all.image_ratio.portrait.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.contact-form.presets.name"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,79 @@
+{% if section.index <= 2 %}
+  {{ 'split-menu-header.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'split-menu-header.css' | asset_url | stylesheet_tag }}
+
+
+{% liquid
+  assign light_colored_logo_visibility = false
+
+  if template == 'index'
+    if section.settings.light_colored_logo_visibility == 'homepage-only'
+      assign light_colored_logo_visibility = true
+    endif
+  endif
+
+  if section.settings.light_colored_logo_visibility == 'all-pages'
+    assign light_colored_logo_visibility = true
+  endif
+%}
+
+
+<{% if section.settings.sticky_header_type == 'on-scroll-up' %}sticky-on-scroll{% elsif section.settings.sticky_header_type == 'always' %}sticky-always{% else %}div{% endif %}
+                  class="header-main header-style-split-menu-header sticky-header-{{ section.settings.sticky_header_type }} {{ header_transparent_class }} header-border-{{ section.settings.border_visibility }} mobile-logo-{{ section.settings.mobile_logo_position }} header-space-{{ section.settings.side_reveal_menus_space }} light-colored-logo-visibility-{{ light_colored_logo_visibility }}"
+                  data-header-section
+                 >
+  <div class="{{ section.settings.header_container }}">
+    {% capture mobile_menu_toggler %}
+        {% if section.settings.menu != blank %}
+          <div class="mobile-menu-button-box">
+          <button
+          class="mobile-toggler hamburger-toggler"
+          aria-label="Toggle mobile menu"
+          data-mobile-toggler>
+          <div class="hamburger-toggler-icon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </div>
+        </button>
+        </div>
+      {% endif %}
+    {% endcapture %} 
+
+    <div class="split-menu-header-content-wrapper">
+      <div class="split-menu-header-left-content">
+        <div class="split-menu-header-wrap{% unless show_category_menus  %} logo-without-category-menus{% endunless %}">
+          {{ mobile_menu_toggler }}
+          {% render 'header-logo'
+            , section: section %}
+          {% if show_category_menus %}
+            {% render 'split-header-category-menus'
+              , section: section %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="split-menu-header-right-content">
+        <div class="split-menu-wrap{% if section.settings.enable_collapse_menus %} split-header-collapse-menus-enable{% endif %}">
+          {% if section.settings.enable_collapse_menus %}
+            <div class="desktop-enable-collapse-menus" is="split-collapse-menus">
+          {% endif %}
+          {% render 'nav-items' 
+            , section: section %}
+            {% if section.settings.enable_collapse_menus %}
+              <button class="collapse-menus-button" aria-label="Collapse menus">
+                <div class="hamburger-toggler-icon">
+                  <span class="line line-1"></span>
+                  <span class="line line-2"></span>
+                  <span class="line line-3"></span>
+                </div> 
+              </button>
+            </div>
+            {% endif %}
+          {% render 'header-icons'
+            , section: section %}
+        </div>
+      </div>
+    </div>
+  </div>
+</{% if section.settings.sticky_header_type == 'on-scroll-up' %}sticky-on-scroll{% elsif section.settings.sticky_header_type == 'always' %}sticky-always{% else %}div{% endif %}>

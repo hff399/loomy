@@ -1,0 +1,200 @@
+{% unless placeholder %}
+  <product-variants-set
+    data-section="{{ section.id }}"
+    data-template="{{ template }}"
+    data-page="{{template}}"
+    data-url="{{ product.url }}"
+    {% unless template == 'product' %}
+    data-handle="{{ product.handle }}"
+    {% endunless -%}
+    data-product="{{ product.id }}"
+    data-type="{{ block.settings.variant_type }}"
+    data-unavailable="false"
+    data-preorder="{{ settings.enable_preorder }}"
+    {% if cardoptions %}
+    data-product-card-option
+    {% endif %}
+    class="no-js-hidden">
+    <div class="product-variants-wrap">
+      {% for option in product.options_with_values %}
+        {% liquid
+          assign option_name_downcase = option.name | downcase
+          assign option_input_name = section.id | append: 'option-' | append: forloop.index | append: '-' | append: product.id
+          assign forloop_index = forloop.index
+          assign color_option_names = settings.color_name | downcase
+
+          if settings.variants_style == 'color_swatch'
+            if color_option_names contains option_name_downcase
+              assign is_contain_color = true
+            else
+              assign is_contain_color = false
+            endif
+          elsif settings.variants_style == 'varaint_image'
+            if color_option_names contains option_name_downcase
+              assign is_contain_variant_image = true
+            else
+              assign is_contain_variant_image = false
+            endif
+          else
+            assign is_contain_color = false
+            assign is_contain_variant_image = false
+          endif
+        %}
+        <product-variants-optionset
+          class="product-variants-wrap-inner"
+          data-optionset="{{ option.name }}"
+          {% if source == 'collection-search' and option.name != 'Color' %}
+          style="display:none;"
+          {% endif %}>
+          <div class="product-info-title text-md">
+            {{ option.name }}:
+            <span data-select-option-value>{{ option.selected_value }}</span>
+          </div>
+          {% if is_contain_color or is_contain_variant_image %}
+            {% render 'color-swatches'
+              ,
+ product: product
+              ,
+ forloop_index: forloop_index
+              ,
+ option: option
+              ,
+ section: section
+              ,
+ is_contain_color: is_contain_color
+              ,
+ is_contain_variant_image: is_contain_variant_image
+              ,
+ option_input_name: option_input_name
+            %}
+          {% else %}
+            <ul class="product-variants-list">
+              {% for value in option.values %}
+                <li
+                  class="product-variant-item"
+                  variant-option-item
+                  title="{{ value }}">
+                  <input
+                    type="radio"
+                    id="{{ option_input_name }}-{{ value }}"
+                    name="{{ option_input_name }}"
+                    value="{{ value | escape }}"
+                    {% if value == option.selected_value %}
+                    checked
+                    ="checked"
+                    {% endif %}
+                    aria-labelledby="label-{{ value }}">
+                  <label
+                    for="{{ option_input_name }}-{{ value }}"
+                    id="label-{{ value }}"
+                    class="variant-label body-font">
+                    {{- value | escape -}}
+                  </label>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </product-variants-optionset>
+      {% endfor %}
+      <script type="application/json" data-name="main-product">
+        {{ product.variants | json }}
+      </script>
+      <script type="application/json" data-name="main-product-options">
+        {{ product.options_with_values | json }}
+      </script>
+      <script type="application/json" data-name="main-product-inventories">
+        [
+        {% for variant in product.variants %}
+          {
+            "id": {{- variant.id -}},
+            "inventory_management": "{{- variant.inventory_management -}}",
+            "inventory_policy": "{{- variant.inventory_policy -}}",
+            "inventory_quantity": "{{- variant.inventory_quantity -}}"
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {% endfor %}
+        ]
+      </script>
+    </div>
+  </product-variants-set>
+  <noscript>
+    <div class="product-options">
+      <div class="product-variants-title body-font text-md">{{ 'products.product.choose_options' | t }}</div>
+      <div class="product-variants-box select-box">
+        <select
+          id="variants-{{ section.id }}"
+          name="id"
+          {% if product_form_id != blank %}
+          form="{{ product_form_id }}"
+          {% endif %}
+          aria-label="Product options">
+          {% for variant in product.variants %}
+            <option
+              value="{{ variant.id }}"
+              {% if variant.selected %}
+              selected
+              {% endif -%}
+              {% if variant.available == false %}
+              disabled
+              {% endif %}>
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </noscript>
+{% else %}
+  <product-variants-set>
+    <product-variants-optionset class="product-variants-wrap-inner">
+      <div class="product-info-title text-md">Color</div>
+      <ul class="product-variants-list color-select">
+        <li class="product-variant-item">
+          <label
+            for="option-1"
+            class="variant-label cursor-pointer"
+            style="--swatch-color: moccasin">
+            <span class="tooltip">Moccasin</span>
+          </label>
+        </li>
+        <li class="product-variant-item">
+          <label
+            for="option-1"
+            class="variant-label cursor-pointer"
+            style="--swatch-color: khaki">
+            <span class="tooltip">Khaki</span>
+          </label>
+        </li>
+        <li class="product-variant-item">
+          <label
+            for="option-1"
+            class="variant-label cursor-pointer"
+            style="--swatch-color: darkseagreen">
+            <span class="tooltip">Darkseagreen</span>
+          </label>
+        </li>
+        <li class="product-variant-item">
+          <label
+            for="option-1"
+            class="variant-label cursor-pointer"
+            style="--swatch-color: tan">
+            <span class="tooltip">Tan</span>
+          </label>
+        </li>
+      </ul>
+    </product-variants-optionset>
+    <product-variants-optionset class="product-variants-wrap-inner">
+      <div class="product-info-title text-md">Size</div>
+      <ul class="product-variant-item">
+        <li class="product-variant-item">
+          <label for="option-2" class="variant-label cursor-pointer">S</label>
+        </li>
+        <li class="product-variant-item">
+          <label for="option-2" class="variant-label cursor-pointer">M</label>
+        </li>
+        <li class="product-variant-item">
+          <label for="option-2" class="variant-label cursor-pointer">L</label>
+        </li>
+      </ul>
+    </product-variants-optionset>
+  </product-variants-set>
+{% endunless %}

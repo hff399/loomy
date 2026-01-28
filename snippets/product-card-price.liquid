@@ -1,0 +1,91 @@
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign price_min = product.price_min
+  assign price_max = product.price_max
+  assign available = target.available | default: false
+  assign money_price = price | money
+  assign money_price_min = price_min | money
+  assign money_price_max = price_max | money
+
+  if target == product and product.price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+-%}
+{%- unless target == null -%}
+  <div class="product-pricing" id="price-title-wrapper-{{section.id}}-{{product.id}}">
+    {%- if product.quantity_price_breaks_configured? -%}
+      {%- if show_compare_at_price and compare_at_price -%}
+        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+          <span class="visually-hidden visually-hidden-inline hidden">
+            {{- 'products.product.price.regular_price' | t -}}
+          </span>
+          <span class="price-quantity-price-breaks product-cut-price line-through">
+            {{ compare_at_price | money }}
+          </span>
+        {%- endunless -%}
+      {%- endif -%}
+      <span class="visually-hidden visually-hidden-inline hidden">
+        {{- 'products.product.price.regular_price' | t -}}
+      </span>
+      <span class="product-actual-price">
+        {{- 'products.product.volume_pricing.price_range' | t: minimum: money_price_min, maximum: money_price_max -}}
+      </span>
+    {%- else -%}
+      <span class="product-actual-price">
+        {{ money_price }}
+      </span>
+    {%- endif -%}
+
+    {% unless settings.hide_compare_price %}
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+        {% if compare_at_price > price and product.quantity_price_breaks_configured? != true %}
+          <span class="product-cut-price line-through">
+            {{ compare_at_price | money }}
+          </span>
+        {% endif %}
+      {%- endunless -%}
+    {% endunless %}
+
+    {% if product.selected_or_first_available_variant.unit_price_measurement != null %}
+      <span class="product-unit-price uppercase text-xs{% if product.selected_or_first_available_variant.unit_price_measurement == nill %} hidden{% endif %}">
+        <span class="hidden">{{ 'products.product.price.unit_price' | t }}</span>
+        <span class="price-item price-item-last">
+          <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+          <span>/</span>
+          <span class="hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+          <span>
+            {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+          </span>
+        </span>
+      </span>
+    {% endif %}
+
+    {% if source == 'horizontal' %}
+      {% unless settings.saving_price == 'none' %}
+        {% if product.compare_at_price_min > product.price_min %}
+          {% assign offText = 'OFF' %}
+          {% assign discount = product.compare_at_price_min | minus: product.price_min %}
+
+          <span class="product-badge discount product-cut-discount">
+            {% case settings.saving_price %}
+              {% when 'amount-off' %}
+                {{ discount | money | append: ' ' | append: offText }}
+              {% when 'percentage-off' %}
+                {{ discount | times: 100 | divided_by: product.compare_at_price_min | append: '% ' | append: offText }}
+            {% endcase %}
+          </span>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  </div>
+{% endunless %}

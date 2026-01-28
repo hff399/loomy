@@ -1,0 +1,22 @@
+/* .collection-style-stacked .d-grid {
+    grid-template-columns: repeat(var(--column-count, 2), 1fr);
+} */
+
+
+/* to show slider half */
+.featured-collection-section .section-wrapper {
+    overflow: hidden;
+}
+
+.featured-collection-section .swiper.navigation-.swiper-initialized.swiper-horizontal {
+    overflow: visible;
+}
+
+/* .collection-style-stacked .product-card-title-price-wrapper {
+    grid-template-columns: auto;
+} */
+@media (max-width: 767px) {
+    .featured-collection-section .section-header {
+        grid-template-columns: 1fr auto;
+    }
+}

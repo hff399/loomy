@@ -1,0 +1,196 @@
+{% if block.settings.heading != blank %}
+  <{{ block.settings.seo_heading }} class="section-heading tilted-heading-{{ block.settings.tilted_heading }} {{ block.settings.heading_font }} {{ block.settings.heading_size }}{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+    {% if settings.enable_heading_animation %}
+      <animate-element data-animate="fade-up-large" data-animate-delay="50">
+    {% endif %}
+
+    {%- capture markers_style -%}
+                {% if block.settings.markers_style == 'background_only' %}
+                    marker-background
+                    {% elsif block.settings.markers_style == 'outline_only' %}
+                    marker-outline
+                    {% elsif block.settings.markers_style == 'background_with_outline' %}  
+                    marker-background marker-outline
+                {% endif %}
+            {%- endcapture -%}
+
+    {%- capture markersPrefix -%}
+                <span class="markers-text {{ block.settings.markers_font }} {{ markers_style }}">
+            {%- endcapture -%}
+    {%- capture markersSuffix -%}
+                </span>
+            {%- endcapture -%}
+
+    {{- block.settings.heading | replace: '++', '<br/>' | replace: "[", markersPrefix | replace: "]", markersSuffix -}}
+    {% if settings.enable_heading_animation %}
+      </animate-element>
+    {% endif %}
+  </{{ block.settings.seo_heading }}>
+{% endif %}
+{% schema %}
+  {
+    "name": "t:blocks.heading.name",
+    "tag": null,
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "t:settings_schema.global.settings.heading.label",
+        "info": "t:settings_schema.global.settings.heading.info",
+        "default": "Section heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "t:sections.all.heading_size.label",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.h1.label"
+          },
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.h2.label"
+          },
+          {
+            "value": "h3",
+            "label": "t:sections.all.heading_size.h3.label"
+          },
+          {
+            "value": "h4",
+            "label": "t:sections.all.heading_size.h4.label"
+          },
+          {
+            "value": "h5",
+            "label": "t:sections.all.heading_size.h5.label"
+          },
+          {
+            "value": "h6",
+            "label": "t:sections.all.heading_size.h6.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "seo_heading",
+        "label": "t:sections.all.seo_heading.label",
+        "info": "t:sections.all.seo_heading.info",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "div",
+            "label": "div"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          },
+          {
+            "value": "p",
+            "label": "p"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "heading_font",
+        "default": "heading-font",
+        "label": "t:sections.all.heading_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.heading_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.heading_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.heading_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "markers_style",
+        "default": "none",
+        "label": "t:sections.all.markers_style.label",
+        "options": [
+          {
+            "value": "background_only",
+            "label": "t:sections.all.markers_style.background_only.label"
+          },
+          {
+            "value": "outline_only",
+            "label": "t:sections.all.markers_style.outline_only.label"
+          },
+          {
+            "value": "background_with_outline",
+            "label": "t:sections.all.markers_style.background_with_outline.label"
+          },
+          {
+            "value": "none",
+            "label": "t:sections.all.markers_style.none.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "markers_font",
+        "default": "accent-font",
+        "label": "t:sections.all.markers_font.label",
+        "options": [
+          {
+            "value": "heading-font",
+            "label": "t:sections.all.markers_font.heading-font.label"
+          },
+          {
+            "value": "body-font",
+            "label": "t:sections.all.markers_font.body-font.label"
+          },
+          {
+            "value": "accent-font",
+            "label": "t:sections.all.markers_font.accent-font.label"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "tilted_heading",
+        "default": true,
+        "label": "t:blocks.heading.settings.tilted_heading.label"
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:blocks.heading.presets.name"
+      }
+    ]
+  }
+{% endschema %}

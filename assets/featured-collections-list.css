@@ -1,0 +1,219 @@
+.featured-collections-list-wrapper {
+    grid-template-columns: repeat(5, 1fr);
+    align-items: flex-end;
+}
+
+.featured-collections-list-wrapper .featured-collection-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: calc(100% + 60px);
+    min-height: 380px;
+    padding: 140px 20px 70px;
+    border-top-left-radius: 100vw;
+    border-top-right-radius: 100vw;
+    background-color: var(--body-background);
+    transition: .3s cubic-bezier(.45, .05, .55, .95) all;
+    overflow: hidden;
+    border: 1px solid rgba(var(--border-color));
+    border-bottom: 0;
+    display: inline-grid;
+    align-items: flex-end;
+    grid-template-rows: 1fr;
+}
+
+.featured-collection-content-data {
+    overflow-y: auto;
+    height: 200px;
+}
+
+
+.featured-collection-content-data .media-button-wrap,
+.featured-collection-content .featured-collection-content-desc {
+    padding-top: 15px;
+}
+
+.featured-collections-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* .featured-collections-list-wrapper .image-position-background .button {
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+.featured-collection-img .media-fixed {
+    width: 100%;
+}
+
+.featured-collection-img .media {
+    background: transparent;
+}
+
+.featured-collection-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-30px);
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    align-items: flex-end;
+    transition: .3s cubic-bezier(.45, .05, .55, .95) all;
+    height: 170px;
+    max-width: 170px;
+}
+
+.featured-collection-content-bg-shape {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.featured-collection-content-data h4 {
+    margin-bottom: 10px;
+}
+
+
+/* circle shape */
+.featured-collection-img .media-fixed img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.featured-collection-img.image-shape-circle {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* card style sharp */
+.featured-collections-list-wrapper.card-style-sharp .featured-collection-content {
+    border-radius: 0;
+}
+
+.featured-collections-item.image-position-embedded {
+    display: grid;
+    place-content: center;
+}
+
+.featured-collections-item.image-position-embedded>* {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    transform: unset;
+}
+
+.featured-collections-list-wrapper .image-position-embedded .featured-collection-content {
+    padding: 220px 20px 20px;
+}
+
+.image-position-embedded .featured-collection-img {
+    top: 40px;
+}
+
+.featured-collections-list {
+    padding-top: 150px;
+    overflow: hidden;
+}
+
+/* image position background */
+.featured-collections-item.image-position-background .featured-collection-content-bg-shape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-collections-item.image-position-background .featured-collection-content {
+    padding: 20px;
+    display: grid;
+    place-content: flex-end;
+    min-height: 420px;
+}
+
+.image-position-background .featured-collection-content-heading {
+    color: var(--image-overlay-heading-color);
+}
+
+.image-position-background .featured-collection-content-desc {
+    color: var(--image-overlay-text-color)
+}
+
+.image-shape-border-svg {
+    top: 0;
+    left: 0;
+    height: 200px;
+    width: 200px;
+    color: var(--highlight-text-color);
+}
+
+.featured-collections-list-section .section-header {
+    margin-bottom: 0;
+}
+
+
+/* @media (hover: hover) and (pointer: fine) { */
+@media (min-width: 1025px) {
+    .featured-collection-content .button {
+        opacity: 0;
+        transition: .3s cubic-bezier(.45, .05, .55, .95) all;
+        transform: translateY(10px);
+    }
+
+    .featured-collections-list-wrapper .featured-collections-item:focus-within .featured-collection-content .button,
+    .featured-collections-list-wrapper .featured-collections-item:hover .featured-collection-content .button {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .featured-collections-list-wrapper .featured-collections-item:focus-within .featured-collection-content,
+    .featured-collections-list-wrapper .featured-collections-item:hover .featured-collection-content {
+        transform: translateY(-60px);
+    }
+
+    .featured-collections-list-wrapper .featured-collections-item:focus-within .featured-collection-img,
+    .featured-collections-list-wrapper .featured-collections-item:hover .featured-collection-img {
+        transform: translateY(-100px) scale(1.2);
+    }
+
+    .featured-collections-list-wrapper .featured-collections-item.image-position-embedded:hover .featured-collection-img {
+        transform: translateY(-50px);
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .image-position-embedded .featured-collection-img {
+        top: 60px;
+    }
+
+    .featured-collections-list-wrapper {
+        min-width: 150vw;
+    }
+
+    .featured-collections-list {
+        overflow-x: auto;
+        padding-top: 100px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .featured-collections-list-wrapper {
+        min-width: 350vw;
+    }
+
+    .featured-collections-list-wrapper .featured-collection-content {
+        height: calc(100% + 30px);
+        min-height: 320px;
+    }
+}

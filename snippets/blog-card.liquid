@@ -1,0 +1,163 @@
+{% liquid
+  assign image_size = image_ratio
+  if image_size == 'landscape'
+    assign article_image_ratio = '70'
+  elsif image_size == 'square'
+    assign article_image_ratio = '100'
+  elsif image_size == 'portrait'
+    assign article_image_ratio = '130'
+  else
+    if article.image != blank
+      assign article_image_ratio = 1 | divided_by: article.image.aspect_ratio | times: 100
+    else
+      assign article_image_ratio = 100
+    endif
+  endif
+%}
+
+{%- if article and article != empty -%}
+  <div class="blogs-item{% if style == 'hover_based' %} blog-card-hover-based{% elsif style == 'normal_without_overlay' %} blog-card-content-without-overlay{% endif %} pos-relative{% if hover_content %} hover-content-{{ hover_content }}{% endif %}" data-motion-list>
+    <div class="blog-card-inner">
+      <a
+        href="{{ article.url }}"
+        class="blog-card-media"
+        tabindex="-1">
+        <div class="media media-overlay{% if overlay_style %} overlay-style-{{ overlay_style }}{% endif %}" style="--image-ratio:{{ article_image_ratio }}%">
+          {% if article.image != blank %}
+            {% render 'lazy-images'
+              , image: article.image.src %}
+          {% else %}
+            {% if placeholder_image != blank %}
+              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          {% endif %}
+        </div>
+      </a>
+
+      {%- if style == 'hover_based' -%}
+        <a
+          href="{{ article.url }}"
+          class="blog-hover-title blog-title heading-font focus-inside {% if blog_heading_size %}{{blog_heading_size}}{% else %}h6{% endif %}"
+          aria-label="{{ article.title }}">
+          {{ article.title }}
+        </a>
+      {%- endif -%}
+
+      {%- if style == 'hover_based' -%}
+        <div class="blog-card-hover-content">
+        {%- unless show_tags and article.tags.size > 0 -%}
+          <div class="blog-tags"></div>
+        {%- endunless -%}
+      {%- endif -%}
+      {% if show_tags and article.tags.size > 0 %}
+        <div class="blog-tags">
+          <ul class="list-inline blog-tags-list gap-5">
+            {% for tag in article.tags %}
+              <li class="blog-tags-item">
+                <{% if blog.url != blank %}a href="{{ blog.url }}/tagged/{{ tag | handleize }}" aria-label="{{ tag }} Tag"{% else %}div{% endif %} class="blog-tags-link text-small" tabindex="-1">
+                  {{- tag -}}
+                  </{% if blog.url != blank %}a{% else %}div{% endif %}>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        <div class="blog-card-content">
+          {% if show_date or show_author %}
+            {%- unless style == 'hover_based' -%}
+              <div class="blog-card-auth">
+                {% if show_author %}
+                  <span class="blog-author heading-font">{{ article.author }}</span>
+                {% endif %}
+                {% if show_date and show_author %}|{% endif %}
+                {% if show_date %}
+                  <span class="blog-timestamp heading-font">{{ article.published_at | date: '%B %d, %Y' }}</span>
+                {% endif %}
+              </div>
+            {%- endunless -%}
+          {% endif %}
+
+          <a
+            href="{{ article.url }}"
+            class="blog-title heading-font {% if blog_heading_size %}{{blog_heading_size}}{% else %}h6{% endif %}"
+            aria-label="{{ article.title }} Blog Post"
+            tabindex="-1">
+            {{ article.title }}
+          </a>
+          {% if show_date or show_author %}
+            {%- if style == 'hover_based' -%}
+              <div class="blog-card-auth">
+                <div class="blog-card-auth-content">
+                  {% if show_date %}
+                    <span class="blog-timestamp heading-font">
+                      <span class="blog-time-icon">
+                        {% render 'svg-icons'
+                          , icon: 'clock' %}
+                      </span>
+                      {{ article.published_at | date: '%B %d, %Y' }}</span>
+                  {% endif %}
+                  {% if show_author %}
+                    <span class="blog-author heading-font">{{ article.author }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endif -%}
+          {% endif %}
+
+          {% if article.excerpt_or_content != blank and show_excerpt %}
+            <p class="blog-desc text-sm">{{ article.excerpt_or_content | strip_html | truncatewords: 50 }}</p>
+          {% endif %}
+          {%- if style == 'hover_based' -%}
+            <div class="blog-card-hover-buttons">
+              {% comment %} {% render 'button-wrapper'
+                                                                                                , button_style: 'link'
+                                                                                                , button_text: 'Read more'
+                                                                                                , button_link: article.url
+                                                                                                , button_size: 'button-regular'
+                                                                                    %} {% endcomment %}
+              {% render 'button-wrapper'
+                , button_style: 'icon'
+                , button_link: article.url
+                , button_size: 'button-regular'
+                , button_secondary: true
+                , tabindex_focus: 'no'
+              %}
+            </div>
+          {% endif %}
+        </div>
+        {%- if style == 'hover_based' -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {% else %}
+    <div class="blogs-item{% if style == 'hover_based' %} blog-card-hover-based{% elsif style == 'normal_without_overlay' %} blog-card-content-without-overlay{% endif %} pos-relative{% if hover_content %} hover-content-{{ hover_content }}{% endif %}" data-motion-list>
+      <div class="blog-card-inner">
+        <div class="blog-card-media">
+          <div class="media media-overlay{% if overlay_style %} overlay-style-{{ overlay_style }}{% endif %}" style="--image-ratio:{{ article_image_ratio }}%">
+            {% if placeholder_image != blank %}
+              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        </div>
+        {%- if style == 'hover_based' -%}
+          <div class="blog-hover-title blog-title heading-font {% if blog_heading_size %}{{blog_heading_size}}{% else %}h6{% endif %}">
+            {{ 'onboarding.blog_title' | t }}
+          </div>
+        {%- endif -%}
+        {%- if style == 'hover_based' -%}
+          <div class="blog-card-hover-content">
+          <div class="blog-tags"></div>
+        {%- endif -%}
+        <div class="blog-card-content">
+          <h6 class="blog-title heading-font {% if blog_heading_size %}{{blog_heading_size}}{% else %}h6{% endif %}">
+            {{ 'onboarding.blog_title' | t }}
+          </h6>
+          <p class="blog-desc text-sm">{{ 'onboarding.blog_desc' | t }}</p>
+        </div>
+        {%- if style == 'hover_based' -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {% endif %}

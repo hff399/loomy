@@ -1,0 +1,80 @@
+<search-drawer
+  class="search-drawer scheme-{{ settings.search_drawer_color_scheme }}"
+  data-drawer="search-drawer"
+  data-drawer-popup=""
+  data-section-id="{{ section.id }}">
+  <div
+    class="close-drawer"
+    data-close-drawer
+    is="data-moving-cursor-area">
+    <div class="data-moving-cursor" data-moving-cursor>
+      <svg
+        class="icon icon-cursor"
+        stroke="currentColor"
+        viewBox="0 0 40 40"
+        fill="none">
+        <path
+          d="M10 30L30 10M10 10L30 30"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+  <predictive-search class="drawer-search-wrapper" data-source="predictive-search">
+    <form
+      action="{{ routes.search_url }}"
+      method="get"
+      role="search"
+      class="search pos-absolute d-grid align-items-center"
+      data-search-form="">
+      <button
+        type="submit"
+        class="drawer-search-icon d-inline-flex align-items-center justify-content-center"
+        aria-label="Open settings">
+        <svg
+          width="34"
+          height="34"
+          viewBox="0 0 34 34"
+          fill="none">
+          <circle
+            cx="16.9883"
+            cy="16.9883"
+            r="16.422"
+            stroke="currentColor"
+            stroke-width="1.13255"></circle>
+          <path d="M24.6151 23.5063L21.4373 20.3285C22.5758 18.9361 23.1356 17.1594 23.0008 15.3659C22.8661 13.5724 22.0471 11.8992 20.7133 10.6926C19.3796 9.48594 17.6331 8.8381 15.835 8.88305C14.037 8.92801 12.325 9.66233 11.0533 10.9341C9.78147 12.2059 9.04715 13.9179 9.00219 15.7159C8.95724 17.5139 9.60508 19.2604 10.8117 20.5942C12.0184 21.928 13.6915 22.7469 15.485 22.8817C17.2786 23.0164 19.0553 22.4567 20.4477 21.3182L23.6254 24.4959C23.7574 24.6234 23.9342 24.694 24.1177 24.6924C24.3012 24.6908 24.4768 24.6172 24.6065 24.4874C24.7363 24.3576 24.8099 24.1821 24.8115 23.9986C24.8131 23.8151 24.7426 23.6383 24.6151 23.5063ZM16.0215 21.5016C14.914 21.5016 13.8315 21.1732 12.9107 20.5579C11.9899 19.9427 11.2722 19.0682 10.8484 18.0451C10.4246 17.0219 10.3138 15.8961 10.5298 14.81C10.7458 13.7238 11.2791 12.7261 12.0622 11.9431C12.8453 11.16 13.843 10.6267 14.9291 10.4107C16.0152 10.1946 17.1411 10.3055 18.1642 10.7293C19.1873 11.1531 20.0618 11.8708 20.6771 12.7915C21.2923 13.7123 21.6207 14.7949 21.6207 15.9023C21.619 17.3868 21.0286 18.81 19.9789 19.8597C18.9292 20.9094 17.506 21.4999 16.0215 21.5016Z" fill="currentColor"></path>
+        </svg>
+      </button>
+      <input
+        name="type"
+        type="hidden"
+        value="product">
+      <div class="search-input-holder">
+        <label for="Search-In-Page" class="hidden">{{ settings.search_placeholder_heading }}</label>
+        <input
+          type="search"
+          name="q"
+          autocomplete="off"
+          placeholder="{{ settings.search_placeholder_heading }}"
+          value=""
+          id="Search-In-Page"
+          data-search-input
+          aria-label="Search">
+      </div>
+      <close-drawer>
+        <button class="search-close-btn close-btn d-flex button" data-close-drawer>
+          {% comment %} 
+                                                            <svg fill="none" viewBox="0 0 24 24"> 
+                                                            <path fill="currentColor" d="M12 13.414 8.465 16.95q-.3.3-.708.3a.97.97 0 0 1-.707-.3q-.3-.3-.3-.707t.3-.707L10.586 12 7.05 8.464q-.3-.3-.3-.707 0-.405.3-.707.3-.3.707-.3t.708.3L12 10.586l3.536-3.536q.3-.3.707-.3t.707.3q.3.3.3.707t-.3.707L13.414 12l3.536 3.536q.3.3.3.707 0 .405-.3.707-.3.3-.707.3a.97.97 0 0 1-.707-.3z"></path>
+                                                            </svg> 
+                                                  {% endcomment %}
+          <span class="close-icon">
+            Close
+          </span>
+        </button>
+      </close-drawer>
+    </form>
+  </predictive-search>
+  {% render 'predictive-search' %}
+</search-drawer>

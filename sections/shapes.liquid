@@ -1,0 +1,127 @@
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing">
+  <div class="shapes-background shape-flip-{{ section.settings.flip_shape }} shape-{{ section.settings.shape }}">
+    {% render 'shapes', shape: section.settings.shape %}
+  </div>
+</div>
+<style>
+    #shopify-section-{{ section.id }}{
+        --top-spacing: {{ section.settings.top_space_desktop }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+    }
+
+    @media only screen and (max-width:767px) {
+        #shopify-section-{{ section.id }}{
+            --top-spacing: {{ section.settings.top_space_mobile }}px;
+            --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        }
+    }
+</style>
+{% schema %}
+{
+  "name": "t:sections.shapes.name",
+  "tag": "section",
+  "class": "shapes-section",
+  "disabled_on": {
+      "groups": ["custom.Overlay"]
+  }, 
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.shapes.settings.header.shape"
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "default": "wave",
+      "label": "t:sections.all.shape.label",
+      "options": [
+        {
+          "value": "curve",
+          "label": "t:sections.all.shape.curve.label"
+        },
+        {
+          "value": "deep_curve",
+          "label": "t:sections.all.shape.deep_curve.label"
+        },
+        {
+          "value": "cloud",
+          "label": "t:sections.all.shape.cloud.label"
+        },
+        {
+          "value": "wavelong",
+          "label": "t:sections.all.shape.wave_long.label"
+        },
+        {
+          "value": "wave",
+          "label": "t:sections.all.shape.wave.label"
+        },
+        {
+          "value": "mountain",
+          "label": "t:sections.all.shape.mountain.label"
+        },
+        {
+          "value": "brush-effect",
+          "label": "t:sections.all.shape.brush-effect.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "flip_shape",
+      "label": "t:sections.all.shape_position.flip_shape.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing.section_spacing_heading"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:sections.all.spacing.top_space_desktop",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:sections.all.spacing.bottom_space_desktop",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:sections.all.spacing.top_space_mobile",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:sections.all.spacing.bottom_space_mobile",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.shapes.presets.name"
+    }
+  ]
+}
+{% endschema %}

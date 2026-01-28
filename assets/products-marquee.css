@@ -1,0 +1,30 @@
+.products-marquee-main-wrapper,
+.collections-marquee-wrapper {
+    position: relative;
+}
+
+.products-marquee-main-wrapper:before,
+.collections-marquee-wrapper:before {
+    pointer-events: none;
+    background: linear-gradient(90deg,
+            var(--body-background),
+            transparent 20%,
+            transparent 80%,
+            var(--body-background));
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: 2;
+}
+
+.products-marquee-slideshow-wrapper.swiper-wrapper,
+.collections-marquee-items.swiper-wrapper {
+    transition-timing-function: linear;
+}
+
+.products-marquee-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--product-marquee-row-gap);
+    overflow-x: hidden;
+}

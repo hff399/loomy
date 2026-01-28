@@ -1,0 +1,27 @@
+.blog-card {
+    overflow: hidden;
+    background: var(--card-background);
+    border: 1px solid rgba(var(--border-color));
+    transition: var(--smooth-animation);
+}
+
+.featured-blog-item .blog-card-media {
+    overflow: hidden;
+    height: 355px;
+    position: relative;
+}
+
+
+.blog-desc {
+    color: var(--card-text);
+    padding-top: 12px;
+}
+
+.asterisk {
+    animation: spin 10s infinite linear;
+    opacity: .4;
+}
+
+.no-js .featured-blog-items-wrapper .swiper-slide {
+    flex: 0 0 calc(100%/3 - 8px);
+}

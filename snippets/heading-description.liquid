@@ -1,0 +1,20 @@
+{% liquid
+  assign heading = section.settings.heading
+  assign seo_heading = section.settings.seo_heading
+  assign heading_size = section.settings.heading_size
+  assign description = section.settings.description
+  assign description_size = section.settings.description_size
+  assign description_class = description_class
+%}
+{% if heading and heading != blank %}
+  <{{ seo_heading }} class="heading-font {{ heading_size }}">
+    {{- heading -}}
+  </{{ seo_heading }}>
+{% endif %}
+{% if description and description != blank %}
+  <div class="{{ description_class }} rte">
+    <p class="{{ description_size }}">
+      {{ description | newline_to_br }}
+    </p>
+  </div>
+{% endif %}

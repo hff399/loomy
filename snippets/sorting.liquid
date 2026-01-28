@@ -1,0 +1,57 @@
+{% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+{% assign sortOption = collection.sort_options | where: 'value', sort_by %}
+{% capture heading %} 
+    <button type="button" class="collection-filter-btn" data-dropdown-button="" aria-expanded="false">
+      <span class="collection-filter-btn-icon">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path d="M31.5 22.75H10.5C9.45 22.75 8.75 22.05 8.75 21C8.75 19.95 9.45 19.25 10.5 19.25H31.5C32.55 19.25 33.25 19.95 33.25 21C33.25 22.05 32.55 22.75 31.5 22.75Z" fill="currentColor"></path>
+            <path d="M26.25 33.25H15.75C14.7 33.25 14 32.55 14 31.5C14 30.45 14.7 29.75 15.75 29.75H26.25C27.3 29.75 28 30.45 28 31.5C28 32.55 27.3 33.25 26.25 33.25Z" fill="currentColor"></path>
+            <path d="M36.75 12.25H5.25C4.2 12.25 3.5 11.55 3.5 10.5C3.5 9.45 4.2 8.75 5.25 8.75H36.75C37.8 8.75 38.5 9.45 38.5 10.5C38.5 11.55 37.8 12.25 36.75 12.25Z" fill="currentColor"></path>
+        </svg>
+      </span>
+      <span id="button-text" class="collection-filter-btn-text d-flex align-items-center gap-5">{{ sortOption.first.name }} 
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+        <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"/>
+      </svg></span> 
+    </button>
+{% endcapture %}
+{% capture sorting_options %}
+    {%- for option in collection.sort_options -%}
+    <li class="filter-sort-heading{% if option.value == sort_by %} selected{% endif %}" {% if option.value != sort_by %} tabindex="0"{% endif %}>
+          <input
+            type="radio"
+            name="sort_by"
+            class="filter-input {% if option.value == sort_by %} sort-by-selected{% endif %}"
+            id="sortByOption-{{ forloop.index }}-{{ filterstyle }}"
+            {% if option.value != sort_by %}
+              tabindex="0"
+            {% endif %}
+            value="{{ option.value | escape }}" data-name="{{ option.name | escape }}" {% if option.value == sort_by %}checked="checked"{% endif %}
+          > 
+          
+          <label class="filter-label" for="sortByOption-{{ forloop.index }}-{{ filterstyle }}">
+            <span class="checkmark">
+              <svg
+                width="35"
+                height="35"
+                viewBox="0 0 35 35"
+                fill="currentColor"
+              >
+                <path d="M15.1401 3.99305C16.3026 2.28723 18.8178 2.28723 19.9803 3.99305V3.99305C20.7317 5.0955 22.1331 5.55086 23.3889 5.10057V5.10057C25.3321 4.40384 27.3669 5.88222 27.3047 7.94558V7.94558C27.2646 9.27909 28.1307 10.4712 29.4114 10.8451V10.8451C31.3929 11.4236 32.1702 13.8157 30.9071 15.4484V15.4484C30.0908 16.5036 30.0908 17.9772 30.9071 19.0324V19.0324C32.1702 20.6652 31.3929 23.0572 29.4114 23.6357V23.6357C28.1307 24.0096 27.2646 25.2017 27.3047 26.5352V26.5352C27.3669 28.5986 25.3321 30.077 23.3889 29.3803V29.3803C22.1331 28.93 20.7317 29.3853 19.9803 30.4878V30.4878C18.8178 32.1936 16.3026 32.1936 15.1401 30.4878V30.4878C14.3888 29.3853 12.9874 28.93 11.7315 29.3803V29.3803C9.78839 30.077 7.75356 28.5986 7.81573 26.5352V26.5352C7.8559 25.2017 6.98976 24.0096 5.70911 23.6357V23.6357C3.72753 23.0572 2.95029 20.6652 4.2134 19.0324V19.0324C5.02972 17.9772 5.02972 16.5036 4.2134 15.4484V15.4484C2.95029 13.8157 3.72753 11.4236 5.70911 10.8451V10.8451C6.98976 10.4712 7.8559 9.27909 7.81573 7.94558V7.94558C7.75356 5.88222 9.78839 4.40384 11.7315 5.10057V5.10057C12.9874 5.55086 14.3888 5.0955 15.1401 3.99305V3.99305Z" class="custom-radio-bg"/>
+                <g clip-path="url(#clip0_129_4169)">
+                <path d="M22.5385 13.5761C22.2154 13.2388 21.6906 13.2391 21.367 13.5761L16.094 19.0723L13.7504 16.6296C13.4268 16.2923 12.9023 16.2923 12.5786 16.6296C12.255 16.9669 12.255 17.5136 12.5786 17.8509L15.508 20.9042C15.6697 21.0727 15.8817 21.1572 16.0938 21.1572C16.3059 21.1572 16.5181 21.073 16.6798 20.9042L22.5385 14.7975C22.8622 14.4604 22.8622 13.9134 22.5385 13.5761Z" fill="currentColor" class="tick-radio">
+                </g>
+              </svg>
+            </span>
+            {{ option.name | escape }}
+          </label>
+        </li> 
+    {% endfor %}
+{% endcapture %}
+{{ heading }}
+<div class="filters-content">
+  <ul class="filter-sort-list" data-dropdown-content>
+    {{ sorting_options }}
+  </ul>
+</div>
+{% comment %} {% endif %} {% endcomment %}

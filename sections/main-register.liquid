@@ -1,0 +1,246 @@
+{{ 'account.css' | asset_url | stylesheet_tag }}
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative overflow-hidden section-{{ section.settings.section_background }}">
+  {% if section.settings.background_image != blank %}
+    <div class="background-overlay-image media-overlay">
+      {% render 'lazy-images'
+        , image: section.settings.background_image %}
+    </div>
+  {% endif %}
+  <div class="container">
+    <div class="auth-wrapper login-wrapper">
+      <div class="auth-container">
+        <div class="auth-body">
+          <div class="section-header text-center">
+            <h4 class="heading-font">{{ 'customer.register.title' | t }}</h4>
+          </div>
+          {%- form 'create_customer'
+            , novalidate: 'novalidate'
+            , class: 'account-form' -%}
+            {%- if form.errors -%}
+              <div
+                class="form-message error"
+                tabindex="-1"
+                autofocus>
+                <ul>
+                  {%- for field in form.errors -%}
+                    <li>
+                      {%- if field == 'form' -%}
+                        {{ form.errors.messages[field] }}
+                      {%- else -%}
+                        <a
+                          href="#RegisterForm-{{ field }}"
+                          class="text-small"
+                          aria-label="Registration form">
+                          {{ form.errors.translated_fields[field] | capitalize }}
+                          {{ form.errors.messages[field] }}
+                        </a>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+            <div class="form-group">
+              <label for="RegisterForm-FirstName" class="font-normal">
+                {{ 'customer.register.first_name' | t }}
+              </label>
+              <input
+                class="form-control input-md"
+                type="text"
+                name="customer[first_name]"
+                id="RegisterForm-FirstName"
+                {% if form.first_name %}
+                value="{{ form.first_name }}"
+                {% endif %}
+                autocomplete="given-name"
+                placeholder="{{ 'customer.register.first_name' | t }}">
+            </div>
+            <div class="form-group">
+              <label for="RegisterForm-LastName" class="font-normal">
+                {{ 'customer.register.last_name' | t }}
+              </label>
+              <input
+                class="form-control input-md"
+                type="text"
+                name="customer[last_name]"
+                id="RegisterForm-LastName"
+                {% if form.last_name %}
+                value="{{ form.last_name }}"
+                {% endif %}
+                autocomplete="family-name"
+                placeholder="{{ 'customer.register.last_name' | t }}">
+            </div>
+
+            <div class="form-group">
+              <label for="RegisterForm-email" class="font-normal">
+                {{- 'customer.register.email' | t -}}
+              </label>
+              <input
+                class="form-control input-md"
+                type="email"
+                name="customer[email]"
+                id="RegisterForm-email"
+                {% if form.email %}
+                value="{{ form.email }}"
+                {% endif %}
+                spellcheck="false"
+                autocapitalize="off"
+                autocomplete="email"
+                aria-required="true"
+                {% if form.errors contains 'email' %}
+                aria-invalid="true"
+                aria-describedby="RegisterForm-email-error"
+                {% endif %}
+                placeholder="Email address">
+            </div>
+            <div class="form-group">
+              <label for="RegisterForm-password" class="font-normal">
+                {{- 'customer.register.password' | t -}}
+              </label>
+              <div class="password-input">
+                <input
+                  class="form-control input-md"
+                  type="password"
+                  name="customer[password]"
+                  id="RegisterForm-password"
+                  aria-required="true"
+                  {% if form.errors contains 'password' %}
+                  aria-invalid="true"
+                  aria-describedby="RegisterForm-password-error"
+                  {% endif %}
+                  placeholder="Enter your password"
+                  data-password-input>
+                <eye-icon>
+                  <span class="password-icon" data-closed-eye>
+                    {% render 'svg-icons'
+                      , icon: 'eye-close' %}
+                  </span>
+                  <span class="password-icon hidden" data-opened-eye>
+                    {% render 'svg-icons'
+                      , icon: 'eye' %}
+                  </span>
+                </eye-icon>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <button type="submit" class="button button-md buttonHover button-block">
+                <span>{{ 'customer.register.title' | t }}</span>
+              </button>
+
+              <div class="create-account-text text-center">
+                {{ 'customer.register.have_account' | t }}
+                <a href="{{ routes.account_login_url }}" class="text-underline text-sm">
+                  {{ 'customer.register.login_here' | t }}
+                </a>
+              </div>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    --top-spacing: {{ section.settings.top_space_desktop }}px;
+    --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+    --card-radius: {{ section.settings.card_radius }}px;
+  }
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_mobile }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+      {% if section.settings.card_radius > 10 %}
+        --card-radius: {{ section.settings.card_radius | divided_by: 2 }}px;
+      {% else %}
+        --card-radius: {{ section.settings.card_radius }}px;
+      {% endif %}
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Main register",
+    "tag": "section",
+    "class": "main-register-section",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "primary"
+      },
+      {
+        "type": "select",
+        "id": "section_background",
+        "label": "t:sections.all.section_background.label",
+        "default": "solid",
+        "options": [
+          {
+            "label": "t:sections.all.section_background.solid.label",
+            "value": "solid"
+          },
+          {
+            "label": "t:sections.all.section_background.gradient.label",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "card_radius",
+        "label": "t:settings_schema.layout.settings.card_radius.label",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "t:settings_schema.global.settings.image.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.spacing.section_spacing_heading"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:sections.all.spacing.top_space_desktop",
+        "default": 10,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:sections.all.spacing.bottom_space_desktop",
+        "default": 70,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:sections.all.spacing.top_space_mobile",
+        "default": 20,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:sections.all.spacing.bottom_space_mobile",
+        "default": 20,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ]
+  }
+{% endschema %}

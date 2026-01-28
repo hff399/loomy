@@ -1,0 +1,236 @@
+{%- liquid
+  assign product = cardproduct
+
+  assign product_url = product.url | within: collection
+  if settings.remove_collection_url
+    assign product_url = product.url
+  endif
+
+  assign current_variant = product.selected_or_first_available_variant
+  if cardImageSize == 'landscape'
+    assign productImageRatio = '75'
+  elsif cardImageSize == 'square'
+    assign productImageRatio = '100'
+  elsif cardImageSize == 'portrait'
+    assign productImageRatio = '130'
+  else
+    if product.featured_media != blank
+      assign productImageRatio = 1 | divided_by: product.featured_media.preview_image.aspect_ratio | times: 100
+    else
+      assign productImageRatio = 100
+    endif
+  endif
+
+  assign second_image = ''
+  assign second_media_type = ''
+  assign second_media = ''
+  if settings.on_hover_second_image
+    assign hoverClass = 'image-hover'
+    if product.media.size > 1
+      for media in product.media
+        unless media.id == product.featured_media.id
+          assign second_image = media.preview_image
+          assign second_media_type = media.media_type
+          assign second_media = media
+          break
+        endunless
+      endfor
+    endif
+  endif
+
+  if block.id != blank
+    assign product_form_id = 'main-product-form-' | append: block.id | append: '-' | append: product.id
+    assign section_id = block.id | append: '-' | append: product.id
+  else
+    assign product_form_id = 'main-product-form-' | append: section.id | append: '-' | append: product.id
+    assign section_id = section.id | append: '-' | append: product.id
+  endif
+
+  if forloop_index and forloop_index <= 5 and section.index <= 2
+    assign loading = 'eager'
+  else
+    assign loading = 'lazy'
+  endif
+
+  comment
+    Calculate color count
+  endcomment
+  assign color_option_names = settings.media_grouping_option | default: 'Color' | downcase | split: ','
+  assign color_count = 0
+  for option in product.options_with_values
+    assign option_name_lower = option.name | downcase
+    for color_name in color_option_names
+      assign color_name_clean = color_name | strip
+      if option_name_lower contains color_name_clean
+        assign color_count = option.values.size
+        break
+      endif
+    endfor
+    if color_count > 0
+      break
+    endif
+  endfor
+
+  comment
+    Calculate discount
+  endcomment
+  assign compare_at_price = current_variant.compare_at_price
+  assign price = current_variant.price
+  assign on_sale = false
+  assign savings_percent = 0
+  if compare_at_price > price
+    assign on_sale = true
+    assign savings = compare_at_price | minus: price
+    assign savings_percent = savings | times: 100.0 | divided_by: compare_at_price | round
+  endif
+-%}
+
+<div
+  class="product-card card-square {{ hoverClass }} product-card-static-info"
+  data-motion-list
+  data-product-card>
+  <div class="product-card-inner{% if product.has_only_default_variant %} single-variant-hover{% else %} multiple-variant-hover{% endif %}">
+    <div class="product-card-image-wrap" data-product-card-image-wrapper>
+      <{% if product %}a href="{{ product_url }}" aria-label="{{ product.title | escape }}" {% else %}div{% endif %} class="product-image">
+        <product-cart-media>
+          <div
+            class="media product-card-media-inner product-featured-media"
+            style="--image-ratio:{{ productImageRatio }}%"
+            data-product-media
+            data-featured-image>
+            {% if product.featured_media != blank %}
+              <img
+                srcset="
+                  {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                  {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                  {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                "
+                src="{{ product.featured_media | image_url: width: 533 }}"
+                sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                alt="{{ product.featured_media.alt | escape }}"
+                class="product-card-image active"
+                loading="{{ loading }}"
+                width="{{ product.featured_media.width }}"
+                height="{{ product.featured_media.height }}">
+            {% else %}
+              {% if cycleIndex != blank %}
+                {{ 'product-apparel-' | append: cycleIndex | placeholder_svg_tag: 'placeholder-svg' }}
+              {% else %}
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            {% endif %}
+
+            {% render 'product-card-variant-images',
+              section_id: section.id,
+              product: product,
+              source: 'product-card'
+            %}
+
+            {% if second_media_type == 'video' %}
+              {{ second_media | media_tag: loading: 'lazy', class: 'product-second-img', autoplay: true, loop: true, controls: false, preload: 'none' }}
+            {% elsif second_image != blank %}
+              <img
+                srcset="
+                  {%- if second_image.width >= 165 -%}{{ second_image | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if second_image.width >= 360 -%}{{ second_image | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if second_image.width >= 533 -%}{{ second_image | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if second_image.width >= 720 -%}{{ second_image | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if second_image.width >= 940 -%}{{ second_image | image_url: width: 940 }} 940w,{%- endif -%}
+                  {%- if second_image.width >= 1066 -%}{{ second_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                  {{ second_image | image_url }} {{ second_image.width }}w
+                "
+                src="{{ second_image | image_url: width: 533 }}"
+                sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                alt="{{ second_image.alt | escape }}"
+                class="product-second-img"
+                loading="lazy"
+                width="{{ second_image.width }}"
+                height="{{ second_image.height }}">
+            {% endif %}
+          </div>
+        </product-cart-media>
+      </{% if product %}a{% else %}div{% endif %}>
+
+      {% render 'badges', product: product, section: section, current_variant: current_variant %}
+
+      <div class="product-card-icons">
+        {% if settings.quick_view_style != 'none' and product %}
+          <quick-view
+            id="QuickView-{{ product.id }}"
+            data-product-url="{{ product.url }}"
+            data-product-id="{{ product.id }}"
+            data-quick-view="{{ settings.icon_appearance }}">
+            <a
+              href="{{ product_url }}"
+              class="product-quickview-button {% if settings.icon_appearance == 'always' %} show_view_icon{% endif %}"
+              aria-label="Quick view of {{ product.title | escape }}"
+              data-handle="{{ product.handle }}"
+              product-quickview-btn>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 4.875C6.27684 4.875 4.875 6.27688 4.875 8C4.875 9.72312 6.27684 11.125 8 11.125C9.72316 11.125 11.125 9.72312 11.125 8C11.125 6.27688 9.72316 4.875 8 4.875ZM8 9.875C6.96613 9.875 6.125 9.03387 6.125 8C6.125 6.96613 6.96613 6.125 8 6.125C9.03387 6.125 9.875 6.96613 9.875 8C9.875 9.03387 9.03387 9.875 8 9.875Z" fill="currentColor"/>
+                <path d="M15.794 7.66947C15.1811 6.68584 12.0622 2.375 8 2.375C3.93875 2.375 0.818937 6.68578 0.205969 7.66947L0 8L0.205969 8.33053C0.818875 9.31416 3.93784 13.625 8 13.625C12.0613 13.625 15.1811 9.31422 15.794 8.33053L16 8L15.794 7.66947ZM8 12.375C4.84888 12.375 2.25431 9.07019 1.49662 7.9995C2.25291 6.92794 4.84081 3.625 8 3.625C11.1509 3.625 13.7453 6.92934 14.5034 8.0005C13.7471 9.07209 11.1592 12.375 8 12.375Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </quick-view>
+        {% endif %}
+      </div>
+    </div>
+
+    {%- comment -%} Static Product Info Below Image {%- endcomment -%}
+    <div class="product-card-info product-card-info-static">
+      {% if product %}
+        {%- comment -%} Product Title {%- endcomment -%}
+        <a href="{{ product_url }}" class="product-card-title-link">
+          <h3 class="product-card-title">{{ product.title }}</h3>
+        </a>
+
+        {%- comment -%} Color Count - Red {%- endcomment -%}
+        {% if color_count > 1 %}
+          <p class="product-card-colors">{{ color_count }} colors</p>
+        {% endif %}
+
+        {%- comment -%} Price Row: current price, old price, discount badge {%- endcomment -%}
+        <div class="product-card-price-row">
+          <span class="product-card-price-current{% if on_sale %} on-sale{% endif %}">{{ price | money }}</span>
+          {% if on_sale %}
+            <span class="product-card-price-was">{{ compare_at_price | money }}</span>
+            <span class="product-card-discount">-{{ savings_percent }}%</span>
+          {% endif %}
+        </div>
+
+        {%- comment -%} Rating {%- endcomment -%}
+        <div class="product-card-rating">
+          {%- if product.metafields.reviews.rating.value != blank -%}
+            {%- assign rating_value = product.metafields.reviews.rating.value | round: 1 -%}
+            {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
+            <div class="product-card-stars">
+              {%- for i in (1..5) -%}
+                {%- if i <= rating_value -%}
+                  <svg class="star-icon star-filled" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>
+                {%- else -%}
+                  <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <span class="product-card-rating-text">{{ rating_value }} ({{ rating_count }})</span>
+          {%- else -%}
+            <div class="product-card-stars">
+              {%- for i in (1..5) -%}
+                <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {% else %}
+        <h3 class="product-card-title">{{ 'onboarding.product_title' | t }}</h3>
+        <div class="product-card-price-row">
+          <span class="product-card-price-current">{{ 1999 | money }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

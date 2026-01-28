@@ -1,0 +1,437 @@
+{% if product != blank %}
+  {%- unless product.has_only_default_variant -%}
+    <variant-selects
+      id="VariantPicker-{{ section.id }}-{{ product.id }}"
+      class="variant-picker no-js-hidden"
+      form="{{ product_form_id }}"
+      data-section-id="{{ section_id }}"
+      data-product-id="{{ product.id }}"
+      data-product-url="{{ product.url }}"
+      data-update-url="{{ update_url }} "
+      {{ block.shopify_attributes }}>
+      {%- for option in product.options_with_values -%}
+        {% liquid
+          assign is_color = false
+        %}
+        {% assign is_size = false %}
+        {% if block.settings.size_chart != blank %}
+          {% assign size_trigger_list = settings.size_name | downcase | split: ',' %}
+          {% assign size_downcased_option = option.name | downcase %}
+          {% for trigger in size_trigger_list %}
+            {% assign swatch_trigger = trigger | strip %}
+            {% if size_downcased_option contains swatch_trigger %}
+              {% assign is_size = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% assign swatch_trigger_list = settings.color_name | downcase | split: ',' %}
+        {% if swatch_trigger_list.size == 0 %}
+          {% assign swatch_trigger_list = 'color' | split: ',' %}
+        {% endif %}
+        {% assign downcased_option = option.name | downcase %}
+        {% for trigger in swatch_trigger_list %}
+          {% assign swatch_trigger = trigger | strip %}
+          {% if downcased_option contains swatch_trigger %}
+            {% assign is_color = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% assign option_id = forloop.index0 %}
+        {% if block.settings.show_header_divider == true and forloop.first == false %}
+          <hr/>
+        {% endif %}
+        <div class="product-variant-group">
+          {% capture options_header %}
+            <div class="product-varient-heading product-info-title text-xs">
+              {{ option.name | capitalize }} {% if block.settings.show_selected_option %}: <span id="{{ section_id }}-option{{ option.position }}" data-selected-value>
+                  {{ option.selected_value }}
+                </span>
+              {% endif %}
+            </div>
+          {% endcapture %}
+          {% if is_size != true %}
+            {{ options_header }}
+          {% endif %}
+          {% if is_size %}
+            <div class="product-variant-sizes">
+              {{ options_header }}
+              <size-chart-trigger class="product-size-chart" data-section="{{ section.id }}">
+                <button
+                  type="button"
+                  is="size-chart"
+                  class="size-chart-link"
+                  data-size-chart-trigger>
+                  <span class="svg-wrapper d-flex">
+                    {% render 'icons'
+                      , icon: 'size-chart' %}
+                  </span>
+                  {% if block.settings.custom_title != blank %}
+                    {{ block.settings.custom_title }}
+                  {% else %}
+                    {{ 'products.product.size_chart' | t }}
+                  {% endif %}
+                </button>
+                {% if block.settings.size_chart != blank %}
+                  {% render 'size-chart'
+                    , block: block
+                    , section: section %}
+                {% endif %}
+              </size-chart-trigger>
+
+            </div>
+          {% endif %}
+
+          {%- if block.settings.variant_type == 'button' -%}
+            <fieldset
+              class="product-varients-fieldset"
+              data-option-index="option{{ forloop.index }}"
+              data-option-slug="{{ option.name | handleize }}">
+              <ul class="product-variants-list  {% if is_color %} color-select colors-list colors-style-{{ settings.color_style }}{% else %} sizes-list sizes-style-{{ settings.others_style }} active-button-style-{{ block.settings.active_button_style }}{% endif %}" style-{{ block.settings.variants_style }}>
+                {%- for option_value in option.values -%}
+                  {% liquid
+                    assign swatch_image = blank
+                    assign swatch_image_position = blank
+                    assign option_disabled = true
+                    if option_value.available
+                      assign option_disabled = false
+                    endif
+                  %}
+                  {% liquid
+                    assign has_catagory_swatches = false
+                    assign swatch_count = option.values | map: 'swatch' | compact | size
+                    if swatch_count > 0
+                      assign has_catagory_swatches = true
+                    endif
+                  %}
+                  {% assign style = block.settings.variants_style | escape %}
+                  {%- assign swatch_fallback = null %}
+                  {% liquid
+                    assign swatch_image = blank
+                    assign swatch_image_position = option_value.swatch.image.presentation.focal_point
+                    assign option_disabled = true
+                    if option_value.available
+                      assign option_disabled = false
+                    endif
+                  %}
+                  {% if style == 'color_swatch' %}
+                    {% if option_value.swatch != blank and option_value.swatch.image %}
+                      {%- assign swatch_image = option_value.swatch.image | image_url: width: 144 %}
+                    {%- elsif option_value.swatch != blank and option_value.swatch.color -%}
+                      {%- assign swatch_fallback = option_value.swatch.color %}
+                    {%- else -%}
+                      {%- assign swatch_fallback = option_value %}
+                    {%- endif -%}
+
+                  {%- elsif style == 'variant_image' -%}
+
+                    {% if option_value.variant.featured_media != blank %}
+                      {%- assign swatch_image = option_value.variant.featured_media | image_url: width: 144 %}
+                      {% assign swatch_image_position = 'center' %}
+                    {% else %}
+                      {%- assign swatch_fallback = option_value %}
+                    {% endif %}
+
+                  {% else %}
+                    {%- assign swatch_fallback = option_value | escape %}
+                  {%- endif -%}
+
+                  {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
+                  {% for color in custom_colors %}
+                    {% assign color_code = color | strip | split: ':' %}
+                    {% assign color_name = color_code.first | downcase | strip %}
+                    {% assign value_downcase = option_value | downcase %}
+                    {% if color_name == value_downcase %}
+                      {% assign color_value = color_code.last | strip %}
+                      {% if color_value contains '#' %}
+                        {% assign swatch_fallback = color_value %}
+                      {% else %}
+                        {% comment %} 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% assign swatch_image = color_value | lstrip | file_img_url: 'small' %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% assign swatch_image_position = 'center' %} 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% endcomment %}
+                      {% endif %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                  {% comment %} {% endif %} {% endcomment %}
+                  <li class="product-variant-item{% if option.selected_value == option_value %} active{% endif %}{% if option_disabled %} variant-disabled{% endif %}{% if swatch_image != blank %} has-swatch-image{% endif %} swatch-count-{{ swatch_count }}">
+                    <input
+                      type="radio"
+                      class="form-control no-select{% if option_disabled %} variant-input-disabled{% endif %}"
+                      id="{{ section_id }}-{{ option.name | handle }}-{{ forloop.index0 }}"
+                      name="{{ option.name }}"
+                      value="{{ option_value | escape }}"
+                      form="{{ product_form_id }}"
+                      {% if option.selected_value == option_value %}
+                      checked
+                      ="checked"
+                      {% endif %}
+                      data-product-url="{{ option_value.product_url }}"
+                      data-variant-id="{{ option_value.variant.id }}"
+                      data-option-value-id="{{ option_value.id }}"
+                      data-option-value="{{ option_value | escape }}">
+                    {% if option_value.swatch != blank %}
+                      <label
+                        for="{{ section_id }}-{{ option.name | handle }}-{{ forloop.index0 }}"
+                        class="variant-label body-font"
+                        style="{% if swatch_image != blank  %}background-image:url({{ swatch_image }});background-position:{{ swatch_image_position }};{%  elsif swatch_fallback != blank %}--swatch-color:{{ swatch_fallback }};{% endif %}">
+                        <div class="tooltip body-font">{{ option_value | escape }}</div>
+                      </label>
+                    {% elsif is_color %}
+                      <label
+                        for="{{ section_id }}-{{ option.name | handle }}-{{ forloop.index0 }}"
+                        class="variant-label body-font"
+                        style-{{ style }}
+                        style="{% if swatch_image != blank  %}background-image:url({{ swatch_image }});background-position:{{ swatch_image_position }};{%  elsif swatch_fallback != blank %}--swatch-color:{{ swatch_fallback }};{% endif %}">
+                        <div class="tooltip body-font text-xxs">{{ option_value | escape }}</div>
+                      </label>
+                    {% else %}
+                      <label for="{{ section_id }}-{{ option.name | handle }}-{{ forloop.index0 }}" class="variant-label body-font">
+                        {{ option_value | escape }}
+                      </label>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </fieldset>
+          {% else %}
+            <fieldset
+              class=" js product-form-input variant-input-wrapper product-input-dropdown"
+              data-option-index="option{{ forloop.index }}"
+              data-option-slug="{{ option.name | handleize }}">
+              <select
+                id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                class="select-select"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+                aria-label="Select product option">
+                {%- for option_value in option.values -%}
+                  {% liquid
+                    assign option_disabled = true
+                    if option_value.available
+                      assign option_disabled = false
+                    endif
+                  %}
+                  <option
+                    id="{{ section_id }}-{{ option.name | handle }}-{{ forloop.index0 }}"
+                    value="{{ option_value | escape }}"
+                    {% if option_value.selected %}
+                    selected="selected"
+                    {% endif %}
+                    data-product-url="{{ option_value.product_url }}"
+                    data-variant-id="{{ option_value.variant.id }}"
+                    data-option-value-id="{{ option_value.id }}"
+                    data-option-value="{{ option_value | escape }}">
+                    {% if option_disabled -%}
+                      {{- 'products.product.value_unavailable' | t: option_value: option_value -}}
+                    {%- else -%}
+                      {{- option_value -}}
+                    {%- endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </fieldset>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+      <script type="application/json" data-selected-variant>
+        {{ product.selected_or_first_available_variant | json }}
+      </script>
+    </variant-selects>
+  {%- endunless -%}
+  <noscript>
+    <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+      <label class="form__label flex gap-2" for="Variants-{{ section_id }}">
+        {{- 'products.product.product_variants' | t -}}
+      </label>
+      <div class="field">
+        <select
+          name="id"
+          id="Variants-{{ section_id }}"
+          class="select"
+          form="{{ product_form_id }}">
+          {%- for variant in product.variants -%}
+            <option
+              {% if variant == product.selected_or_first_available_variant %}
+              selected
+              {% endif %}
+              {% if variant.available == false %}
+              disabled
+              {% endif %}
+              value="{{ variant.id }}">
+              {{ variant.title }}
+              {%- if variant.available == false %}
+                - {{ 'products.product.sold_out' | t }}{% endif %}
+              -
+              {{ variant.price | money | strip_html }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    </div>
+  </noscript>
+{% else %}
+  <variant-selects>
+    <div class="product-variant-group">
+      <div class="product-varient-heading product-info-title text-xs">
+        {{ 'products.product.onboarding.options.option1.label' | t }}{% if block.settings.show_selected_option %}
+          :
+          <span>{{ 'products.product.onboarding.options.option1.value1' | t }}</span>
+        {% endif %}
+      </div>
+
+      {%- if block.settings.variant_type == 'button' -%}
+        <fieldset
+          class="product-varients-fieldset"
+          data-option-index="option1"
+          data-option-slug="{{'products.product.onboarding.options.option1.label' | t}}">
+          <ul class="product-variants-list color-select colors-list colors-style-{{ settings.color_style }}">
+            <li class="product-variant-item active">
+              <label
+                for="option-1"
+                class="variant-label body-font"
+                style="--swatch-color: {{ 'products.product.onboarding.options.option1.value1' | t }}">
+                <div class="tooltip body-font text-xxs">
+                  {{ 'products.product.onboarding.options.option1.value1' | t }}
+                </div>
+              </label>
+            </li>
+
+            <li class="product-variant-item">
+              <label
+                for="option-1"
+                class="variant-label body-font"
+                style="--swatch-color: {{ 'products.product.onboarding.options.option1.value2' | t }}">
+                <div class="tooltip body-font text-xxs">
+                  {{ 'products.product.onboarding.options.option1.value2' | t }}
+                </div>
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label
+                for="option-1"
+                class="variant-label body-font"
+                style="--swatch-color: {{ 'products.product.onboarding.options.option1.value3' | t }}">
+                <div class="tooltip body-font text-xxs">
+                  {{ 'products.product.onboarding.options.option1.value3' | t }}
+                </div>
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label
+                for="option-1"
+                class="variant-label body-font"
+                style="--swatch-color: {{ 'products.product.onboarding.options.option1.value4' | t }}">
+                <div class="tooltip body-font text-xxs">
+                  {{ 'products.product.onboarding.options.option1.value4' | t }}
+                </div>
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label
+                for="option-1"
+                class="variant-label body-font"
+                style="--swatch-color: {{ 'products.product.onboarding.options.option1.value5' | t }}">
+                <div class="tooltip body-font text-xxs">
+                  {{ 'products.product.onboarding.options.option1.value5' | t }}
+                </div>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+      {% else %}
+        <fieldset
+          class=" js product-form-input variant-input-wrapper product-input-dropdown"
+          data-option-index="option1"
+          data-option-slug="{{'products.product.onboarding.options.option1.label' | t}}">
+          <select class="select-select" aria-label="Select product option">
+            <option value="{{ 'products.product.onboarding.options.option1.value1' | t }}" selected="selected">
+              {{ 'products.product.onboarding.options.option1.value1' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option1.value2' | t }}">
+              {{ 'products.product.onboarding.options.option1.value2' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option1.value3' | t }}">
+              {{ 'products.product.onboarding.options.option1.value3' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option1.value4' | t }}">
+              {{ 'products.product.onboarding.options.option1.value4' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option1.value5' | t }}">
+              {{ 'products.product.onboarding.options.option1.value5' | t }}
+            </option>
+          </select>
+        </fieldset>
+      {% endif %}
+    </div>
+
+    <div class="product-variant-group">
+      <div class="product-varient-heading product-info-title text-xs">
+        {{ 'products.product.onboarding.options.option2.label' | t }}{% if block.settings.show_selected_option %}
+          :
+          <span>{{ 'products.product.onboarding.options.option2.value1' | t }}</span>
+        {% endif %}
+      </div>
+      {%- if block.settings.variant_type == 'button' -%}
+        <fieldset
+          class="product-varients-fieldset"
+          data-option-index="option2"
+          data-option-slug="{{'products.product.onboarding.options.option2.label' | t}}">
+          <ul class="product-variants-list sizes-list sizes-style-{{ settings.others_style }} active-button-style-{{ block.settings.active_button_style }}">
+            <li class="product-variant-item active">
+              <label for="option-2" class="variant-label body-font">
+                {{ 'products.product.onboarding.options.option2.value1' | t }}
+              </label>
+            </li>
+
+            <li class="product-variant-item">
+              <label for="option-2" class="variant-label body-font">
+                {{ 'products.product.onboarding.options.option2.value2' | t }}
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label for="option-2" class="variant-label body-font">
+                {{ 'products.product.onboarding.options.option2.value3' | t }}
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label for="option-2" class="variant-label body-font">
+                {{ 'products.product.onboarding.options.option2.value4' | t }}
+              </label>
+            </li>
+            <li class="product-variant-item">
+              <label for="option-2" class="variant-label body-font">
+                {{ 'products.product.onboarding.options.option2.value5' | t }}
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+      {% else %}
+        <fieldset
+          class=" js product-form-input variant-input-wrapper product-input-dropdown"
+          data-option-index="option1"
+          data-option-slug="{{'products.product.onboarding.options.option1.label' | t}}">
+          <select class="select-select" aria-label="Select product option">
+            <option value="{{ 'products.product.onboarding.options.option2.value1' | t }}" selected="selected">
+              {{ 'products.product.onboarding.options.option2.value1' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option2.value2' | t }}">
+              {{ 'products.product.onboarding.options.option2.value2' | t }}
+            </option>
+            <option value="{{'products.product.onboarding.options.option2.value3' | t }}">
+              {{ 'products.product.onboarding.options.option2.value3' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option2.value4' | t }}">
+              {{ 'products.product.onboarding.options.option2.value4' | t }}
+            </option>
+            <option value="{{ 'products.product.onboarding.options.option2.value5' | t }}">
+              {{ 'products.product.onboarding.options.option2.value5' | t }}
+            </option>
+          </select>
+        </fieldset>
+      {% endif %}
+    </div>
+  </variant-selects>
+{% endif %}

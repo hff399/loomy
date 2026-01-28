@@ -1,0 +1,125 @@
+{% unless placeholder %}
+  <product-variants-set
+    data-section="{{ section.id }}"
+    data-template="{{ template }}"
+    data-page="{{template}}"
+    data-url="{{ product.url }}"
+    {% unless template == 'product' %}
+      data-handle="{{ product.handle }}"
+    {% endunless -%}
+    data-product="{{ product.id }}"
+    data-type="{{ block.settings.variant_type }}"
+    data-unavailable="false"
+    data-preorder="{{ settings.enable_preorder }}"
+    {% if cardoptions %}
+      data-product-card-option
+    {% endif %}
+    class="no-js-hidden"
+  >
+    <div class="product-variants-wrap">
+      {% for option in product.options_with_values %}
+        {% liquid
+          assign option_name_downcase = option.name | downcase
+          assign option_input_name = section.id | append: 'option-' | append: forloop.index | append: '-' | append: product.id
+          assign forloop_index = forloop.index
+          assign color_option_names = settings.color_name | downcase
+
+          if settings.variants_style == 'color_swatch'
+            if color_option_names contains option_name_downcase
+              assign is_contain_color = true
+            else
+              assign is_contain_color = false
+            endif
+          elsif settings.variants_style == 'varaint_image'
+            if color_option_names contains option_name_downcase
+              assign is_contain_variant_image = true
+            else
+              assign is_contain_variant_image = false
+            endif
+          else
+            assign is_contain_color = false
+            assign is_contain_variant_image = false
+          endif
+        %}
+        <product-variants-optionset
+          class="product-variants-wrap-inner"
+          data-optionset="{{ option.name }}"
+          {% if source == 'collection-search' and option.name != 'Color' %}
+            style="display:none;"
+          {% endif %}
+        >
+          <div class="product-info-title text-md">
+            {{ option.name }}: <span data-select-option-value>{{ option.selected_value }}</span>
+          </div>
+          <div class="product--variants-box select-box">
+            <select
+              {% if product_form_id %}
+                form="{{ product_form_id }}"
+              {% endif %}
+              aria-label="Featured product"
+            >
+              {% for value in option.values %}
+                <option
+                  value="{{ value | escape }}"
+                  {% if value == option.selected_value %}
+                    selected="selected"
+                  {% endif %}
+                  class="product--variant-select"
+                >
+                  {{- value -}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </product-variants-optionset>
+      {% endfor %}
+      <script type="application/json" data-name="main-product">
+        {{ product.variants | json }}
+      </script>
+      <script type="application/json" data-name="main-product-options">
+        {{ product.options_with_values | json }}
+      </script>
+      <script type="application/json" data-name="main-product-inventories">
+        [
+        {% for variant in product.variants %}
+          {
+            "id": {{- variant.id -}},
+            "inventory_management": "{{- variant.inventory_management -}}",
+            "inventory_policy": "{{- variant.inventory_policy -}}",
+            "inventory_quantity": "{{- variant.inventory_quantity -}}"
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {% endfor %}
+        ]
+      </script>
+    </div>
+  </product-variants-set>
+  <noscript>
+    <div class="product-options">
+      <div class="product-variants-title body-font text-md">{{ 'products.product.choose_options' | t }}</div>
+      <div class="product-variants-box select-box">
+        <select
+          id="variants-{{ section.id }}"
+          name="id"
+          {% if product_form_id != blank %}
+            form="{{ product_form_id }}"
+          {% endif %}
+          aria-label="Product options"
+        >
+          {% for variant in product.variants %}
+            <option
+              value="{{ variant.id }}"
+              {% if variant.selected %}
+                selected
+              {% endif -%}
+              {% if variant.available == false %}
+                disabled
+              {% endif %}
+            >
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </noscript>
+{% endunless %}

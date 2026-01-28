@@ -1,0 +1,96 @@
+{% if product != blank %}
+  {% assign options_size = 0 %}
+  {% capture has_variant_images %}
+            {%- assign has_catagory_swatches = false -%}
+            {%- for option in product.options_with_values -%}
+              {%- assign option_id = forloop.index0 -%}
+              {%- assign swatch_count = option.values | map: 'swatch' | compact | size -%}
+              
+              {% comment %}
+                Condition started
+                if product has no categories colors, then it will show swatches of default variant by matching color triggers.
+              {% endcomment %}
+              {% assign has_color_trigger = false %}
+              {% if settings.color_name != blank %}
+                {% assign swatch_trigger_list = settings.color_name | downcase | split: ',' %}
+                {% assign downcased_option = option.name | downcase %}
+                {% for trigger in swatch_trigger_list %}
+                  {% assign swatch_trigger = trigger | strip %}
+                  {% if downcased_option contains swatch_trigger %}
+                    {% assign has_color_trigger = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              {% comment %} Condition end {% endcomment %}
+        
+              {% if swatch_count > 0 %}
+                {%- assign has_catagory_swatches = true -%}
+                {%- assign options_size = option.values.size -%}
+            
+                    {%- for option_value in option.values -%}
+                      {%- assign swatch_image = blank -%}
+        
+                      {% if option_value.variant.featured_media != blank %}
+                       {%- assign swatch_image = option_value.variant.featured_media | image_url: width: 144 %}
+                      <img
+                          srcset="
+                            {%- if option_value.variant.featured_media.width >= 165 -%}{{ option_value.variant.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 360 -%}{{ option_value.variant.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 533 -%}{{ option_value.variant.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 720 -%}{{ option_value.variant.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 940 -%}{{ option_value.variant.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 1066 -%}{{ option_value.variant.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ option_value.variant.featured_media | image_url }} {{ option_value.variant.featured_media.width }}w
+                          "
+                          src="{{ option_value.variant.featured_media | image_url: width: 533 }}"
+                          sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                          alt="{{ option_value.variant.featured_media.alt | escape }}"
+                          class="product-card-image"
+                          loading="lazy"
+                          width="{{ option_value.variant.featured_media.width }}"
+                          height="{{ option_value.variant.featured_media.height }}"
+                          data-variant-image="{{ option_value.variant.id }}"
+                        >
+                      {% endif %}
+
+                    {% endfor %}
+                 
+              {% elsif has_color_trigger and has_catagory_swatches == false %}
+                {%- assign options_size = option.values.size -%}
+                {%- assign has_catagory_swatches = false -%}
+                  {%- for option_value in option.values -%}
+                      {%- assign swatch_image = blank -%}
+
+                      {% if option_value.variant.featured_media != blank %}
+                        {%- assign swatch_image = option_value.variant.featured_media | image_url: width: 144 %}
+                           
+                         <img
+                          srcset="
+                            {%- if option_value.variant.featured_media.width >= 165 -%}{{ option_value.variant.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 360 -%}{{ option_value.variant.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 533 -%}{{ option_value.variant.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 720 -%}{{ option_value.variant.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 940 -%}{{ option_value.variant.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if option_value.variant.featured_media.width >= 1066 -%}{{ option_value.variant.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ option_value.variant.featured_media | image_url }} {{ option_value.variant.featured_media.width }}w
+                          "
+                          src="{{ option_value.variant.featured_media | image_url: width: 533 }}"
+                          sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                          alt="{{ option_value.variant.featured_media.alt | escape }}"
+                          class="product-card-image"
+                          loading="lazy"
+                          width="{{ option_value.variant.featured_media.width }}"
+                          height="{{ option_value.variant.featured_media.height }}"
+                          data-variant-image="{{ option_value.variant.id }}"
+                        >
+                      {%  endif %}
+
+                  {% endfor %}
+              {% endif %}
+            {% endfor %}
+        {% endcapture %}
+  {% if options_size > 0 %}
+    {{ has_variant_images }}
+  {% endif %}
+{% endif %}

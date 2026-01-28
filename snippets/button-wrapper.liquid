@@ -1,0 +1,75 @@
+{% liquid
+  if button_style == 'global'
+    assign button_style = settings.button_style
+  endif
+
+  if button_size == 'global'
+    assign button_size = settings.button_size
+  endif
+
+  if button_style == 'link'
+    assign cta_class = 'text-button'
+  elsif button_style == 'outline'
+    assign cta_class = 'button-outline'
+  elsif button_style == 'solid'
+    assign cta_class = 'button-solid'
+  elsif button_style == 'icon'
+    assign cta_class = 'button-icon'
+  endif
+%}
+{% if button_style == 'solid_animated' %}
+  <a href="{{ button_link }}" class="button-solid button-animated button {{ button_size }} {% if button_secondary %} button-secondary{% endif %} {{ fouce_class }}">
+    <span class="button-bg">
+      <span class="button-bg-layers">
+        <span class="button-bg-layer button-bg-layer-1"></span>
+        <span class="button-bg-layer button-bg-layer-2"></span>
+        <span class="button-bg-layer button-bg-layer-3"></span>
+      </span>
+    </span>
+    <span class="button-inner">
+      <span class="button-inner-static">{{- button_text -}}</span>
+      <span class="button-inner-hover">{{- button_text -}}</span>
+    </span>
+  </a>
+{% elsif button_style == 'outline_animated' %}
+  <a
+    href="{{ button_link }}"
+    class="button-animated button button-outlined {{ button_size }}{% if button_secondary %} button-secondary{% endif %} {{ fouce_class }}"
+    data-button-svg>
+    <span class="button-inner">
+      <span class="button-inner-static">{{- button_text -}}</span>
+      <span class="button-inner-hover">{{- button_text -}}</span>
+    </span>
+  </a>
+{% else %}
+  <a
+    href="{{ button_link }}"
+    class="button media-button{% unless button_style == 'link' %} buttonHover {{ button_size }} {% if button_secondary %} button-secondary {% endif %}{% endunless %} {{ cta_class }} {{ fouce_class }}"
+    aria-label="{% if button_text %}{{- button_text -}}{% else %}View link{% endif %}"
+    {% if tabindex_focus == "no" %}
+    tabindex="-1"
+    {% endif %}>
+    {% comment %} 
+                  {% if block.settings.button_style == 'outline_with_icon' or block.settings.button_style == 'solid_with_icon' %}
+                  <span class="media-button-text"> 
+                  {{- block.settings.button_text -}}
+                  </span>
+                  <span class="btn-icon-svg"> 
+                  {% render 'svg-icons', icon: 'button-arrow' %}
+                  </span> 
+            {% endcomment %}
+    {% if button_style == 'icon' %}
+      {% render 'svg-icons'
+        , icon: 'button-arrow' %}
+    {% else %}
+      <span>
+        {{- button_text -}}
+      </span>
+    {% endif %}
+  {% comment %} 
+            {% if block.settings.button_style == 'outline_with_icon' or block.settings.button_style == 'outline' %} 
+            {% render 'svg-icons', icon: 'dashed-line' %}
+            {% endif %} 
+      {% endcomment %}
+  </a>
+{% endif %}

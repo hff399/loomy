@@ -1,0 +1,147 @@
+.marquee-section {
+  overflow: hidden;
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  border-color: rgba(var(--border-color));
+  transform: rotate(var(--rotate));
+}
+
+.marquee-content-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--marquee-spacing);
+  padding-bottom: var(--marquee-spacing);
+  gap: var(--marguee-item-space);
+}
+
+.marquee-item {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+  column-gap: var(--marguee-item-space);
+}
+
+.marquee-media-block {
+  width: 100%;
+}
+
+.marquee-item .marquee-icon svg,
+.marquee-item .marquee-icon img {
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+  display: block;
+}
+
+.marquee-section .marquee-item :where(.marquee-text, .no-markers) {
+  font-size: var(--marque-text-size);
+  color: var(--text-color);
+}
+
+.marquee-icon {
+  width: var(--marque-image-width, 30px);
+  border-radius: var(--marquee-images-radius);
+  overflow: hidden;
+}
+
+.marquee-section .border-enable-true {
+  border-top: 1px solid rgba(var(--border-color));
+  border-bottom: 1px solid rgba(var(--border-color));
+}
+
+/* Marquee Animation */
+.autoplay-infinite .marquee-item {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: text-marque;
+  animation-duration: var(--marquee-speed);
+}
+
+.marquee-pause .marquee-item {
+  animation-play-state: paused;
+}
+
+.rtl-direction .marquee-item {
+  animation-direction: normal;
+}
+
+.ltr-direction .marquee-item {
+  animation-direction: reverse;
+}
+
+.show-image-on-hover .marquee-icon {
+  position: absolute;
+  inset: 0;
+  transform: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin: auto;
+  height: min-content;
+  transform: translateY(10px);
+}
+
+.marquee-text-block.show-image-on-hover {
+  position: relative;
+}
+
+.show-image-on-hover .marquee-icon,
+.marquee-text {
+  transition: var(--smooth-animation);
+}
+
+@keyframes text-marque {
+  0% {
+    transform: translate(0);
+    visibility: visible;
+  }
+
+  100% {
+    transform: translate(-100%);
+  }
+}
+
+
+@media (min-width: 768px) {
+  .marquee-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  .marquee-icon.marquee-image-for-mobile {
+    display: none;
+  }
+
+  .marquee-text-block.show-image-on-hover:hover .marquee-icon {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .marquee-section .marquee-content-wrap:hover .marquee-item {
+    animation-play-state: paused;
+  }
+
+  .marquee-text-block.show-image-on-hover:hover .marquee-text {
+    filter: blur(3px);
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .show-image-on-hover .marquee-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .marquee-desktop {
+    display: none;
+  }
+}

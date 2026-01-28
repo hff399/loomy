@@ -1,0 +1,97 @@
+{% if block.settings.button_text != blank and block.settings.button_link != blank %}
+    <div class="section-buttons {% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+        {% if settings.enable_heading_animation %}
+            <animate-element data-animate="fade-up-large" data-animate-delay="150">
+        {% endif %}
+        {% render 'button-wrapper',
+            block_settings: block,
+            button_style: block.settings.button_style,
+            button_text: block.settings.button_text,
+            button_link: block.settings.button_link,
+            button_size: block.settings.button_size
+        %}
+        {% if settings.enable_heading_animation %}
+            </animate-element>
+        {% endif %}
+    </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "t:blocks.button.name",
+    "tag": null,
+    "settings": [
+         {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.all.button_text.label",
+          "default": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.all.button_link.label"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "default": "solid",
+          "label": "t:sections.all.button_style.label",
+          "options": [
+            {
+              "value": "global",
+              "label": "t:sections.all.button_style.global.label"
+            },
+            {
+              "value": "solid",
+              "label": "t:sections.all.button_style.solid.label"
+            },
+            {
+              "value": "outline",
+              "label": "t:sections.all.button_style.outline.label"
+            },
+            {
+              "value": "solid_animated",
+              "label": "t:sections.all.button_style.solid_animated.label"
+            },
+            {
+              "value": "outline_animated",
+              "label": "t:sections.all.button_style.outline_animated.label"
+            },
+            {
+              "value": "link",
+              "label": "t:sections.all.button_style.link.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_size",
+          "default": "button-sm",
+          "label": "t:sections.all.button_size.label",
+          "options": [
+            {
+              "value": "global",
+              "label": "t:sections.all.button_size.global.label"
+            },
+            {
+              "value": "button-sm",
+              "label": "t:sections.all.button_size.small-button.label"
+            },
+            {
+              "value": "button-regular",
+              "label": "t:sections.all.button_size.regular-button.label"
+            },
+            {
+              "value": "button-lg",
+              "label": "t:sections.all.button_size.large-button.label"
+            }
+          ]
+        }
+    ],
+     "presets": [
+        {
+          "name": "t:blocks.button.presets.name"
+        }
+    ]
+  }
+{% endschema %}

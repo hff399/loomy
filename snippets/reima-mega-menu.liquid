@@ -1,0 +1,202 @@
+{% comment %}
+  Reima-Style Mega Menu
+
+  Variables:
+  - link: main menu link object
+  - section: section object with blocks
+
+  Block settings:
+  - mega_menu: linklist containing categories
+  - content_image_1, content_image_2: promotional images
+  - content_heading_1, content_heading_2: titles
+  - content_description_1, content_description_2: descriptions
+  - content_link_1, content_link_2: links
+{% endcomment %}
+
+{% assign link_title = link.title | handleize %}
+{% assign block_mega_menu = blank %}
+{% assign has_promotional_content = false %}
+{% assign matched_block = blank %}
+{% assign image_ratio = '100' %}
+{% assign menu_columns = 2 %}
+
+{% comment %} Find the matching block for this menu link {% endcomment %}
+{% for block in section.blocks %}
+  {% assign block_label = block.settings.title | handleize %}
+  {% if block_label == link_title and block.type == 'mega-menu' %}
+    {% assign matched_block = block %}
+    {% assign block_mega_menu = block.settings.mega_menu %}
+    {% assign menu_columns = block.settings.menu_columns | default: 2 %}
+
+    {% comment %} Check if we have any promotional content {% endcomment %}
+    {% if block.settings.content_image_1 != blank or block.settings.content_image_2 != blank %}
+      {% assign has_promotional_content = true %}
+    {% endif %}
+
+    {% comment %} Determine image ratio {% endcomment %}
+    {% if block.settings.image_ratio == 'landscape' %}
+      {% assign image_ratio = '66' %}
+    {% elsif block.settings.image_ratio == 'square' %}
+      {% assign image_ratio = '100' %}
+    {% elsif block.settings.image_ratio == 'portrait' %}
+      {% assign image_ratio = '133' %}
+    {% endif %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Always render mega menu for Reima style - even without child links {% endcomment %}
+{% if matched_block != blank or link.links.size > 0 or true %}
+  <div class="reima-mega-menu" header-menu-inner role="menu" aria-label="{{ link.title }} menu">
+      <div class="container">
+        <div class="reima-mega-menu-inner">
+
+        {% comment %} Categories Section (55% width) {% endcomment %}
+        <div class="reima-mega-menu-categories{% unless has_promotional_content %} reima-mega-menu-categories-full{% endunless %}" style="--menu-columns: {{ menu_columns }}">
+          {% if block_mega_menu != blank and block_mega_menu.links.size > 0 %}
+            {% comment %} Priority 1: Use custom mega menu linklist from block {% endcomment %}
+            {% for category in block_mega_menu.links %}
+              <div class="reima-category-column">
+                <h3 class="reima-category-title {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
+                  <a href="{{ category.url }}" title="{{ category.title }}">
+                    {{ category.title | upcase }}
+                  </a>
+                </h3>
+
+                {% if category.links.size > 0 %}
+                  <ul class="reima-category-links" role="menu">
+                    {% for subcategory in category.links %}
+                      <li role="menuitem">
+                        <a
+                          href="{{ subcategory.url }}"
+                          title="{{ subcategory.title }}"
+                          class="reima-subcategory-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                        >
+                          {{ subcategory.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+
+                    {% comment %} "See All [Category]" link {% endcomment %}
+                    <li class="reima-see-all" role="menuitem">
+                      <a
+                        href="{{ category.url }}"
+                        title="{{ category.title }}"
+                        class="reima-see-all-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                      >
+                        See All {{ category.title }}
+                      </a>
+                    </li>
+                  </ul>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% elsif link.links.size > 0 %}
+            {% comment %} Priority 2: Use main menu child links (collections) {% endcomment %}
+            {% for childlink in link.links %}
+              <div class="reima-category-column">
+                <h3 class="reima-category-title {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
+                  <a href="{{ childlink.url }}" title="{{ childlink.title }}">
+                    {{ childlink.title | upcase }}
+                  </a>
+                </h3>
+
+                {% if childlink.links.size > 0 %}
+                  <ul class="reima-category-links" role="menu">
+                    {% for grandchild in childlink.links %}
+                      <li role="menuitem">
+                        <a
+                          href="{{ grandchild.url }}"
+                          title="{{ grandchild.title }}"
+                          class="reima-subcategory-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                        >
+                          {{ grandchild.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+
+                    {% comment %} "See All [Category]" link {% endcomment %}
+                    <li class="reima-see-all" role="menuitem">
+                      <a
+                        href="{{ childlink.url }}"
+                        title="{{ childlink.title }}"
+                        class="reima-see-all-link {{ settings.third_level_font_size }} {{ settings.third_level_font }}"
+                      >
+                        See All {{ childlink.title }}
+                      </a>
+                    </li>
+                  </ul>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% comment %} Priority 3: No child links - show helpful setup guide {% endcomment %}
+            <div class="reima-category-column">
+              <h3 class="reima-category-title {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
+                <a href="{{ link.url }}" title="{{ link.title }}">
+                  VIEW ALL {{ link.title | upcase }}
+                </a>
+              </h3>
+              <p class="reima-empty-message">
+                To add categories: Go to Online Store → Navigation → Edit "{{ section.settings.menu.title }}" → Add nested links under "{{ link.title }}"
+              </p>
+            </div>
+          {% endif %}
+        </div>
+
+        {% comment %} Promotional Images Section (45% width) {% endcomment %}
+        {% if has_promotional_content and matched_block != blank %}
+          <div class="reima-mega-menu-promos">
+            {% for i in (1..2) %}
+              {% assign image_id = 'content_image_' | append: i %}
+              {% assign heading_id = 'content_heading_' | append: i %}
+              {% assign description_id = 'content_description_' | append: i %}
+              {% assign link_id = 'content_link_' | append: i %}
+              {% assign cta_id = 'content_cta_' | append: i %}
+
+              {% if matched_block.settings[image_id] != blank %}
+                <{% if matched_block.settings[link_id] != blank %}a href="{{ matched_block.settings[link_id] }}"{% else %}div{% endif %} class="reima-promo-block">
+
+                  {% comment %} Calculate image ratio {% endcomment %}
+                  {% if matched_block.settings.image_ratio == 'auto' %}
+                    {% assign promo_image_ratio = 1 | divided_by: matched_block.settings[image_id].aspect_ratio | times: 100 %}
+                  {% else %}
+                    {% assign promo_image_ratio = image_ratio %}
+                  {% endif %}
+
+                  <div class="reima-promo-image media-wrapper">
+                    <div class="media" style="--image-ratio:{{ promo_image_ratio }}%;">
+                      {% render 'lazy-images', image: matched_block.settings[image_id] %}
+                    </div>
+                  </div>
+
+                  <div class="reima-promo-content">
+                    {% if matched_block.settings[heading_id] != blank %}
+                      <h4 class="reima-promo-heading">
+                        {{ matched_block.settings[heading_id] }}
+                      </h4>
+                    {% endif %}
+
+                    {% if matched_block.settings[description_id] != blank %}
+                      <p class="reima-promo-description">
+                        {{ matched_block.settings[description_id] }}
+                      </p>
+                    {% endif %}
+
+                    {% if matched_block.settings[cta_id] != blank %}
+                      <span class="reima-promo-cta">
+                        {{ matched_block.settings[cta_id] }}
+                      </span>
+                    {% endif %}
+                  </div>
+
+                </{% if matched_block.settings[link_id] != blank %}a{% else %}div{% endif %}>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        </div>
+      </div>
+    </div>
+{% endif %}

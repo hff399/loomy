@@ -1,0 +1,223 @@
+.icon-with-text {
+  grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+  grid-gap: 20px;
+}
+
+.icon-with-text-item {
+  border-radius: var(--card-radius);
+  grid-gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.icon-with-text-text {
+  gap: 3px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.icon-with-text-item.icon-left {
+  flex-direction: row;
+}
+
+.icon-with-text-item.icon-top {
+  flex-direction: column;
+}
+
+.icon-with-text-item.icon-right {
+  flex-direction: row-reverse;
+}
+
+.icon-with-text-item.text-center {
+  justify-content: center;
+}
+
+.icon-with-text-item .icon-with-text-text {
+  width: auto;
+}
+
+.icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline-offset: -9px;
+  /* background-color: rgba(239, 229, 221, 1);
+  outline: 1px dashed rgba(101, 150, 29, 1); */
+  width: var(--icon-circle-size, 106px);
+  height: var(--icon-circle-size, 106px);
+  flex: 0 0 var(--icon-circle-size, 106px);
+}
+
+.icon-small {
+  --icon-circle-size: 80px;
+}
+
+.icon-large {
+  --icon-circle-size: 130px;
+}
+
+.icon-with-text-icon {
+  display: flex;
+}
+
+.icon-with-text-icon-image svg {
+  color: var(--shape-color);
+  transition: var(--smooth-animation);
+  width: 99px;
+  height: 99px;
+}
+
+.icon-with-bg-shape .media-box {
+  position: absolute;
+  text-align: center;
+}
+
+.icon-with-bg-shape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-with-text-icon .icon-large {
+  width: 50px;
+}
+
+.icon-with-text-icon .icon-medium {
+  width: 40px;
+}
+
+.icon-with-text-icon .icon-small {
+  width: 30px;
+}
+
+.icon-large .icon-with-text-icon-image svg {
+  width: 100px;
+  height: 100px;
+}
+
+.icon-medium .icon-with-text-icon-image svg {
+  width: 80px;
+  height: 80px;
+}
+
+.icon-small .icon-with-text-icon-image svg {
+  width: 60px;
+  height: 60px;
+}
+
+.icon-with-text-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon-with-text-icon-image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  margin: auto;
+}
+
+.icon-with-text-item.icon-top.text-left {
+  align-items: flex-start;
+}
+
+.icon-with-text-item.icon-top.text-center {
+  align-items: center;
+}
+
+.icon-with-text-item.icon-top.text-right {
+  align-items: flex-end;
+}
+
+.media-box svg {
+  color: var(--icon-color);
+}
+
+.icon-with-text-icon-image svg path {
+  stroke: inherit;
+  stroke-width: 2px;
+}
+
+.icon-with-bg-shape .media-box {
+  transition: var(--smooth-animation);
+}
+
+/* background card color */
+.background-style-background_card .icon-with-text {
+  background: var(--card-background);
+  border-radius: var(--card-radius);
+  padding: 40px 15px;
+}
+
+.background-style-column_card .icon-with-text-text :where(.icon-with-text-heading, .icon-with-text-desc),
+.background-style-background_card .icon-with-text-text :where(.icon-with-text-heading, .icon-with-text-desc) {
+  color: var(--card-text);
+}
+
+/* background column card color */
+.background-style-column_card .icon-with-text-item {
+  background: var(--card-background);
+  padding: 30px 15px;
+}
+
+.background-style-none .no-container {
+  padding: 0 15px;
+}
+
+.background-style-column_border .icon-with-text-item {
+  border: 1px solid rgba(var(--border-color));
+  padding: 30px 15px;
+}
+
+
+@media (min-width: 992px) {
+
+  .icon-with-text-item.icon-top,
+  .icon-top .icon-with-text-text {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1025px) {
+  .icon-with-text-item:hover .icon-with-bg-shape .media-box {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 991px) {
+  .icon-with-text {
+    gap: 10px;
+  }
+
+  .background-style-background_card .icon-with-text {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .icon-medium .icon-with-text-icon-image svg {
+    width: 55px;
+    height: 55px;
+  }
+
+  .icon-with-text-item {
+    grid-gap: 15px;
+  }
+
+  .background-style-none .icon-with-text.mobile-swipe {
+    grid-auto-columns: minmax(70%, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(70%, 1fr)) !important;
+  }
+}

@@ -1,0 +1,1028 @@
+{% if section.index <= 2 %}
+    {{ 'best-categories.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'best-categories.css' | asset_url | stylesheet_tag }}
+ 
+{%  liquid 
+  assign image_size = section.settings.image_ratio
+  if image_size == 'landscape'
+    assign image_ratio = '75'
+  elsif image_size == 'square'
+    assign image_ratio = '100'
+  elsif image_size == 'portrait'
+    assign image_ratio = '130'
+  endif
+%}
+
+{%- capture corner_style -%}
+  {% if section.settings.corner_style == 'top' %}
+      round-section round-top
+      {% elsif section.settings.corner_style == 'bottom' %}
+      round-section round-bottom
+      {% elsif section.settings.corner_style == 'both' %}
+      round-section round-bottom round-top
+  {% endif %}
+{%- endcapture -%}
+
+{% liquid
+  if section.settings.section_container_width == 'global'
+    assign containerClass = settings.container_width
+  else
+    assign containerClass = section.settings.section_container_width
+  endif
+%} 
+
+{% liquid 
+  assign shape_block_count = 0 
+  assign categories_block_count = 0 
+  for block in section.blocks 
+    if block.type == 'shape' and block.settings.shape != 'none'
+      assign shape_block_count = shape_block_count | plus: 1 
+    elsif block.type == 'categorie'
+      assign categories_block_count = categories_block_count | plus: 1 
+    endif 
+  endfor 
+%}
+
+<div class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative section-{{ section.settings.section_background }} {{ corner_style }} {% if section.settings.shape != 'none' %} section-shape-{{ section.settings.shape_position }} shape-{{ section.settings.shape }}{% endif %}">
+{% if shape_block_count > 0 %}
+  <shape-icons class="img-with-shapes-wrapper">
+    {% for block in section.blocks %}
+      {% if block.type == 'shape' and block.settings.shape != 'none' %}
+          <div class="shape-icon shape {{ block.settings.shape }}" style="--shape-color:{{ block.settings.shape_color }}" id="icon-shape-{{ block.id }}" data-shape-icon>
+           <template>
+                      {% render 'bg-shape'
+                        , shape: block.settings.shape %}
+                    </template>
+          </div> 
+      {% endif %}
+    {% endfor %}
+</shape-icons>
+{% endif %} 
+
+  {% if section.settings.background_image != blank or section.settings.background_style == 'animation' %}
+    <div class="background-overlay-image{% unless section.settings.background_style == 'animation' %}  media-overlay overlay-style-{{ section.settings.overlay_style }}{% endunless %} blur-background-{{ section.settings.blur_background_image }} section-background-style-{{ section.settings.background_style }}">
+      {% if section.settings.background_style == 'animation' %} 
+       <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1920" viewBox="0 0 1920 1920" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M909.813 0L942.495 811.974L784.938 14.7646L923.328 815.521L663.055 45.7043L904.783 821.543L546.258 92.2825L887.184 829.935L436.537 153.711L870.828 840.553L335.773 228.935L855.997 853.214L245.689 316.663L842.947 867.703L167.83 415.404L831.905 883.774L103.523 523.463L823.048 901.141L53.8679 638.992L816.538 919.52L19.7178 760.01L812.482 938.592L1.66216 884.453L810.948 958.029L0 1010.19L811.964 977.505L14.7599 1135.06L815.517 996.672L45.6996 1256.95L821.538 1015.22L92.2825 1373.74L829.935 1032.82L153.706 1483.46L840.553 1049.17L228.93 1584.23L853.209 1064L316.663 1674.31L867.699 1077.05L415.404 1752.17L883.764 1088.09L523.458 1816.48L901.141 1096.95L638.987 1866.13L919.52 1103.46L760.01 1900.28L938.592 1107.52L884.448 1918.34L958.029 1109.05L1010.19 1920L977.5 1108.04L1135.06 1905.24L996.672 1104.48L1256.94 1874.3L1015.22 1098.46L1373.74 1827.72L1032.82 1090.07L1483.46 1766.29L1049.17 1079.45L1584.23 1691.07L1064 1066.79L1674.31 1603.34L1077.05 1052.3L1752.17 1504.6L1088.09 1036.24L1816.48 1396.54L1096.95 1018.86L1866.13 1281.01L1103.46 1000.48L1900.27 1159.99L1107.51 981.408L1918.34 1035.55L1109.05 961.971L1920 909.813L1108.03 942.5L1905.24 784.938L1104.48 923.328L1874.3 663.06L1098.45 904.783L1827.72 546.258L1090.07 887.184L1766.29 436.537L1079.45 870.828L1691.07 335.773L1066.79 855.997L1603.34 245.694L1052.3 842.951L1504.6 167.83L1036.23 831.905L1396.54 103.523L1018.86 823.048L1281.01 53.8726L1000.48 816.542L1159.99 19.7273L981.408 812.487L1035.55 1.66216L961.971 810.953L909.813 0Z" fill="url(#paint0_radial_3704_191)"/>
+        <defs>
+        <radialGradient id="paint0_radial_3704_191" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 978.75) rotate(90) scale(941.25)">
+        <stop stop-color="#E6E6E6"/>
+        <stop offset="0.567308" stop-color="#F5F5F5"/>
+        </radialGradient>
+        </defs>
+        </svg>
+      {% else %}
+        {% render 'lazy-images', image: section.settings.background_image %}         
+      {% endif %}
+    </div>
+  {% endif %} 
+
+  {% if section.settings.heading != blank or section.settings.description != blank %}
+    <div class="{{ settings.container_width }}">
+    <div class="section-header">
+      <div class="section-header-content-wrapper text-{{ section.settings.alignment }} m-auto">
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.seo_heading }} class="section-heading {{ section.settings.heading_font }} {{ section.settings.heading_size }}{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+            {% if settings.enable_heading_animation %}
+                  <animate-element data-animate="fade-up-large" data-animate-delay="50">
+                {% endif %}
+
+                {%- capture markersPrefix -%}
+                  <span class="markers-text {{ section.settings.markers_font }}">
+                {%- endcapture -%} 
+                {%- capture markersSuffix -%}
+                  </span>
+                {%- endcapture -%}
+
+              {{- section.settings.heading | replace: '++', '<br/>' | replace: "[", markersPrefix | replace: "]", markersSuffix  -}}
+            {% if settings.enable_heading_animation %}
+                  </animate-element>
+                {% endif %}
+          </{{ section.settings.seo_heading }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="section-description{% if settings.enable_heading_animation %} animate-element-parent{% endif %}">
+            {% if settings.enable_heading_animation %}
+              <animate-element data-animate="fade-up-large" data-animate-delay="100">
+              {% endif %}  
+                <p class="{{ section.settings.description_size }}">
+                  {{ section.settings.description | newline_to_br }}
+                </p>
+            {% if settings.enable_heading_animation %}
+                  </animate-element>
+                {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    {% if categories_block_count > 0 %}
+      <div class="{{ containerClass }}">       
+        <best-categories class="best-categories-content-wrapper">
+            <div class="best-categories-content-inner">
+              <div class="swiper" data-categories-left>
+                <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                  {% if block.type == 'categorie' %}
+                    <div class="best-categories-content-images swiper-slide">
+                      <div class="media" style="--image-ratio:{{ image_ratio }}%;"> 
+                        {% if block.settings.left_image != blank %}
+                        {% comment %} {% render 'lazy-images', image: block.settings.left_image, class: 'collection-image' %} {% endcomment %}
+                             {%  assign image_alt = block.settings.left_image.alt | default: shop.name | strip_html %}  
+                             {% assign image_height = 600 | divided_by: block.settings.left_image.aspect_ratio | round %}
+                         {{
+                              block.settings.left_image
+                              | image_url: width: 600
+                              | image_tag: sizes: '(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1440px) 25vw, 20vw', 
+                                widths: '320, 480, 600, 768, 1024, 1440',
+                                width: 600,
+                                height: image_height,
+                                alt: image_alt,
+                                class: 'collection-image',
+                                loading: 'lazy'
+                            }}
+                        {% else %}
+                        {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                      </div>
+                    </div>   
+                  {% endif %} 
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+            <div class="best-categories-content-inner">
+                  <div class="best-categories-swiper-arrow-wrapper categories-swiper-prev cursor-pointer swiper-button-prev-{{ section.id }}">
+                      <div class="best-categories-arrow">
+                        <div class="arrow_icon_vertical arrow_icon_down arrow_icon_down_1"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M5.08608 8.91646L0.379747 4.21013C-0.126582 3.7038 -0.126582 2.88608 0.379747 2.37975C0.886076 1.87342 1.7038 1.87342 2.21013 2.37975L6 6.17215L9.78987 2.37975C10.2962 1.87342 11.1139 1.87342 11.6203 2.37975C12.1266 2.88608 12.1266 3.7038 11.6203 4.21013L6.91392 8.91646C6.41013 9.42025 5.58987 9.42025 5.08608 8.91646Z" fill="currentColor"/>
+</svg></div> 
+                        <div class="arrow_icon_vertical arrow_icon_down arrow_icon_down_2"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M5.08608 8.91646L0.379747 4.21013C-0.126582 3.7038 -0.126582 2.88608 0.379747 2.37975C0.886076 1.87342 1.7038 1.87342 2.21013 2.37975L6 6.17215L9.78987 2.37975C10.2962 1.87342 11.1139 1.87342 11.6203 2.37975C12.1266 2.88608 12.1266 3.7038 11.6203 4.21013L6.91392 8.91646C6.41013 9.42025 5.58987 9.42025 5.08608 8.91646Z" fill="currentColor"/>
+</svg></div> 
+                      </div> 
+                  </div>
+              <div class="swiper" data-main-vertical data-section-id="{{ section.id }}">
+                <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% if block.type == 'categorie' %}
+                <div class="swiper-slide">
+                {% assign collection = block.settings.collection %}
+                <div class="best-categories-card horizontal-collection-card"> 
+                <{% if block.settings.collection != blank %}a href="{{ collection.url }}" aria-label="{{ collection.title }}"{% else %}div{% endif %} class="best-categories-card-image horizontal-collection-card-image">
+                    <div class="media" style="--image-ratio: 100%;">
+                    {% if block.settings.images != blank %}
+                        {% render 'lazy-images', image: block.settings.images, class: 'collection-image' %}
+                    {% elsif collection.featured_image %}
+                        {% render 'lazy-images', image: collection.featured_image, class: 'collection-image' %}
+                    {% else %}
+                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                        {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                    </div>
+                </{% if block.settings.collection != blank %}a{% else %}div{% endif %}>
+                    <div class="card-category__info">
+                      <div class="card-category-content">
+                        {% if block.settings.sub_title != blank %}
+                          <small class="card-category__subtitle">{{ block.settings.sub_title }}</small>
+                        {% endif %}
+                        {% if block.settings.title != blank %}
+                            <h3 class="card-category__title heading-font {{ block.settings.title_size }}">{{ block.settings.title }}</h3>
+                          {% elsif block.settings.collection != blank %}
+                            <h3 class="card-category__title heading-font {{ block.settings.title_size }}">{{ collection.title }}</h3>
+                          {% endif %}
+                          </div>
+                          {% if block.settings.collection != blank %}
+                          <div class="col-button-wrap">
+                            <a href="{{ collection.url }}" class="button media-button button-icon button-sm buttonHover" aria-label="Collection {{ collection.title }}">
+                                <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+                                  <path d="M0.146659 11.3361L1.12455 12.723L12.5163 4.69029L11.5628 10.2147L13.2392 10.5051L14.6861 2.12213L6.30395 0.669769L6.01458 2.34636L11.5384 3.30346L0.146659 11.3361Z" fill="currentColor"></path>
+                                </svg>
+                            </a>
+                          </div>
+                          {% endif %}
+                    </div>
+                </div>
+                </div>
+              {% endif %}
+              {% endfor %}
+              </div>
+              </div>
+              <div class="best-categories-swiper-arrow-wrapper categories-swiper-next cursor-pointer swiper-button-next-{{ section.id }}">
+                   <div class="best-categories-arrow">
+                        <div class="arrow_icon_vertical arrow_icon_down arrow_icon_down_1"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M5.08608 8.91646L0.379747 4.21013C-0.126582 3.7038 -0.126582 2.88608 0.379747 2.37975C0.886076 1.87342 1.7038 1.87342 2.21013 2.37975L6 6.17215L9.78987 2.37975C10.2962 1.87342 11.1139 1.87342 11.6203 2.37975C12.1266 2.88608 12.1266 3.7038 11.6203 4.21013L6.91392 8.91646C6.41013 9.42025 5.58987 9.42025 5.08608 8.91646Z" fill="currentColor"/>
+</svg></div> 
+                        <div class="arrow_icon_vertical arrow_icon_down arrow_icon_down_2"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M5.08608 8.91646L0.379747 4.21013C-0.126582 3.7038 -0.126582 2.88608 0.379747 2.37975C0.886076 1.87342 1.7038 1.87342 2.21013 2.37975L6 6.17215L9.78987 2.37975C10.2962 1.87342 11.1139 1.87342 11.6203 2.37975C12.1266 2.88608 12.1266 3.7038 11.6203 4.21013L6.91392 8.91646C6.41013 9.42025 5.58987 9.42025 5.08608 8.91646Z" fill="currentColor"/>
+</svg></div>
+                      
+                      </div> 
+              </div>
+            </div>
+            <div class="best-categories-content-inner">
+              <div class="swiper" data-categories-right>
+                <div class="swiper-wrapper">
+                  {% for block in section.blocks %}
+                    {% if block.type == 'categorie' %}
+                      <div class="best-categories-content-images swiper-slide">
+                        <div class="media" style="--image-ratio:{{ image_ratio }}%;">
+                          {% if block.settings.right_image != blank %}
+                            {% comment %} {% render 'lazy-images', image: block.settings.right_image, class: 'collection-image' %} {% endcomment %}
+                            {%  assign image_alt = block.settings.right_image.alt | default: shop.name | strip_html %}  
+                            {% assign image_height = 600 | divided_by: block.settings.right_image.aspect_ratio | round %}
+                            {{
+                              block.settings.right_image
+                              | image_url: width: 600
+                              | image_tag: sizes: '(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1440px) 25vw, 20vw', 
+                                widths: '320, 480, 600, 768, 1024, 1440',
+                                width: 600,
+                                height: image_height,  
+                                alt: image_alt,
+                                class: 'collection-image',
+                                loading: 'lazy'
+                            }}
+                          {% else %}
+                            {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                          {% endif %}
+                        </div>
+                      </div>    
+                    {% endif %}
+                  {% endfor %}
+                  </div>
+                  </div>
+            </div>
+        </best-categories>
+      </div>
+    {% endif %}
+
+    {% if section.settings.shape != 'none' %}
+      <div class="section-shape-wrapper shape-position-{{ section.settings.shape_position }} shape-flip-{{ section.settings.flip_shape }}">  
+        {% render 'shapes', shape: section.settings.shape %}
+      </div>
+    {% endif %}
+
+</div>
+<style>
+  #shopify-section-{{ section.id }}{
+        --top-spacing: {{ section.settings.top_space_desktop }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+        --round-section-radius:{{ section.settings.corner_radius }}px;
+    }
+  @media only screen and (max-width:767px) {
+      #shopify-section-{{ section.id }}{
+        --top-spacing: {{ section.settings.top_space_mobile }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+        {% if settings.card_radius > 10 %}
+          --card-radius: {{ settings.card_radius | divided_by: 2 }}px;  
+        {% endif %}
+      }
+  }
+
+  {% for block in section.blocks %}
+      {% case block.type %}
+      {% when 'shape' %}
+      #shopify-section-{{ section.id }} #icon-shape-{{ block.id }} {  
+      --shape-horizontal: {{ block.settings.shape_desktop_horizontal }}%;
+        --shape-vertical: {{ block.settings.shape_desktop_vertical }}%;
+         --shape-width: {{ block.settings.shape_width }}px;
+      }
+      @media only screen and (max-width: 767px) {
+         #shopify-section-{{ section.id }} #icon-shape-{{ block.id }} {
+          --shape-horizontal: {{ block.settings.shape_mobile_horizontal }}%;
+          --shape-vertical: {{ block.settings.shape_mobile_vertical }}%;
+          {% if block.settings.icon_visibility == 'large' %}
+           display: none !important;
+          {% endif %}
+        }
+      }
+       {% if block.settings.icon_visibility == 'small' %}
+        @media(min-width: 768px) {
+          #shopify-section-{{ section.id }} #icon-shape-{{ block.id }} {
+            display: none !important;
+          }
+        }
+      {% endif %}
+    {% endcase %}
+  {% endfor %}
+
+
+  {% if section.settings.section_visibility == 'large' %}
+  @media(max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  }
+{% elsif section.settings.section_visibility == 'small' %}
+@media(min-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    display: none !important;
+  }
+}
+{% endif %}
+</style>
+{% schema %}
+    {
+      "name": "t:sections.best-categories.name",
+      "tag": "section",
+      "class": "best-categories-section",
+      "disabled_on": {
+      "groups": ["header", "footer","custom.Overlay"]
+      },
+      "settings": [
+        {
+          "type": "select",
+          "id": "section_visibility",
+          "label": "t:sections.all.section_visibility.label",
+          "default": "always",
+          "options": [
+            {
+              "label": "t:sections.all.section_visibility.always.label",
+              "value": "always"
+            },
+            {
+              "label": "t:sections.all.section_visibility.small.label",
+              "value": "small"
+            },
+            {
+              "label": "t:sections.all.section_visibility.large.label",
+              "value": "large"
+            }
+          ]
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "secondary"
+        },
+        {
+          "type": "select",
+          "id": "section_background",
+          "label": "t:sections.all.section_background.label",
+          "default": "solid",
+          "options": [
+            {
+              "label": "t:sections.all.section_background.solid.label",
+              "value": "solid"
+            },
+            {
+              "label": "t:sections.all.section_background.gradient.label",
+              "value": "gradient"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "section_container_width",
+          "label": "t:sections.all.section_container_width.label",
+          "default": "global",
+          "options": [
+            {
+              "label": "t:sections.all.section_container_width.global.label",
+              "value": "global"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-sm.label",
+              "value": "container-sm"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container.label",
+              "value": "container-md"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-md.label",
+              "value": "container"
+            },
+            {
+              "label": "t:sections.all.section_container_width.container-fullwidth.label",
+              "value": "container-fullwidth"
+            },
+            {
+              "label": "t:sections.all.section_container_width.no-container.label",
+              "value": "no-container"
+            }
+          ]
+        },
+        {
+      "type": "select",
+      "id": "corner_style",
+      "default": "none",
+      "label": "t:sections.all.section_corner_style.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.section_corner_style.top.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.section_corner_style.bottom.label"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.section_corner_style.both.label"
+        },
+        {
+          "value": "none",
+          "label": "t:sections.all.section_corner_style.none.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:settings_schema.global.settings.corner_radius.label",
+      "default": 70,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.background"
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "default": "animation",
+      "label": "t:sections.best-categories.settings.background_style.label",
+      "options": [
+        {
+          "value": "image",
+          "label": "t:sections.best-categories.settings.background_style.image.label"
+        },
+        {
+          "value": "animation",
+          "label": "t:sections.best-categories.settings.background_style.animation.label"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.headers.image"
+    },
+    {
+      "type": "checkbox",
+      "id": "blur_background_image",
+      "label": "t:sections.all.blur_background_image.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "t:sections.all.overlay_style.label",
+      "default": "solid",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:sections.all.overlay_style.solid.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:sections.all.overlay_style.gradient.label"
+        }
+      ]
+    },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "label": "t:sections.all.image_ratio.label",
+          "default": "portrait",
+          "options": [
+            {
+              "value": "landscape",
+              "label": "t:sections.all.image_ratio.landscape.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.all.image_ratio.square.label"
+            },
+            {
+              "value": "portrait",
+              "label": "t:sections.all.image_ratio.portrait.label"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.headers.content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.best-categories.settings.heading.label",
+          "default": "Best [categories]",
+          "info": "t:settings_schema.global.settings.heading.info"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:sections.all.heading_size.label",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_size.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.all.heading_size.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:sections.all.heading_size.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:sections.all.heading_size.h6.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:sections.all.seo_heading.label",
+          "info": "t:sections.all.seo_heading.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            },
+            {
+              "value": "div",
+              "label": "div"
+            },
+            {
+              "value": "span",
+              "label": "span"
+            },
+            {
+              "value": "p",
+              "label": "p"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "heading_font",
+          "default": "heading-font",
+          "label": "t:sections.all.heading_font.label",
+          "options": [
+            {
+              "value": "heading-font",
+              "label": "t:sections.all.heading_font.heading-font.label"
+            },
+            {
+              "value": "body-font",
+              "label": "t:sections.all.heading_font.body-font.label"
+            },
+            {
+              "value": "accent-font",
+              "label": "t:sections.all.heading_font.accent-font.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "markers_font",
+          "default": "accent-font",
+          "label": "t:sections.all.markers_font.label",
+          "options": [
+            {
+              "value": "heading-font",
+              "label": "t:sections.all.markers_font.heading-font.label"
+            },
+            {
+              "value": "body-font",
+              "label": "t:sections.all.markers_font.body-font.label"
+            },
+            {
+              "value": "accent-font",
+              "label": "t:sections.all.markers_font.accent-font.label"
+            }
+          ]
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:settings_schema.global.settings.description.label",
+          "default": "Add short description for this section."
+        },
+        {
+          "type": "select",
+          "id": "description_size",
+          "label": "t:sections.all.description_size.label",
+          "default": "text-sm",
+          "options": [
+            {
+              "label": "t:sections.all.description_size.text-xsmall.label",
+              "value": "text-xs"
+            },
+            {
+              "label": "t:sections.all.description_size.text-small.label",
+              "value": "text-sm"
+            },
+            {
+              "label": "t:sections.all.description_size.text.label",
+              "value": "text"
+            },
+            {
+              "label": "t:sections.all.description_size.text-medium.label",
+              "value": "text-md"
+            },
+            {
+              "label": "t:sections.all.description_size.text-large.label",
+              "value": "text-lg"
+            },
+            {
+              "label": "t:sections.all.description_size.text-xlarge.label",
+              "value": "text-xl"
+            }
+          ]
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment",
+          "label": "t:sections.best-categories.settings.content_alignment.label",
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.headers.background_shape"
+        },
+        {
+        "type": "select",
+        "id": "shape",
+        "default": "none",
+        "label": "t:sections.all.shape.label",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.all.shape.none.label"
+          },
+          {
+            "value": "curve",
+            "label": "t:sections.all.shape.curve.label"
+          },
+          {
+            "value": "deep_curve",
+            "label": "t:sections.all.shape.deep_curve.label"
+          },
+          {
+            "value": "cloud",
+            "label": "t:sections.all.shape.cloud.label"
+          },
+          {
+            "value": "wavelong",
+            "label": "t:sections.all.shape.wave_long.label"
+          },
+          {
+            "value": "wave",
+            "label": "t:sections.all.shape.wave.label"
+          },
+          {
+            "value": "mountain",
+            "label": "t:sections.all.shape.mountain.label"
+          },
+          {
+            "value": "brush-effect",
+            "label": "t:sections.all.shape.brush-effect.label"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "flip_shape",
+        "label": "t:sections.all.shape_position.flip_shape.label",
+        "default": false
+      },
+      { 
+        "type": "select",
+        "id": "shape_position",
+        "default": "bottom",
+        "label": "t:sections.all.shape_position.label",
+        "options": [
+          {
+            "value": "top",
+            "label": "t:sections.all.shape_position.top.label"
+          },
+          {
+            "value": "bottom",
+            "label": "t:sections.all.shape_position.bottom.label"
+          }
+        ]
+      },
+        {
+          "type": "header",
+          "content": "t:sections.all.spacing.section_spacing_heading"
+        },
+        {
+          "type": "range",
+          "id": "top_space_desktop",
+          "label": "t:sections.all.spacing.top_space_desktop",
+          "default": 70,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_desktop",
+          "label": "t:sections.all.spacing.bottom_space_desktop",
+          "default": 70,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "top_space_mobile",
+          "label": "t:sections.all.spacing.top_space_mobile",
+          "default": 40,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_mobile",
+          "label": "t:sections.all.spacing.bottom_space_mobile",
+          "default": 40,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        }
+      ],
+      "blocks": [
+          {
+            "type": "categorie",
+            "name": "t:sections.best-categories.blocks.category.name",
+            "limit": 15,
+            "settings": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "t:sections.best-categories.blocks.category.settings.collections.label"
+              },
+              {
+                "type": "image_picker",
+                "id": "images",
+                "label": "t:sections.best-categories.blocks.category.settings.image.label",
+                "info": "t:sections.best-categories.blocks.category.settings.image.info"
+              },
+              {
+                "type": "text",
+                "label": "t:sections.best-categories.blocks.category.settings.sub_title.label",
+                "id": "sub_title",
+                "default": "Sub title"
+              },
+              {
+                "type": "text",
+                "label": "t:sections.best-categories.blocks.category.settings.collection_title.label",
+                "id": "title",
+                "default": "Collection title",
+                "info": "t:sections.best-categories.blocks.category.settings.collection_title.info"
+              },
+              {
+                "type": "select",
+                "id": "title_size",
+                "label": "t:sections.best-categories.blocks.category.settings.title_size.label",
+                "default": "text",
+                "options": [
+                  {
+                    "label": "t:sections.all.description_size.text-xsmall.label",
+                    "value": "text-xs"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-small.label",
+                    "value": "text-sm"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text.label",
+                    "value": "text"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-medium.label",
+                    "value": "text-md"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-large.label",
+                    "value": "text-lg"
+                  },
+                  {
+                    "label": "t:sections.all.description_size.text-xlarge.label",
+                    "value": "text-xl"
+                  }
+                ]
+              },
+              {
+                "type": "image_picker",
+                "id": "left_image",
+                "label": "t:sections.best-categories.blocks.category.settings.left_image.label"
+              }, 
+              {
+                "type": "image_picker",
+                "id": "right_image",
+                "label": "t:sections.best-categories.blocks.category.settings.right_image.label"
+              }
+           ]
+         },
+         {
+      "type": "shape",
+      "name": "t:sections.all.shape.label",
+      "settings": [
+        {
+            "type": "select",
+            "id": "icon_visibility",
+            "label": "t:sections.all.icon.icon_visibility.label",
+            "default": "always",
+            "options": [
+              {
+                "label": "t:sections.all.section_visibility.always.label",
+                "value": "always"
+              },
+              {
+                "label": "t:sections.all.section_visibility.small.label",
+                "value": "small"
+              },
+              {
+                "label": "t:sections.all.section_visibility.large.label",
+                "value": "large"
+              }
+            ]
+          },
+        {
+          "type": "select",
+          "id": "shape",
+          "label": "t:sections.all.icon.label",
+          "default": "star-top",
+          "options": [
+            {
+                "value": "none",
+                "label": "t:sections.all.icon.none.label"
+              },
+              {
+                "label": "t:sections.all.icon.star_top.label",
+                "value": "star-top"
+              },
+              {
+                "label": "t:sections.all.icon.sun.label",
+                "value": "sun"
+              },
+              {
+                "value": "asterisk",
+                "label": "t:sections.all.icon.asterisk.label"
+              },
+              {
+                "label": "t:sections.all.icon.flower.label",
+                "value": "flower"
+              },
+              {
+                  "label": "t:sections.all.icon.emoji-flower.label",
+                  "value": "emoji-flower"
+                },
+              {
+                "label": "t:sections.all.icon.astronaut_with_balloon.label",
+                "value": "astronaut_with_balloon"
+              },
+            {
+              "label": "t:sections.all.icon.cloud_gear.label",
+              "value": "cloud_gear"
+            },
+            {
+              "label": "t:sections.all.icon.bubble_star.label",
+              "value": "bubble_star"
+            },
+            {
+              "label": "t:sections.all.icon.rainbow.label",
+              "value": "rainbow"
+            },
+            {
+              "label": "t:sections.all.icon.snail.label",
+              "value": "snail"
+            },
+            {
+              "label": "t:sections.all.icon.unicorn.label",
+              "value": "unicorn"
+            },
+            {
+              "label": "t:sections.all.icon.crown.label",
+              "value": "crown"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "shape_color",
+          "label": "t:settings_schema.global.settings.color.label",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "shape_desktop_horizontal",
+          "label": "t:sections.all.icon.shape_desktop_horizontal.label",
+          "default": 0,
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "unit":"%"
+        },
+        {
+          "type": "range",
+          "id": "shape_desktop_vertical",
+          "label": "t:sections.all.icon.shape_desktop_vertical.label",
+          "default": 0,
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "unit":"%"
+        },
+        {
+          "type": "range",
+          "id": "shape_mobile_horizontal",
+          "label": "t:sections.all.icon.shape_mobile_horizontal.label",
+          "default": 0,
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "unit":"%"
+        },
+        {
+          "type": "range",
+          "id": "shape_mobile_vertical",
+          "label": "t:sections.all.icon.shape_mobile_vertical.label",
+          "default": 0,
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "unit":"%"
+        },
+        {
+          "type": "range",
+          "id": "shape_width",
+          "label": "t:sections.all.icon.shape_width.label",
+          "default": 50,
+          "min": 10,
+          "max": 150,
+          "step": 5,
+          "unit": "px"
+        }
+      ]     
+    }
+],
+  "presets": [
+    {
+      "name": "t:sections.best-categories.presets.name",
+      "blocks": [
+        {
+          "type": "categorie"
+        },
+        {
+          "type": "categorie"
+        },
+        {
+          "type": "categorie"
+        },
+        {
+          "type": "categorie"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

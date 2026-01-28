@@ -1,0 +1,81 @@
+{% comment %} {{ 'side-reveal-menus-header.css' | asset_url | preload_tag: as: 'style' }} {% endcomment %}
+{{ 'side-reveal-menus-header.css' | asset_url | stylesheet_tag }}
+
+<{% if section.settings.sticky_header_type == 'on-scroll-up' %}sticky-on-scroll{% elsif section.settings.sticky_header_type == 'always' %}sticky-always{% else %}div{% endif %} class="header-main header-style-side-reveal-menu sticky-header-none {{ header_transparent_class }} header-border-{{ section.settings.border_visibility }} mobile-logo-{{ section.settings.mobile_logo_position }} header-space-{{ section.settings.side_reveal_menus_space }}" data-header-section>
+  <div class="{{ section.settings.header_container }}">
+    {% if section.settings.menu != blank %}
+      {% capture nojslinks %}
+      {% for link in section.settings.menu.links %}
+        <li class="">
+          <a class="header-menu-link" href="{{ link.url }}" aria-label="Header menu link">{{ link.title }}</a>
+        </li>
+        
+        {% if link.links != blank %}
+          {% for childlink in link.links %}
+            <li class="child-link">
+              <a class="header-menu-link" href="{{ childlink.url }}" aria-label="Header menu child link">{{ childlink.title }}</a>
+            </li>
+    
+            {% if childlink.links != blank %}
+              {% for grandchildlink in childlink.links %}
+                <li class="grandchild-link">
+                  <a class="header-menu-link" href="{{ grandchildlink.url }}" aria-label="Header menu grand child link">{{ grandchildlink.title }}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+            
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+
+      <div class="no-js-menu">
+        <nav>
+          <ul class="">
+            {{ nojslinks }}
+          </ul>
+        </nav>
+      </div>
+    {% endif %}
+    <div class="header-wrapper {{ section.settings.header_styles }}">
+      {% capture mobile_menu_toggler %}
+        {% if section.settings.menu != blank %}
+          <button
+          class="mobile-toggler hamburger-toggler"
+          aria-label="Toggle mobile menu"
+          data-mobile-toggler>
+          <div class="hamburger-toggler-icon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </div>
+        </button>
+      {% endif %}
+    {% endcapture %}
+      {{ mobile_menu_toggler }}
+      <reveal-menu-toggler>
+        <button
+          class="side-reveal-menu-toggler d-flex align-items-center gap-5"
+          aria-label="Toggle menu"
+          data-side-reveal-menu-toggler>
+          <div class="hamburger-toggler-icon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </div>
+        {% comment %} <span class="hamburger-toggler-text text-sm">
+                      {{ 'sections.header.menu' | t }}
+                  </span> {% endcomment %}
+        </button>
+        {% render 'side-reveal-menu-drawer'
+          , section: section
+          , show_category_menus: show_category_menus
+          , header_transparent_class: header_transparent_class %}
+      </reveal-menu-toggler>
+      {% render 'header-logo'
+        , section: section %}
+      {% render 'header-icons'
+        , section: section %}
+    </div>
+  </div>
+</{% if section.settings.sticky_header_type == 'on-scroll-up' %}sticky-on-scroll{% elsif section.settings.sticky_header_type == 'always' %}sticky-always{% else %}div{% endif %}>

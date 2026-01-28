@@ -1,0 +1,658 @@
+{% if section.index <= 2 %}
+  {{ 'showcase-gallery.css' | asset_url | preload_tag: as: 'style' }}
+{% endif %}
+{{ 'showcase-gallery.css' | asset_url | stylesheet_tag }}
+
+{%- capture corner_style -%}
+{% if section.settings.corner_style == 'top' %}
+    round-section round-top
+    {% elsif section.settings.corner_style == 'bottom' %}
+    round-section round-bottom
+    {% elsif section.settings.corner_style == 'both' %}  
+    round-section round-bottom round-top
+{% endif %}
+{%- endcapture -%}
+
+<div
+  class="section-wrapper scheme-{{ section.settings.color_scheme }} section-spacing pos-relative section-{{ section.settings.section_background }} {{ corner_style }}"
+  is="showcase-gallery-section"
+>
+  {% if section.settings.background_image != blank %}
+    <div class="background-overlay-image media-overlay overlay-style-{{ section.settings.overlay_style }} blur-background-{{ section.settings.blur_background_image }}">
+      {% render 'lazy-images', image: section.settings.background_image %}
+    </div>
+  {% endif %}
+
+  <div class="container-fullwidth">
+    {% if section.settings.show_bars_effect %}
+      <div class="showcase-gallery-top">
+        <div
+          class="showcase-gallery-rainbow"
+        >
+          <gallery-rainbow-top class="d-block">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              height="400px"
+              viewBox="0 0 452 400"
+              fill="none"
+              preserveAspectRatio="none"
+              class="showcase-gallery-rainbow-svg"
+              style="overflow:visible;"
+            >
+              <defs>
+                <filter id="rainbow-noise" x="-10%" y="0" width="120%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                  <feTurbulence type="fractalNoise" baseFrequency="1 1" stitchTiles="stitch" numOctaves="3" result="noise" seed="4871"/>
+                  <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"/>
+                  <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                    <feFuncA type="discrete" tableValues="0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "/>
+                  </feComponentTransfer>
+                  <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped"/>
+                  <feFlood flood-color="rgba(0, 0, 0, 0.18)" result="color1Flood"/>
+                  <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1"/>
+                  <feMerge>
+                    <feMergeNode in="shape"/>
+                    <feMergeNode in="color1"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#rainbow-noise)">
+                <path
+                  d="M426 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M376 0V400"
+                  stroke="{{ section.settings.color_4 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M326 0V400"
+                  stroke="{{ section.settings.color_3 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M276 0V400"
+                  stroke="{{ section.settings.color_2 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M226 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M176 0V400"
+                  stroke="{{ section.settings.color_4 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M126 0V400"
+                  stroke="{{ section.settings.color_3 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M76 0V400"
+                  stroke="{{ section.settings.color_2 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M26 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+              </g>
+            </svg>
+          </gallery-rainbow-top>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="showcase-gallery-inner">
+      <div class="showcase-gallery-holder">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+    {% if section.settings.show_bars_effect %}
+      <div class="showcase-gallery-bottom">
+        <div class="showcase-gallery-rainbow">
+          <gallery-rainbow class="d-block">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              height="400px"
+              viewBox="0 0 452 400"
+              fill="none"
+              preserveAspectRatio="none"
+              class="showcase-gallery-rainbow-svg"
+              style="overflow:visible;"
+            >
+              <defs>
+                <filter id="rainbow-noise" x="-10%" y="0" width="120%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                  <feTurbulence type="fractalNoise" baseFrequency="1 1" stitchTiles="stitch" numOctaves="3" result="noise" seed="4871"/>
+                  <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"/>
+                  <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                    <feFuncA type="discrete" tableValues="0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "/>
+                  </feComponentTransfer>
+                  <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped"/>
+                  <feFlood flood-color="rgba(0, 0, 0, 0.18)" result="color1Flood"/>
+                  <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1"/>
+                  <feMerge>
+                    <feMergeNode in="shape"/>
+                    <feMergeNode in="color1"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#rainbow-noise)">
+                <path
+                  d="M426 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M376 0V400"
+                  stroke="{{ section.settings.color_4 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M326 0V400"
+                  stroke="{{ section.settings.color_3 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M276 0V400"
+                  stroke="{{ section.settings.color_2 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M226 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M176 0V400"
+                  stroke="{{ section.settings.color_4 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M126 0V400"
+                  stroke="{{ section.settings.color_3 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M76 0V400"
+                  stroke="{{ section.settings.color_2 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+                <path
+                  d="M26 0V400"
+                  stroke="{{ section.settings.color_1 }}"
+                  stroke-width="48"
+                  style="stroke-dashoffset: 0; stroke-dasharray: 0px, 400px;"></path>
+              </g>
+            </svg>
+          </gallery-rainbow>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --top-spacing: {{ section.settings.top_space_desktop }}px;
+      --bottom-spacing: {{ section.settings.bottom_space_desktop }}px;
+       --round-section-radius: {{ section.settings.corner_radius }}px;
+    }
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --top-spacing: {{ section.settings.top_space_mobile }}px;
+        --bottom-spacing: {{ section.settings.bottom_space_mobile }}px;
+      }
+    }
+
+
+    #shopify-section-{{ section.id }} {
+      --container-gutter: 25px;
+      --dynamic-grid-gap: {{ section.settings.grid_gap }}px;
+      --dynamic-grid-explicit-row-count: max({% for block in section.blocks %}var(--shopify-block-{{ block.id }}, 0){% unless forloop.last%}, {% endunless %}{% endfor %});
+    }
+   @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+          --container-gutter: 20px;
+      }
+    }
+
+    #shopify-section-{{ section.id }}
+    .showcase-gallery-holder {
+      --dynamic-grid-column-count: 16;
+      --dynamic-grid-cell-size: calc((100vw - var(--container-gutter, 0px) * 2) / var(--dynamic-grid-column-count) - var(--dynamic-grid-gap) *(var(--dynamic-grid-column-count) - 1) / var(--dynamic-grid-column-count));
+      grid-template-columns: repeat(var(--dynamic-grid-column-count), minmax(0, 1fr));
+      grid-template-rows: repeat(var(--dynamic-grid-explicit-row-count), var(--dynamic-grid-cell-size)) max-content;
+      gap: var(--dynamic-grid-gap);
+      display: grid;
+      position: relative;
+    }
+    @media (max-width: 991px) {
+      #shopify-section-{{ section.id }} {
+        --dynamic-grid-explicit-row-count: max({% for block in section.blocks %}var(--mobile-shopify-block-{{ block.id }}, 0){% unless forloop.last%}, {% endunless %}{% endfor %});
+      }
+      #shopify-section-{{ section.id }}
+      .showcase-gallery-holder {
+        --dynamic-grid-column-count: 8;
+        --dynamic-grid-gap: {{ section.settings.mobile_grid_gap }}px;
+      }
+    }
+    #shopify-section-{{ section.id }}
+    .dynamic-cell {
+      grid-area: var(--dynamic-grid-grid-area);
+      isolation: isolate;
+      align-self: start;
+      position: relative;
+      inset-block-start: var(--dynamic-grid-vertical-adjustment);
+      inset-inline-start: var(--dynamic-grid-horizontal-adjustment);
+    }
+     .grid-view-selected:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(#c8c8c833 0, #c8c8c833 var(--dynamic-grid-cell-size), transparent var(--dynamic-grid-cell-size), transparent calc(var(--dynamic-grid-cell-size) + max(1px, var(--dynamic-grid-gap)))), repeating-linear-gradient(90deg, #c8c8c833 0, #c8c8c833 var(--dynamic-grid-cell-size), transparent var(--dynamic-grid-cell-size), transparent calc(var(--dynamic-grid-cell-size) + max(1px, var(--dynamic-grid-gap))));
+        background-repeat: no-repeat;
+        background-size: 100% calc(var(--dynamic-grid-cell-size) * var(--dynamic-grid-explicit-row-count) + max(1px, var(--dynamic-grid-gap)) * (var(--dynamic-grid-explicit-row-count) - 1));
+         pointer-events: none;
+    }
+    .showcase-gallery-holder.grid-view-selected {
+        border: none;
+    }
+    {% if section.settings.section_visibility == 'large' %}
+      @media(max-width: 767px) {
+        #shopify-section-{{ section.id }} {
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+    @media(min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        display: none !important;
+      }
+    }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.showcase-gallery.name",
+  "tag": "section",
+  "class": "showcase-gallery-section",
+  "blocks": [
+    {
+      "type": "_gallery-content"
+    },
+    {
+      "type": "_gallery-image"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.Overlay"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:sections.all.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:sections.all.section_visibility.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:sections.all.section_visibility.small.label",
+          "value": "small"
+        },
+        {
+          "label": "t:sections.all.section_visibility.large.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "primary"
+    },
+    {
+      "type": "select",
+      "id": "section_background",
+      "label": "t:sections.all.section_background.label",
+      "default": "solid",
+      "options": [
+        {
+          "label": "t:sections.all.section_background.solid.label",
+          "value": "solid"
+        },
+        {
+          "label": "t:sections.all.section_background.gradient.label",
+          "value": "gradient"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "corner_style",
+      "default": "none",
+      "label": "t:sections.all.section_corner_style.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.section_corner_style.top.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.section_corner_style.bottom.label"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.section_corner_style.both.label"
+        },
+        {
+          "value": "none",
+          "label": "t:sections.all.section_corner_style.none.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:settings_schema.global.settings.corner_radius.label",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.showcase-gallery.settings.grid_gap.label",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "mobile_grid_gap",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.showcase-gallery.settings.mobile_grid_gap.label",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.all.background.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blur_background_image",
+      "label": "t:sections.all.blur_background_image.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "t:sections.all.overlay_style.label",
+      "default": "solid",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:sections.all.overlay_style.solid.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:sections.all.overlay_style.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.showcase-gallery.settings.header.bars"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bars_effect",
+      "label": "t:sections.showcase-gallery.settings.show_bars_effect.label",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "color_1",
+      "label": "t:sections.showcase-gallery.settings.color_1.label",
+      "default": "#F97028"
+    },
+    {
+      "type": "color",
+      "id": "color_2",
+      "label": "t:sections.showcase-gallery.settings.color_2.label",
+      "default": "#F3A20F"
+    },
+    {
+      "type": "color",
+      "id": "color_3",
+      "label": "t:sections.showcase-gallery.settings.color_3.label",
+      "default": "#F0BB0D"
+    },
+    {
+      "type": "color",
+      "id": "color_4",
+      "label": "t:sections.showcase-gallery.settings.color_4.label",
+      "default": "#F489A3"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing.section_spacing_heading"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:sections.all.spacing.top_space_desktop",
+      "default": 70,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:sections.all.spacing.bottom_space_desktop",
+      "default": 70,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:sections.all.spacing.top_space_mobile",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:sections.all.spacing.bottom_space_mobile",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.showcase-gallery.presets.name",
+      "blocks": {
+        "gallery_image_P4AzLh": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 1,
+            "column_start": 3,
+            "column_end": 4,
+            "horizontal_adjustment": 0,
+            "vertical_adjustment": -2.5,
+            "mobile_row_start": 1,
+            "mobile_column_start": 1,
+            "mobile_column_end": 2,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_image_XXWmwa": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 4,
+            "column_start": 1,
+            "column_end": 2,
+            "horizontal_adjustment": 2.5,
+            "vertical_adjustment": 0,
+            "mobile_row_start": 3,
+            "mobile_column_start": 4,
+            "mobile_column_end": 5,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_image_bhwKyY": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 7,
+            "column_start": 4,
+            "column_end": 5,
+            "horizontal_adjustment": 0,
+            "vertical_adjustment": -1,
+            "mobile_row_start": 1,
+            "mobile_column_start": 7,
+            "mobile_column_end": 8,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_image_X4URWy": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 1,
+            "column_start": 15,
+            "column_end": 16,
+            "horizontal_adjustment": 1.5,
+            "vertical_adjustment": -2,
+            "mobile_row_start": 18,
+            "mobile_column_start": 7,
+            "mobile_column_end": 8,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_image_qAnnTg": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 4,
+            "column_start": 14,
+            "column_end": 15,
+            "horizontal_adjustment": 0,
+            "vertical_adjustment": 0,
+            "mobile_row_start": 15,
+            "mobile_column_start": 4,
+            "mobile_column_end": 5,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_image_NjMmWi": {
+          "type": "_gallery-image",
+          "name": "Gallery image",
+          "settings": {
+            "row_start": 7,
+            "column_start": 15,
+            "column_end": 16,
+            "horizontal_adjustment": 1.5,
+            "vertical_adjustment": 1.5,
+            "mobile_row_start": 18,
+            "mobile_column_start": 1,
+            "mobile_column_end": 2,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          }
+        },
+        "gallery_content_eeemNk": {
+          "type": "_gallery-content",
+          "name": "Gallery content",
+          "settings": {
+            "alignment": "center",
+            "row_start": 3,
+            "column_start": 15,
+            "column_end": 2,
+            "horizontal_adjustment": 0,
+            "vertical_adjustment": 0,
+            "mobile_row_start": 6,
+            "mobile_column_start": 1,
+            "mobile_column_end": 8,
+            "mobile_horizontal_adjustment": 0,
+            "mobile_vertical_adjustment": 0
+          },
+          "blocks": {
+            "heading_JcengH": {
+              "type": "_heading",
+              "name": "Heading",
+              "settings": {},
+              "blocks": {}
+            },
+            "description_8zCWPf": {
+              "type": "_description",
+              "name": "Description",
+              "settings": {},
+              "blocks": {}
+            },
+            "button_PAgb8k": {
+              "type": "_button",
+              "name": "Button",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": ["heading_JcengH", "description_8zCWPf", "button_PAgb8k"]
+        }
+      },
+      "block_order": [
+        "gallery_image_P4AzLh",
+        "gallery_image_XXWmwa",
+        "gallery_image_bhwKyY",
+        "gallery_image_X4URWy",
+        "gallery_image_qAnnTg",
+        "gallery_image_NjMmWi",
+        "gallery_content_eeemNk"
+      ]
+    }
+  ]
+}
+{% endschema %}

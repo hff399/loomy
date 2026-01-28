@@ -1,0 +1,107 @@
+.highlight-media-with-text-inner .highlight-media-with-text-description {
+    margin-top: 3rem;
+}
+
+.heading-media-text .media {
+    border-radius: var(--card-radius);
+}
+
+.heading-media-text-slider-wrapper {
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    z-index: 0;
+    position: relative;
+}
+
+.heading-media-text {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+
+.heading-media-text .highlight-media-heading {
+    line-height: 1;
+    font-size: var(--highlight-heading-size);
+    text-transform: uppercase;
+    text-shadow:
+        -1px -1px 0 var(--highlight-text-color),
+        1px -1px 0 var(--highlight-text-color),
+        -1px 1px 0 var(--highlight-text-color),
+        1px 1px 0 var(--highlight-text-color);
+}
+
+.highlight-media-with-text .highlight-media-heading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* new seprate syle css */
+.heading-style-separate {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 320px;
+}
+
+.heading-style-separate span:nth-child(2n) {
+    text-align: left;
+}
+
+.heading-style-separate span:nth-child(2n+1) {
+    text-align: right;
+}
+
+.highlight-media-with-text {
+    overflow: hidden;
+}
+
+.heading-style-overlap {
+    text-align: center;
+}
+
+.heading-media-text .section-header-slideshow-nav-wrapper {
+    grid-template-columns: auto auto;
+    max-width: max-content;
+    margin: 20px auto 0;
+}
+
+
+@media (min-width: 1280px) {
+    .heading-media-text .section-header-slideshow-nav-wrapper {
+        margin: 40px auto 0;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 768px) {
+    .heading-media-text .highlight-media-heading {
+        --highlight-heading: calc(var(--highlight-heading-size) * .5);
+        font-size: var(--highlight-heading);
+    }
+}
+
+@media (max-width: 991px) {
+    .heading-style-separate {
+        gap: 20px 60px;
+    }
+
+    .highlight-media-with-text-inner .highlight-media-with-text-description {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .heading-media-text {
+        padding: 0 50px;
+    }
+
+    .heading-style-separate {
+        gap: 20px;
+    }
+}

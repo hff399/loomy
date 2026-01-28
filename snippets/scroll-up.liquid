@@ -1,0 +1,25 @@
+{% if settings.enable_scroll %}
+  <scroll-up>
+    <div class="scroll-to-top position-{{ settings.position_scroll }}" back-to-top-button>
+      <button class="scroll-to-top-inner" title="Go to top">
+        <span class="arrow-top-top">
+          <svg
+            width="23"
+            height="32"
+            viewBox="0 0 23 32">
+            <path d="M12.3586 0.813456L21.6598 9.98178C22.3077 10.6205 22.3077 11.6451 21.6598 12.2838C21.0118 12.9226 19.9723 12.9226 19.3244 12.2838L12.8446 5.89662L12.8446 30.3144C12.8446 31.2193 12.1022 31.9512 11.1842 31.9512C10.2662 31.9512 9.52376 31.2193 9.52376 30.3144L9.52376 5.90993L3.04404 12.2972C2.39606 12.9359 1.35661 12.9359 0.708636 12.2972C0.060663 11.6584 0.060663 10.6338 0.708636 9.99509L10.0097 0.826763C10.3337 0.507402 10.7522 0.347721 11.1842 0.347721C11.6162 0.347721 12.0347 0.494094 12.3586 0.813456Z" fill="currentColor" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </scroll-up>
+{% endif %}
+
+<style>
+  .scroll-to-top {
+    --scroll-top-background: {{ settings.stp_background_color }};
+    --scroll-top-color: {{ settings.stp_icon_color }};
+    --scroll-top-border: {{ settings.stp_border_color }};
+    --scroll-top-vertical-position: {{ settings.bottom_position }}px;
+  }
+</style>

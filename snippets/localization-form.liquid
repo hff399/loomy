@@ -1,0 +1,253 @@
+<div class="localization-form-content">
+  {% comment %}
+    {% if section.index <= 2 %}
+      {{ 'country-flags.css' | asset_url | preload_tag: as: 'style' }}
+    {% endif %}
+    {{ 'country-flags.css' | asset_url | stylesheet_tag }}
+  {% endcomment %}
+  {% comment %}
+    {% if settings.is_country_selector %}
+    {% if localization.available_countries.size > 1 %}
+  {% endcomment %}
+  <localization-form class="localization-form-box country-form-wrapper" {{ settings.is_country_selector }}>
+    <div class="custom-select">
+      <button
+        type="button"
+        class="custom-select-button"
+        aria-label="Select Currency"
+        data-custom-select-button-trigger
+      >
+        <span class="custom-select-text">
+          {%- if settings.is_country_selector -%}
+            <span class="select-countryflags">
+              {{ localization.country | image_url: width: 32 | image_tag: loading: 'lazy' }}
+            </span>
+          {%- endif -%}
+          <span class="current-countrylanguage text-small">
+            {%- if settings.is_country_selector -%}
+              {{ localization.country.currency.iso_code -}}
+            {%- endif -%}
+            {%- if settings.is_language_selector -%}
+              {%- if settings.is_country_selector %} / {% endif -%}
+              {{- localization.language.iso_code | upcase -}}
+            {%- endif -%}
+          </span>
+        </span>
+        <span class="header-menu-icon">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M4.99998 6C4.82076 6 4.64156 5.92797 4.50493 5.78422L0.205142 1.25832C-0.0683806 0.970413 -0.0683806 0.503627 0.205142 0.21584C0.478554 -0.0719468 0.921935 -0.0719468 1.19548 0.21584L4.99998 4.22061L8.80451 0.21598C9.07803 -0.0718069 9.52137 -0.0718069 9.79476 0.21598C10.0684 0.503767 10.0684 0.970553 9.79476 1.25846L5.49504 5.78436C5.35834 5.92814 5.17914 6 4.99998 6Z" fill="currentColor"></path>
+          </svg>
+        </span>
+      </button>
+
+      <div
+        class="custom-select-content"
+        data-custom-select-summary
+        style="display: none;"
+      >
+        <div class="localization-head">
+          {% comment %} <h6 class="text">{{ settings.country_language_modal_heading }}</h6> {% endcomment %}
+          {% comment %} {% render 'svg-icons', icon: 'close' %} {% endcomment %}
+          <tabs-header>
+            <ul class="localization-switch-buttons list-inline">
+              {% assign counter = 0 %}
+              {%- if settings.is_country_selector and localization.available_countries.size > 1 -%}
+                <li
+                  class="switch-button active"
+                  data-tab-id="country_selector"
+                  tabindex="0"
+                >
+                  <span>Country</span>
+                </li>
+                {% assign counter = counter | plus: 1 %}
+              {% endif %}
+              {% if settings.is_language_selector and localization.available_languages.size > 1 %}
+                <li
+                  class="switch-button{% if counter == 0 %} active{% endif %}"
+                  data-tab-id="language_selector"
+                  tabindex="0"
+                >
+                  <span>Language</span>
+                </li>
+              {% endif %}
+            </ul>
+          </tabs-header>
+          <button
+            class="close-button cursor-pointer search-drawer-clear"
+            data-close-countrySelector
+            aria-label="Select Country Language" aria-hidden="true"
+          >
+            {% render 'svg-icons', icon: 'close' %}
+            <div class="shape-cross-bg closeIconBg">
+              {%- render 'svg-icons', icon : 'cross' -%}
+            </div>
+          </button>
+          {% comment %}
+            <div class="section-wrapper-heading-shape">
+              <svg width="346" height="6" viewBox="0 0 346 6" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M-55.6782 3.70301C-60.0337 6.13858 -60.1875 6.11892 -60.1875 3.12622V0.680176H180.75H181.417H422.355V3.12622C422.355 6.11892 422.201 6.13858 417.846 3.70301C413.48 1.26199 409.867 1.18009 406.248 3.44006C402.698 5.65766 399.271 5.6771 395.376 3.50165C391.374 1.26636 387.998 1.25172 384.302 3.45404C380.63 5.64259 377.24 5.63735 373.229 3.43657C369.324 1.29431 366.241 1.30545 362.357 3.47566C358.456 5.65548 355.384 5.66028 351.484 3.49313C347.46 1.25653 344.093 1.25194 340.411 3.47872C336.739 5.6996 333.332 5.6985 329.539 3.47566C325.764 1.26417 322.345 1.25544 318.666 3.44771C314.91 5.68584 311.533 5.70244 307.593 3.50165C303.571 1.25522 300.208 1.24823 296.519 3.47872C292.829 5.71117 289.432 5.70244 285.647 3.45076C281.935 1.24233 278.508 1.23382 274.801 3.42368C271.278 5.505 268.625 5.51025 265.084 3.44312C261.278 1.22137 257.505 1.21525 254.037 3.42543C250.472 5.69763 246.725 5.70942 242.964 3.45994C239.233 1.22836 235.829 1.22661 232.091 3.45404C228.378 5.66727 224.959 5.67514 221.219 3.47894C217.487 1.28798 214.094 1.29147 210.146 3.49008C206.242 5.66356 203.172 5.66203 199.273 3.48483C195.433 1.33996 191.574 1.30174 188.258 3.3752C186.96 4.18632 184.741 5.05577 183.324 5.30758L181.417 5.64669V5.76534L181.084 5.70601L180.75 5.76534V5.64669L178.844 5.30758C177.427 5.05577 175.207 4.18632 173.91 3.3752C170.594 1.30174 166.735 1.33996 162.894 3.48483C158.996 5.66203 155.926 5.66356 152.022 3.49008C148.073 1.29147 144.681 1.28798 140.949 3.47894C137.209 5.67514 133.79 5.66727 130.076 3.45404C126.339 1.22661 122.935 1.22836 119.204 3.45994C115.443 5.70942 111.695 5.69763 108.131 3.42543C104.663 1.21525 100.89 1.22137 97.0834 3.44312C93.5424 5.51025 90.8898 5.505 87.3664 3.42368C83.6592 1.23382 80.2327 1.24233 76.5206 3.45076C72.7354 5.70244 69.3391 5.71117 65.6484 3.47872C61.96 1.24823 58.5969 1.25522 54.5748 3.50165C50.6346 5.70244 47.2576 5.68584 43.5013 3.44771C39.8223 1.25544 36.4034 1.26417 32.629 3.47566C28.8352 5.6985 25.4291 5.6996 21.7568 3.47872C18.0747 1.25194 14.708 1.25653 10.6833 3.49313C6.78373 5.66028 3.71195 5.65548 -0.188965 3.47566C-4.07289 1.30545 -7.15637 1.29431 -11.0612 3.43657C-15.0723 5.63735 -18.4623 5.64259 -22.1347 3.45404C-25.8299 1.25172 -29.2062 1.26636 -33.2083 3.50165C-37.1032 5.6771 -40.5299 5.65766 -44.0805 3.44006C-47.6994 1.18009 -51.3128 1.26199 -55.6782 3.70301Z" fill="currentColor"/>
+              </svg>
+            </div>
+          {% endcomment %}
+        </div>
+        {% comment %}
+          <div class="button-wrapper">
+            {%- if settings.is_country_selector and localization.available_countries.size > 1 -%}
+              <button type="button" class="active button-lg" data-list-selector="country-list">Country</button>
+            {% endif %}
+            {% if settings.is_language_selector and localization.available_languages.size > 1 %}
+              <button
+                type="button"
+                class="button-lg{% unless settings.is_country_selector and localization.available_countries.size > 1 %} active{% endunless %}"
+                data-list-selector="language-list"
+              >
+                Language
+              </button>
+            {% endif %}
+          </div>
+        {% endcomment %}
+        {%- if settings.is_country_selector and localization.available_countries.size > 1 -%}
+          <div class="currency-selector-wrapper" data-country-list data-content-id="country_selector">
+            {% assign formid = 'localization_form_currency-' | append: section.id %}
+            {% form 'localization', id: formid %}
+              <input
+                type="hidden"
+                name="country_code"
+                data-value="{{ localization.country.iso_code }}"
+                value="{{ localization.country.iso_code }}"
+                data-input-selector
+              >
+              <ul class="custom-select-list" role="listbox">
+                {% for country in localization.available_countries %}
+                  <li class="custom-select-item" role="option">
+                    <button
+                      type="submit"
+                      name="country_code"
+                      id="country-{{ section.id }}-{{ forloop.index }}"
+                      value="{{ country.iso_code }}"
+                      {% if country.iso_code == localization.country.iso_code %}
+                        class="custom-select-item-active"
+                      {% endif %}
+                      data-button-submit
+                    >
+                      <span class="countryflags">
+                        {{ country | image_url: width: 32 | image_tag: loading: 'lazy' }}
+                      </span>
+                      <span class="countryname">
+                        {{- country.name -}}
+                      </span>
+                      <span class="countrycurrency">
+                        {{- country.currency.iso_code }}
+                        {{ country.currency.symbol -}}
+                      </span>
+                    </button>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endform %}
+          </div>
+        {% endif %}
+        {% if settings.is_language_selector and localization.available_languages.size > 1 %}
+          <div
+            class="language-selector-wrapper{% if settings.is_country_selector and localization.available_countries.size > 1 %} hidden{% endif %}"
+            data-language-list
+            data-content-id="language_selector"
+          >
+            {% assign formid = 'localization_form_language-' | append: section.id %}
+            {% form 'localization', id: formid %}
+              <input type="hidden" name="form_type" value="localization">
+              <input type="hidden" name="utf8" value="✓">
+              <input type="hidden" name="_method" value="put">
+              <input type="hidden" name="return_to" value="/">
+              <input
+                type="hidden"
+                name="language_code"
+                value="{{ localization.language.endonym_name }}"
+                data-input-selector
+              >
+              <ul class="custom-select-list" role="listbox">
+                {% for language in localization.available_languages %}
+                  <li class="custom-select-item" role="option">
+                    <button
+                      type="submit"
+                      name="language_code"
+                      id="language-{{ section.id }}-{{ forloop.index }}"
+                      value="{{ language.iso_code }}"
+                      data-value="{{ country.iso_code }}"
+                      {% if language.iso_code == localization.language.iso_code %}
+                        class="custom-select-item-active"
+                      {% endif %}
+                      data-button-submit
+                    >
+                      {{ language.endonym_name | capitalize }}
+                    </button>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </localization-form>
+  {% comment %}
+    {% endif %}
+    {% endif %}
+  {% endcomment %}
+  {% comment %}
+    {% if settings.is_language_selector %}
+      {% if localization.available_languages.size > 1 %}
+        <localization-form class="localization-form-box language-form-wrapper">
+          {% assign formid = 'localization_form_language-' | append: section.id %}
+          {% form 'localization', id: formid %}
+            <input type="hidden" name="form_type" value="localization">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="_method" value="put">
+            <input type="hidden" name="return_to" value="/">
+            <input
+              type="hidden"
+              name="language_code"
+              value="{{ localization.language.endonym_name }}"
+              data-input-selector
+            >
+            <div class="custom-select">
+              <button
+                type="button"
+                class="custom-select-button"
+                aria-label="Select Language"
+                data-custom-select-button-trigger
+              >
+                <span class="custom-select-text">
+                  {{ localization.language.endonym_name | capitalize }}
+                </span>
+              </button>
+              <div
+                class="custom-select-content"
+                data-custom-select-summary
+                style="display: none;"
+              >
+                <ul class="custom-select-list" role="listbox">
+                  {% for language in localization.available_languages %}
+                    <li class="custom-select-item" role="option">
+                      <button
+                        type="submit"
+                        name="language_code"
+                        id="language-{{ section.id }}-{{ forloop.index }}"
+                        value="{{ language.iso_code }}"
+                        data-value="{{ country.iso_code }}"
+                        class="custom-select-item-active"
+                        data-button-submit
+                      >
+                        {{ language.endonym_name | capitalize }}
+                      </button>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% endform %}
+        </localization-form>
+      {% endif %}
+    {% endif %}
+  {% endcomment %}
+</div>

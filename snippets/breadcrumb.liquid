@@ -1,0 +1,61 @@
+  <nav class="breadcrumb--nav">
+    <ul class="list-inline breadcrumb-list">
+      <li class="breadcrumbs-item">
+        <a href="{{ routes.root_url }}" title="Home" class="unstyled-link breadcrumb-link"> Home </a>
+      </li>
+      {%- if template contains 'page' -%}
+        <li class="breadcrumbs-item">
+          <span class="breadcrumb-link">{{ page.title | strip_html }}</span>
+        </li>
+      {%- elsif template contains 'product' -%}
+        {%- if collection.url -%}
+          <li class="breadcrumbs-item">
+            <span class="breadcrumb-link">
+              {{- collection.title | strip_html | truncatewords: 5 | link_to: collection.url }}
+            </span>
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs-item">
+          <span class="breadcrumb-link breadcrumb-text">{{ product.title | strip_html | truncatewords: 5 }}</span>
+        </li> 
+      {%- elsif template contains 'collection' and collection.handle -%}
+        {%- if current_tags -%}
+          <li class="breadcrumbs-item">
+            <span class="breadcrumb-link">
+              {{- collection.title | strip_html | truncatewords: 5 | link_to: collection.url }}
+              <span>{{ current_tags | join: ' + ' }}</span>
+            </span>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs-item">
+            <span class="breadcrumb-link breadcrumb-text">
+              {{- collection.title | strip_html | truncatewords: 5 -}}
+            </span>
+          </li>
+        {%- endif -%}
+      {%- elsif template == 'blog' -%}
+        {%- if current_tags -%}
+          {{ blog.title | link_to: blog.url }}
+          <li class="breadcrumbs-item">
+            <span class="breadcrumb-link breadcrumb-text">{{ current_tags | join: ' + ' }}</span>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs-item">
+            <span class="breadcrumb-link breadcrumb-text">{{ blog.title | strip_html }}</span>
+          </li>
+        {%- endif -%}
+      {%- elsif template == 'article' -%}
+        <li class="breadcrumbs-item">
+          <span class="breadcrumb-link">{{ blog.title | strip_html | link_to: blog.url }} </span>
+        </li>
+        <li class="breadcrumbs-item">
+          <span class="breadcrumb-link breadcrumb-text"> Blog</span>
+        </li>
+      {%- else -%}
+        <li class="breadcrumbs-item">
+          <span class="breadcrumb-link breadcrumb-text">{{ page_title }}</span>
+        </li>
+      {%- endif -%}
+    </ul>
+  </nav>
+  

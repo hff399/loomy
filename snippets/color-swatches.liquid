@@ -1,0 +1,52 @@
+<ul class="product-variants-list{% if is_contain_color %} color-select{% endif %}{% if is_contain_variant_image %} color-select color-media{% endif %}">
+  {% for value in option.values %}
+    {% liquid
+      assign value_variant = value.variant
+    %}
+    <li
+      class="product-variant-item"
+      variant-option-item
+      title="{{ value }}">
+      <input
+        type="radio"
+        id="{{ option_input_name }}-{{ value }}"
+        name="{{ option_input_name }}"
+        value="{{ value }}"
+        {% if value == option.selected_value %}
+        checked
+        ="checked"
+        {% endif %}
+        aria-labelledby="label-{{ value }}">
+      <label
+        for="{{ option_input_name }}-{{ value }}"
+        id="label-{{ value }}"
+        class="variant-label"
+        {% if is_contain_color %}
+        {% if value.swatch.image %}
+        style="background-image:url({{ value.swatch.image | image_url: width: 70 }}); background-position:{{ value.swatch.image.presentation.focal_point }};"
+        {% elsif value.swatch.color %}
+        style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
+        {% else %}
+        data-pallet-color="{{ value | downcase }}"
+        style="--swatch-color: {{ value | downcase }}"
+        {% endif %}
+        {% endif %}
+        {% if is_contain_variant_image %}
+        {% if value.variant.featured_media != blank %}
+        style="background-image:url({{ value.variant.featured_media | image_url: width: '70' }});"
+        {% else %}
+        {% if value.swatch.image %}
+        style="background-image:url({{ value.swatch.image | image_url: width: 70 }}); background-position:{{ value.swatch.image.presentation.focal_point }};"
+        {% elsif value.swatch.color %}
+        style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
+        {% else %}
+        data-pallet-color="{{ value | downcase }}"
+        style="--swatch-color: {{ value | downcase }};"
+        {% endif %}
+        {% endif %}
+        {% endif %}>
+        <span class="tooltip">{{ value }}</span>
+      </label>
+    </li>
+  {% endfor %}
+</ul>

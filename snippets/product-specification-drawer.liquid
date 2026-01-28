@@ -1,0 +1,85 @@
+<div product-specification-drawer-content>
+  <template>
+    <product-specification-drawer
+      class="drawer-wrapper product-specification-side-drawer  scheme-{{ settings.popup_color_scheme }}"
+      id="product-specification-{{ section.id }}"
+      data-drawer="product-specification-drawer"
+      data-section-id="{{ section.id }}"
+      product-specification-drawer-section
+      data-id="{{ section.id }}"
+    >
+      <div class="close-drawer" data-close-drawer is="data-moving-cursor-area">
+        <div class="data-moving-cursor" data-moving-cursor>
+          <svg class="icon icon-cursor" stroke="currentColor" viewBox="0 0 40 40" fill="none">
+            <path d="M10 30L30 10M10 10L30 30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="drawer-container">
+        <div class="drawer-inner">
+          <div class="drawer-head">
+            <div class="drawer-head-content border-bottom">
+              <h4 class="heading-font h5"></h4>
+              <close-drawer class="drawer-close-main" data-drawer-close>
+                <button class="drawer-close-btn close-button" aria-label="Close drawer" aria-hidden="true">
+                  {% render 'svg-icons', icon: 'close' %}
+                  {% render 'svg-icons', icon: 'close-bg' %}
+                </button>
+              </close-drawer>
+            </div>
+          </div>
+          <div class="drawer-body">
+            <div class="drawer-body-main">
+              <div class="product-specification-tabs-wrapper" data-tabs-parent>
+                <div class="product-specification-tabs-header d-flex justify-content-center">
+                  <tabs-header class="width-100">
+                    <ul class="product-specification-tabs-list d-flex">
+                      {% assign count = 1 %}
+                      {% for block in section.blocks %}
+                        {% if block.type == 'collapsible_row' %}
+                          {% if block.settings.heading != blank and block.settings.content != blank %}
+                            <li
+                              class="product-specification-tabs-list-item{% if count == 1 %} active{% endif %}"
+                              data-tab-id="product-specification-content-tab-{{ block.id }}"
+                              data-index="{{ count }}"
+                              tabindex="0"
+                            >
+                              <span class="category-btn text-sm">
+                                {{ block.settings.heading }}
+                              </span>
+                            </li>
+                            {% assign count = count | plus: 1 %}
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </tabs-header>
+                </div>
+                <div class="product-specification-block-content">
+                  {% assign newcount = 1 %}
+                  {% for block in section.blocks %}
+                    {% if block.type == 'collapsible_row' %}
+                      {% if block.settings.heading != blank and block.settings.content != blank %}
+                        <div
+                          class="product-specification-tabs-block-content-item text-sm rte{% if newcount > 1 %} hidden{% endif %}"
+                          data-content-id="product-specification-content-tab-{{ block.id }}"
+                        >
+                          {{
+                            block.settings.content
+                            | replace: '<table', '<div class="table-responsive"><table'
+                            | replace: '</table>', '</table></div>'
+                          }}
+                        </div>
+                        {% assign newcount = newcount | plus: 1 %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </product-specification-drawer>
+  </template>
+</div>
