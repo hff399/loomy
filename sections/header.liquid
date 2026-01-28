@@ -129,6 +129,10 @@
     --transparent-color: {{ section.settings.transparent_color }};
     --transparent-icon-bg: {{ section.settings.transparent_icon_bg }};
     --transparent-icon-color: {{ section.settings.transparent_icon_color }};
+    {% if section.settings.menu_type == 'reima_mega_menu' %}
+    --header-height: 82px;
+    --announcement-height: 40px;
+    {% endif %}
   }
   .side-reveal-menu-wrapper {
     --header-logo-width: {{ section.settings.logo_width }}px;
