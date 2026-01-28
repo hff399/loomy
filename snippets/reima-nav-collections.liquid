@@ -1,107 +1,138 @@
 {% comment %}
-  Reima-Style Programmatic Navigation Collections
-
-  This snippet generates navigation tabs from Shopify collections.
-  It creates a Reima-like horizontal navigation with dropdown menus.
+  Reima-Style Collection Navigation
+  Generates navigation tabs from Shopify collections with dropdowns
 
   Usage:
-  {% render 'reima-nav-collections', collections_to_show: 'outerwear,shoes,accessories' %}
-
-  Or use automatic detection:
-  {% render 'reima-nav-collections', auto_populate: true, max_items: 8 %}
+  {% render 'reima-nav-collections', collections_to_show: 'boys,girls,sale' %}
 {% endcomment %}
 
 {% comment %} Configuration {% endcomment %}
-{% assign nav_collections = collections_to_show | default: '' %}
+{% assign nav_collections = collections_to_show | default: '' | strip %}
 {% assign auto_mode = auto_populate | default: false %}
 {% assign max_nav_items = max_items | default: 8 %}
 {% assign show_sale = show_sale_tab | default: true %}
-{% assign show_new = show_new_arrivals | default: true %}
+{% assign show_new = show_new_arrivals | default: false %}
 
-{% comment %} Define default collection handles to display {% endcomment %}
-{% assign default_collections = 'outerwear,shoes,base-midlayers,skiwear,rainwear,everyday,accessories,sale' %}
+{% comment %} Build collection handles list {% endcomment %}
+{% assign collection_handles = '' | split: ',' %}
 
-{% comment %} Build collection list {% endcomment %}
 {% if nav_collections != blank %}
-  {% assign collection_handles = nav_collections | split: ',' %}
-{% elsif auto_mode %}
-  {% comment %} Auto-detect collections with products {% endcomment %}
-  {% assign collection_handles = '' | split: ',' %}
+  {% comment %} Parse the user-provided collection handles {% endcomment %}
+  {% assign raw_handles = nav_collections | split: ',' %}
+  {% for raw in raw_handles %}
+    {% assign clean_handle = raw | strip | handleize %}
+    {% if clean_handle != blank %}
+      {% assign collection_handles = collection_handles | push: clean_handle %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% comment %} Auto-populate if no handles provided or auto mode enabled {% endcomment %}
+{% if collection_handles.size == 0 and auto_mode %}
   {% assign count = 0 %}
-  {% for collection in collections %}
+  {% for coll in collections %}
     {% if count < max_nav_items %}
-      {% if collection.products.size > 0 and collection.handle != 'all' and collection.handle != 'frontpage' %}
-        {% assign collection_handles = collection_handles | push: collection.handle %}
+      {% if coll.products.size > 0 and coll.handle != 'all' and coll.handle != 'frontpage' %}
+        {% assign collection_handles = collection_handles | push: coll.handle %}
         {% assign count = count | plus: 1 %}
       {% endif %}
     {% endif %}
   {% endfor %}
-{% else %}
-  {% assign collection_handles = default_collections | split: ',' %}
 {% endif %}
 
-{% comment %} Featured tabs configuration {% endcomment %}
-{% assign featured_tabs = '' | split: ',' %}
-
-{% comment %} Add "New Arrivals" tab if enabled {% endcomment %}
-{% if show_new %}
-  {% assign new_tab = '{"title":"New Arrivals","handle":"new-arrivals","featured":true,"badge":"NEW"}' %}
-  {% assign featured_tabs = featured_tabs | push: new_tab %}
-{% endif %}
-
-{% comment %} Add "Sale" tab if enabled {% endcomment %}
-{% if show_sale %}
-  {% assign sale_tab = '{"title":"Sale","handle":"sale","featured":true,"badge":"SALE","highlight":true}' %}
-  {% assign featured_tabs = featured_tabs | push: sale_tab %}
-{% endif %}
-
-<nav class="reima-nav-collections" aria-label="Collections navigation">
-  <ul class="reima-nav-list">
-    {% comment %} Featured tabs first (Sale, New Arrivals) {% endcomment %}
-    {% for tab_json in featured_tabs %}
-      {% comment %} Parse the simple JSON-like structure {% endcomment %}
-      {% assign is_sale = false %}
-      {% assign is_new = false %}
-      {% assign tab_title = '' %}
-      {% assign tab_handle = '' %}
-
-      {% if tab_json contains 'Sale' %}
-        {% assign is_sale = true %}
-        {% assign tab_title = 'Sale' %}
-        {% assign tab_handle = 'sale' %}
-      {% elsif tab_json contains 'New Arrivals' %}
-        {% assign is_new = true %}
-        {% assign tab_title = 'New Arrivals' %}
-        {% assign tab_handle = 'new-arrivals' %}
-      {% endif %}
-
-      {% assign tab_collection = collections[tab_handle] %}
-      {% if tab_collection != blank %}
-        <li class="reima-nav-item{% if is_sale %} reima-nav-sale{% endif %}{% if is_new %} reima-nav-new{% endif %}">
-          <a href="{{ tab_collection.url }}" class="reima-nav-link">
-            {{ tab_title }}
-            {% if is_sale %}<span class="reima-nav-badge sale">SALE</span>{% endif %}
-            {% if is_new %}<span class="reima-nav-badge new">NEW</span>{% endif %}
-          </a>
-
-          {% comment %} Dropdown with subcollections if any {% endcomment %}
-          {% if tab_collection.products.size > 0 %}
-            <div class="reima-nav-dropdown" header-menu-inner>
-              <div class="reima-nav-dropdown-inner">
-                <div class="reima-nav-dropdown-column">
-                  <h4 class="reima-nav-dropdown-title">
-                    <a href="{{ tab_collection.url }}">Shop All {{ tab_title }}</a>
-                  </h4>
-                  <ul class="reima-nav-dropdown-list">
-                    {% for product in tab_collection.products limit: 6 %}
-                      <li>
-                        <a href="{{ product.url }}">{{ product.title }}</a>
-                      </li>
+<nav class="reima-coll-nav" aria-label="Collections navigation">
+  <ul class="reima-coll-nav-list">
+    {% comment %} Sale tab first if enabled {% endcomment %}
+    {% if show_sale %}
+      {% assign sale_coll = collections['sale'] %}
+      {% if sale_coll != blank %}
+        <li class="reima-coll-nav-item reima-coll-sale" data-nav-item>
+          <a href="{{ sale_coll.url }}" class="reima-coll-nav-link sale-link">Sale</a>
+          {% if sale_coll.products.size > 0 %}
+            <div class="reima-coll-dropdown" data-dropdown>
+              <div class="reima-coll-dropdown-inner">
+                <div class="reima-coll-dropdown-col">
+                  <h4 class="reima-coll-dropdown-title">SHOP SALE</h4>
+                  <ul class="reima-coll-dropdown-list">
+                    {% for product in sale_coll.products limit: 6 %}
+                      <li><a href="{{ product.url }}">{{ product.title | truncate: 40 }}</a></li>
                     {% endfor %}
-                    <li class="reima-nav-see-all">
-                      <a href="{{ tab_collection.url }}">View All {{ tab_title }} →</a>
-                    </li>
                   </ul>
+                  <a href="{{ sale_coll.url }}" class="reima-coll-see-all">View All Sale →</a>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% comment %} New Arrivals tab if enabled {% endcomment %}
+    {% if show_new %}
+      {% assign new_coll = collections['new-arrivals'] %}
+      {% if new_coll != blank %}
+        <li class="reima-coll-nav-item reima-coll-new" data-nav-item>
+          <a href="{{ new_coll.url }}" class="reima-coll-nav-link">New Arrivals</a>
+          {% if new_coll.products.size > 0 %}
+            <div class="reima-coll-dropdown" data-dropdown>
+              <div class="reima-coll-dropdown-inner">
+                <div class="reima-coll-dropdown-col">
+                  <h4 class="reima-coll-dropdown-title">NEW ARRIVALS</h4>
+                  <ul class="reima-coll-dropdown-list">
+                    {% for product in new_coll.products limit: 6 %}
+                      <li><a href="{{ product.url }}">{{ product.title | truncate: 40 }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <a href="{{ new_coll.url }}" class="reima-coll-see-all">View All New →</a>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% comment %} Regular collection tabs {% endcomment %}
+    {% for handle in collection_handles %}
+      {% assign coll = collections[handle] %}
+
+      {% if coll != blank %}
+        <li class="reima-coll-nav-item" data-nav-item>
+          <a href="{{ coll.url }}" class="reima-coll-nav-link">{{ coll.title }}</a>
+
+          {% comment %} Always show dropdown with products {% endcomment %}
+          {% if coll.products.size > 0 %}
+            <div class="reima-coll-dropdown" data-dropdown>
+              <div class="reima-coll-dropdown-inner">
+                {% comment %} Get unique product types from this collection {% endcomment %}
+                {% assign product_types = '' | split: ',' %}
+                {% for product in coll.products limit: 50 %}
+                  {% unless product_types contains product.type %}
+                    {% if product.type != blank %}
+                      {% assign product_types = product_types | push: product.type %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+
+                {% if product_types.size > 1 %}
+                  <div class="reima-coll-dropdown-col">
+                    <h4 class="reima-coll-dropdown-title">SHOP BY TYPE</h4>
+                    <ul class="reima-coll-dropdown-list">
+                      {% for ptype in product_types limit: 6 %}
+                        <li><a href="{{ coll.url }}?filter.p.product_type={{ ptype | url_encode }}">{{ ptype }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                <div class="reima-coll-dropdown-col">
+                  <h4 class="reima-coll-dropdown-title">FEATURED</h4>
+                  <ul class="reima-coll-dropdown-list">
+                    {% for product in coll.products limit: 5 %}
+                      <li><a href="{{ product.url }}">{{ product.title | truncate: 35 }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <a href="{{ coll.url }}" class="reima-coll-see-all">View All {{ coll.title }} →</a>
                 </div>
               </div>
             </div>
@@ -110,274 +141,213 @@
       {% endif %}
     {% endfor %}
 
-    {% comment %} Regular collection tabs {% endcomment %}
-    {% for handle in collection_handles %}
-      {% assign handle_trimmed = handle | strip %}
-      {% assign collection = collections[handle_trimmed] %}
-
-      {% if collection != blank %}
-        {% assign nice_title = collection.title | replace: '-', ' ' | capitalize %}
-
-        <li class="reima-nav-item">
-          <a href="{{ collection.url }}" class="reima-nav-link">
-            {{ nice_title }}
-          </a>
-
-          {% comment %} Build dropdown with related collections or products {% endcomment %}
-          <div class="reima-nav-dropdown" header-menu-inner>
-            <div class="reima-nav-dropdown-inner">
-              {% comment %} Check for subcollections (collections with parent handle as prefix) {% endcomment %}
-              {% assign has_subcollections = false %}
-              {% assign subcollection_count = 0 %}
-
-              {% for other_collection in collections %}
-                {% if other_collection.handle contains handle_trimmed and other_collection.handle != handle_trimmed %}
-                  {% assign has_subcollections = true %}
-                  {% assign subcollection_count = subcollection_count | plus: 1 %}
-                {% endif %}
-              {% endfor %}
-
-              {% if has_subcollections and subcollection_count > 0 %}
-                {% comment %} Display subcollections {% endcomment %}
-                <div class="reima-nav-dropdown-column">
-                  <h4 class="reima-nav-dropdown-title">
-                    <a href="{{ collection.url }}">{{ nice_title | upcase }}</a>
-                  </h4>
-                  <ul class="reima-nav-dropdown-list">
-                    {% for other_collection in collections %}
-                      {% if other_collection.handle contains handle_trimmed and other_collection.handle != handle_trimmed %}
-                        <li>
-                          <a href="{{ other_collection.url }}">{{ other_collection.title }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                    <li class="reima-nav-see-all">
-                      <a href="{{ collection.url }}">See All {{ nice_title }}</a>
-                    </li>
-                  </ul>
-                </div>
-              {% else %}
-                {% comment %} Display product types or tags as categories {% endcomment %}
-                {% assign product_types = '' | split: ',' %}
-                {% for product in collection.products limit: 50 %}
-                  {% unless product_types contains product.type %}
-                    {% if product.type != blank %}
-                      {% assign product_types = product_types | push: product.type %}
-                    {% endif %}
-                  {% endunless %}
-                {% endfor %}
-
-                {% if product_types.size > 0 %}
-                  <div class="reima-nav-dropdown-column">
-                    <h4 class="reima-nav-dropdown-title">
-                      <a href="{{ collection.url }}">SHOP BY CATEGORY</a>
-                    </h4>
-                    <ul class="reima-nav-dropdown-list">
-                      {% for ptype in product_types limit: 6 %}
-                        <li>
-                          <a href="{{ collection.url }}?filter.p.product_type={{ ptype | url_encode }}">{{ ptype }}</a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-
-                {% comment %} Featured products column {% endcomment %}
-                <div class="reima-nav-dropdown-column">
-                  <h4 class="reima-nav-dropdown-title">
-                    <a href="{{ collection.url }}">FEATURED PRODUCTS</a>
-                  </h4>
-                  <ul class="reima-nav-dropdown-list">
-                    {% for product in collection.products limit: 5 %}
-                      <li>
-                        <a href="{{ product.url }}">{{ product.title }}</a>
-                      </li>
-                    {% endfor %}
-                    <li class="reima-nav-see-all">
-                      <a href="{{ collection.url }}">View All {{ nice_title }} →</a>
-                    </li>
-                  </ul>
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </li>
-      {% endif %}
-    {% endfor %}
+    {% comment %} Fallback if nothing to show {% endcomment %}
+    {% if collection_handles.size == 0 and show_sale == false and show_new == false %}
+      <li class="reima-coll-nav-item">
+        <a href="/collections/all" class="reima-coll-nav-link">Shop All</a>
+      </li>
+    {% endif %}
   </ul>
 </nav>
 
+<script>
+(function() {
+  // Dropdown hover handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.reima-coll-nav-item[data-nav-item]');
+    let activeItem = null;
+    let timeout = null;
+
+    items.forEach(function(item) {
+      const dropdown = item.querySelector('[data-dropdown]');
+      if (!dropdown) return;
+
+      item.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        if (activeItem && activeItem !== item) {
+          activeItem.classList.remove('is-open');
+        }
+        item.classList.add('is-open');
+        activeItem = item;
+      });
+
+      item.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          item.classList.remove('is-open');
+          if (activeItem === item) activeItem = null;
+        }, 100);
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.reima-coll-nav-item')) {
+        items.forEach(function(item) { item.classList.remove('is-open'); });
+        activeItem = null;
+      }
+    });
+  });
+})();
+</script>
+
 <style>
-/* Reima Collection Navigation Styles */
-.reima-nav-collections {
+.reima-coll-nav {
   display: flex;
   align-items: center;
   height: 100%;
+  flex: 1;
 }
 
-.reima-nav-list {
+.reima-coll-nav-list {
   display: flex;
   align-items: center;
-  gap: 0;
   height: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.reima-nav-item {
-  position: relative;
+.reima-coll-nav-item {
+  position: static;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.reima-nav-link {
+.reima-coll-nav-link {
   display: flex;
   align-items: center;
-  gap: 6px;
   padding: 0 16px;
   height: 100%;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--reima-text-color, #333);
+  font-weight: 400;
+  color: #333;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color 0.2s ease;
+  white-space: nowrap;
   position: relative;
+  transition: color 0.2s ease;
 }
 
-.reima-nav-link::after {
+.reima-coll-nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 16px;
   right: 16px;
   height: 3px;
-  background-color: var(--reima-accent-color, #c41230);
+  background: #c41230;
   transform: scaleX(0);
   transition: transform 0.25s ease;
 }
 
-.reima-nav-item:hover .reima-nav-link::after,
-.reima-nav-item.active .reima-nav-link::after {
+.reima-coll-nav-item:hover .reima-coll-nav-link::after,
+.reima-coll-nav-item.is-open .reima-coll-nav-link::after {
   transform: scaleX(1);
 }
 
-.reima-nav-item:hover .reima-nav-link {
-  color: var(--reima-accent-color, #c41230);
+.reima-coll-sale .reima-coll-nav-link,
+.reima-coll-nav-link.sale-link {
+  color: #c41230;
+  font-weight: 500;
 }
 
-/* Sale tab special styling */
-.reima-nav-sale .reima-nav-link {
-  color: var(--reima-accent-color, #c41230);
+/* Make header wrapper position relative */
+.reima-header-style .header-wrapper {
+  position: relative;
 }
 
-/* Badge styling */
-.reima-nav-badge {
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.reima-nav-badge.sale {
-  background-color: var(--reima-accent-color, #c41230);
-  color: white;
-}
-
-.reima-nav-badge.new {
-  background-color: #2d5a27;
-  color: white;
-}
-
-/* Dropdown styling */
-.reima-nav-dropdown {
-  position: fixed;
-  top: var(--reima-header-height, 82px);
+/* Dropdown */
+.reima-coll-dropdown {
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  width: 100%;
-  background-color: white;
-  border-top: 3px solid var(--reima-accent-color, #c41230);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #fff;
+  border-top: 3px solid #c41230;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
-.reima-nav-item:hover .reima-nav-dropdown {
+.reima-coll-nav-item.is-open .reima-coll-dropdown {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-.reima-nav-dropdown-inner {
-  max-width: 1400px;
+.reima-coll-dropdown-inner {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 60px;
+  padding: 32px 48px;
   display: flex;
-  gap: 60px;
+  gap: 48px;
 }
 
-.reima-nav-dropdown-column {
+.reima-coll-dropdown-col {
   flex: 1;
-  min-width: 200px;
+  min-width: 160px;
+  max-width: 220px;
 }
 
-.reima-nav-dropdown-title {
-  margin: 0 0 16px 0;
-  font-size: 13px;
+.reima-coll-dropdown-title {
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #333;
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
 }
 
-.reima-nav-dropdown-title a {
-  color: var(--reima-text-color, #333);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.reima-nav-dropdown-title a:hover {
-  color: var(--reima-accent-color, #c41230);
-}
-
-.reima-nav-dropdown-list {
+.reima-coll-dropdown-list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
-.reima-nav-dropdown-list li {
-  margin-bottom: 10px;
+.reima-coll-dropdown-list li {
+  margin-bottom: 8px;
 }
 
-.reima-nav-dropdown-list a {
-  color: var(--reima-text-light, #666);
+.reima-coll-dropdown-list a {
   font-size: 14px;
+  color: #666;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.reima-nav-dropdown-list a:hover {
-  color: var(--reima-accent-color, #c41230);
+.reima-coll-dropdown-list a:hover {
+  color: #c41230;
 }
 
-.reima-nav-see-all a {
-  color: var(--reima-accent-color, #c41230) !important;
+.reima-coll-see-all {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
   font-weight: 500;
+  color: #c41230;
+  text-decoration: none;
 }
 
-/* Mobile hide */
+.reima-coll-see-all:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 1024px) {
-  .reima-nav-collections {
-    display: none;
+  .reima-coll-nav { display: none; }
+}
+
+@media (max-width: 1200px) {
+  .reima-coll-nav-link {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+  .reima-coll-dropdown-inner {
+    padding: 24px 32px;
+    gap: 32px;
   }
 }
 </style>

@@ -1,13 +1,32 @@
 {% comment %} Check if using Reima style navigation {% endcomment %}
 {% assign use_reima_static = false %}
+{% assign has_reima_blocks = false %}
 {% if section.settings.menu_type == 'reima_mega_menu' %}
   {% assign use_reima_static = true %}
+  {% comment %} Check if there are any reima_nav_tab blocks configured {% endcomment %}
+  {% for block in section.blocks %}
+    {% if block.type == 'reima_nav_tab' %}
+      {% assign has_reima_blocks = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
 {% endif %}
 
 {% if use_reima_static %}
-  {% comment %} Render static Reima-style navigation with hardcoded tabs {% endcomment %}
   <nav class="header-navigation d-flex align-items-center">
-    {% render 'reima-static-nav' %}
+    {% if has_reima_blocks %}
+      {% comment %} Use block-based navigation when blocks are configured {% endcomment %}
+      {% render 'reima-static-nav' %}
+    {% else %}
+      {% comment %} Use collection-based navigation when no blocks exist {% endcomment %}
+      {% render 'reima-nav-collections',
+        collections_to_show: section.settings.reima_collection_handles,
+        auto_populate: true,
+        max_items: section.settings.reima_max_collections,
+        show_sale_tab: section.settings.reima_show_sale_tab,
+        show_new_arrivals: section.settings.reima_show_new_tab
+      %}
+    {% endif %}
   </nav>
 {% elsif section.settings.menu != blank %}
   <nav class="header-navigation d-flex align-items-center">

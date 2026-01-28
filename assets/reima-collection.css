@@ -34,58 +34,100 @@
    ======================================== */
 .filters-style-sidebar filter-faced-form.filters-sidebar-inner {
   background: var(--reima-sidebar-bg) !important;
-  border: 1px solid var(--reima-border);
-  border-radius: 8px;
-  padding: 20px 16px !important;
-  box-shadow: none;
+  border: 1px solid var(--reima-border) !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  box-shadow: none !important;
 }
 
-/* Sidebar text colors */
+/* Sidebar container */
+.filter-sidebar.filters-style-sidebar {
+  padding-right: 16px !important;
+}
+
+.collection-products-wrapper.open-filter .filter-sidebar.filters-style-sidebar {
+  width: 260px !important;
+}
+
+@media (min-width: 1200px) {
+  .collection-products-wrapper.open-filter .filter-sidebar.filters-style-sidebar {
+    width: 280px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* Sidebar text colors - ALL text must be dark */
+.filters-style-sidebar .accordion-heading,
 .filters-style-sidebar .accordion-heading *,
+.filters-style-sidebar .filter-option-item,
 .filters-style-sidebar .filter-option-item *,
 .filters-style-sidebar .filter-price-range label,
-.filters-style-sidebar .filter-accordion-head {
+.filters-style-sidebar .filter-accordion-head,
+.filters-style-sidebar label,
+.filters-style-sidebar span,
+.filters-style-sidebar .available-filtered-products {
   color: var(--reima-text-dark) !important;
 }
 
 /* Filter accordion headers */
 .filter-accordion-item .accordion-heading {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--reima-border);
+  padding: 14px 0 !important;
+  border-bottom: none !important;
 }
 
 .filter-accordion-head {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--reima-text-dark);
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--reima-text-dark) !important;
 }
 
-/* Filter accordion borders */
-.filter-accordion > .filter-accordion-item:not(:last-child, :nth-last-child(2)) {
-  border-bottom: none;
+/* Filter accordion item separators */
+.filter-accordion > .filter-accordion-item {
+  border-bottom: 1px solid var(--reima-border) !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.filter-accordion > .filter-accordion-item:last-child {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* Filter accordion body */
+.filter-accordion-body {
+  padding-bottom: 8px !important;
+  padding-top: 4px !important;
 }
 
 /* Filter options */
 .filter-option-item {
-  font-size: 14px;
-  color: var(--reima-text-muted);
+  font-size: 14px !important;
+  color: var(--reima-text-muted) !important;
+  padding: 4px 0 !important;
+}
+
+.filter-options-list {
+  gap: 6px !important;
 }
 
 .filter-option-item label {
   color: var(--reima-text-muted) !important;
+  font-size: 14px !important;
 }
 
 /* Checkbox styling */
 .filters-style-sidebar .filter-option-item .custom-checkbox .checkmark {
   border-color: var(--reima-border) !important;
-  background: var(--reima-sidebar-bg);
-  border-radius: 4px;
+  background: var(--reima-sidebar-bg) !important;
+  border-radius: 3px !important;
+  width: 16px !important;
+  height: 16px !important;
 }
 
 .filters-style-sidebar .filter-option-item .custom-checkbox input:checked ~ .checkmark {
-  background-color: var(--reima-accent);
+  background-color: var(--reima-accent) !important;
   border-color: var(--reima-accent) !important;
 }
 
@@ -98,6 +140,20 @@
   background: var(--reima-sidebar-bg) !important;
   border: 1px solid var(--reima-border) !important;
   color: var(--reima-text-dark) !important;
+  padding: 8px 12px !important;
+}
+
+.price-inputs .price-input-item input,
+.price-inputs .field--input {
+  color: var(--reima-text-dark) !important;
+  font-size: 14px !important;
+}
+
+/* Price range label */
+.filter-price-range label {
+  font-size: 13px !important;
+  color: var(--reima-text-muted) !important;
+  margin-bottom: 12px !important;
 }
 
 /* ========================================
@@ -237,67 +293,78 @@
   background: transparent;
 }
 
+/* Product Card Info - Ensure Visibility */
+.product-card-info-static {
+  padding: 12px 4px 0 4px !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  transform: none !important;
+}
+
 /* Product Title */
 .product-card-title {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--reima-text-dark);
-  line-height: 1.4;
-  margin: 0 0 4px 0;
-  display: -webkit-box;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--reima-text-dark) !important;
+  line-height: 1.4 !important;
+  margin: 0 0 4px 0 !important;
+  display: -webkit-box !important;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .product-card-title-link {
-  text-decoration: none;
+  text-decoration: none !important;
+  display: block !important;
 }
 
 .product-card-title-link:hover .product-card-title {
-  color: var(--reima-accent);
+  color: var(--reima-accent) !important;
 }
 
 /* Color Count */
 .product-card-colors {
-  font-size: 13px;
-  color: var(--reima-accent);
-  margin: 0 0 6px 0;
-  font-weight: 400;
+  font-size: 13px !important;
+  color: var(--reima-accent) !important;
+  margin: 0 0 6px 0 !important;
+  font-weight: 400 !important;
 }
 
 /* Price Row - Reima Style */
 .product-card-price-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 6px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 6px !important;
 }
 
 .product-card-price-current {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--reima-text-dark);
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--reima-text-dark) !important;
 }
 
 .product-card-price-current.on-sale {
-  color: var(--reima-sale-red);
+  color: var(--reima-sale-red) !important;
 }
 
 .product-card-price-was {
-  font-size: 13px;
-  color: var(--reima-text-light);
-  text-decoration: line-through;
+  font-size: 13px !important;
+  color: var(--reima-text-light) !important;
+  text-decoration: line-through !important;
 }
 
 .product-card-discount {
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--reima-sale-red);
-  padding: 2px 6px;
-  border-radius: 2px;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  background: var(--reima-sale-red) !important;
+  padding: 2px 6px !important;
+  border-radius: 2px !important;
 }
 
 /* Rating */
