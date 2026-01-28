@@ -16,10 +16,11 @@
   <nav class="header-navigation d-flex align-items-center">
     {% if has_reima_blocks %}
       {% comment %} Use block-based navigation when blocks are configured {% endcomment %}
-      {% render 'reima-static-nav' %}
+      {% render 'reima-static-nav', section: section %}
     {% else %}
       {% comment %} Use collection-based navigation when no blocks exist {% endcomment %}
       {% render 'reima-nav-collections',
+        section: section,
         collections_to_show: section.settings.reima_collection_handles,
         auto_populate: true,
         max_items: section.settings.reima_max_collections,
