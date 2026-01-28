@@ -39,8 +39,31 @@
     },
     "header": {
       "type": "header",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "category_mega_menus_THjyfA": {
+          "type": "category_mega_menus",
+          "settings": {
+            "title": "Example",
+            "image_ratio": "portrait",
+            "overlay_opacity": 0.7,
+            "desktop_text_alignment": "left",
+            "content_heading_1": "",
+            "heading_size_1": "h4",
+            "content_description_1": "",
+            "description_size_1": "text",
+            "content_link_1": "",
+            "content_cta_1": "",
+            "content_heading_2": "",
+            "heading_size_2": "h4",
+            "content_description_2": "",
+            "description_size_2": "text",
+            "content_link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_mega_menus_THjyfA"
+      ],
       "settings": {
         "header_container": "container-fullwidth",
         "header_styles": "logo_left_menus_left",
