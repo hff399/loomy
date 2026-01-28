@@ -63,40 +63,39 @@
             {% endif %}
 
             {% if has_content %}
-              <div class="reima-static-dropdown" data-dropdown>
-                <div class="reima-static-dropdown-inner">
-                  <!-- DEBUG: has_content=true, col1_title="{{ block.settings.col1_title }}", col1_menu="{{ block.settings.col1_menu }}" -->
+              <div class="reima-static-dropdown" data-dropdown style="background:#fff !important;">
+                <div class="reima-static-dropdown-inner" style="background:#fff !important; color:#333 !important;">
                   {% comment %} Column 1 {% endcomment %}
                   {% if block.settings.col1_title != blank or col1_has_links %}
-                    <div class="reima-dropdown-column">
+                    <div class="reima-dropdown-column" style="color:#333 !important;">
                       {% if block.settings.col1_title != blank %}
-                        <h4 class="reima-dropdown-title">
-                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col1_title }}</a>
+                        <h4 class="reima-dropdown-title" style="color:#333 !important; font-size:12px !important; display:block !important;">
+                          <a href="{{ block.settings.tab_link }}" style="color:#333 !important;">{{ block.settings.col1_title }}</a>
                         </h4>
                       {% endif %}
                       {% if col1_has_links %}
-                        <ul class="reima-dropdown-list">
+                        <ul class="reima-dropdown-list" style="color:#666 !important;">
                           {% for link in linklists[block.settings.col1_menu].links %}
-                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                            <li style="color:#666 !important;"><a href="{{ link.url }}" style="color:#666 !important;">{{ link.title }}</a></li>
                           {% endfor %}
                         </ul>
-                        <a href="{{ block.settings.tab_link }}" class="reima-see-all">See All</a>
+                        <a href="{{ block.settings.tab_link }}" class="reima-see-all" style="color:#c41230 !important;">See All</a>
                       {% endif %}
                     </div>
                   {% endif %}
 
                   {% comment %} Column 2 {% endcomment %}
                   {% if block.settings.col2_title != blank or col2_has_links %}
-                    <div class="reima-dropdown-column">
+                    <div class="reima-dropdown-column" style="color:#333 !important;">
                       {% if block.settings.col2_title != blank %}
-                        <h4 class="reima-dropdown-title">
-                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col2_title }}</a>
+                        <h4 class="reima-dropdown-title" style="color:#333 !important; font-size:12px !important; display:block !important;">
+                          <a href="{{ block.settings.tab_link }}" style="color:#333 !important;">{{ block.settings.col2_title }}</a>
                         </h4>
                       {% endif %}
                       {% if col2_has_links %}
-                        <ul class="reima-dropdown-list">
+                        <ul class="reima-dropdown-list" style="color:#666 !important;">
                           {% for link in linklists[block.settings.col2_menu].links %}
-                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                            <li style="color:#666 !important;"><a href="{{ link.url }}" style="color:#666 !important;">{{ link.title }}</a></li>
                           {% endfor %}
                         </ul>
                       {% endif %}
@@ -105,16 +104,16 @@
 
                   {% comment %} Column 3 {% endcomment %}
                   {% if block.settings.col3_title != blank or col3_has_links %}
-                    <div class="reima-dropdown-column">
+                    <div class="reima-dropdown-column" style="color:#333 !important;">
                       {% if block.settings.col3_title != blank %}
-                        <h4 class="reima-dropdown-title">
-                          <a href="{{ block.settings.tab_link }}">{{ block.settings.col3_title }}</a>
+                        <h4 class="reima-dropdown-title" style="color:#333 !important; font-size:12px !important; display:block !important;">
+                          <a href="{{ block.settings.tab_link }}" style="color:#333 !important;">{{ block.settings.col3_title }}</a>
                         </h4>
                       {% endif %}
                       {% if col3_has_links %}
-                        <ul class="reima-dropdown-list">
+                        <ul class="reima-dropdown-list" style="color:#666 !important;">
                           {% for link in linklists[block.settings.col3_menu].links %}
-                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                            <li style="color:#666 !important;"><a href="{{ link.url }}" style="color:#666 !important;">{{ link.title }}</a></li>
                           {% endfor %}
                         </ul>
                       {% endif %}
