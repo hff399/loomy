@@ -36,47 +36,48 @@
    Reima Header - Non-Overlay, Fixed Height
    ======================================== */
 
-/* Header takes its own space - NOT transparent/overlay */
+/* Header section - ensure it takes its own space and is NOT transparent */
+.header-section:has(.reima-header-style) {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Header takes its own space - solid white, never transparent */
 .reima-header-style.header-main {
   position: relative !important;
   min-height: var(--reima-header-height) !important;
   height: var(--reima-header-height) !important;
   padding: 0 !important;
   background-color: var(--reima-bg-white) !important;
+  --header-background: var(--reima-bg-white) !important;
   border-bottom: 1px solid var(--reima-border-color);
   z-index: 1000;
 }
 
-/* Remove any transparency classes */
+/* Force override ALL transparency - header must always be solid white */
+.reima-header-style.header-main,
 .reima-header-style.header-main.d-header-transparent,
-.reima-header-style.header-main.m-header-transparent,
-.reima-header-style.header-main[class*="transparent"] {
+.reima-header-style.header-main.m-header-transparent {
   background-color: var(--reima-bg-white) !important;
+  --header-background: var(--reima-bg-white) !important;
+  color: var(--reima-text-color) !important;
+  --header-color: var(--reima-text-color) !important;
 }
 
-/* When sticky, header stays fixed at top with own space */
-.reima-header-style.header-main.is-sticky,
-sticky-always.reima-header-style.header-main,
-sticky-on-scroll.reima-header-style.header-main.is-sticky {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: var(--reima-bg-white) !important;
-  box-shadow: var(--reima-shadow-sm);
+/* Override transparent text/icon colors */
+.reima-header-style.header-main .header-menu-link,
+.reima-header-style.header-main .header-button-action,
+.reima-header-style.header-main .header-logo a {
+  color: var(--reima-text-color) !important;
 }
 
 /* Ensure container has proper horizontal padding */
 .reima-header-style .container,
-.reima-header-style .page-width {
+.reima-header-style .page-width,
+.reima-header-style .container-fullwidth {
   padding-left: 24px;
   padding-right: 24px;
-}
-
-/* Add spacer when header is sticky to prevent content jump */
-.reima-header-style.header-main.is-sticky ~ *,
-sticky-always.reima-header-style ~ * {
-  /* Content flows naturally */
 }
 
 /* Header wrapper - override grid with flexbox layout */
