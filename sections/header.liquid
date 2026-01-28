@@ -1268,6 +1268,48 @@
       },
       {
         "type": "header",
+        "content": "Reima Collection Navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "reima_auto_collections",
+        "label": "Auto-populate from Collections",
+        "info": "Automatically generate navigation tabs from your store's collections instead of using the menu",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "reima_collection_handles",
+        "label": "Collection Handles",
+        "info": "Comma-separated list of collection handles to display (e.g., outerwear,shoes,accessories). Leave blank for auto-detection.",
+        "placeholder": "outerwear,shoes,accessories,sale"
+      },
+      {
+        "type": "range",
+        "id": "reima_max_collections",
+        "min": 3,
+        "max": 12,
+        "step": 1,
+        "default": 8,
+        "label": "Maximum Collections",
+        "info": "Maximum number of collections to show when auto-populating"
+      },
+      {
+        "type": "checkbox",
+        "id": "reima_show_sale_tab",
+        "label": "Show Sale Tab",
+        "info": "Display a highlighted Sale tab if a 'sale' collection exists",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "reima_show_new_tab",
+        "label": "Show New Arrivals Tab",
+        "info": "Display a New Arrivals tab if a 'new-arrivals' collection exists",
+        "default": false
+      },
+      {
+        "type": "header",
         "content": "t:sections.header.settings.header.category_menus"
       },
       {
