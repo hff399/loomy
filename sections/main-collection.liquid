@@ -13,6 +13,7 @@
 %}
 {{ 'filter.css' | asset_url | preload_tag: as: 'style' }}
 {{ 'filter.css' | asset_url | stylesheet_tag }}
+{{ 'reima-collection.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'filters.js' | asset_url }}" defer="defer"></script>
 
 <div class="section-wrapper section-spacing scheme-{{ section.settings.color_scheme }} section-{{ section.settings.section_background }}">

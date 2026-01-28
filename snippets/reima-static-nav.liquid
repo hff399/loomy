@@ -20,8 +20,43 @@
           </a>
 
           {% if block.settings.has_dropdown %}
+            {% comment %} Check if any dropdown content exists (menus, titles, or images) {% endcomment %}
             {% assign has_content = false %}
-            {% if block.settings.col1_menu != blank or block.settings.col2_menu != blank or block.settings.col3_menu != blank or block.settings.promo_image != blank %}
+            {% assign col1_has_links = false %}
+            {% assign col2_has_links = false %}
+            {% assign col3_has_links = false %}
+
+            {% if block.settings.col1_menu != blank %}
+              {% if linklists[block.settings.col1_menu].links.size > 0 %}
+                {% assign col1_has_links = true %}
+                {% assign has_content = true %}
+              {% endif %}
+            {% endif %}
+            {% if block.settings.col1_title != blank %}
+              {% assign has_content = true %}
+            {% endif %}
+
+            {% if block.settings.col2_menu != blank %}
+              {% if linklists[block.settings.col2_menu].links.size > 0 %}
+                {% assign col2_has_links = true %}
+                {% assign has_content = true %}
+              {% endif %}
+            {% endif %}
+            {% if block.settings.col2_title != blank %}
+              {% assign has_content = true %}
+            {% endif %}
+
+            {% if block.settings.col3_menu != blank %}
+              {% if linklists[block.settings.col3_menu].links.size > 0 %}
+                {% assign col3_has_links = true %}
+                {% assign has_content = true %}
+              {% endif %}
+            {% endif %}
+            {% if block.settings.col3_title != blank %}
+              {% assign has_content = true %}
+            {% endif %}
+
+            {% if block.settings.promo_image != blank %}
               {% assign has_content = true %}
             {% endif %}
 
@@ -29,51 +64,57 @@
               <div class="reima-static-dropdown" data-dropdown>
                 <div class="reima-static-dropdown-inner">
                   {% comment %} Column 1 {% endcomment %}
-                  {% if block.settings.col1_menu != blank %}
+                  {% if block.settings.col1_title != blank or col1_has_links %}
                     <div class="reima-dropdown-column">
                       {% if block.settings.col1_title != blank %}
                         <h4 class="reima-dropdown-title">
                           <a href="{{ block.settings.tab_link }}">{{ block.settings.col1_title }}</a>
                         </h4>
                       {% endif %}
-                      <ul class="reima-dropdown-list">
-                        {% for link in linklists[block.settings.col1_menu].links %}
-                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                      <a href="{{ block.settings.tab_link }}" class="reima-see-all">See All</a>
+                      {% if col1_has_links %}
+                        <ul class="reima-dropdown-list">
+                          {% for link in linklists[block.settings.col1_menu].links %}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                        <a href="{{ block.settings.tab_link }}" class="reima-see-all">See All</a>
+                      {% endif %}
                     </div>
                   {% endif %}
 
                   {% comment %} Column 2 {% endcomment %}
-                  {% if block.settings.col2_menu != blank %}
+                  {% if block.settings.col2_title != blank or col2_has_links %}
                     <div class="reima-dropdown-column">
                       {% if block.settings.col2_title != blank %}
                         <h4 class="reima-dropdown-title">
                           <a href="{{ block.settings.tab_link }}">{{ block.settings.col2_title }}</a>
                         </h4>
                       {% endif %}
-                      <ul class="reima-dropdown-list">
-                        {% for link in linklists[block.settings.col2_menu].links %}
-                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
+                      {% if col2_has_links %}
+                        <ul class="reima-dropdown-list">
+                          {% for link in linklists[block.settings.col2_menu].links %}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
                     </div>
                   {% endif %}
 
                   {% comment %} Column 3 {% endcomment %}
-                  {% if block.settings.col3_menu != blank %}
+                  {% if block.settings.col3_title != blank or col3_has_links %}
                     <div class="reima-dropdown-column">
                       {% if block.settings.col3_title != blank %}
                         <h4 class="reima-dropdown-title">
                           <a href="{{ block.settings.tab_link }}">{{ block.settings.col3_title }}</a>
                         </h4>
                       {% endif %}
-                      <ul class="reima-dropdown-list">
-                        {% for link in linklists[block.settings.col3_menu].links %}
-                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
+                      {% if col3_has_links %}
+                        <ul class="reima-dropdown-list">
+                          {% for link in linklists[block.settings.col3_menu].links %}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
                     </div>
                   {% endif %}
 

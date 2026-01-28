@@ -1,0 +1,477 @@
+/**
+ * Reima-Style Collection Page
+ * Clean, compact product grid with light sidebar filters
+ */
+
+/* ========================================
+   CSS Variables for Reima Collection
+   ======================================== */
+:root {
+  --reima-collection-bg: #fff;
+  --reima-card-bg: #fff;
+  --reima-sidebar-bg: #fff;
+  --reima-text-dark: #333;
+  --reima-text-muted: #666;
+  --reima-text-light: #999;
+  --reima-border: #e5e5e5;
+  --reima-accent: #c41230;
+  --reima-sale-red: #c41230;
+}
+
+/* ========================================
+   Collection Page Background
+   ======================================== */
+.section-main-collection {
+  background-color: var(--reima-collection-bg);
+}
+
+.section-main-collection .section-wrapper {
+  background-color: var(--reima-collection-bg);
+}
+
+/* ========================================
+   Filter Sidebar - Light Theme
+   ======================================== */
+.filters-style-sidebar filter-faced-form.filters-sidebar-inner {
+  background: var(--reima-sidebar-bg) !important;
+  border: 1px solid var(--reima-border);
+  border-radius: 8px;
+  padding: 20px 16px !important;
+  box-shadow: none;
+}
+
+/* Sidebar text colors */
+.filters-style-sidebar .accordion-heading *,
+.filters-style-sidebar .filter-option-item *,
+.filters-style-sidebar .filter-price-range label,
+.filters-style-sidebar .filter-accordion-head {
+  color: var(--reima-text-dark) !important;
+}
+
+/* Filter accordion headers */
+.filter-accordion-item .accordion-heading {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--reima-border);
+}
+
+.filter-accordion-head {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--reima-text-dark);
+}
+
+/* Filter accordion borders */
+.filter-accordion > .filter-accordion-item:not(:last-child, :nth-last-child(2)) {
+  border-bottom: none;
+}
+
+/* Filter options */
+.filter-option-item {
+  font-size: 14px;
+  color: var(--reima-text-muted);
+}
+
+.filter-option-item label {
+  color: var(--reima-text-muted) !important;
+}
+
+/* Checkbox styling */
+.filters-style-sidebar .filter-option-item .custom-checkbox .checkmark {
+  border-color: var(--reima-border) !important;
+  background: var(--reima-sidebar-bg);
+  border-radius: 4px;
+}
+
+.filters-style-sidebar .filter-option-item .custom-checkbox input:checked ~ .checkmark {
+  background-color: var(--reima-accent);
+  border-color: var(--reima-accent) !important;
+}
+
+/* Price slider */
+.filters-style-sidebar .filter-option-price-slider .progress {
+  background: var(--reima-accent) !important;
+}
+
+.price-inputs .price-input-item {
+  background: var(--reima-sidebar-bg) !important;
+  border: 1px solid var(--reima-border) !important;
+  color: var(--reima-text-dark) !important;
+}
+
+/* ========================================
+   Filter Header Bar - Compact
+   ======================================== */
+.collection-filter-head-main-wrapper {
+  background: var(--reima-collection-bg);
+  border-top: none;
+  border-bottom: 1px solid var(--reima-border);
+  margin-bottom: 30px;
+}
+
+.collection-filter-head {
+  padding: 14px 0;
+}
+
+.collection-filter-btn {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.collection-filter-btn-icon {
+  background: transparent;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.collection-products-count {
+  font-size: 14px;
+  color: var(--reima-text-muted);
+}
+
+/* Sort dropdown */
+.filter-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--reima-text-dark);
+}
+
+/* ========================================
+   Product Grid - Compact Layout
+   ======================================== */
+.products-grid-products-content-inner,
+.collection-products-grid {
+  gap: 16px !important;
+}
+
+/* 5 columns on large screens like Reima */
+@media (min-width: 1400px) {
+  .products-grid-products-content-inner,
+  .collection-products-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .products-grid-products-content-inner,
+  .collection-products-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .products-grid-products-content-inner,
+  .collection-products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* With sidebar open - adjust columns */
+.collection-products-wrapper.open-filter .collection-products-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+@media (min-width: 1400px) {
+  .collection-products-wrapper.open-filter .collection-products-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* ========================================
+   Product Card - Reima Style
+   ======================================== */
+.product-card {
+  background: var(--reima-card-bg);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+}
+
+.product-card-inner {
+  background: transparent;
+}
+
+/* Product Image - Taller Aspect Ratio */
+.product-card-media-inner {
+  --image-ratio: 133% !important; /* Portrait ratio like Reima */
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-image {
+  transform: scale(1.03);
+}
+
+/* Product badges */
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--reima-text-dark);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+/* ========================================
+   Product Card Info - Static Below Image
+   ======================================== */
+.product-card-info-static {
+  padding: 12px 0 0 0;
+  background: transparent;
+}
+
+/* Product Title */
+.product-card-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--reima-text-dark);
+  line-height: 1.4;
+  margin: 0 0 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card-title-link {
+  text-decoration: none;
+}
+
+.product-card-title-link:hover .product-card-title {
+  color: var(--reima-accent);
+}
+
+/* Color Count */
+.product-card-colors {
+  font-size: 13px;
+  color: var(--reima-accent);
+  margin: 0 0 6px 0;
+  font-weight: 400;
+}
+
+/* Price Row - Reima Style */
+.product-card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.product-card-price-current {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--reima-text-dark);
+}
+
+.product-card-price-current.on-sale {
+  color: var(--reima-sale-red);
+}
+
+.product-card-price-was {
+  font-size: 13px;
+  color: var(--reima-text-light);
+  text-decoration: line-through;
+}
+
+.product-card-discount {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--reima-sale-red);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+/* Rating */
+.product-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.product-card-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.star-filled {
+  color: #ffc107;
+}
+
+.star-empty {
+  color: #ddd;
+}
+
+.product-card-rating-text {
+  font-size: 12px;
+  color: var(--reima-text-muted);
+}
+
+/* ========================================
+   Quick View Icon - Subtle
+   ======================================== */
+.product-card-icons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.product-card:hover .product-card-icons {
+  opacity: 1;
+}
+
+.product-quickview-button {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.product-quickview-button:hover {
+  background: var(--reima-accent);
+  color: #fff;
+}
+
+/* ========================================
+   Empty State
+   ======================================== */
+.empty-card {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-card h3 {
+  font-size: 18px;
+  color: var(--reima-text-dark);
+  margin-bottom: 10px;
+}
+
+.empty-card p {
+  color: var(--reima-text-muted);
+  font-size: 14px;
+}
+
+/* ========================================
+   Mobile Adjustments
+   ======================================== */
+@media (max-width: 767px) {
+  .collection-filter-head-main-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .products-grid-products-content-inner,
+  .collection-products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .product-card-title {
+    font-size: 13px;
+  }
+
+  .product-card-price-current {
+    font-size: 13px;
+  }
+
+  .product-card-price-was {
+    font-size: 12px;
+  }
+
+  /* Mobile filter drawer - light theme */
+  .filter-sidebar {
+    background: var(--reima-sidebar-bg) !important;
+  }
+
+  .mobile-drawer-filter .filter-accordion-head,
+  .mobile-drawer-filter .custom-checkbox label,
+  .mobile-drawer-filter .available-filtered-products,
+  .mobile-drawer-filter .filter-accordion-icon {
+    color: var(--reima-text-dark) !important;
+  }
+
+  .filter-sidebar .filter-drawer-header {
+    background: var(--reima-sidebar-bg);
+    border-bottom: 1px solid var(--reima-border);
+  }
+
+  .filter-drawer-heading {
+    color: var(--reima-text-dark);
+  }
+}
+
+/* ========================================
+   Hover Effects
+   ======================================== */
+.product-card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Second image on hover */
+.product-second-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-second-img {
+  opacity: 1;
+}
+
+/* ========================================
+   Applied Filters - Light Theme
+   ======================================== */
+.filter-applied-item-link {
+  background: var(--reima-sidebar-bg);
+  color: var(--reima-text-dark);
+  border: 1px solid var(--reima-border);
+}
+
+.filter-applied-item-link:hover {
+  background: var(--reima-border);
+}
+
+.clear-filter-button {
+  color: var(--reima-accent);
+}
+
+.clear-filter-button:hover {
+  text-decoration: underline;
+}
