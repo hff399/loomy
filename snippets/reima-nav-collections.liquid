@@ -1,0 +1,383 @@
+{% comment %}
+  Reima-Style Programmatic Navigation Collections
+
+  This snippet generates navigation tabs from Shopify collections.
+  It creates a Reima-like horizontal navigation with dropdown menus.
+
+  Usage:
+  {% render 'reima-nav-collections', collections_to_show: 'outerwear,shoes,accessories' %}
+
+  Or use automatic detection:
+  {% render 'reima-nav-collections', auto_populate: true, max_items: 8 %}
+{% endcomment %}
+
+{% comment %} Configuration {% endcomment %}
+{% assign nav_collections = collections_to_show | default: '' %}
+{% assign auto_mode = auto_populate | default: false %}
+{% assign max_nav_items = max_items | default: 8 %}
+{% assign show_sale = show_sale_tab | default: true %}
+{% assign show_new = show_new_arrivals | default: true %}
+
+{% comment %} Define default collection handles to display {% endcomment %}
+{% assign default_collections = 'outerwear,shoes,base-midlayers,skiwear,rainwear,everyday,accessories,sale' %}
+
+{% comment %} Build collection list {% endcomment %}
+{% if nav_collections != blank %}
+  {% assign collection_handles = nav_collections | split: ',' %}
+{% elsif auto_mode %}
+  {% comment %} Auto-detect collections with products {% endcomment %}
+  {% assign collection_handles = '' | split: ',' %}
+  {% assign count = 0 %}
+  {% for collection in collections %}
+    {% if count < max_nav_items %}
+      {% if collection.products.size > 0 and collection.handle != 'all' and collection.handle != 'frontpage' %}
+        {% assign collection_handles = collection_handles | push: collection.handle %}
+        {% assign count = count | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% assign collection_handles = default_collections | split: ',' %}
+{% endif %}
+
+{% comment %} Featured tabs configuration {% endcomment %}
+{% assign featured_tabs = '' | split: ',' %}
+
+{% comment %} Add "New Arrivals" tab if enabled {% endcomment %}
+{% if show_new %}
+  {% assign new_tab = '{"title":"New Arrivals","handle":"new-arrivals","featured":true,"badge":"NEW"}' %}
+  {% assign featured_tabs = featured_tabs | push: new_tab %}
+{% endif %}
+
+{% comment %} Add "Sale" tab if enabled {% endcomment %}
+{% if show_sale %}
+  {% assign sale_tab = '{"title":"Sale","handle":"sale","featured":true,"badge":"SALE","highlight":true}' %}
+  {% assign featured_tabs = featured_tabs | push: sale_tab %}
+{% endif %}
+
+<nav class="reima-nav-collections" aria-label="Collections navigation">
+  <ul class="reima-nav-list">
+    {% comment %} Featured tabs first (Sale, New Arrivals) {% endcomment %}
+    {% for tab_json in featured_tabs %}
+      {% comment %} Parse the simple JSON-like structure {% endcomment %}
+      {% assign is_sale = false %}
+      {% assign is_new = false %}
+      {% assign tab_title = '' %}
+      {% assign tab_handle = '' %}
+
+      {% if tab_json contains 'Sale' %}
+        {% assign is_sale = true %}
+        {% assign tab_title = 'Sale' %}
+        {% assign tab_handle = 'sale' %}
+      {% elsif tab_json contains 'New Arrivals' %}
+        {% assign is_new = true %}
+        {% assign tab_title = 'New Arrivals' %}
+        {% assign tab_handle = 'new-arrivals' %}
+      {% endif %}
+
+      {% assign tab_collection = collections[tab_handle] %}
+      {% if tab_collection != blank %}
+        <li class="reima-nav-item{% if is_sale %} reima-nav-sale{% endif %}{% if is_new %} reima-nav-new{% endif %}">
+          <a href="{{ tab_collection.url }}" class="reima-nav-link">
+            {{ tab_title }}
+            {% if is_sale %}<span class="reima-nav-badge sale">SALE</span>{% endif %}
+            {% if is_new %}<span class="reima-nav-badge new">NEW</span>{% endif %}
+          </a>
+
+          {% comment %} Dropdown with subcollections if any {% endcomment %}
+          {% if tab_collection.products.size > 0 %}
+            <div class="reima-nav-dropdown" header-menu-inner>
+              <div class="reima-nav-dropdown-inner">
+                <div class="reima-nav-dropdown-column">
+                  <h4 class="reima-nav-dropdown-title">
+                    <a href="{{ tab_collection.url }}">Shop All {{ tab_title }}</a>
+                  </h4>
+                  <ul class="reima-nav-dropdown-list">
+                    {% for product in tab_collection.products limit: 6 %}
+                      <li>
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                      </li>
+                    {% endfor %}
+                    <li class="reima-nav-see-all">
+                      <a href="{{ tab_collection.url }}">View All {{ tab_title }} →</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Regular collection tabs {% endcomment %}
+    {% for handle in collection_handles %}
+      {% assign handle_trimmed = handle | strip %}
+      {% assign collection = collections[handle_trimmed] %}
+
+      {% if collection != blank %}
+        {% assign nice_title = collection.title | replace: '-', ' ' | capitalize %}
+
+        <li class="reima-nav-item">
+          <a href="{{ collection.url }}" class="reima-nav-link">
+            {{ nice_title }}
+          </a>
+
+          {% comment %} Build dropdown with related collections or products {% endcomment %}
+          <div class="reima-nav-dropdown" header-menu-inner>
+            <div class="reima-nav-dropdown-inner">
+              {% comment %} Check for subcollections (collections with parent handle as prefix) {% endcomment %}
+              {% assign has_subcollections = false %}
+              {% assign subcollection_count = 0 %}
+
+              {% for other_collection in collections %}
+                {% if other_collection.handle contains handle_trimmed and other_collection.handle != handle_trimmed %}
+                  {% assign has_subcollections = true %}
+                  {% assign subcollection_count = subcollection_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+
+              {% if has_subcollections and subcollection_count > 0 %}
+                {% comment %} Display subcollections {% endcomment %}
+                <div class="reima-nav-dropdown-column">
+                  <h4 class="reima-nav-dropdown-title">
+                    <a href="{{ collection.url }}">{{ nice_title | upcase }}</a>
+                  </h4>
+                  <ul class="reima-nav-dropdown-list">
+                    {% for other_collection in collections %}
+                      {% if other_collection.handle contains handle_trimmed and other_collection.handle != handle_trimmed %}
+                        <li>
+                          <a href="{{ other_collection.url }}">{{ other_collection.title }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                    <li class="reima-nav-see-all">
+                      <a href="{{ collection.url }}">See All {{ nice_title }}</a>
+                    </li>
+                  </ul>
+                </div>
+              {% else %}
+                {% comment %} Display product types or tags as categories {% endcomment %}
+                {% assign product_types = '' | split: ',' %}
+                {% for product in collection.products limit: 50 %}
+                  {% unless product_types contains product.type %}
+                    {% if product.type != blank %}
+                      {% assign product_types = product_types | push: product.type %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+
+                {% if product_types.size > 0 %}
+                  <div class="reima-nav-dropdown-column">
+                    <h4 class="reima-nav-dropdown-title">
+                      <a href="{{ collection.url }}">SHOP BY CATEGORY</a>
+                    </h4>
+                    <ul class="reima-nav-dropdown-list">
+                      {% for ptype in product_types limit: 6 %}
+                        <li>
+                          <a href="{{ collection.url }}?filter.p.product_type={{ ptype | url_encode }}">{{ ptype }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% comment %} Featured products column {% endcomment %}
+                <div class="reima-nav-dropdown-column">
+                  <h4 class="reima-nav-dropdown-title">
+                    <a href="{{ collection.url }}">FEATURED PRODUCTS</a>
+                  </h4>
+                  <ul class="reima-nav-dropdown-list">
+                    {% for product in collection.products limit: 5 %}
+                      <li>
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                      </li>
+                    {% endfor %}
+                    <li class="reima-nav-see-all">
+                      <a href="{{ collection.url }}">View All {{ nice_title }} →</a>
+                    </li>
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+<style>
+/* Reima Collection Navigation Styles */
+.reima-nav-collections {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.reima-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reima-nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.reima-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--reima-text-color, #333);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.reima-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background-color: var(--reima-accent-color, #c41230);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.reima-nav-item:hover .reima-nav-link::after,
+.reima-nav-item.active .reima-nav-link::after {
+  transform: scaleX(1);
+}
+
+.reima-nav-item:hover .reima-nav-link {
+  color: var(--reima-accent-color, #c41230);
+}
+
+/* Sale tab special styling */
+.reima-nav-sale .reima-nav-link {
+  color: var(--reima-accent-color, #c41230);
+}
+
+/* Badge styling */
+.reima-nav-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reima-nav-badge.sale {
+  background-color: var(--reima-accent-color, #c41230);
+  color: white;
+}
+
+.reima-nav-badge.new {
+  background-color: #2d5a27;
+  color: white;
+}
+
+/* Dropdown styling */
+.reima-nav-dropdown {
+  position: fixed;
+  top: var(--reima-header-height, 82px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  border-top: 3px solid var(--reima-accent-color, #c41230);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.reima-nav-item:hover .reima-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.reima-nav-dropdown-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 60px;
+  display: flex;
+  gap: 60px;
+}
+
+.reima-nav-dropdown-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.reima-nav-dropdown-title {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.reima-nav-dropdown-title a {
+  color: var(--reima-text-color, #333);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reima-nav-dropdown-title a:hover {
+  color: var(--reima-accent-color, #c41230);
+}
+
+.reima-nav-dropdown-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reima-nav-dropdown-list li {
+  margin-bottom: 10px;
+}
+
+.reima-nav-dropdown-list a {
+  color: var(--reima-text-light, #666);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reima-nav-dropdown-list a:hover {
+  color: var(--reima-accent-color, #c41230);
+}
+
+.reima-nav-see-all a {
+  color: var(--reima-accent-color, #c41230) !important;
+  font-weight: 500;
+}
+
+/* Mobile hide */
+@media (max-width: 1024px) {
+  .reima-nav-collections {
+    display: none;
+  }
+}
+</style>

@@ -1,4 +1,10 @@
-<mobile-menu class="drawer-wrapper open-left mobile-menu-side-drawer scheme-{{ settings.mb_menu_color_scheme }}" id="MobileDrawer"
+{% comment %} Check if Reima style is active {% endcomment %}
+{% assign is_reima_style = false %}
+{% if section.settings.menu_type == 'reima_mega_menu' %}
+  {% assign is_reima_style = true %}
+{% endif %}
+
+<mobile-menu class="drawer-wrapper open-left mobile-menu-side-drawer scheme-{{ settings.mb_menu_color_scheme }}{% if is_reima_style %} reima-mobile-menu{% endif %}" id="MobileDrawer"
     data-section-id="{{ section.id }}"
     data-drawer="mobile-menu-drawer"> 
     <div class="close-drawer" data-close-drawer=""></div>

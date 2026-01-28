@@ -573,6 +573,160 @@
 }
 
 /* ========================================
+   Reima Mobile Menu Drawer Styles
+   ======================================== */
+
+/* Override mobile drawer color scheme for Reima style */
+.reima-header-style ~ .mobile-menu-side-drawer,
+.mobile-menu-side-drawer.reima-mobile-menu,
+body:has(.reima-header-style) .mobile-menu-side-drawer {
+  --body-background: var(--reima-bg-white) !important;
+  --text-color: var(--reima-text-color) !important;
+  --border-color: 229, 229, 229 !important;
+  --button-background: var(--reima-text-color) !important;
+  --button-text-color: var(--reima-bg-white) !important;
+  background-color: var(--reima-bg-white) !important;
+}
+
+/* Mobile drawer container */
+body:has(.reima-header-style) .mobile-menu-side-drawer .drawer-container {
+  background-color: var(--reima-bg-white) !important;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .drawer-inner {
+  background-color: var(--reima-bg-white) !important;
+}
+
+/* Mobile menu content wrapper */
+body:has(.reima-header-style) .mobile-menu-side-drawer .mobile-menu-content-wrapper {
+  background-color: var(--reima-bg-white) !important;
+  padding: 0 20px;
+}
+
+/* Hamburger menu list */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-list {
+  background-color: var(--reima-bg-white) !important;
+}
+
+/* Menu item links */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-link {
+  color: var(--reima-text-color) !important;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--reima-border-color) !important;
+  transition: color 0.2s ease;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-link:hover {
+  color: var(--reima-accent-color) !important;
+}
+
+/* Override the dashed border with solid */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-list > .hamburger-menu-item:not(:last-child) > .hamburger-menu-link,
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-submenu .hamburger-menu-submenu-list > .hamburger-menu-item:not(:last-child) > .hamburger-menu-link {
+  border-bottom: 1px solid var(--reima-border-color) !important;
+}
+
+/* Arrow icon styling */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-link span {
+  background-color: var(--reima-bg-hover) !important;
+  color: var(--reima-text-color) !important;
+}
+
+/* Submenu styling */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-submenu {
+  background-color: var(--reima-bg-white) !important;
+}
+
+/* Back button styling */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-back {
+  background-color: var(--reima-text-color) !important;
+  color: var(--reima-bg-white) !important;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-back:hover {
+  background-color: var(--reima-accent-color) !important;
+}
+
+/* Close button styling */
+body:has(.reima-header-style) .mobile-menu-side-drawer .drawer-head {
+  background-color: var(--reima-bg-white) !important;
+  border-bottom: 1px solid var(--reima-border-color);
+  padding: 12px 20px;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .close-button {
+  color: var(--reima-text-color) !important;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .close-button:hover {
+  color: var(--reima-accent-color) !important;
+}
+
+/* Footer section with social icons */
+body:has(.reima-header-style) .mobile-menu-side-drawer .mobile-menu-footer-content-wrapper {
+  background-color: var(--reima-bg-white) !important;
+  border-top: 1px solid var(--reima-border-color);
+  padding: 20px;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .social-icons a {
+  color: var(--reima-text-color) !important;
+  background-color: var(--reima-bg-hover) !important;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: all 0.2s ease;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .social-icons a:hover {
+  background-color: var(--reima-accent-color) !important;
+  color: var(--reima-bg-white) !important;
+}
+
+/* Category menu separator */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-category-menus {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid var(--reima-border-color);
+}
+
+/* Reima-style accent on active items */
+body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.active > .hamburger-menu-link {
+  color: var(--reima-accent-color) !important;
+}
+
+/* Tablet adjustments (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .reima-header-style .mobile-toggler {
+    display: flex !important;
+  }
+
+  .reima-header-style .header-navigation {
+    display: none !important;
+  }
+
+  .reima-header-style.header-main {
+    height: 70px !important;
+    min-height: 70px !important;
+  }
+
+  .reima-header-style .header-wrapper {
+    height: 70px !important;
+    min-height: 70px !important;
+  }
+}
+
+/* ========================================
    Accessibility & Motion Preferences
    ======================================== */
 @media (prefers-reduced-motion: reduce) {
