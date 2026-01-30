@@ -263,14 +263,22 @@
 }
 
 /* ========================================
-   Mega Menu Dropdown - Positioned relative to header
+   Mega Menu Dropdown - Fixed position below header
    ======================================== */
+
+/* Make header-main the positioning context for the dropdown */
+.reima-header-style.header-main {
+  position: relative !important;
+}
+
+/* Dropdown positioned at the bottom of header-main */
 .reima-header-style .header-menu-item.reima-style .reima-mega-menu {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: var(--reima-header-height);
+  left: 0;
+  right: 0;
   width: 100vw;
+  margin-left: calc(-50vw + 50%);
   background-color: var(--reima-bg-white);
   border-top: 3px solid var(--reima-accent-color);
   box-shadow: var(--reima-shadow);
@@ -298,7 +306,6 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%);
 }
 
 /* Mega menu inner container */
@@ -566,35 +573,54 @@
     min-height: 60px !important;
   }
 
-  /* Mobile layout: Use grid to center logo */
+  /* Mobile layout: Flexbox with absolutely centered logo */
   .reima-header-style .header-wrapper {
-    display: grid !important;
-    grid-template-columns: 1fr auto 1fr !important;
-    grid-template-areas: "hamburger logo buttons" !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     height: 60px !important;
     min-height: 60px !important;
-    align-items: center !important;
-    gap: 0 !important;
+    padding: 0 12px !important;
+    position: relative !important;
   }
 
   .reima-header-style .mobile-toggler {
-    grid-area: hamburger !important;
-    justify-self: start !important;
+    position: relative !important;
+    z-index: 2 !important;
     order: unset !important;
+    flex: 0 0 auto !important;
   }
 
+  /* Absolutely center the logo */
   .reima-header-style .header-logo {
-    grid-area: logo !important;
-    justify-self: center !important;
-    order: unset !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
     margin: 0 !important;
+    z-index: 1 !important;
   }
 
   .reima-header-style .header-right-icons {
-    grid-area: buttons !important;
-    justify-self: end !important;
-    order: unset !important;
-    margin-left: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Make icons more compact on mobile */
+  .reima-header-style .header-buttons-list {
+    gap: 2px !important;
+  }
+
+  .reima-header-style .header-button-action {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .reima-header-style .header-button-action svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 }
 
@@ -746,35 +772,38 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
     min-height: 70px !important;
   }
 
-  /* Tablet layout: Use grid to center logo */
+  /* Tablet layout: Flexbox with absolutely centered logo */
   .reima-header-style .header-wrapper {
-    display: grid !important;
-    grid-template-columns: 1fr auto 1fr !important;
-    grid-template-areas: "hamburger logo buttons" !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     height: 70px !important;
     min-height: 70px !important;
-    align-items: center !important;
-    gap: 0 !important;
+    padding: 0 16px !important;
+    position: relative !important;
   }
 
   .reima-header-style .mobile-toggler {
-    grid-area: hamburger !important;
-    justify-self: start !important;
-    order: unset !important;
+    position: relative !important;
+    z-index: 2 !important;
+    flex: 0 0 auto !important;
   }
 
+  /* Absolutely center the logo */
   .reima-header-style .header-logo {
-    grid-area: logo !important;
-    justify-self: center !important;
-    order: unset !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
     margin: 0 !important;
+    z-index: 1 !important;
   }
 
   .reima-header-style .header-right-icons {
-    grid-area: buttons !important;
-    justify-self: end !important;
-    order: unset !important;
-    margin-left: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
   }
 }
 
