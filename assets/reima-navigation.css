@@ -1026,3 +1026,212 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
   border-color: #a10f28 !important;
   color: #fff !important;
 }
+
+/* ========================================
+   Product Info Blocks - Clean Minimal Style
+   ======================================== */
+
+/* Info blocks container (Overview, Care, Size Chart) */
+.section-main-product .product-single-info-blocks,
+.section-main-product .product-info-blocks,
+.section-main-product .sidebar-blocks,
+.product-single-info-blocks,
+.product-info-blocks {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+}
+
+/* Individual info block buttons */
+.section-main-product .product-single-info-blocks > *,
+.section-main-product .product-info-blocks > *,
+.section-main-product .sidebar-blocks > *,
+.product-single-info-blocks > a,
+.product-single-info-blocks > button,
+.product-info-blocks > a,
+.product-info-blocks > button,
+.section-main-product [class*="info-block"],
+.section-main-product [class*="sidebar-block"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 20px !important;
+  background-color: transparent !important;
+  border: 1px solid #ddd !important;
+  border-radius: 0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  min-height: auto !important;
+  height: auto !important;
+  aspect-ratio: unset !important;
+}
+
+.section-main-product .product-single-info-blocks > *:hover,
+.section-main-product .product-info-blocks > *:hover,
+.section-main-product .sidebar-blocks > *:hover,
+.product-single-info-blocks > a:hover,
+.product-single-info-blocks > button:hover,
+.product-info-blocks > a:hover,
+.product-info-blocks > button:hover,
+.section-main-product [class*="info-block"]:hover,
+.section-main-product [class*="sidebar-block"]:hover {
+  border-color: var(--reima-accent-color) !important;
+  color: var(--reima-accent-color) !important;
+  background-color: transparent !important;
+}
+
+/* Sidebar/drawer styling */
+.section-main-product .product-sidebar,
+.section-main-product .sidebar-drawer,
+.product-sidebar-drawer,
+.sidebar-drawer {
+  background-color: #fff !important;
+}
+
+.section-main-product .sidebar-drawer-content,
+.sidebar-drawer .drawer-content,
+.sidebar-drawer-inner {
+  background-color: #fff !important;
+  color: #333 !important;
+}
+
+/* Sidebar tabs styling */
+.sidebar-drawer .tabs,
+.product-sidebar .tabs,
+.sidebar-tabs {
+  display: flex !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  background: #fff !important;
+  padding: 0 16px !important;
+}
+
+.sidebar-drawer .tab,
+.product-sidebar .tab,
+.sidebar-tabs .tab,
+.sidebar-drawer [class*="tab-"],
+.product-sidebar [class*="tab-"] {
+  padding: 16px 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #666 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-drawer .tab.active,
+.sidebar-drawer .tab:hover,
+.product-sidebar .tab.active,
+.product-sidebar .tab:hover,
+.sidebar-tabs .tab.active,
+.sidebar-tabs .tab:hover,
+.sidebar-drawer [class*="tab-"].active,
+.sidebar-drawer [class*="tab-"]:hover {
+  color: #333 !important;
+  border-bottom-color: var(--reima-accent-color) !important;
+  background: transparent !important;
+}
+
+/* Sidebar content area - remove red background */
+.sidebar-drawer .tab-content,
+.sidebar-drawer .content-area,
+.product-sidebar .tab-content,
+.sidebar-drawer-body,
+.sidebar-content {
+  background-color: #fff !important;
+  color: #333 !important;
+  padding: 24px !important;
+}
+
+.sidebar-drawer .tab-content p,
+.sidebar-drawer .content-area p,
+.product-sidebar .tab-content p {
+  color: #444 !important;
+  line-height: 1.7 !important;
+}
+
+/* Sidebar close button - ensure it's visible */
+.sidebar-drawer .close-button,
+.sidebar-drawer .drawer-close,
+.sidebar-drawer [class*="close"],
+.product-sidebar .close-button,
+.product-sidebar .drawer-close,
+.sidebar-drawer-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #fff !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 50% !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-drawer .close-button:hover,
+.sidebar-drawer .drawer-close:hover,
+.product-sidebar .close-button:hover,
+.sidebar-drawer-close:hover {
+  background: #f5f5f5 !important;
+  border-color: #ccc !important;
+}
+
+.sidebar-drawer .close-button svg,
+.sidebar-drawer .drawer-close svg,
+.product-sidebar .close-button svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #333 !important;
+}
+
+/* Sidebar header with close button */
+.sidebar-drawer .drawer-header,
+.sidebar-drawer-header,
+.product-sidebar-header {
+  position: relative !important;
+  background: #fff !important;
+  padding: 16px !important;
+  padding-right: 56px !important;
+}
+
+/* Mobile adjustments for info blocks */
+@media (max-width: 767px) {
+  .section-main-product .product-single-info-blocks,
+  .section-main-product .product-info-blocks,
+  .product-single-info-blocks,
+  .product-info-blocks {
+    gap: 8px !important;
+  }
+
+  .section-main-product .product-single-info-blocks > *,
+  .section-main-product .product-info-blocks > *,
+  .product-single-info-blocks > *,
+  .product-info-blocks > * {
+    padding: 10px 16px !important;
+    font-size: 12px !important;
+    flex: 1 1 calc(50% - 4px) !important;
+  }
+
+  /* Mobile sidebar close button */
+  .sidebar-drawer .close-button,
+  .sidebar-drawer .drawer-close,
+  .product-sidebar .close-button {
+    top: 8px !important;
+    right: 8px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
