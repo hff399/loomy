@@ -869,3 +869,33 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
     display: none !important;
   }
 }
+
+/* ========================================
+   Product Page Button - Reima Red
+   ======================================== */
+.section-main-product .product-form-buttons .button,
+.section-main-product .product-form .button,
+.section-main-product button[type="submit"],
+.section-main-product .add-to-cart-button,
+.product-form .button[type="submit"],
+.product-form .add-to-cart-button,
+.product-form-buttons .button--primary,
+.product-form-buttons .button--secondary {
+  background-color: var(--reima-accent-color) !important;
+  border-color: var(--reima-accent-color) !important;
+  color: #fff !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.section-main-product .product-form-buttons .button:hover,
+.section-main-product .product-form .button:hover,
+.section-main-product button[type="submit"]:hover,
+.section-main-product .add-to-cart-button:hover,
+.product-form .button[type="submit"]:hover,
+.product-form .add-to-cart-button:hover,
+.product-form-buttons .button--primary:hover,
+.product-form-buttons .button--secondary:hover {
+  background-color: #a10f28 !important;
+  border-color: #a10f28 !important;
+  color: #fff !important;
+}
