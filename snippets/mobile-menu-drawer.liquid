@@ -4,6 +4,9 @@
   {% assign is_reima_style = true %}
 {% endif %}
 
+{% comment %} Collect Reima nav tab blocks for mobile menu {% endcomment %}
+{% assign reima_nav_tabs = section.blocks | where: "type", "reima_nav_tab" %}
+
 <mobile-menu class="drawer-wrapper open-left mobile-menu-side-drawer scheme-{{ settings.mb_menu_color_scheme }}{% if is_reima_style %} reima-mobile-menu{% endif %}" id="MobileDrawer"
     data-section-id="{{ section.id }}"
     data-drawer="mobile-menu-drawer"> 
@@ -25,7 +28,70 @@
             </div>
            <div class="mobile-menu-content-wrapper">
             <hamburger-menu-drawer class="hamburger-menu-content-wrapper">
-                {% if section.settings.menu != blank %}
+                {% comment %} Use Reima nav tabs if available, otherwise fall back to standard menu {% endcomment %}
+                {% if is_reima_style and reima_nav_tabs.size > 0 %}
+                    <ul class="hamburger-menu-list main-menu reima-mobile-nav">
+                        {% for block in reima_nav_tabs %}
+                            <li class="hamburger-menu-item menu-item-{{ forloop.index }} focus-inside{% if block.settings.is_sale %} reima-sale-item{% endif %}"
+                                data-hamburger-item
+                                {% if block.settings.has_dropdown %} data-menu-item tabindex="0" {% endif %}>
+
+                                <{% if block.settings.has_dropdown %}span{% else %}a href="{{ block.settings.tab_link | default: '#' }}"{% endif %}
+                                    class="main-menu-link hamburger-menu-link text-md body-font cursor-pointer focus-inside{% if block.settings.is_sale %} sale-link{% endif %}">
+                                    {{ block.settings.tab_title }}
+                                    {% if block.settings.has_dropdown %}
+                                        <span>
+                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                <path d="M1.02943 9L-8.99959e-08 7.97057L3.34383 4.61943L-6.75927e-07 1.2683L1.02943 0.238867L5.41 4.61943L1.02943 9Z" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                    {% endif %}
+                                </{% if block.settings.has_dropdown %}span{% else %}a{% endif %}>
+
+                                {% if block.settings.has_dropdown %}
+                                    <div class="hamburger-menu-submenu pos-absolute left-0 top-0 width-100 height-100" data-has-child>
+                                        <button class="hamburger-menu-back width-100" data-back-to-menu>
+                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none">
+                                                <path d="M4.97057 9L6 7.97057L2.65617 4.61943L6 1.2683L4.97057 0.238867L0.590001 4.61943L4.97057 9Z" fill="currentColor"/>
+                                            </svg>
+                                            <span>Back</span>
+                                        </button>
+                                        <ul class="hamburger-menu-submenu-list">
+                                            {% comment %} Column 1 links {% endcomment %}
+                                            {% if block.settings.col1_menu != blank %}
+                                                {% for link in linklists[block.settings.col1_menu].links %}
+                                                    <li class="hamburger-menu-item focus-inside">
+                                                        <a href="{{ link.url }}" class="hamburger-menu-link text-md body-font focus-inside">{{ link.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% comment %} Column 2 links {% endcomment %}
+                                            {% if block.settings.col2_menu != blank %}
+                                                {% for link in linklists[block.settings.col2_menu].links %}
+                                                    <li class="hamburger-menu-item focus-inside">
+                                                        <a href="{{ link.url }}" class="hamburger-menu-link text-md body-font focus-inside">{{ link.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% comment %} Column 3 links {% endcomment %}
+                                            {% if block.settings.col3_menu != blank %}
+                                                {% for link in linklists[block.settings.col3_menu].links %}
+                                                    <li class="hamburger-menu-item focus-inside">
+                                                        <a href="{{ link.url }}" class="hamburger-menu-link text-md body-font focus-inside">{{ link.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% comment %} See all link {% endcomment %}
+                                            <li class="hamburger-menu-item focus-inside reima-see-all-mobile">
+                                                <a href="{{ block.settings.tab_link }}" class="hamburger-menu-link text-md body-font focus-inside" style="color: #c41230; font-weight: 500;">See All</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% elsif section.settings.menu != blank %}
                     <ul class="hamburger-menu-list main-menu">
                         {% for link in section.settings.menu.links %}
                             {% liquid
