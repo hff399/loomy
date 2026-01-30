@@ -553,6 +553,19 @@
    Mobile Responsiveness (<768px)
    ======================================== */
 @media (max-width: 767px) {
+  /* Hide scrollbars on mobile */
+  html, body {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari, Opera */
+    width: 0 !important;
+    height: 0 !important;
+  }
+
   /* Mega menu hidden on mobile (drawer menu used instead) */
   .reima-mega-menu {
     display: none !important;
