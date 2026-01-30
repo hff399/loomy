@@ -250,11 +250,11 @@
   background: transparent;
 }
 
-/* Product Image - Taller Aspect Ratio */
+/* Product Image - Taller Aspect Ratio like Reima */
 .product-card-media-inner {
-  --image-ratio: 133% !important; /* Portrait ratio like Reima */
-  background-color: #f5f5f5;
-  border-radius: 8px;
+  --image-ratio: 140% !important; /* Taller portrait ratio */
+  background-color: #f8f8f8;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -267,6 +267,14 @@
 
 .product-card:hover .product-card-image {
   transform: scale(1.03);
+}
+
+/* Mobile - even taller images for better product display */
+@media (max-width: 767px) {
+  .product-card-media-inner {
+    --image-ratio: 145% !important; /* Even taller on mobile */
+    border-radius: 4px;
+  }
 }
 
 /* Product badges */
@@ -510,13 +518,21 @@
    ======================================== */
 @media (max-width: 767px) {
   .collection-filter-head-main-wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .products-grid-products-content-inner,
   .collection-products-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 8px !important; /* Tighter gap like Reima */
+  }
+
+  /* Tighter card info padding on mobile */
+  .section-main-collection .product-card .product-card-info,
+  .section-main-collection .product-card .product-card-info-static,
+  .product-card-static-info .product-card-info,
+  .product-card-static-info .product-card-info-static {
+    padding: 10px 2px 0 2px !important;
   }
 
   .product-card-title {
@@ -559,7 +575,7 @@
 .product-card-image-wrap {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 4px; /* Smaller radius like Reima */
 }
 
 /* Second image on hover */
