@@ -628,6 +628,19 @@
    Reima Mobile Menu Drawer Styles
    ======================================== */
 
+/* CRITICAL: Drawer must be above header (header is z-index 1000) */
+body:has(.reima-header-style) .mobile-menu-side-drawer {
+  z-index: 1001 !important;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .drawer-container {
+  z-index: 1002 !important;
+}
+
+body:has(.reima-header-style) .mobile-menu-side-drawer .close-drawer {
+  z-index: 1001 !important;
+}
+
 /* Override mobile drawer color scheme for Reima style */
 .reima-header-style ~ .mobile-menu-side-drawer,
 .mobile-menu-side-drawer.reima-mobile-menu,
