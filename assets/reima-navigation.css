@@ -891,6 +891,113 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
 }
 
 /* ========================================
+   Product Page Typography - Clean & Readable
+   ======================================== */
+
+/* Product description container */
+.section-main-product .product-description,
+.section-main-product .product-single-description,
+.section-main-product .product-content,
+.section-main-product .rte,
+.product-description,
+.product-single-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+  letter-spacing: 0.01em;
+}
+
+/* Headings in product description */
+.section-main-product .product-description h2,
+.section-main-product .product-description h3,
+.section-main-product .product-description h4,
+.section-main-product .rte h2,
+.section-main-product .rte h3,
+.section-main-product .rte h4,
+.product-description h2,
+.product-description h3,
+.product-description h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin: 24px 0 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.section-main-product .product-description h2:first-child,
+.section-main-product .rte h2:first-child,
+.product-description h2:first-child {
+  margin-top: 0;
+}
+
+/* Paragraphs */
+.section-main-product .product-description p,
+.section-main-product .rte p,
+.product-description p {
+  margin: 0 0 16px;
+  line-height: 1.7;
+}
+
+/* Bullet lists */
+.section-main-product .product-description ul,
+.section-main-product .rte ul,
+.product-description ul {
+  margin: 12px 0 20px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.section-main-product .product-description ul li,
+.section-main-product .rte ul li,
+.product-description ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.section-main-product .product-description ul li::before,
+.section-main-product .rte ul li::before,
+.product-description ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--reima-accent-color, #c41230);
+  font-weight: 700;
+}
+
+/* Mobile typography adjustments */
+@media (max-width: 767px) {
+  .section-main-product .product-description,
+  .section-main-product .rte,
+  .product-description {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .section-main-product .product-description h2,
+  .section-main-product .product-description h3,
+  .section-main-product .product-description h4,
+  .section-main-product .rte h2,
+  .section-main-product .rte h3,
+  .section-main-product .rte h4,
+  .product-description h2,
+  .product-description h3,
+  .product-description h4 {
+    font-size: 15px;
+    margin: 20px 0 10px;
+  }
+
+  .section-main-product .product-description ul li,
+  .section-main-product .rte ul li,
+  .product-description ul li {
+    margin-bottom: 6px;
+    padding-left: 18px;
+  }
+}
+
+/* ========================================
    Product Page Button - Reima Red
    ======================================== */
 .section-main-product .product-form-buttons .button,
