@@ -263,14 +263,14 @@
 }
 
 /* ========================================
-   Mega Menu Dropdown - Fixed position below header
+   Mega Menu Dropdown - Positioned relative to header
    ======================================== */
 .reima-header-style .header-menu-item.reima-style .reima-mega-menu {
-  position: fixed;
-  top: var(--reima-header-height);
-  left: 0;
-  right: 0;
-  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   background-color: var(--reima-bg-white);
   border-top: 3px solid var(--reima-accent-color);
   box-shadow: var(--reima-shadow);
@@ -279,7 +279,6 @@
   overflow-y: auto;
   max-width: none;
   padding-top: 0;
-  transform: none;
 
   /* Hidden state - NO !important so transitions work */
   opacity: 0;
@@ -299,6 +298,7 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transform: translateX(-50%);
 }
 
 /* Mega menu inner container */
@@ -566,9 +566,35 @@
     min-height: 60px !important;
   }
 
+  /* Mobile layout: Use grid to center logo */
   .reima-header-style .header-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    grid-template-areas: "hamburger logo buttons" !important;
     height: 60px !important;
     min-height: 60px !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  .reima-header-style .mobile-toggler {
+    grid-area: hamburger !important;
+    justify-self: start !important;
+    order: unset !important;
+  }
+
+  .reima-header-style .header-logo {
+    grid-area: logo !important;
+    justify-self: center !important;
+    order: unset !important;
+    margin: 0 !important;
+  }
+
+  .reima-header-style .header-right-icons {
+    grid-area: buttons !important;
+    justify-self: end !important;
+    order: unset !important;
+    margin-left: 0 !important;
   }
 }
 
@@ -720,9 +746,35 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
     min-height: 70px !important;
   }
 
+  /* Tablet layout: Use grid to center logo */
   .reima-header-style .header-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    grid-template-areas: "hamburger logo buttons" !important;
     height: 70px !important;
     min-height: 70px !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  .reima-header-style .mobile-toggler {
+    grid-area: hamburger !important;
+    justify-self: start !important;
+    order: unset !important;
+  }
+
+  .reima-header-style .header-logo {
+    grid-area: logo !important;
+    justify-self: center !important;
+    order: unset !important;
+    margin: 0 !important;
+  }
+
+  .reima-header-style .header-right-icons {
+    grid-area: buttons !important;
+    justify-self: end !important;
+    order: unset !important;
+    margin-left: 0 !important;
   }
 }
 
