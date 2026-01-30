@@ -1085,12 +1085,23 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
   background-color: transparent !important;
 }
 
-/* Sidebar/drawer styling */
+/* Sidebar/drawer styling - must be above header (z-index 1000) */
 .section-main-product .product-sidebar,
 .section-main-product .sidebar-drawer,
 .product-sidebar-drawer,
-.sidebar-drawer {
+.sidebar-drawer,
+[class*="sidebar-drawer"],
+[class*="product-sidebar"] {
   background-color: #fff !important;
+  z-index: 1100 !important;
+}
+
+/* Ensure sidebar overlay is also above header */
+.sidebar-drawer-overlay,
+.product-sidebar-overlay,
+[class*="sidebar-overlay"],
+.drawer-overlay {
+  z-index: 1099 !important;
 }
 
 .section-main-product .sidebar-drawer-content,
