@@ -580,7 +580,7 @@
     align-items: center !important;
     height: 60px !important;
     min-height: 60px !important;
-    padding: 0 12px !important;
+    padding: 0 16px !important;
     position: relative !important;
   }
 
@@ -605,7 +605,14 @@
     position: relative !important;
     z-index: 2 !important;
     margin-left: auto !important;
+    margin-right: 0 !important;
     flex: 0 0 auto !important;
+  }
+
+  /* Compact icon spacing on mobile */
+  .reima-header-style .header-buttons-list {
+    gap: 4px !important;
+    margin-right: 0 !important;
   }
 
   /* Make icons more compact on mobile */
