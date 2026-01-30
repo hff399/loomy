@@ -891,6 +891,88 @@ body:has(.reima-header-style) .mobile-menu-side-drawer .hamburger-menu-item.acti
 }
 
 /* ========================================
+   Product Image Carousel - Fixed Height, Natural Widths
+   ======================================== */
+
+/* Product gallery container */
+.section-main-product .product-gallery,
+.section-main-product .product-media-gallery,
+.section-main-product .product-images,
+.product-gallery,
+.product-media-gallery {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+
+.section-main-product .product-gallery::-webkit-scrollbar,
+.section-main-product .product-media-gallery::-webkit-scrollbar,
+.product-gallery::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Individual gallery items - fixed height, auto width */
+.section-main-product .product-gallery-item,
+.section-main-product .product-media-item,
+.section-main-product .product-single-media,
+.section-main-product .media-item,
+.product-gallery-item,
+.product-media-item {
+  flex: 0 0 auto !important;
+  height: 600px !important;
+  width: auto !important;
+  scroll-snap-align: start !important;
+}
+
+.section-main-product .product-gallery-item img,
+.section-main-product .product-media-item img,
+.section-main-product .product-single-media img,
+.section-main-product .media-item img,
+.product-gallery-item img,
+.product-media-item img {
+  height: 100% !important;
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain !important;
+}
+
+/* Media wrapper inside gallery items */
+.section-main-product .product-gallery-item .media,
+.section-main-product .product-media-item .media,
+.section-main-product .media-item .media {
+  height: 100% !important;
+  width: auto !important;
+  padding-bottom: 0 !important;
+  aspect-ratio: unset !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .section-main-product .product-gallery-item,
+  .section-main-product .product-media-item,
+  .section-main-product .product-single-media,
+  .section-main-product .media-item,
+  .product-gallery-item,
+  .product-media-item {
+    height: 450px !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section-main-product .product-gallery-item,
+  .section-main-product .product-media-item,
+  .section-main-product .product-single-media,
+  .section-main-product .media-item {
+    height: 500px !important;
+  }
+}
+
+/* ========================================
    Product Page Typography - Clean & Readable
    ======================================== */
 
