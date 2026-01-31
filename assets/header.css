@@ -642,10 +642,18 @@
      }
 
      /* Mobile header layout fix - centered logo */
+     .header-main > .container,
+     .header-main > .container-fullwidth,
+     .header-main > .container-fluid,
+     .header-main > [class*="container"] {
+         padding-left: 14px !important;
+         padding-right: 14px !important;
+     }
+
      .header-wrapper {
          grid-template-columns: auto 1fr auto !important;
          grid-template-areas: "hamburger logo buttons" !important;
-         padding: 0 14px !important;
+         padding: 0 !important;
          column-gap: 12px !important;
          min-height: 56px !important;
      }
