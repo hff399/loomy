@@ -1265,6 +1265,14 @@ div#advanced-subscription-block-wrapper {
     background: #fff;
 }
 
+/* Mobile: extra padding for header */
+@media (max-width: 767px) {
+    .product-collapsible-tiles-side-drawer .drawer-inner,
+    .product-specification-side-drawer .drawer-inner {
+        padding-top: calc(var(--dynamic-header-height, 70px) + 15px) !important;
+    }
+}
+
 /* ========================================
    Add to Cart Button - Red Color
    ======================================== */
