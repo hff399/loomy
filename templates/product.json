@@ -170,7 +170,7 @@
         "enable_images_border": false,
         "enable_images_radius": false,
         "enable_sticky_content": true,
-        "thumbnails_style": "vertical",
+        "thumbnails_style": "none",
         "thumbnails_position": "inside_image_bottom",
         "hide_thumbnails_mobile": false,
         "show_product_video": false,
