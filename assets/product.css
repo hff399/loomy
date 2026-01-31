@@ -1217,27 +1217,46 @@ div#advanced-subscription-block-wrapper {
 }
 
 /* ========================================
-   Product Collapsible Tiles Drawer - Mobile Color Fix
+   Product Drawers - Neutral Color Override
    ======================================== */
-.product-collapsible-tiles-side-drawer {
+.product-collapsible-tiles-side-drawer,
+.product-specification-side-drawer {
     --body-background: #fff;
     --text-color: #1a1a1a;
     --card-background: #f8f8f8;
     --card-text: #1a1a1a;
 }
 
-.product-collapsible-tiles-side-drawer .drawer-inner {
+.product-collapsible-tiles-side-drawer .drawer-inner,
+.product-specification-side-drawer .drawer-inner {
     background: #fff;
     color: #1a1a1a;
 }
 
-.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item {
+.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item,
+.product-specification-side-drawer .product-specification-tabs-list-item {
     color: #1a1a1a;
 }
 
 .product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item:after,
-.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item:before {
+.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item:before,
+.product-specification-side-drawer .product-specification-tabs-list-item:after,
+.product-specification-side-drawer .product-specification-tabs-list-item:before {
     background-color: #1a1a1a;
+}
+
+/* Mobile header clearance for both drawers */
+@media (max-width: 767px) {
+    .product-specification-side-drawer .drawer-inner {
+        padding-top: calc(var(--dynamic-header-height, 65px) + 10px);
+    }
+
+    .product-specification-side-drawer .drawer-head {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #fff;
+    }
 }
 
 /* ========================================
