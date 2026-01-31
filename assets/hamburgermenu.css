@@ -188,3 +188,45 @@
         display: block
     }
 }
+
+/* ========================================
+   Mobile Menu Sidebar - Clean Design
+   ======================================== */
+.mobile-menu-side-drawer .close-button .closeBg,
+.mobile-menu-side-drawer .close-button .closeIconBg {
+    display: none !important;
+}
+
+.mobile-menu-side-drawer .close-button {
+    width: 40px !important;
+    height: 40px !important;
+    background: #f5f5f5 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.mobile-menu-side-drawer .close-button .closeIcon {
+    color: #1a1a1a !important;
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.mobile-menu-side-drawer .drawer-inner {
+    background: #fff !important;
+}
+
+.mobile-menu-side-drawer .drawer-head {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+.mobile-menu-side-drawer .hamburger-menu-link {
+    color: #1a1a1a !important;
+    font-size: 16px !important;
+}
+
+.mobile-menu-side-drawer .hamburger-menu-item {
+    border-bottom: 1px solid #f0f0f0 !important;
+}
