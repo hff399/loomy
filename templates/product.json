@@ -161,7 +161,7 @@
         "corner_radius": 0,
         "enable_breadcrumb": false,
         "product_info_space": "small-padding",
-        "media_style": "grid",
+        "media_style": "carousel",
         "image_width": "small",
         "image_ratio": "auto",
         "images_fit_position": "center",
