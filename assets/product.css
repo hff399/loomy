@@ -1274,44 +1274,6 @@ div#advanced-subscription-block-wrapper {
 }
 
 /* ========================================
-   Product Carousel - Fixed Height, Dynamic Width
-   ======================================== */
-.product-main-media-wrapper .swiper {
-    --carousel-height: 550px;
-}
-
-.product-main-media-wrapper .swiper-slide {
-    width: auto !important;
-    height: var(--carousel-height) !important;
-    flex-shrink: 0 !important;
-}
-
-.product-main-media-wrapper .swiper-slide .product-image-slideshow-media,
-.product-main-media-wrapper .swiper-slide .media {
-    height: 100% !important;
-    width: auto !important;
-}
-
-.product-main-media-wrapper .swiper-slide .media img {
-    height: 100% !important;
-    width: auto !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
-}
-
-@media (max-width: 1024px) {
-    .product-main-media-wrapper .swiper {
-        --carousel-height: 450px;
-    }
-}
-
-@media (max-width: 767px) {
-    .product-main-media-wrapper .swiper {
-        --carousel-height: 400px;
-    }
-}
-
-/* ========================================
    Add to Cart Button - Red Color
    ======================================== */
 .product-buy-buttons-wrapper .add-to-cart,
