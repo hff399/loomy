@@ -219,7 +219,20 @@
 
 .mobile-menu-side-drawer .drawer-head {
     padding: 16px 20px !important;
-    border-bottom: 1px solid #eee !important;
+    border: none !important;
+}
+
+.mobile-menu-side-drawer .drawer-head-content {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.mobile-menu-side-drawer .drawer-head-content.border-bottom {
+    border-bottom: none !important;
+}
+
+.mobile-menu-side-drawer .mobile-menu-content-wrapper {
+    border-top: 1px solid #eee !important;
 }
 
 .mobile-menu-side-drawer .hamburger-menu-link {
@@ -229,4 +242,8 @@
 
 .mobile-menu-side-drawer .hamburger-menu-item {
     border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.mobile-menu-side-drawer .hamburger-menu-list {
+    padding: 0 20px !important;
 }

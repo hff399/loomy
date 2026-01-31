@@ -1217,7 +1217,7 @@ div#advanced-subscription-block-wrapper {
 }
 
 /* ========================================
-   Product Drawers - Neutral Color Override
+   Product Drawers - Neutral Color Override & Z-Index Fix
    ======================================== */
 .product-collapsible-tiles-side-drawer,
 .product-specification-side-drawer {
@@ -1225,6 +1225,12 @@ div#advanced-subscription-block-wrapper {
     --text-color: #1a1a1a;
     --card-background: #f8f8f8;
     --card-text: #1a1a1a;
+    z-index: 999 !important;
+}
+
+.product-collapsible-tiles-side-drawer .drawer-container,
+.product-specification-side-drawer .drawer-container {
+    z-index: 999 !important;
 }
 
 .product-collapsible-tiles-side-drawer .drawer-inner,
@@ -1245,18 +1251,18 @@ div#advanced-subscription-block-wrapper {
     background-color: #1a1a1a;
 }
 
-/* Mobile header clearance for both drawers */
-@media (max-width: 767px) {
-    .product-specification-side-drawer .drawer-inner {
-        padding-top: calc(var(--dynamic-header-height, 65px) + 10px);
-    }
+/* Header clearance for both drawers */
+.product-collapsible-tiles-side-drawer .drawer-inner,
+.product-specification-side-drawer .drawer-inner {
+    padding-top: 20px;
+}
 
-    .product-specification-side-drawer .drawer-head {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        background: #fff;
-    }
+.product-collapsible-tiles-side-drawer .drawer-head,
+.product-specification-side-drawer .drawer-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fff;
 }
 
 /* ========================================
