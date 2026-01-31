@@ -1202,4 +1202,86 @@ div#advanced-subscription-block-wrapper {
     .sticky-promotional-bar-main-wrapper {
         margin: 4px;
     }
+
+    /* Fix: Product collapsible tiles drawer - add padding for sticky header */
+    .product-collapsible-tiles-side-drawer .drawer-inner {
+        padding-top: calc(var(--dynamic-header-height, 65px) + 10px);
+    }
+
+    .product-collapsible-tiles-side-drawer .drawer-head {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--body-background);
+    }
+}
+
+/* ========================================
+   Product Collapsible Tiles Drawer - Mobile Color Fix
+   ======================================== */
+.product-collapsible-tiles-side-drawer {
+    --body-background: #fff;
+    --text-color: #1a1a1a;
+    --card-background: #f8f8f8;
+    --card-text: #1a1a1a;
+}
+
+.product-collapsible-tiles-side-drawer .drawer-inner {
+    background: #fff;
+    color: #1a1a1a;
+}
+
+.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item {
+    color: #1a1a1a;
+}
+
+.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item:after,
+.product-collapsible-tiles-side-drawer .product-collapsible-tiles-tabs-list-item:before {
+    background-color: #1a1a1a;
+}
+
+/* ========================================
+   Product Carousel - Fixed Height, Dynamic Width
+   ======================================== */
+.product-main-media-wrapper .swiper-wrapper {
+    align-items: flex-start !important;
+}
+
+.product-image-slideshow-item {
+    height: 600px !important;
+    width: auto !important;
+    flex-shrink: 0 !important;
+}
+
+.product-image-slideshow-item .product-image-slideshow-media {
+    height: 100% !important;
+    width: auto !important;
+}
+
+.product-image-slideshow-item .media {
+    height: 100% !important;
+    width: auto !important;
+    padding-bottom: 0 !important;
+    aspect-ratio: unset !important;
+}
+
+.product-image-slideshow-item .media img {
+    height: 100% !important;
+    width: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .product-image-slideshow-item {
+        height: 500px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .product-image-slideshow-item {
+        height: 450px !important;
+    }
 }
