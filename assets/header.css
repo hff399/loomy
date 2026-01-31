@@ -640,4 +640,30 @@
          width: 24px;
          height: 24px;
      }
+
+     /* Mobile header layout fix - centered logo */
+     .header-wrapper {
+         grid-template-columns: auto 1fr auto !important;
+         grid-template-areas: "hamburger logo buttons" !important;
+         padding: 0 14px !important;
+         column-gap: 12px !important;
+         min-height: 56px !important;
+     }
+
+     .header-logo {
+         justify-self: center !important;
+         text-align: center !important;
+     }
+
+     .header-right-icons {
+         justify-self: end !important;
+     }
+
+     .header-buttons-list {
+         gap: 8px !important;
+     }
+
+     .mobile-toggler.hamburger-toggler {
+         justify-self: start !important;
+     }
  }
