@@ -1285,18 +1285,17 @@ form-buy-buttons button[type="submit"]:hover {
 }
 
 /* ========================================
-   Product Carousel - Consistent Height
+   Product Carousel - All Slides Same Height (Dynamic)
    ======================================== */
-.product-main-media-wrapper {
-    --carousel-height: 600px;
-}
 
+/* Swiper wrapper stretches all slides to match tallest */
 .product-main-media-wrapper .swiper-wrapper {
     align-items: stretch !important;
 }
 
+/* Each slide fills the height set by swiper */
 .product-image-slideshow-item {
-    height: var(--carousel-height) !important;
+    height: auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1319,24 +1318,11 @@ form-buy-buttons button[type="submit"]:hover {
     justify-content: center !important;
 }
 
+/* Images scale to fit while maintaining aspect ratio */
 .product-image-slideshow-item .media img {
     max-height: 100% !important;
     max-width: 100% !important;
     width: auto !important;
     height: auto !important;
     object-fit: contain !important;
-}
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .product-main-media-wrapper {
-        --carousel-height: 500px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-    .product-main-media-wrapper {
-        --carousel-height: 450px;
-    }
 }
