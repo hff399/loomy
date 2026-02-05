@@ -1325,7 +1325,7 @@ form-buy-buttons .add-to-cart:hover {
 }
 
 /* ========================================
-   Main Product Section - Top Spacing
+   Main Product Section - Top Spacing & Container Width
    ======================================== */
 
 .main-product-section {
@@ -1335,6 +1335,21 @@ form-buy-buttons .add-to-cart:hover {
 @media (min-width: 768px) {
     .main-product-section {
         padding-top: 40px;
+    }
+}
+
+/* Match container width to description section */
+.main-product-section .product-main {
+    max-width: 1190px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 1400px) {
+    .main-product-section .product-main {
+        max-width: 1730px;
     }
 }
 
