@@ -58,9 +58,7 @@
             {% for category in block_mega_menu.links %}
               <div class="reima-category-column">
                 <h3 class="reima-category-title {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
-                  <a href="{{ category.url }}" title="{{ category.title }}">
-                    {{ category.title | upcase }}
-                  </a>
+                  {{ category.title | upcase }}
                 </h3>
 
                 {% if category.links.size > 0 %}
@@ -96,9 +94,7 @@
             {% for childlink in link.links %}
               <div class="reima-category-column">
                 <h3 class="reima-category-title {{ settings.second_level_font_size }} {{ settings.second_level_font }}">
-                  <a href="{{ childlink.url }}" title="{{ childlink.title }}">
-                    {{ childlink.title | upcase }}
-                  </a>
+                  {{ childlink.title | upcase }}
                 </h3>
 
                 {% if childlink.links.size > 0 %}
