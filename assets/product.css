@@ -1203,11 +1203,7 @@ div#advanced-subscription-block-wrapper {
         margin: 4px;
     }
 
-    /* Fix: Product collapsible tiles drawer - add padding for sticky header */
-    .product-collapsible-tiles-side-drawer .drawer-inner {
-        padding-top: calc(var(--dynamic-header-height, 65px) + 10px);
-    }
-
+    /* Drawer head stays at top */
     .product-collapsible-tiles-side-drawer .drawer-head {
         position: sticky;
         top: 0;
@@ -1225,12 +1221,12 @@ div#advanced-subscription-block-wrapper {
     --text-color: #1a1a1a;
     --card-background: #f8f8f8;
     --card-text: #1a1a1a;
-    z-index: 999 !important;
+    z-index: 10000 !important;
 }
 
 .product-collapsible-tiles-side-drawer .drawer-container,
 .product-specification-side-drawer .drawer-container {
-    z-index: 999 !important;
+    z-index: 10000 !important;
 }
 
 .product-collapsible-tiles-side-drawer .drawer-inner,
@@ -1254,7 +1250,7 @@ div#advanced-subscription-block-wrapper {
 /* Header clearance for both drawers */
 .product-collapsible-tiles-side-drawer .drawer-inner,
 .product-specification-side-drawer .drawer-inner {
-    padding-top: 20px;
+    padding-top: 0;
 }
 
 .product-collapsible-tiles-side-drawer .drawer-head,
@@ -1269,7 +1265,7 @@ div#advanced-subscription-block-wrapper {
 @media (max-width: 767px) {
     .product-collapsible-tiles-side-drawer .drawer-inner,
     .product-specification-side-drawer .drawer-inner {
-        padding-top: calc(var(--dynamic-header-height, 70px) + 15px) !important;
+        padding-top: 0 !important;
     }
 }
 
