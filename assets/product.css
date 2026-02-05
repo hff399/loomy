@@ -1439,83 +1439,105 @@ form-buy-buttons .add-to-cart:hover {
    Product Media Popup/Lightbox - Clean UI
    ======================================== */
 
-/* Popup container - fullscreen overlay, centered content */
+/* Popup container - fullscreen overlay */
 .product-media-popup.popup {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    width: 100vw !important;
+    height: 100vh !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 40px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    z-index: 9999 !important;
     box-sizing: border-box !important;
 }
 
-/* Dark overlay background */
+/* Dark overlay/close area behind content */
 .product-media-popup.popup .close-drawer {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    backdrop-filter: blur(8px);
+    background: transparent !important;
     z-index: 0 !important;
+    cursor: pointer;
 }
 
-/* Popup content box - centered, auto-sized */
+/* Popup content wrapper - centered */
 .popup.product-media-popup .popup-content.popup-dialog {
     position: relative !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: 90vw !important;
-    max-height: 90vh !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     margin: 0 !important;
+    padding: 60px !important;
     background: transparent !important;
     z-index: 1 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
+    border-radius: 0 !important;
 }
 
 .product-media-popup.popup .popup-content-body {
     background: transparent !important;
-    width: auto !important;
-    height: auto !important;
-    max-height: 85vh !important;
-    overflow: visible !important;
-}
-
-/* Swiper container in popup */
-.product-media-popup .swiper {
-    width: auto !important;
-    height: auto !important;
-    max-height: 85vh !important;
-    max-width: 90vw !important;
-}
-
-.product-media-popup .swiper-wrapper {
-    align-items: center !important;
-}
-
-.product-media-popup .swiper-slide {
-    width: auto !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    padding: 0 !important;
+    overflow: hidden !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
 
+/* Swiper container in popup - FIXED width to show 1 slide */
+.product-media-popup swiper-slideshow {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.product-media-popup .swiper {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 120px) !important;
+    overflow: hidden !important;
+}
+
+/* Swiper wrapper - must hide overflow to show 1 slide */
+.product-media-popup .swiper-wrapper {
+    align-items: center !important;
+}
+
+/* Each slide takes full width - critical for single slide display */
+.product-media-popup .swiper-slide {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
 /* Image container - override theme.css 100dvh */
 .product-media-popup .main-product-media-item {
     position: relative !important;
-    width: auto !important;
-    height: auto !important;
-    max-height: 85vh !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 120px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1527,8 +1549,8 @@ form-buy-buttons .add-to-cart:hover {
     position: relative !important;
     width: auto !important;
     height: auto !important;
-    max-height: 85vh !important;
-    max-width: 85vw !important;
+    max-height: calc(100vh - 140px) !important;
+    max-width: calc(100vw - 140px) !important;
     object-fit: contain !important;
     top: auto !important;
     left: auto !important;
@@ -1539,47 +1561,75 @@ form-buy-buttons .add-to-cart:hover {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: auto !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
-/* Close button styling */
+/* Close button styling - fixed position top right */
+.product-media-popup .drawer-close-main {
+    position: fixed !important;
+    top: 15px !important;
+    right: 15px !important;
+    z-index: 100 !important;
+}
+
 .product-media-popup .drawer-close-btn.close-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    margin: 15px;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    margin: 0 !important;
+    cursor: pointer !important;
 }
 
 .product-media-popup .drawer-close-btn.close-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25) !important;
 }
 
 .product-media-popup .drawer-close-btn.close-button svg {
-    width: 16px;
-    height: 16px;
+    width: 18px !important;
+    height: 18px !important;
 }
 
 /* Navigation arrows in popup */
+.product-media-popup .swiper-button-wrapper {
+    position: absolute !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+}
+
 .product-media-popup .slideshow-nav-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+    pointer-events: auto !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
 }
 
 .product-media-popup .slideshow-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Moving cursor for close */
 .product-media-popup .data-moving-cursor {
-    color: #fff;
+    color: #fff !important;
+}
+
+/* Hide duplicate slides from Swiper loop mode */
+.product-media-popup .swiper-slide-duplicate {
+    display: none !important;
 }
 
