@@ -25,12 +25,16 @@
 }
 
 .announcement-section:has(.custom-select-content.show) {
-    z-index: 9 !important;
+    z-index: 100 !important;
     position: relative !important;
 }
 
 .announcement-section:has(.custom-select-content.show) .section-wrapper {
-    z-index: 9 !important;
+    z-index: 100 !important;
+}
+
+body:has(.announcement-section .custom-select-content.show) .header-section {
+    z-index: 1 !important;
 }
 
 .border-bottom-true {
