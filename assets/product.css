@@ -1333,6 +1333,57 @@ product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
     height: 550px;
 }
 
+/* ========================================
+   Thumbnails - Ensure all are visible
+   ======================================== */
+
+/* Make sure thumbnails wrapper is visible and properly sized */
+.product-thumbnails-media-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure all thumbnail slides are visible */
+.product-thumbnails-media-wrapper .swiper-slide {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: flex !important;
+}
+
+/* Active thumbnail has border highlight */
+.product-thumbnails-media-wrapper .swiper-slide-thumb-active .product-thumbnails-media-img {
+    border-color: var(--highlight-text-color, #c41230) !important;
+}
+
+/* Non-active thumbnails are slightly faded but still visible */
+.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active) .product-thumbnails-media-img {
+    opacity: 0.7;
+}
+
+.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active):hover .product-thumbnails-media-img {
+    opacity: 1;
+}
+
+/* Vertical thumbnails - ensure proper height */
+.product-thumbnails-media-wrapper .swiper-vertical .swiper-wrapper {
+    height: auto;
+    min-height: 275px;
+}
+
+/* Featured product specific - ensure thumbnails show */
+.featured-product-main .product-thumbnails-media-wrapper {
+    display: block !important;
+}
+
+.featured-product-main .product-thumbnails-media-wrapper .swiper-wrapper {
+    display: flex !important;
+}
+
+.featured-product-main .product-thumbnails-media-wrapper .swiper-slide {
+    flex-shrink: 0;
+}
+
 /* Swiper wrapper needs full height */
 product-media-gallery .product-main-media-wrapper [data-main-media].swiper .swiper-wrapper {
     height: 100%;
