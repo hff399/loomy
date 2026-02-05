@@ -1333,58 +1333,6 @@ product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
     height: 550px;
 }
 
-/* ========================================
-   Thumbnails - Fix visibility issues
-   ======================================== */
-
-/* Vertical thumbnails - proper height for swiper to work */
-.product-thumbnails-media-wrapper [data-thumbnails-media].swiper-vertical .swiper-wrapper {
-    height: 400px;
-}
-
-/* Horizontal thumbnails */
-.product-thumbnails-media-wrapper [data-thumbnails-media].swiper-horizontal .swiper-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-/* All thumbnail slides should be visible */
-.product-thumbnails-media-wrapper .swiper-slide {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Active thumbnail styling */
-.product-thumbnails-media-wrapper .swiper-slide-thumb-active .product-thumbnails-media-img {
-    border-color: var(--highlight-text-color, #c41230) !important;
-    opacity: 1;
-}
-
-/* Non-active thumbnails slightly faded */
-.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active) .product-thumbnails-media-img {
-    opacity: 0.6;
-    transition: opacity 0.2s ease;
-}
-
-.product-thumbnails-media-wrapper .swiper-slide:hover .product-thumbnails-media-img {
-    opacity: 1;
-}
-
-/* Featured product - ensure thumbnails container has proper dimensions */
-.featured-product-main .product-thumbnails-media-wrapper {
-    overflow: visible;
-}
-
-.featured-product-main .product-thumbnails-media-wrapper .swiper {
-    overflow: visible;
-}
-
-/* Desktop vertical thumbnails - ensure height matches main image */
-@media (min-width: 992px) {
-    .vertical-thumbnails-enable-true .product-thumbnails-media-wrapper [data-thumbnails-media].swiper-vertical .swiper-wrapper {
-        height: 550px;
-    }
-}
 
 /* Swiper wrapper needs full height */
 product-media-gallery .product-main-media-wrapper [data-main-media].swiper .swiper-wrapper {
