@@ -1338,69 +1338,6 @@ form-buy-buttons .add-to-cart:hover {
     }
 }
 
-/* ========================================
-   Product Layout - Balanced & Centered
-   ======================================== */
-
-@media (min-width: 992px) {
-    /* Product row - centered with gap */
-    .main-product-section .product-block > .row {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 40px;
-    }
-
-    /* Both columns - equal sizing, centered */
-    .main-product-section .product-block > .row > [class*="col-"] {
-        flex: 0 1 auto;
-        max-width: none;
-        width: auto;
-    }
-
-    /* Media column - takes space needed by carousel */
-    .main-product-section .product-block > .row > .col-lg-6:first-child {
-        flex: 0 1 auto;
-        min-width: 400px;
-    }
-
-    /* Info column - consistent width */
-    .main-product-section .product-block > .row > .col-lg-6:last-child {
-        flex: 0 0 480px;
-        width: 480px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .main-product-section .product-block > .row {
-        gap: 60px;
-    }
-
-    .main-product-section .product-block > .row > .col-lg-6:first-child {
-        min-width: 500px;
-    }
-
-    .main-product-section .product-block > .row > .col-lg-6:last-child {
-        flex: 0 0 520px;
-        width: 520px;
-    }
-}
-
-@media (min-width: 1440px) {
-    .main-product-section .product-block > .row {
-        gap: 80px;
-    }
-
-    .main-product-section .product-block > .row > .col-lg-6:first-child {
-        min-width: 550px;
-    }
-
-    .main-product-section .product-block > .row > .col-lg-6:last-child {
-        flex: 0 0 580px;
-        width: 580px;
-    }
-}
 
 /* ========================================
    Fixed Height Carousel with Dynamic Width
