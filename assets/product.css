@@ -1334,54 +1334,56 @@ product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
 }
 
 /* ========================================
-   Thumbnails - Ensure all are visible
+   Thumbnails - Fix visibility issues
    ======================================== */
 
-/* Make sure thumbnails wrapper is visible and properly sized */
-.product-thumbnails-media-wrapper {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* Vertical thumbnails - proper height for swiper to work */
+.product-thumbnails-media-wrapper [data-thumbnails-media].swiper-vertical .swiper-wrapper {
+    height: 400px;
 }
 
-/* Ensure all thumbnail slides are visible */
+/* Horizontal thumbnails */
+.product-thumbnails-media-wrapper [data-thumbnails-media].swiper-horizontal .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* All thumbnail slides should be visible */
 .product-thumbnails-media-wrapper .swiper-slide {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: flex !important;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Active thumbnail has border highlight */
+/* Active thumbnail styling */
 .product-thumbnails-media-wrapper .swiper-slide-thumb-active .product-thumbnails-media-img {
     border-color: var(--highlight-text-color, #c41230) !important;
-}
-
-/* Non-active thumbnails are slightly faded but still visible */
-.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active) .product-thumbnails-media-img {
-    opacity: 0.7;
-}
-
-.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active):hover .product-thumbnails-media-img {
     opacity: 1;
 }
 
-/* Vertical thumbnails - ensure proper height */
-.product-thumbnails-media-wrapper .swiper-vertical .swiper-wrapper {
-    height: auto;
-    min-height: 275px;
+/* Non-active thumbnails slightly faded */
+.product-thumbnails-media-wrapper .swiper-slide:not(.swiper-slide-thumb-active) .product-thumbnails-media-img {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
 }
 
-/* Featured product specific - ensure thumbnails show */
+.product-thumbnails-media-wrapper .swiper-slide:hover .product-thumbnails-media-img {
+    opacity: 1;
+}
+
+/* Featured product - ensure thumbnails container has proper dimensions */
 .featured-product-main .product-thumbnails-media-wrapper {
-    display: block !important;
+    overflow: visible;
 }
 
-.featured-product-main .product-thumbnails-media-wrapper .swiper-wrapper {
-    display: flex !important;
+.featured-product-main .product-thumbnails-media-wrapper .swiper {
+    overflow: visible;
 }
 
-.featured-product-main .product-thumbnails-media-wrapper .swiper-slide {
-    flex-shrink: 0;
+/* Desktop vertical thumbnails - ensure height matches main image */
+@media (min-width: 992px) {
+    .vertical-thumbnails-enable-true .product-thumbnails-media-wrapper [data-thumbnails-media].swiper-vertical .swiper-wrapper {
+        height: 550px;
+    }
 }
 
 /* Swiper wrapper needs full height */
