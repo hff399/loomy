@@ -8,6 +8,29 @@
     left: auto;
     right: 0;
     transform: unset;
+    background: #fff !important;
+    color: #1a1a1a !important;
+    z-index: 100 !important;
+}
+
+.announcement-right .custom-select-content .custom-select-item button,
+.announcement-right .custom-select-content .localization-head,
+.announcement-right .custom-select-content .switch-button,
+.announcement-right .custom-select-content .collapsible-tiles-card-content {
+    color: #1a1a1a !important;
+}
+
+.announcement-right .custom-select-content .custom-select-item button:hover {
+    background: #f5f5f5 !important;
+}
+
+.announcement-section:has(.custom-select-content.show) {
+    z-index: 9 !important;
+    position: relative !important;
+}
+
+.announcement-section:has(.custom-select-content.show) .section-wrapper {
+    z-index: 9 !important;
 }
 
 .border-bottom-true {
