@@ -1339,54 +1339,66 @@ form-buy-buttons .add-to-cart:hover {
 }
 
 /* ========================================
-   Product Layout - Balanced Columns
+   Product Layout - Balanced & Centered
    ======================================== */
 
-/* Ensure product info doesn't get too wide */
 @media (min-width: 992px) {
+    /* Product row - centered with gap */
     .main-product-section .product-block > .row {
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-start;
+        justify-content: center;
+        gap: 40px;
     }
 
-    /* Media column - minimum width to prevent collapse */
+    /* Both columns - equal sizing, centered */
+    .main-product-section .product-block > .row > [class*="col-"] {
+        flex: 0 1 auto;
+        max-width: none;
+        width: auto;
+    }
+
+    /* Media column - takes space needed by carousel */
     .main-product-section .product-block > .row > .col-lg-6:first-child {
-        min-width: 45%;
-        flex: 1 1 50%;
+        flex: 0 1 auto;
+        min-width: 400px;
     }
 
-    /* Info column - max width constraint */
+    /* Info column - consistent width */
     .main-product-section .product-block > .row > .col-lg-6:last-child {
-        max-width: 550px;
-        flex: 0 1 50%;
-    }
-
-    /* Product info wrapper max width */
-    .main-product-section .main-product-content {
-        max-width: 550px;
+        flex: 0 0 480px;
+        width: 480px;
     }
 }
 
 @media (min-width: 1200px) {
-    /* Info column - slightly wider on large screens */
-    .main-product-section .product-block > .row > .col-lg-6:last-child {
-        max-width: 600px;
+    .main-product-section .product-block > .row {
+        gap: 60px;
     }
 
-    .main-product-section .main-product-content {
-        max-width: 600px;
+    .main-product-section .product-block > .row > .col-lg-6:first-child {
+        min-width: 500px;
+    }
+
+    .main-product-section .product-block > .row > .col-lg-6:last-child {
+        flex: 0 0 520px;
+        width: 520px;
     }
 }
 
 @media (min-width: 1440px) {
-    /* Info column - max width on very large screens */
-    .main-product-section .product-block > .row > .col-lg-6:last-child {
-        max-width: 650px;
+    .main-product-section .product-block > .row {
+        gap: 80px;
     }
 
-    .main-product-section .main-product-content {
-        max-width: 650px;
+    .main-product-section .product-block > .row > .col-lg-6:first-child {
+        min-width: 550px;
+    }
+
+    .main-product-section .product-block > .row > .col-lg-6:last-child {
+        flex: 0 0 580px;
+        width: 580px;
     }
 }
 
