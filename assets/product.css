@@ -1638,6 +1638,8 @@ form-buy-buttons .add-to-cart:hover {
 .product-media-popup .drawer-close-btn.close-button svg.drawer-close-icon {
     width: 14px !important;
     height: 14px !important;
+    color: #fff !important;
+    stroke: #fff !important;
 }
 
 /* Navigation arrows in popup */
