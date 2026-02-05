@@ -1642,8 +1642,8 @@ class ProductMediaGallery extends HTMLElement {
           loop: true,
           speed: 800,
           centeredSlides: false,
-          slidesPerView: 1.3,
-          spaceBetween: 2,
+          slidesPerView: 'auto',
+          spaceBetween: 10,
           navigation: {
             nextEl: next_arrow,
             prevEl: prev_arrow,
@@ -1656,8 +1656,9 @@ class ProductMediaGallery extends HTMLElement {
         const mainSliderOptions = {
           loop: true,
           speed: 800,
-          slidesPerView: 1,
-          spaceBetween: 0,
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          centeredSlides: false,
           navigation: {
             nextEl: next_arrow,
             prevEl: prev_arrow,
@@ -1668,21 +1669,21 @@ class ProductMediaGallery extends HTMLElement {
         };
 
         if (this.slideLayout == 'split_view') {
-          mainSliderOptions.slidesPerView = 1.3;
-          mainSliderOptions.spaceBetween = 5;
+          mainSliderOptions.slidesPerView = 'auto';
+          mainSliderOptions.spaceBetween = 10;
 
           if (this.thumbnailsStyle == 'none') {
             mainSliderOptions.breakpoints = {
               992: {
-                slidesPerView: 1.9,
-                spaceBetween: 5,
+                slidesPerView: 'auto',
+                spaceBetween: 10,
               },
             };
           } else {
             mainSliderOptions.breakpoints = {
               992: {
-                slidesPerView: 1.9,
-                spaceBetween: 5,
+                slidesPerView: 'auto',
+                spaceBetween: 10,
                 navigation: {
                   nextEl: thumbnail_next_arrow,
                   prevEl: thumbnail_prev_arrow,
@@ -1693,15 +1694,10 @@ class ProductMediaGallery extends HTMLElement {
           if (this.mediaCount && this.mediaCount == 2) {
             mainSliderOptions.breakpoints = {
               992: {
-                slidesPerView: 1.3,
-                spaceBetween: 5,
+                slidesPerView: 'auto',
+                spaceBetween: 10,
               },
             };
-          }
-        } else {
-          if (this.source == 'main-product') {
-            mainSliderOptions.slidesPerView = 1.3;
-            mainSliderOptions.spaceBetween = 5;
           }
         }
 

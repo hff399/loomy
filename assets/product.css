@@ -1298,3 +1298,83 @@ form-buy-buttons button[type="submit"]:hover {
     color: #fff !important;
 }
 
+/* ========================================
+   Fixed Height Carousel with Dynamic Width
+   ======================================== */
+
+/* Main carousel container - fixed height */
+product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+    height: 550px;
+}
+
+/* Swiper wrapper needs full height */
+product-media-gallery .product-main-media-wrapper [data-main-media].swiper .swiper-wrapper {
+    height: 100%;
+    align-items: center;
+}
+
+/* Slides have auto width based on image aspect ratio */
+product-media-gallery .product-main-media-wrapper .swiper-slide {
+    width: auto !important;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+/* Slideshow item fills slide */
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-item {
+    height: 100%;
+    width: auto;
+}
+
+/* Media container fills slide height */
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-media {
+    height: 100%;
+    width: auto;
+}
+
+/* Remove padding-based aspect ratio, use fixed height */
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media {
+    padding-bottom: 0 !important;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+/* Image: fixed height, auto width to maintain aspect ratio */
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media img {
+    position: relative !important;
+    height: 100%;
+    width: auto !important;
+    max-width: none;
+    object-fit: contain;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Video handling */
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media video,
+product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media iframe {
+    position: relative !important;
+    height: 100%;
+    width: auto;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Mobile: smaller fixed height */
+@media (max-width: 767px) {
+    product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+        height: 400px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+        height: 480px;
+    }
+}
+
