@@ -1479,12 +1479,14 @@ class LocalizationDropdown extends HTMLElement {
     super();
     this.toggleButton = this.querySelector('[data-custom-select-button-trigger]');
     this.dropdownPanel = this.querySelector('[data-custom-select-summary]');
-    this.closeCountrySelector = this.querySelector('[data-close-countrySelector]');
+    this.closeCountrySelector = this.querySelector('[data-close-countrySelector]') || this.querySelector('[data-close-countryselector]');
     // this.listSelectorAll = this.querySelectorAll('[data-list-selector]');
-    this.closeCountrySelector.addEventListener('click', () => {
-      this.closeDropdown();
-      this.toggleButton.focus();
-    });
+    if (this.closeCountrySelector) {
+      this.closeCountrySelector.addEventListener('click', () => {
+        this.closeDropdown();
+        this.toggleButton.focus();
+      });
+    }
     // this.listSelectorAll.forEach((listSelector) => {
     //   listSelector.addEventListener('click', function () {
     //     this.classList.add('active');
