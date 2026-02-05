@@ -1274,25 +1274,51 @@ div#advanced-subscription-block-wrapper {
 }
 
 /* ========================================
-   Add to Cart Button - Red Color
+   Product Buttons - Order & Styling
    ======================================== */
+
+/* Reverse button order: Buy it Now on top, Add to Cart on bottom */
+.product-buy-buttons-wrapper form-buy-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-buy-buttons-wrapper form-buy-buttons .shopify-payment-button {
+    order: -1;
+}
+
+/* Buy it Now button - Gray/White secondary style */
+.product-buy-buttons-wrapper .shopify-payment-button__button,
+.section-main-product .shopify-payment-button__button,
+form-buy-buttons .shopify-payment-button__button {
+    background-color: #f5f5f5 !important;
+    border: 1px solid #d1d1d1 !important;
+    color: #1a1a1a !important;
+}
+
+.product-buy-buttons-wrapper .shopify-payment-button__button:hover,
+.section-main-product .shopify-payment-button__button:hover,
+form-buy-buttons .shopify-payment-button__button:hover {
+    background-color: #e8e8e8 !important;
+    border-color: #c1c1c1 !important;
+    color: #1a1a1a !important;
+}
+
+/* Add to Cart button - Red accent color */
 .product-buy-buttons-wrapper .add-to-cart,
-.product-buy-buttons-wrapper button[type="submit"],
 .section-main-product .add-to-cart,
 .section-main-product button[name="add"],
-form-buy-buttons .add-to-cart,
-form-buy-buttons button[type="submit"] {
+form-buy-buttons .add-to-cart {
     background-color: #c41230 !important;
     border-color: #c41230 !important;
     color: #fff !important;
 }
 
 .product-buy-buttons-wrapper .add-to-cart:hover,
-.product-buy-buttons-wrapper button[type="submit"]:hover,
 .section-main-product .add-to-cart:hover,
 .section-main-product button[name="add"]:hover,
-form-buy-buttons .add-to-cart:hover,
-form-buy-buttons button[type="submit"]:hover {
+form-buy-buttons .add-to-cart:hover {
     background-color: #a10f28 !important;
     border-color: #a10f28 !important;
     color: #fff !important;
