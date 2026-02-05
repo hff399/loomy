@@ -1378,3 +1378,67 @@ product-media-gallery .product-main-media-wrapper .product-image-slideshow-media
     }
 }
 
+/* ========================================
+   Product Media Popup/Lightbox - Clean UI
+   ======================================== */
+
+/* Override site overlay background for product popup */
+.product-media-popup.popup .close-drawer {
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(8px);
+}
+
+/* Popup content styling */
+.product-media-popup.popup .popup-content.popup-dialog {
+    background: transparent;
+}
+
+.product-media-popup.popup .popup-content-body {
+    background: transparent;
+}
+
+/* Image container in popup */
+.product-media-popup .main-product-media-item {
+    background: transparent;
+}
+
+/* Close button styling */
+.product-media-popup .drawer-close-btn.close-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin: 15px;
+}
+
+.product-media-popup .drawer-close-btn.close-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.product-media-popup .drawer-close-btn.close-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Navigation arrows in popup */
+.product-media-popup .slideshow-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.product-media-popup .slideshow-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Moving cursor for close */
+.product-media-popup .data-moving-cursor {
+    color: #fff;
+}
+
