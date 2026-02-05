@@ -1325,6 +1325,20 @@ form-buy-buttons .add-to-cart:hover {
 }
 
 /* ========================================
+   Main Product Section - Top Spacing
+   ======================================== */
+
+.main-product-section {
+    padding-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .main-product-section {
+        padding-top: 40px;
+    }
+}
+
+/* ========================================
    Fixed Height Carousel with Dynamic Width
    (Only for product page, NOT popup)
    ======================================== */
