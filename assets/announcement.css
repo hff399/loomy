@@ -11,13 +11,26 @@
     background: #fff !important;
     color: #1a1a1a !important;
     z-index: 100 !important;
+    border: 1px solid #e0e0e0 !important;
 }
 
+.announcement-right .custom-select-content *,
 .announcement-right .custom-select-content .custom-select-item button,
 .announcement-right .custom-select-content .localization-head,
 .announcement-right .custom-select-content .switch-button,
-.announcement-right .custom-select-content .collapsible-tiles-card-content {
+.announcement-right .custom-select-content .countryname,
+.announcement-right .custom-select-content .countrycurrency,
+.announcement-right .custom-select-content span {
     color: #1a1a1a !important;
+}
+
+.announcement-right .custom-select-content svg {
+    color: #1a1a1a !important;
+    stroke: #1a1a1a !important;
+}
+
+.announcement-right .custom-select-content .switch-button.active {
+    border-bottom: 2px solid #1a1a1a;
 }
 
 .announcement-right .custom-select-content .custom-select-item button:hover {
