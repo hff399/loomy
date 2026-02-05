@@ -1522,7 +1522,7 @@ form-buy-buttons .add-to-cart:hover {
     width: 100% !important;
     height: 100% !important;
     max-height: calc(100vh - 40px) !important;
-    overflow: visible !important;
+    overflow: hidden !important;
 }
 
 /* Swiper wrapper - must hide overflow to show 1 slide */
@@ -1613,28 +1613,39 @@ form-buy-buttons .add-to-cart:hover {
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     color: #fff !important;
     border-radius: 50% !important;
-    width: 48px !important;
-    height: 48px !important;
+    width: 40px !important;
+    height: 40px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     transition: all 0.2s ease !important;
     margin: 0 !important;
     cursor: pointer !important;
+    padding: 0 !important;
 }
 
 .product-media-popup .drawer-close-btn.close-button:hover {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-.product-media-popup .drawer-close-btn.close-button svg {
-    width: 18px !important;
-    height: 18px !important;
+/* Hide the large background circle SVG, show only the X icon */
+.product-media-popup .drawer-close-btn.close-button svg.closeBg,
+.product-media-popup .drawer-close-btn.close-button svg.closeIconBg {
+    display: none !important;
+}
+
+.product-media-popup .drawer-close-btn.close-button svg.closeIcon,
+.product-media-popup .drawer-close-btn.close-button svg.drawer-close-icon {
+    width: 14px !important;
+    height: 14px !important;
 }
 
 /* Navigation arrows in popup */
 .product-media-popup .swiper-button-wrapper {
-    position: absolute !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 0 !important;
+    transform: translateY(-50%) !important;
     width: 100% !important;
     display: flex !important;
     justify-content: space-between !important;
@@ -1663,14 +1674,8 @@ form-buy-buttons .add-to-cart:hover {
     color: #fff !important;
 }
 
-/* Hide duplicate slides and non-active slides */
-.product-media-popup .swiper-slide-duplicate,
-.product-media-popup .swiper-slide:not(.swiper-slide-active) {
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-.product-media-popup .swiper-slide.swiper-slide-active {
+/* All slides visible during transitions - swiper handles clipping via overflow */
+.product-media-popup .swiper-slide {
     visibility: visible !important;
     opacity: 1 !important;
 }
