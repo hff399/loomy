@@ -1326,41 +1326,41 @@ form-buy-buttons .add-to-cart:hover {
 
 /* ========================================
    Fixed Height Carousel with Dynamic Width
+   (Only for product page, NOT popup)
    ======================================== */
 
-/* Main carousel container - fixed height */
-product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+/* Main carousel container - fixed height (exclude popup) */
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
     height: 550px;
 }
 
-
 /* Swiper wrapper needs full height */
-product-media-gallery .product-main-media-wrapper [data-main-media].swiper .swiper-wrapper {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper [data-main-media].swiper .swiper-wrapper {
     height: 100%;
     align-items: center;
 }
 
 /* Slides have auto width based on image aspect ratio */
-product-media-gallery .product-main-media-wrapper .swiper-slide {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .swiper-slide {
     width: auto !important;
     height: 100%;
     flex-shrink: 0;
 }
 
 /* Slideshow item fills slide */
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-item {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-item {
     height: 100%;
     width: auto;
 }
 
 /* Media container fills slide height */
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-media {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-media {
     height: 100%;
     width: auto;
 }
 
 /* Remove padding-based aspect ratio, use fixed height */
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media {
     padding-bottom: 0 !important;
     height: 100%;
     width: auto;
@@ -1371,7 +1371,7 @@ product-media-gallery .product-main-media-wrapper .product-image-slideshow-media
 }
 
 /* Image: fixed height, auto width to maintain aspect ratio */
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media img {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media img {
     position: relative !important;
     height: 100%;
     width: auto !important;
@@ -1382,8 +1382,8 @@ product-media-gallery .product-main-media-wrapper .product-image-slideshow-media
 }
 
 /* Video handling */
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media video,
-product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media iframe {
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media video,
+.product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper .product-image-slideshow-media .media iframe {
     position: relative !important;
     height: 100%;
     width: auto;
@@ -1393,14 +1393,14 @@ product-media-gallery .product-main-media-wrapper .product-image-slideshow-media
 
 /* Mobile: smaller fixed height */
 @media (max-width: 767px) {
-    product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+    .product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
         height: 400px;
     }
 }
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991px) {
-    product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
+    .product-media-gallery-wrapper product-media-gallery .product-main-media-wrapper [data-main-media].swiper {
         height: 480px;
     }
 }
@@ -1409,24 +1409,64 @@ product-media-gallery .product-main-media-wrapper .product-image-slideshow-media
    Product Media Popup/Lightbox - Clean UI
    ======================================== */
 
+/* Popup - center on screen */
+.product-media-popup.popup {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px;
+}
+
 /* Override site overlay background for product popup */
 .product-media-popup.popup .close-drawer {
     background: rgba(0, 0, 0, 0.85) !important;
     backdrop-filter: blur(8px);
 }
 
-/* Popup content styling */
+/* Popup content - centered and properly sized */
 .product-media-popup.popup .popup-content.popup-dialog {
     background: transparent;
+    max-height: 90vh;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    margin: auto;
 }
 
 .product-media-popup.popup .popup-content-body {
     background: transparent;
+    max-height: 85vh;
+    overflow: hidden;
+}
+
+/* Swiper in popup - fit within popup bounds */
+.product-media-popup .swiper {
+    max-height: 85vh;
+}
+
+.product-media-popup .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Image container in popup */
 .product-media-popup .main-product-media-item {
     background: transparent;
+    height: auto;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Images in popup - fit within viewport */
+.product-media-popup .main-product-media-item img {
+    max-height: 85vh;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Close button styling */
