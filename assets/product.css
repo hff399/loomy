@@ -1556,6 +1556,17 @@ form-buy-buttons .add-to-cart:hover {
     left: auto !important;
 }
 
+/* Remove all backgrounds and borders from media wrappers in popup */
+.product-media-popup .media,
+.product-media-popup .media-wrapper,
+.product-media-popup .product-image-slideshow-media,
+.product-media-popup .product-image-slideshow-item {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding-bottom: 0 !important;
+}
+
 /* Zoom container */
 .product-media-popup .swiper-zoom-container {
     display: flex !important;
@@ -1628,8 +1639,22 @@ form-buy-buttons .add-to-cart:hover {
     color: #fff !important;
 }
 
-/* Hide duplicate slides from Swiper loop mode */
-.product-media-popup .swiper-slide-duplicate {
-    display: none !important;
+/* Hide duplicate slides and non-active slides */
+.product-media-popup .swiper-slide-duplicate,
+.product-media-popup .swiper-slide:not(.swiper-slide-active) {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+.product-media-popup .swiper-slide.swiper-slide-active {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure lazy-image wrappers are transparent in popup */
+.product-media-popup [data-lazy-image],
+.product-media-popup .lazy-image,
+.product-media-popup picture {
+    background: transparent !important;
 }
 
