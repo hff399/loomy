@@ -3221,6 +3221,11 @@ class ProductMediaPopupModal extends HTMLElement {
     if (this.closeOutsite) {
       this.closeOutsite.addEventListener('click', () => this.closeMediaPopup());
     }
+
+    this.addEventListener('click', (e) => {
+      if (e.target.closest('img') || e.target.closest('.slideshow-nav-btn') || e.target.closest('[data-drawer-close]')) return;
+      this.closeMediaPopup();
+    });
   }
 
   disconnectedCallback() {
