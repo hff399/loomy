@@ -1456,6 +1456,8 @@ form-buy-buttons .add-to-cart:hover {
     background: rgba(0, 0, 0, 0.95) !important;
     z-index: 9999 !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
+    border: none !important;
 }
 
 /* Dark overlay/close area behind content */
@@ -1478,27 +1480,33 @@ form-buy-buttons .add-to-cart:hover {
     max-width: 100% !important;
     max-height: 100% !important;
     margin: 0 !important;
-    padding: 60px !important;
+    padding: 20px !important;
     background: transparent !important;
+    background-color: transparent !important;
     z-index: 1 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
     border-radius: 0 !important;
+    border: none !important;
+    overflow: visible !important;
 }
 
 .product-media-popup.popup .popup-content-body {
     background: transparent !important;
+    background-color: transparent !important;
     width: 100% !important;
     height: 100% !important;
     max-width: 100% !important;
     max-height: 100% !important;
     padding: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    border: none !important;
+    border-radius: 0 !important;
 }
 
 /* Swiper container in popup - FIXED width to show 1 slide */
@@ -1513,8 +1521,8 @@ form-buy-buttons .add-to-cart:hover {
 .product-media-popup .swiper {
     width: 100% !important;
     height: 100% !important;
-    max-height: calc(100vh - 120px) !important;
-    overflow: hidden !important;
+    max-height: calc(100vh - 40px) !important;
+    overflow: visible !important;
 }
 
 /* Swiper wrapper - must hide overflow to show 1 slide */
@@ -1537,7 +1545,7 @@ form-buy-buttons .add-to-cart:hover {
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
-    max-height: calc(100vh - 120px) !important;
+    max-height: calc(100vh - 40px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1549,8 +1557,8 @@ form-buy-buttons .add-to-cart:hover {
     position: relative !important;
     width: auto !important;
     height: auto !important;
-    max-height: calc(100vh - 140px) !important;
-    max-width: calc(100vw - 140px) !important;
+    max-height: calc(100vh - 40px) !important;
+    max-width: calc(100vw - 120px) !important;
     object-fit: contain !important;
     top: auto !important;
     left: auto !important;
@@ -1565,6 +1573,20 @@ form-buy-buttons .add-to-cart:hover {
     background-color: transparent !important;
     border: none !important;
     padding-bottom: 0 !important;
+}
+
+/* Override theme borders and backgrounds on popup content */
+.product-media-popup .popup-content-body .product-image-slideshow-media .media {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.product-media-popup .popup-content-body:not(.popup-border-none),
+.product-media-popup .popup-content-body {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
 }
 
 /* Zoom container */
@@ -1582,6 +1604,8 @@ form-buy-buttons .add-to-cart:hover {
     top: 15px !important;
     right: 15px !important;
     z-index: 100 !important;
+    padding: 0 !important;
+    overflow: visible !important;
 }
 
 .product-media-popup .drawer-close-btn.close-button {
