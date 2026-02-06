@@ -1,3 +1,7 @@
+.category-carousel-section {
+  overflow: hidden;
+}
+
 .category-carousel-section .swiper {
   overflow: visible;
 }
