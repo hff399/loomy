@@ -218,7 +218,7 @@
         "section_background": "gradient",
         "section_container_width": "container",
         "corner_style": "none",
-        "corner_radius": 70,
+        "corner_radius": 0,
         "heading": "Everything You Need [to Know]",
         "heading_size": "h3",
         "seo_heading": "h2",
