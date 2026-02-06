@@ -26,12 +26,12 @@
 }
 
 .testimonial-author-details-wrapper {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .testimonial-author-rating {
     color: var(--rating-color);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     gap: 5px;
 }
@@ -102,7 +102,7 @@
 
 @media (min-width: 1025px) {
     .testimonial-author-details-wrapper {
-        margin-top: 55px;
+        margin-top: 20px;
     }
 
     .testimonial-card-style-card {
