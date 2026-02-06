@@ -29,6 +29,16 @@
     stroke: #1a1a1a !important;
 }
 
+.announcement-right .custom-select-content .closeIconBg svg {
+    color: #e0e0e0 !important;
+}
+
+.announcement-right .custom-select-content .closeIcon {
+    color: #1a1a1a !important;
+    z-index: 1;
+    position: relative;
+}
+
 .announcement-right .custom-select-content .switch-button.active {
     border-bottom: 2px solid #1a1a1a;
 }

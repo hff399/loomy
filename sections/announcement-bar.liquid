@@ -72,7 +72,15 @@
           </div>
         {% endif %}
         {% if section.settings.show_location_and_language %}
-          {% if settings.is_country_selector or settings.is_language_selector %}
+          {% assign has_country_options = false %}
+          {% assign has_language_options = false %}
+          {% if settings.is_country_selector and localization.available_countries.size > 1 %}
+            {% assign has_country_options = true %}
+          {% endif %}
+          {% if settings.is_language_selector and localization.available_languages.size > 1 %}
+            {% assign has_language_options = true %}
+          {% endif %}
+          {% if has_country_options or has_language_options %}
             <div class="announcement-right">
               {% render 'localization-form', section: section %}
             </div>
