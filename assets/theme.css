@@ -1932,7 +1932,7 @@ body:has(.popup.open) .announcement-section .section-wrapper {
 }
 
 .quickview-popup .product-main-media-wrapper.square .swiper {
-  overflow: visible;
+  overflow: hidden;
   margin: auto 0;
   height: 100%;
 }
