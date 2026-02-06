@@ -1,1 +1,112 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"newsletter_GdHDB3":{"type":"newsletter","name":"t:sections.newsletter.presets.name","settings":{"section_visibility":"always","color_scheme":"septenary","section_background":"solid","section_container_width":"global","corner_style":"none","corner_radius":70,"blur_background_image":false,"overlay_style":"solid","heading":"Sign up and Save 10% [on your first order!]","heading_size":"h3","seo_heading":"h2","heading_font":"heading-font","markers_font":"accent-font","description":"Enjoy instant 10% savings on your very first purchase today.","description_size":"text-sm","section_layout":"horizontal_with_border","content_width":"width-full","alignment":"left","mobile_content_alignment":"center","placeholder_text":"example@email.com","button_text":"Subscribe","top_space_desktop":60,"bottom_space_desktop":60,"top_space_mobile":30,"bottom_space_mobile":30}},"footer":{"type":"footer","blocks":{"image_with_text_GeWTPj":{"type":"image-with-text","settings":{"column_width":100,"logo_width":300,"logo_width_mobile":70,"footer_description":"<p>For any questions, get in touch by phone or email.<br\/>Phone: +995 511 456 787<br\/>Email: hello@loomy.ge<br\/>60 Zakaria Paliashvili Street, Tbilisi 0179<\/p>","description_size":"text"}}},"block_order":["image_with_text_GeWTPj"],"settings":{"color_scheme":"septenary","section_background":"solid","footer_layouts":"illustrated","illustarted_colors_1":"#ff7088","illustarted_colors_2":"#c2a5f0","illustarted_colors_3":"#ffa76e","illustarted_colors_4":"#5dc285","illustarted_colors_5":"#6bc0ff","enable_top_border_rounded":false,"top_border_radius":70,"bottom_bar_style":"border","mobile_accordions":true,"show_social_icons":true,"social_icons_style":"outline","show_copyright":true,"enable_follow_on_shop":true,"show_currency_language_selector":true,"payment_enable":true,"show_policy":false,"flying_bird":false,"clouds":false,"sun":false}},"bottom-bar":{"type":"bottom-bar","disabled":true,"settings":{"section_visibility":"always","section_background":"solid","logo_text":"Logo","text_size":400,"mobile_text_size":100,"text_font":"heading-font","background":"#000000","background_gradient":"linear-gradient(202deg, rgba(183, 183, 183, 1) 11%, rgba(255, 255, 255, 0.28) 84%)","text":"#ffffff","top_space_desktop":70,"bottom_space_desktop":0,"top_space_mobile":40,"bottom_space_mobile":0}}},"order":["newsletter_GdHDB3","footer","bottom-bar"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_GdHDB3": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "septenary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "corner_style": "none",
+        "corner_radius": 70,
+        "blur_background_image": false,
+        "overlay_style": "solid",
+        "heading": "Sign up and Save 10% [on your first order!]",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "Enjoy instant 10% savings on your very first purchase today.",
+        "description_size": "text-sm",
+        "section_layout": "horizontal_with_border",
+        "content_width": "width-full",
+        "alignment": "left",
+        "mobile_content_alignment": "center",
+        "placeholder_text": "example@email.com",
+        "button_text": "Subscribe",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_with_text_GeWTPj": {
+          "type": "image-with-text",
+          "settings": {
+            "column_width": 100,
+            "logo_width": 300,
+            "logo_width_mobile": 70,
+            "footer_description": "<p>For any questions, get in touch by phone or email.<br/>Phone: +995 511 456 787<br/>Email: hello@loomy.ge<br/>60 Zakaria Paliashvili Street, Tbilisi 0179<br/><br/><a href=\"/pages/cookie-policy\" target=\"_blank\" title=\"Cookie policy\">Cookie policy</a></p><p><a href=\"/pages/privacy-policy\" title=\"Privacy policy\">Privacy policy</a></p><p><a href=\"/pages/return-refund-policy\" title=\"Return & refund policy\">Refund.& return policy</a></p><p><a href=\"/pages/shipping-policy\" title=\"Shipping policy\">Shipping policy</a></p><p><a href=\"/pages/terms-of-use\" title=\"Terms of use\">Terms of use</a></p>",
+            "description_size": "text"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_GeWTPj"
+      ],
+      "settings": {
+        "color_scheme": "septenary",
+        "section_background": "solid",
+        "footer_layouts": "illustrated",
+        "illustarted_colors_1": "#ff7088",
+        "illustarted_colors_2": "#c2a5f0",
+        "illustarted_colors_3": "#ffa76e",
+        "illustarted_colors_4": "#5dc285",
+        "illustarted_colors_5": "#6bc0ff",
+        "enable_top_border_rounded": false,
+        "top_border_radius": 70,
+        "bottom_bar_style": "border",
+        "mobile_accordions": true,
+        "show_social_icons": true,
+        "social_icons_style": "outline",
+        "show_copyright": true,
+        "enable_follow_on_shop": true,
+        "show_currency_language_selector": true,
+        "payment_enable": true,
+        "show_policy": false,
+        "flying_bird": false,
+        "clouds": false,
+        "sun": false
+      }
+    },
+    "bottom-bar": {
+      "type": "bottom-bar",
+      "disabled": true,
+      "settings": {
+        "section_visibility": "always",
+        "section_background": "solid",
+        "logo_text": "Loomy",
+        "text_size": 400,
+        "mobile_text_size": 100,
+        "text_font": "heading-font",
+        "background": "#f5f5f5",
+        "background_gradient": "linear-gradient(202deg, rgba(183, 183, 183, 1) 11%, rgba(255, 255, 255, 0.28) 84%)",
+        "text": "#ffffff",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "newsletter_GdHDB3",
+    "footer",
+    "bottom-bar"
+  ]
+}
