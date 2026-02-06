@@ -18,7 +18,7 @@
 
 /* Uniform image boxes: same height, images centered inside */
 .featured-collection-section .product-card-media-inner {
-    --image-ratio: 120%;
+    padding-bottom: 120% !important;
 }
 
 .featured-collection-section .product-card-media-inner img {
