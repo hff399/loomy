@@ -120,6 +120,15 @@
       --round-section-radius: {{ section.settings.corner_radius }}px;
     }
 
+    #shopify-section-{{ section.id }} .product-card-media-inner {
+      padding-bottom: 120% !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-card-media-inner img {
+      object-fit: contain;
+      object-position: center;
+    }
+
     @media only screen and (max-width: 767px) {
       #shopify-section-{{ section.id }} {
         --top-spacing: {{ section.settings.top_space_mobile }}px;
