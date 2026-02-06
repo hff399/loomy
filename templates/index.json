@@ -220,7 +220,7 @@
             "image": "shopify://shop_images/reima-reimatec-jacket-hede-navy-5100243a-088280-3_hkj70x_180d3abc-e1e8-4306-9528-29e35861f160.jpg",
             "button_text": "Reima winter collection",
             "overlay_text": "",
-            "bg_color": "#1F9C24"
+            "bg_color": "rgba(0,0,0,0)"
           }
         },
         "cat_block_2": {
@@ -230,14 +230,15 @@
             "image": "shopify://shop_images/reima-sweatshirt-letkein-grey-pink-5200308b-097879-5_cvtwiv_ba71474e-ec68-41e8-b47a-6f60bbfc33e1.jpg",
             "button_text": "",
             "overlay_text": "",
-            "bg_color": "#D63A2F"
+            "bg_color": "rgba(0,0,0,0)"
           }
         },
         "cat_block_4": {
           "type": "category",
           "settings": {
             "collection": "",
-            "button_text": "",
+            "image": "shopify://shop_images/orange_toys_OT5021_35A.jpg",
+            "button_text": "Example",
             "overlay_text": "",
             "bg_color": ""
           }
