@@ -203,31 +203,34 @@
     "category_carousel_main": {
       "type": "category-carousel",
       "blocks": {
+        "cat_block_3": {
+          "type": "category",
+          "settings": {
+            "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/Sale.jpg",
+            "button_text": "Reima SALE",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
         "cat_block_1": {
           "type": "category",
           "settings": {
             "collection": "",
-            "button_text": "",
+            "image": "shopify://shop_images/reima-reimatec-jacket-hede-navy-5100243a-088280-3_hkj70x_180d3abc-e1e8-4306-9528-29e35861f160.jpg",
+            "button_text": "Reima winter collection",
             "overlay_text": "",
-            "bg_color": ""
+            "bg_color": "#1F9C24"
           }
         },
         "cat_block_2": {
           "type": "category",
           "settings": {
-            "collection": "",
+            "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/reima-sweatshirt-letkein-grey-pink-5200308b-097879-5_cvtwiv_ba71474e-ec68-41e8-b47a-6f60bbfc33e1.jpg",
             "button_text": "",
             "overlay_text": "",
-            "bg_color": ""
-          }
-        },
-        "cat_block_3": {
-          "type": "category",
-          "settings": {
-            "collection": "",
-            "button_text": "",
-            "overlay_text": "",
-            "bg_color": ""
+            "bg_color": "#D63A2F"
           }
         },
         "cat_block_4": {
@@ -241,9 +244,9 @@
         }
       },
       "block_order": [
+        "cat_block_3",
         "cat_block_1",
         "cat_block_2",
-        "cat_block_3",
         "cat_block_4"
       ],
       "settings": {
@@ -695,6 +698,7 @@
         "collection_rknc3W",
         "collection_GBgQ3a"
       ],
+      "disabled": true,
       "settings": {
         "section_visibility": "always",
         "color_scheme": "quinary",
