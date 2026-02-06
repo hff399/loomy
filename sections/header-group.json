@@ -45,7 +45,7 @@
           "settings": {
             "tab_title": "Boys",
             "tab_link": "shopify://collections/boys",
-            "is_sale": true,
+            "is_sale": false,
             "has_dropdown": true,
             "col1_title": "SHOP BY CATEGORY",
             "col1_menu": "boys-categories",
