@@ -218,9 +218,29 @@
             </div>
             <span class="product-card-rating-text">{{ rating_value }} ({{ rating_count }})</span>
           {%- else -%}
+            {%- assign rating_seed = product.id | modulo: 20 -%}
+            {%- if rating_seed < 14 -%}
+              {%- assign default_full_stars = 5 -%}
+              {%- assign default_has_half = false -%}
+            {%- elsif rating_seed < 19 -%}
+              {%- assign default_full_stars = 4 -%}
+              {%- assign default_has_half = true -%}
+            {%- else -%}
+              {%- assign default_full_stars = 4 -%}
+              {%- assign default_has_half = false -%}
+            {%- endif -%}
             <div class="product-card-stars">
               {%- for i in (1..5) -%}
-                <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- if i <= default_full_stars -%}
+                  <svg class="star-icon star-filled" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>
+                {%- elsif default_has_half and i == default_full_stars | plus: 1 -%}
+                  <span class="star-icon star-half" style="position:relative;display:inline-block;width:14px;height:14px;">
+                    <svg style="position:absolute;left:0;top:0;" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <svg style="position:absolute;left:0;top:0;clip-path:inset(0 50% 0 0);" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>
+                  </span>
+                {%- else -%}
+                  <svg class="star-icon star-empty" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                {%- endif -%}
               {%- endfor -%}
             </div>
           {%- endif -%}
