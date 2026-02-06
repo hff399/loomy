@@ -16,9 +16,11 @@
     overflow: visible !important;
 }
 
-/* .collection-style-stacked .product-card-title-price-wrapper {
-    grid-template-columns: auto;
-} */
+/* Force uniform image boxes when Adapt ratio produces uneven heights */
+.featured-collection-section .product-card-media-inner {
+    --image-ratio: 130%;
+}
+
 @media (max-width: 767px) {
     .featured-collection-section .section-header {
         grid-template-columns: 1fr auto;
