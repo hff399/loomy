@@ -236,7 +236,7 @@
         "cat_block_4": {
           "type": "category",
           "settings": {
-            "collection": "",
+            "collection": "orange-toys",
             "image": "shopify://shop_images/orange_toys_OT5021_35A.jpg",
             "button_text": "Example",
             "overlay_text": "",
