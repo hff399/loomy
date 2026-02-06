@@ -21,6 +21,16 @@
     z-index: 1;
 }
 
+/* Uniform image boxes: same height, images centered inside */
+.products-grid-section .product-card-media-inner {
+    padding-bottom: 120% !important;
+}
+
+.products-grid-section .product-card-media-inner img {
+    object-fit: contain;
+    object-position: center;
+}
+
 .products-grid-collection-content:has(.media-overlay) .products-grid-collection-info-inner .products-grid-collection-title {
     color: var(--image-overlay-heading-color);
 }
