@@ -1325,6 +1325,11 @@ form-buy-buttons .add-to-cart:hover {
    ======================================== */
 
 /* Match container width to description section */
+.main-product-section .section-wrapper > div {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .main-product-section .product-main {
     max-width: 1190px;
     margin-left: auto;

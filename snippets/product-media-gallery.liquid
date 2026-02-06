@@ -387,7 +387,7 @@
             <div class="product-thumbnails-media-item swiper-slide" data-thumb-media-id="{{ featured_media.id }}" {% if thumb_featured_variants != blank %}data-variant-options="{{ thumb_featured_variants }}"{% endif %}>
               <div class="product-thumbnails-media-img">
                 <div class="media media-fixed media-overlay">
-                  {%- render 'lazy-images', image: featured_media -%}
+                  {%- render 'lazy-images', image: featured_media, loading: 'eager' -%}
                 </div>
               </div>
             </div>
@@ -420,7 +420,7 @@
               <div class="product-thumbnails-media-item swiper-slide" data-thumb-media-id="{{ media.id }}" {% if thumb_media_variants != blank %}data-variant-options="{{ thumb_media_variants }}"{% endif %}>
                 <div class="product-thumbnails-media-img">
                   <div class="media media-fixed media-overlay">
-                    {%- render 'lazy-images', image: media -%}
+                    {%- render 'lazy-images', image: media, loading: 'eager' -%}
                   </div>
                 </div>
               </div>
