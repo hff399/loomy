@@ -16,9 +16,14 @@
     overflow: visible !important;
 }
 
-/* Force uniform image boxes when Adapt ratio produces uneven heights */
+/* Uniform image boxes: same height, images centered inside */
 .featured-collection-section .product-card-media-inner {
-    --image-ratio: 130%;
+    --image-ratio: 120%;
+}
+
+.featured-collection-section .product-card-media-inner img {
+    object-fit: contain;
+    object-position: center;
 }
 
 @media (max-width: 767px) {
