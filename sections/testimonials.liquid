@@ -62,7 +62,7 @@
     </div>
   {% endif %}
   {% if section.settings.heading != blank or section.settings.description != blank %}
-    <div class="container">
+    <div class="{{ containerClass }}">
       <div class="section-header d-grid align-items-center">
         <div class="section-header-content-wrapper text-{{ section.settings.alignment }}">
           {% if section.settings.heading != blank %}
