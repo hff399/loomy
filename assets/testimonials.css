@@ -1,3 +1,19 @@
+/* Equal height cards with author pinned to bottom */
+.testimonials-section .swiper-slide {
+    height: auto;
+}
+
+.testimonials-section .testimonial-item {
+    height: 100%;
+}
+
+.testimonials-section .testimonial-item-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .testimonial-author-image-wrapper {
     width: 54px;
     border-radius: 100%;
