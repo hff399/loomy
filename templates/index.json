@@ -217,7 +217,7 @@
           "type": "category",
           "settings": {
             "collection": "",
-            "image": "shopify://shop_images/Jacket_Viileys_Summer_green-1_htdbra_be58b701-d94e-4675-8819-6245fa6765ca.webp",
+            "image": "shopify://shop_images/reima-shorts-eloisin-peanut-brown-5200127a-154688-6_hzo1t5.jpg",
             "button_text": "Reima winter collection",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -227,6 +227,7 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/reima-shorts-valoisin-light-lime-5200126a-155234-1_cgnoc5_e28e78e6-2dcf-4c25-90c1-63d8946f05ca.jpg",
             "button_text": "",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -237,7 +238,7 @@
           "settings": {
             "collection": "orange-toys",
             "image": "shopify://shop_images/orange_toys_OT5021_35A.jpg",
-            "button_text": "Example",
+            "button_text": "Orange toys",
             "overlay_text": "",
             "bg_color": ""
           }
