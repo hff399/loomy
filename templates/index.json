@@ -959,7 +959,7 @@
         "section_visibility": "always",
         "color_scheme": "quaternary",
         "section_background": "solid",
-        "section_container_width": "container-sm",
+        "section_container_width": "global",
         "corner_style": "none",
         "corner_radius": 20,
         "blur_background_image": false,
