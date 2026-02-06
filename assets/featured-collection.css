@@ -10,9 +10,10 @@
 
 .featured-collection-section .section-wrapper,
 .featured-collection-section .container,
+.featured-collection-section .featured-collection-content-wrapper,
 .featured-collection-section swiper-slideshow,
 .featured-collection-section .swiper {
-    overflow: visible;
+    overflow: visible !important;
 }
 
 /* .collection-style-stacked .product-card-title-price-wrapper {
