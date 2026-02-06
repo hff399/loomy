@@ -45,7 +45,7 @@
 
     .products-grid-content-wrapper {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 2fr 3fr;
         gap: 20px;
         align-items: flex-start;
     }
@@ -58,7 +58,7 @@
     }
 
     body:not(.header-style-split-menu-header) .products-grid-collection-content {
-        top: 0;
+        top: var(--dynamic-header-height, 80px);
     }
 }
 
