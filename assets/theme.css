@@ -1845,6 +1845,7 @@ body:has(.popup.open) .announcement-section .section-wrapper {
   height: 100%;
   display: grid;
   align-items: center;
+  overflow: hidden;
 }
 
 .quickview-popup .product-media-gallery-wrapper .swiper-button-wrapper {
