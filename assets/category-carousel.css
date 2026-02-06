@@ -2,6 +2,11 @@
   overflow: visible;
 }
 
+.category-carousel-section .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .cat-carousel-card {
   display: block;
   position: relative;
