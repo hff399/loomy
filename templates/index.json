@@ -376,6 +376,7 @@
             "row": 4,
             "column_mobile": "2",
             "row_mobile": "2",
+            "media_image": "shopify://shop_images/Sale.jpg",
             "overlay_style": "solid",
             "category_shape": "shape_1",
             "category_text": "Age ++ 2-10",
@@ -407,7 +408,8 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "overlay_style": "gradient",
+            "media_image": "shopify://shop_images/orange_toys_OT8020_22.jpg",
+            "overlay_style": "solid",
             "category_shape": "shape_2",
             "category_text": "Age ++ 0-1",
             "category_desktop_horizontal": 76,
@@ -438,7 +440,8 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "overlay_style": "gradient",
+            "media_image": "shopify://shop_images/orange_toys_OT8003_20_3dac00d4-e4e2-4940-822b-0a055b4f38d8.jpg",
+            "overlay_style": "solid",
             "category_shape": "shape_3",
             "category_text": "Age ++ 10-15",
             "category_desktop_horizontal": 81,
@@ -469,7 +472,8 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "overlay_style": "gradient",
+            "media_image": "shopify://shop_images/orange_toys_OT5023_30B_8edd0c9c-295c-40ed-88ac-89d5d3005705.jpg",
+            "overlay_style": "solid",
             "category_shape": "shape_1",
             "category_text": "",
             "category_desktop_horizontal": 0,
@@ -559,12 +563,14 @@
         "image_WfWxyd": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/orange_toys_OT8034_22.jpg",
             "image_ratio": "landscape"
           }
         },
         "image_ANtnCX": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/orange_toys_OT8031_38_773f4be9-3fb0-4678-879a-8f9f91bdcc8e.jpg",
             "image_ratio": "auto"
           }
         },
