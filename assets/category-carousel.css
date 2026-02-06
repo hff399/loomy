@@ -3,7 +3,7 @@
   position: relative;
   border-radius: var(--card-radius, 20px);
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 5 / 6;
   text-decoration: none;
   color: inherit;
 }
@@ -26,58 +26,60 @@
 
 .cat-carousel-card-overlay-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(3rem, 8vw, 6rem);
+  bottom: 80px;
+  left: 30px;
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 400;
-  white-space: nowrap;
+  letter-spacing: -0.02em;
   pointer-events: none;
   line-height: 1;
 }
 
 .cat-carousel-card-btn {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 24px;
+  left: 24px;
   z-index: 2;
 }
 
 .cat-carousel-btn {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 12px 28px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 50px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
   color: #1a1a1a;
   backdrop-filter: blur(4px);
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .cat-carousel-card:hover .cat-carousel-btn {
   background: #ffffff;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 767px) {
   .cat-carousel-card {
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 4;
   }
 
   .cat-carousel-card-overlay-text {
-    font-size: clamp(2rem, 10vw, 4rem);
+    bottom: 65px;
+    left: 20px;
+    font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
   .cat-carousel-card-btn {
-    bottom: 15px;
+    bottom: 16px;
+    left: 16px;
   }
 
   .cat-carousel-btn {
-    padding: 8px 18px;
+    padding: 10px 20px;
     font-size: 11px;
   }
 }
