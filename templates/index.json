@@ -12,6 +12,34 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide_8Mn4WU": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "secondary",
+            "desktop_slide_image": "shopify://shop_images/db1b754f-d982-47c1-8e87-06282f266eeb.png",
+            "mobile_slide_image": "shopify://shop_images/db1b754f-d982-47c1-8e87-06282f266eeb.png",
+            "overlay_style": "solid",
+            "image_ratio": "landscape",
+            "enable_collapse": true,
+            "heading": "Adorable [Finds] for++ Awesome [Kids]",
+            "heading_size": "h2",
+            "seo_heading": "h1",
+            "heading_font": "heading-font",
+            "markers_font": "accent-font",
+            "heading_font_weight": "font-medium",
+            "description": "From playful outfits to fun accessories, these handpicked finds \nare perfect for every awesome kid’s daily adventures.",
+            "description_size": "text",
+            "content_width": "small",
+            "desktop_content_position": "d-bottom-left",
+            "desktop_text_alignment": "left",
+            "mobile_content_position": "m-center",
+            "mobile_text_alignment": "center",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/all",
+            "button_style": "solid",
+            "button_size": "button-sm"
+          }
+        },
         "slide_ef3P76": {
           "type": "slide",
           "settings": {
@@ -94,41 +122,13 @@
             "button_style": "solid",
             "button_size": "button-sm"
           }
-        },
-        "slide_8Mn4WU": {
-          "type": "slide",
-          "settings": {
-            "color_scheme": "secondary",
-            "desktop_slide_image": "shopify://shop_images/db1b754f-d982-47c1-8e87-06282f266eeb.png",
-            "mobile_slide_image": "shopify://shop_images/db1b754f-d982-47c1-8e87-06282f266eeb.png",
-            "overlay_style": "solid",
-            "image_ratio": "landscape",
-            "enable_collapse": true,
-            "heading": "Adorable [Finds] for++ Awesome [Kids]",
-            "heading_size": "h2",
-            "seo_heading": "h1",
-            "heading_font": "heading-font",
-            "markers_font": "accent-font",
-            "heading_font_weight": "font-medium",
-            "description": "From playful outfits to fun accessories, these handpicked finds \nare perfect for every awesome kid’s daily adventures.",
-            "description_size": "text",
-            "content_width": "small",
-            "desktop_content_position": "d-bottom-left",
-            "desktop_text_alignment": "left",
-            "mobile_content_position": "m-center",
-            "mobile_text_alignment": "center",
-            "button_text": "Shop Now",
-            "button_link": "shopify://collections/all",
-            "button_style": "solid",
-            "button_size": "button-sm"
-          }
         }
       },
       "block_order": [
+        "slide_8Mn4WU",
         "slide_ef3P76",
         "slide_N8Pwgj",
-        "slide_BLnrxD",
-        "slide_8Mn4WU"
+        "slide_BLnrxD"
       ],
       "settings": {
         "section_visibility": "always",
@@ -289,10 +289,10 @@
         "alignment": "left",
         "button_text": "",
         "button_link": "",
-        "collection_featured": "frontpage",
-        "collection_style": "carousel",
-        "products_to_show": 5,
-        "desktop_column_count": 5,
+        "collection_featured": "girls",
+        "collection_style": "stacked",
+        "products_to_show": 8,
+        "desktop_column_count": 4,
         "desktop_gap": 20,
         "mobile_gap": 10,
         "image_ratio": "portrait",
@@ -1300,13 +1300,14 @@
         "button_link": "shopify://collections/all",
         "button_style": "solid",
         "button_size": "button-sm",
-        "collection": "",
-        "products_to_show": 4,
+        "collection": "aw25-final-sale",
+        "products_to_show": 6,
         "image_ratio": "portrait",
+        "custom_images": "shopify://shop_images/Sale.jpg",
         "overlay_style": "solid",
         "custom_title": "Smart Sets for Smarter Shopping",
         "custom_heading_size": "h4",
-        "custom_description": "Curated bundles designed to save you time and money—shop matching outfits, coordinated accessories.",
+        "custom_description": "",
         "custom_description_size": "text",
         "collection_button_text": "VIEW ALL PRODUCTS",
         "collection_button_style": "solid",
