@@ -200,6 +200,72 @@
         "bottom_space_mobile": 15
       }
     },
+    "category_carousel_main": {
+      "type": "category-carousel",
+      "blocks": {
+        "cat_block_1": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "cat_block_2": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "cat_block_3": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "cat_block_4": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "cat_block_1",
+        "cat_block_2",
+        "cat_block_3",
+        "cat_block_4"
+      ],
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "heading": "Shop by category",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "alignment": "left",
+        "column_count": 3,
+        "columns_gap": 15,
+        "card_radius": 20,
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "featured_collection_gbtmWC": {
       "type": "featured-collection",
       "settings": {
@@ -1562,6 +1628,7 @@
   "order": [
     "slideshow",
     "marquee_fKPhhJ",
+    "category_carousel_main",
     "featured_collection_gbtmWC",
     "countdown_iiURpF",
     "shapes_YnKYD9",
