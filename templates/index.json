@@ -1312,7 +1312,7 @@
         "collection_button_text": "VIEW ALL PRODUCTS",
         "collection_button_style": "solid",
         "collection_button_size": "button-sm",
-        "content_width": "small",
+        "content_width": "large",
         "desktop_content_position": "d-bottom-center",
         "desktop_text_alignment": "center",
         "mobile_content_position": "m-bottom-center",
