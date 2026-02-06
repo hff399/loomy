@@ -134,10 +134,10 @@
         "section_visibility": "always",
         "color_scheme": "septenary",
         "section_background": "solid",
-        "section_container_width": "global",
-        "content_container": "global",
+        "section_container_width": "container-fullwidth",
+        "content_container": "container-fullwidth",
         "enable_sticky": false,
-        "slideshow_corner_radius": 35,
+        "slideshow_corner_radius": 0,
         "animation_style": "slide",
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -150,10 +150,10 @@
         "shape": "none",
         "flip_shape": false,
         "shape_position": "bottom",
-        "top_space_desktop": 15,
-        "bottom_space_desktop": 15,
-        "top_space_mobile": 20,
-        "bottom_space_mobile": 20
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
       }
     },
     "marquee_fKPhhJ": {
