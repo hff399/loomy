@@ -43,7 +43,13 @@
         position: sticky;
     }
 
-    .products-grid-content-wrapper,
+    .products-grid-content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
     .products-grid-products-content-inner {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -83,7 +89,7 @@
 
     .products-grid-collection-content {
         top: var(--dynamic-header-height, 0px);
-        height: 100vh;
+        max-height: 600px;
     }
 
 }
