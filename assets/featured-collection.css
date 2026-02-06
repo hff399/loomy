@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.featured-collection-section .swiper.navigation-.swiper-initialized.swiper-horizontal {
+.featured-collection-section .swiper {
     overflow: visible;
 }
 
