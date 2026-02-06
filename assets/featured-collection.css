@@ -3,11 +3,14 @@
 } */
 
 
-/* to show slider half */
-.featured-collection-section .section-wrapper {
+/* to show slider half — clip at section edge, not inner wrappers */
+.featured-collection-section {
     overflow: hidden;
 }
 
+.featured-collection-section .section-wrapper,
+.featured-collection-section .container,
+.featured-collection-section swiper-slideshow,
 .featured-collection-section .swiper {
     overflow: visible;
 }
