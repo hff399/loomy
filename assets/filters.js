@@ -213,6 +213,21 @@ class FilterForm extends HTMLElement {
     if (document.querySelector('[data-product-count]') && resultData.querySelector('[data-product-count]')) {
       document.querySelector('[data-product-count]').innerHTML = resultData.querySelector('[data-product-count]').innerHTML;
     }
+    // Update applied filters in sticky header
+    if (document.querySelector('[data-applied-filters-header]') && resultData.querySelector('[data-applied-filters-header]')) {
+      document.querySelector('[data-applied-filters-header]').innerHTML = resultData.querySelector('[data-applied-filters-header]').innerHTML;
+    }
+    // Update filter count badge
+    var newBadge = resultData.querySelector('[data-filter-count-badge]');
+    var currentBadge = document.querySelector('[data-filter-count-badge]');
+    if (newBadge && currentBadge) {
+      currentBadge.textContent = newBadge.textContent;
+    } else if (newBadge && !currentBadge) {
+      var filterBtn = document.querySelector('[data-filters-nav]');
+      if (filterBtn) filterBtn.insertAdjacentHTML('beforeend', ' ' + newBadge.outerHTML);
+    } else if (!newBadge && currentBadge) {
+      currentBadge.remove();
+    }
 
   }
 }
@@ -325,3 +340,16 @@ class FilterClose extends HTMLElement {
 }
 
 customElements.define('filter-close', FilterClose);
+
+// Show more/less toggle for filter options
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-filter-show-more]');
+  if (!btn) return;
+  var list = btn.previousElementSibling;
+  if (!list) return;
+  var isExpanded = list.classList.toggle('expanded');
+  var moreText = btn.querySelector('[data-show-more-text]');
+  var lessText = btn.querySelector('[data-show-less-text]');
+  if (moreText) moreText.style.display = isExpanded ? 'none' : '';
+  if (lessText) lessText.style.display = isExpanded ? '' : 'none';
+});

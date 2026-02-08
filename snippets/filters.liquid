@@ -70,15 +70,34 @@
               </div>
 
             {% else %}
-              <div class="filter-options-list{% if swatchStatus == true %} swatch-items{% endif %}">
+              {% liquid
+                assign show_more_enabled = false
+                assign overflow_count = 0
+                assign has_active_overflow = false
+                if swatchStatus == false and filter.values.size > filter_limit
+                  assign show_more_enabled = true
+                  assign overflow_count = filter.values.size | minus: filter_limit
+                  for value in filter.values
+                    if forloop.index > filter_limit and value.active
+                      assign has_active_overflow = true
+                      break
+                    endif
+                  endfor
+                endif
+              %}
+              <div class="filter-options-list{% if swatchStatus == true %} swatch-items{% endif %}{% if has_active_overflow %} expanded{% endif %}">
                 {%- for value in filter.values -%}
                   {% liquid
                     assign is_disabled = false
                     if value.count == 0 and value.active == false
                       assign is_disabled = true
                     endif
+                    assign is_overflow = false
+                    if show_more_enabled and forloop.index > filter_limit
+                      assign is_overflow = true
+                    endif
                   %}
-                  <div class="filter-option-item{% if is_disabled %} disabled{% endif %}">
+                  <div class="filter-option-item{% if is_disabled %} disabled{% endif %}{% if is_overflow %} filter-option-hidden{% endif %}">
                     <div class="custom-checkbox">
                       <input
                         type="checkbox"
@@ -143,6 +162,12 @@
                   </div>
                 {% endfor %}
               </div>
+              {% if show_more_enabled %}
+                <button type="button" class="filter-show-more-btn" data-filter-show-more>
+                  <span data-show-more-text {% if has_active_overflow %}style="display:none"{% endif %}>+ {{ overflow_count }} more</span>
+                  <span data-show-less-text {% unless has_active_overflow %}style="display:none"{% endunless %}>Show less</span>
+                </button>
+              {% endif %}
             {% endif %}
           </div>
         </details>

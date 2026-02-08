@@ -22,6 +22,17 @@
       {% case block.type %}
         {% when 'products_grid' %}
           {% if collection.all_products_count > 0 %}
+          {% liquid
+            assign active_filter_count = 0
+            for filter in collection.filters
+              assign active_filter_count = active_filter_count | plus: filter.active_values.size
+              if filter.type == 'price_range'
+                if filter.min_value.value != null or filter.max_value.value != null
+                  assign active_filter_count = active_filter_count | plus: 1
+                endif
+              endif
+            endfor
+          %}
           {% if section.settings.filters or section.settings.enable_count or section.settings.sorting %}
             <div class="collection-filter-head-main-wrapper">
               <div class="{{ containerClass }}">
@@ -43,6 +54,9 @@
                             {% else %}
                               {{ 'products.facets.hide_filter' | t }}{% endif %}
                           </span>
+                          {% if active_filter_count > 0 %}
+                            <span class="filter-count-badge" data-filter-count-badge>{{ active_filter_count }}</span>
+                          {% endif %}
                         </button>
                       </filter-toggler>
                     {% endif %}
@@ -71,6 +85,41 @@
                       {% endif %}
                     </div>
                   </div>
+                </div>
+                <div data-applied-filters-header>
+                  {% if active_filter_count > 0 %}
+                    <div class="collection-applied-filters-header">
+                      <div class="applied-filters-chips">
+                        {%- for filter in collection.filters -%}
+                          {%- for value in filter.active_values -%}
+                            <filter-remove>
+                              <a href="{{ value.url_to_remove }}" class="applied-filter-chip" aria-label="Remove {{ value.label | escape }}">
+                                <span>{{ value.label | escape }}</span>
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M8 2L2 8M2 2l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                              </a>
+                            </filter-remove>
+                          {%- endfor -%}
+                          {% if filter.type == 'price_range' %}
+                            {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                              <filter-remove>
+                                <a href="{{ filter.url_to_remove }}" class="applied-filter-chip" aria-label="Remove price filter">
+                                  <span>
+                                    {%- if filter.min_value.value -%}{{ filter.min_value.value | money }}{%- else -%}{{ 0 | money }}{%- endif -%}
+                                    &ndash;
+                                    {%- if filter.max_value.value -%}{{ filter.max_value.value | money }}{%- else -%}{{ filter.range_max | money }}{%- endif -%}
+                                  </span>
+                                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M8 2L2 8M2 2l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </a>
+                              </filter-remove>
+                            {%- endif -%}
+                          {% endif %}
+                        {%- endfor -%}
+                      </div>
+                      <filter-remove>
+                        <a class="clear-all-filters-link" href="{{ collection.url }}" aria-label="Clear all filters">Clear all</a>
+                      </filter-remove>
+                    </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
