@@ -292,7 +292,7 @@
 .products-grid-products-content-inner .product-card-image {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   transition: transform 0.3s ease !important;
   border-radius: 0 !important;
 }
@@ -662,7 +662,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
