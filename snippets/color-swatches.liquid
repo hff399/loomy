@@ -27,8 +27,8 @@
         {% elsif value.swatch.color %}
         style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
         {% else %}
-        data-pallet-color="{{ value | downcase }}"
-        style="--swatch-color: {{ value | downcase }}"
+        data-pallet-color="{{ value | handleize }}"
+        style="--swatch-color: {{ value | handleize }}"
         {% endif %}
         {% endif %}
         {% if is_contain_variant_image %}
@@ -40,8 +40,8 @@
         {% elsif value.swatch.color %}
         style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
         {% else %}
-        data-pallet-color="{{ value | downcase }}"
-        style="--swatch-color: {{ value | downcase }};"
+        data-pallet-color="{{ value | handleize }}"
+        style="--swatch-color: {{ value | handleize }};"
         {% endif %}
         {% endif %}
         {% endif %}>

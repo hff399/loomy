@@ -60,7 +60,7 @@
                       <label
                         for="Vertical-Filter-{{ filter.label | handle }}-{{ forloop.index }}"
                         class="cursor-pointer {% if value.count == 0 and value.active == false %} disabled{% endif %}"
-                        style="--swatch-color: {{ value.value | downcase }}"
+                        style="--swatch-color: {{ value.value | handleize }}"
                       >
                         <div class="tooltip body-font text-xxs">{{- value.label | escape -}}</div>
                       </label>
@@ -116,8 +116,8 @@
                       {% if swatchStatus == true %}
                         <span
                           class="checkmark swatch-color-circle"
-                          data-pallet-color="{{ value.label | downcase }}"
-                          style="--swatch-color:{{ value.label | escape }}"
+                          data-pallet-color="{{ value.label | handleize }}"
+                          style="--swatch-color:{{ value.label | handleize }}"
                         ></span>
                       {% else %}
                         <span class="checkmark">

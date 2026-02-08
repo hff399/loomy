@@ -64,24 +64,24 @@
                     {%- elsif option_value.swatch != blank and option_value.swatch.color -%}
                       {%- assign swatch_fallback = option_value.swatch.color %}
                     {%- else -%}
-                      {%- assign swatch_fallback = option_value %}
+                      {%- assign swatch_fallback = option_value | handleize %}
                     {%- endif -%}
-    
+
                   {%- elsif style == 'variant_image' -%}
-                    
+
                     {% if option_value.variant.featured_media != blank %}
                       {%- assign swatch_image = option_value.variant.featured_media | image_url: width: 144 %}
                       {% assign swatch_image_position = 'center' %}
                     {% else %}
-                      {%- assign swatch_fallback = option_value %}
+                      {%- assign swatch_fallback = option_value | handleize %}
                     {% endif %}
 
                   {% else %}
-                    {%- assign swatch_fallback = option_value | escape %}
+                    {%- assign swatch_fallback = option_value | handleize %}
                   {%- endif -%}
-                  
+
                   <li class="product-variant-item{% if option.selected_value == option_value %} active{% endif %}{% if option_disabled %} variant-disabled{% endif %}{% if swatch_image != blank %} has-swatch-image{% endif %}" data-variant-swatches>
-                    <input  
+                    <input
                       type="radio"
                       class="form-control no-select{% if option_disabled %} variant-input-disabled{% endif %}"
                       id="{{ product.id }}-{{ section.id }}-{{ option.name | handle }}-{{ forloop.index0 }}"
@@ -134,27 +134,26 @@
                   %}
     
                   {% if style == 'color_swatch' %}
-                    {% comment %}
-                      {% if option_value.swatch != blank and option_value.swatch.image %}
-                          {%- assign swatch_image = option_value.swatch.image | image_url: width: 144 %}
-                      {%- elsif option_value.swatch != blank and option_value.swatch.color -%}
-                          {%- assign swatch_fallback = option_value.swatch.color %}
-                      {%- else -%}
-                    {% endcomment %}
-                    {%- assign swatch_fallback = option_value %}
-                    {% comment %} {%- endif -%} {% endcomment %}
-    
+                    {% if option_value.swatch != blank and option_value.swatch.image %}
+                      {%- assign swatch_image = option_value.swatch.image | image_url: width: 144 %}
+                      {% assign swatch_image_position = option_value.swatch.image.presentation.focal_point %}
+                    {%- elsif option_value.swatch != blank and option_value.swatch.color -%}
+                      {%- assign swatch_fallback = option_value.swatch.color %}
+                    {%- else -%}
+                      {%- assign swatch_fallback = option_value | handleize %}
+                    {%- endif -%}
+
                   {%- elsif style == 'variant_image' -%}
 
                     {% if option_value.variant.featured_media != blank %}
                       {%- assign swatch_image = option_value.variant.featured_media | image_url: width: 144 %}
                       {% assign swatch_image_position = 'center' %}
                     {% else %}
-                      {%- assign swatch_fallback = option_value %}
+                      {%- assign swatch_fallback = option_value | handleize %}
                     {% endif %}
 
                   {% else %}
-                    {%- assign swatch_fallback = option_value | escape %}
+                    {%- assign swatch_fallback = option_value | handleize %}
                   {%- endif -%}
                <li class="product-variant-item{% if option.selected_value == option_value %} active{% endif %}{% if option_disabled %} variant-disabled{% endif %}{% if swatch_image != blank %} has-swatch-image{% endif %}" data-variant-swatches>
                     <input
