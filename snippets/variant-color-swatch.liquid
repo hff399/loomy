@@ -80,6 +80,20 @@
                     {%- assign swatch_fallback = option_value | handleize %}
                   {%- endif -%}
 
+                  {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
+                  {% for color in custom_colors %}
+                    {% assign color_code = color | strip | split: ':' %}
+                    {% assign color_name = color_code.first | downcase | strip | remove: ' ' %}
+                    {% assign value_normalized = option_value | downcase | remove: ' ' %}
+                    {% if color_name == value_normalized %}
+                      {% assign color_value = color_code.last | strip %}
+                      {% if color_value contains '#' %}
+                        {% assign swatch_fallback = color_value %}
+                      {% endif %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
                   <li class="product-variant-item{% if option.selected_value == option_value %} active{% endif %}{% if option_disabled %} variant-disabled{% endif %}{% if swatch_image != blank %} has-swatch-image{% endif %}" data-variant-swatches>
                     <input
                       type="radio"
@@ -155,6 +169,21 @@
                   {% else %}
                     {%- assign swatch_fallback = option_value | handleize %}
                   {%- endif -%}
+
+                  {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
+                  {% for color in custom_colors %}
+                    {% assign color_code = color | strip | split: ':' %}
+                    {% assign color_name = color_code.first | downcase | strip | remove: ' ' %}
+                    {% assign value_normalized = option_value | downcase | remove: ' ' %}
+                    {% if color_name == value_normalized %}
+                      {% assign color_value = color_code.last | strip %}
+                      {% if color_value contains '#' %}
+                        {% assign swatch_fallback = color_value %}
+                      {% endif %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
                <li class="product-variant-item{% if option.selected_value == option_value %} active{% endif %}{% if option_disabled %} variant-disabled{% endif %}{% if swatch_image != blank %} has-swatch-image{% endif %}" data-variant-swatches>
                     <input
                       type="radio"

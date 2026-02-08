@@ -10,6 +10,21 @@
     endif
   endif
 -%}
+{% if swatch_value == null and presentation == 'swatch' %}
+  {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
+  {% for color in custom_colors %}
+    {% assign color_code = color | strip | split: ':' %}
+    {% assign color_name = color_code.first | downcase | strip | remove: ' ' %}
+    {% assign value_normalized = value.label | downcase | remove: ' ' %}
+    {% if color_name == value_normalized %}
+      {% assign cc_val = color_code.last | strip %}
+      {% if cc_val contains '#' %}
+        {% assign swatch_value = '--swatch-color:' | append: cc_val %}
+      {% endif %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 {% if presentation == 'swatch' and swatch_value != null %}
   <span
     class="filter-swatch-swatch  {% if value.swatch.image %}image{% endif %}{% if swatch_focal_point %} variant-image-focal{% endif %}"

@@ -139,8 +139,8 @@
                   {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
                   {% for color in custom_colors %}
                     {% assign color_code = color | strip | split: ':' %}
-                    {% assign color_name = color_code.first | downcase | strip %}
-                    {% assign value_downcase = option_value | downcase %}
+                    {% assign color_name = color_code.first | downcase | strip | remove: ' ' %}
+                    {% assign value_downcase = option_value | downcase | remove: ' ' %}
                     {% if color_name == value_downcase %}
                       {% assign color_value = color_code.last | strip %}
                       {% if color_value contains '#' %}

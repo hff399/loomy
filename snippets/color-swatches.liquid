@@ -2,7 +2,21 @@
   {% for value in option.values %}
     {% liquid
       assign value_variant = value.variant
+      assign custom_swatch_color = null
     %}
+    {% assign custom_colors = settings.custom_colors | newline_to_br | split: '<br />' %}
+    {% for color in custom_colors %}
+      {% assign color_code = color | strip | split: ':' %}
+      {% assign color_name = color_code.first | downcase | strip | remove: ' ' %}
+      {% assign value_normalized = value | downcase | remove: ' ' %}
+      {% if color_name == value_normalized %}
+        {% assign cc_val = color_code.last | strip %}
+        {% if cc_val contains '#' %}
+          {% assign custom_swatch_color = cc_val %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
     <li
       class="product-variant-item"
       variant-option-item
@@ -27,8 +41,12 @@
         {% elsif value.swatch.color %}
         style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
         {% else %}
+        {% if custom_swatch_color %}
+        style="--swatch-color: {{ custom_swatch_color }}"
+        {% else %}
         data-pallet-color="{{ value | handleize }}"
         style="--swatch-color: {{ value | handleize }}"
+        {% endif %}
         {% endif %}
         {% endif %}
         {% if is_contain_variant_image %}
@@ -40,8 +58,12 @@
         {% elsif value.swatch.color %}
         style="--swatch-color: rgb({{ value.swatch.color.rgb }});"
         {% else %}
+        {% if custom_swatch_color %}
+        style="--swatch-color: {{ custom_swatch_color }};"
+        {% else %}
         data-pallet-color="{{ value | handleize }}"
         style="--swatch-color: {{ value | handleize }};"
+        {% endif %}
         {% endif %}
         {% endif %}
         {% endif %}>
