@@ -14,15 +14,16 @@
       "settings": {
         "color_scheme": "quinary",
         "section_background": "solid",
-        "section_container_width": "no-container",
         "corner_style": "bottom",
         "corner_radius": 20,
         "enable_banner_image": false,
+        "banner_image": "shopify://shop_images/reima-gloves-knitted-vipatus-melange-grey-7-8-5300128c-097763-1_mojlbp_a6bb2c4f-cbb8-4438-bfab-d260353d5ccd.jpg",
         "overlay_style": "solid",
         "banner_height_desktop": "250px",
         "banner_height_mobile": "200px",
+        "section_container_width": "no-container",
         "enable_heading": true,
-        "title": "",
+        "title": "Orange toys",
         "heading_size": "h2",
         "seo_heading": "h2",
         "heading_font": "heading-font",
@@ -54,10 +55,44 @@
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }
+    },
+    "featured_collection_DcMkhC": {
+      "type": "featured-collection",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "corner_style": "none",
+        "corner_radius": 20,
+        "heading": "Clothing & [Accessories]",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "",
+        "description_size": "text",
+        "alignment": "left",
+        "button_text": "",
+        "button_link": "",
+        "collection_featured": "orange-toys",
+        "collection_style": "carousel",
+        "products_to_show": 8,
+        "desktop_column_count": 4,
+        "desktop_gap": 20,
+        "mobile_gap": 10,
+        "image_ratio": "auto",
+        "mobile_swipe": true,
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
     }
   },
   "order": [
     "page-banner",
-    "main-page"
+    "main-page",
+    "featured_collection_DcMkhC"
   ]
 }
