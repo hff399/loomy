@@ -12,6 +12,34 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide_N8Pwgj": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "secondary",
+            "desktop_slide_image": "shopify://shop_images/Sale.jpg",
+            "mobile_slide_image": "shopify://shop_images/61da9e7c-4ec9-48c8-aa84-a0b1f26b7174.png",
+            "overlay_style": "solid",
+            "image_ratio": "landscape",
+            "enable_collapse": false,
+            "heading": "Winter Final Sale — Up to 30% Off",
+            "heading_size": "h2",
+            "seo_heading": "h2",
+            "heading_font": "heading-font",
+            "markers_font": "accent-font",
+            "heading_font_weight": "font-normal",
+            "description": "Premium jackets, snowsuits, and boots at the best prices of the season. Limited stock.",
+            "description_size": "text",
+            "content_width": "small",
+            "desktop_content_position": "d-bottom-left",
+            "desktop_text_alignment": "left",
+            "mobile_content_position": "m-center",
+            "mobile_text_alignment": "center",
+            "button_text": "Shop Sale",
+            "button_link": "shopify://collections/all",
+            "button_style": "solid",
+            "button_size": "button-sm"
+          }
+        },
         "slide_8Mn4WU": {
           "type": "slide",
           "settings": {
@@ -68,34 +96,6 @@
             "button_size": "button-sm"
           }
         },
-        "slide_N8Pwgj": {
-          "type": "slide",
-          "settings": {
-            "color_scheme": "tertiary",
-            "desktop_slide_image": "shopify://shop_images/61da9e7c-4ec9-48c8-aa84-a0b1f26b7174.png",
-            "mobile_slide_image": "shopify://shop_images/61da9e7c-4ec9-48c8-aa84-a0b1f26b7174.png",
-            "overlay_style": "solid",
-            "image_ratio": "landscape",
-            "enable_collapse": false,
-            "heading": "Winter [Final Sale] — Up to++ [30% Off]",
-            "heading_size": "h2",
-            "seo_heading": "h2",
-            "heading_font": "heading-font",
-            "markers_font": "accent-font",
-            "heading_font_weight": "font-normal",
-            "description": "Premium jackets, snowsuits, and boots at the best prices of the season. Limited stock.",
-            "description_size": "text",
-            "content_width": "small",
-            "desktop_content_position": "d-bottom-left",
-            "desktop_text_alignment": "left",
-            "mobile_content_position": "m-center",
-            "mobile_text_alignment": "center",
-            "button_text": "Shop Sale",
-            "button_link": "shopify://collections/all",
-            "button_style": "solid",
-            "button_size": "button-sm"
-          }
-        },
         "slide_BLnrxD": {
           "type": "slide",
           "settings": {
@@ -125,9 +125,9 @@
         }
       },
       "block_order": [
+        "slide_N8Pwgj",
         "slide_8Mn4WU",
         "slide_ef3P76",
-        "slide_N8Pwgj",
         "slide_BLnrxD"
       ],
       "settings": {
@@ -217,7 +217,6 @@
           "type": "category",
           "settings": {
             "collection": "",
-            "image": "shopify://shop_images/reima-shorts-eloisin-peanut-brown-5200127a-154688-6_hzo1t5.jpg",
             "button_text": "Reima winter collection",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -227,7 +226,6 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
-            "image": "shopify://shop_images/reima-shorts-valoisin-light-lime-5200126a-155234-1_cgnoc5_e28e78e6-2dcf-4c25-90c1-63d8946f05ca.jpg",
             "button_text": "",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -237,7 +235,6 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
-            "image": "shopify://shop_images/orange_toys_OT5021_35A.jpg",
             "button_text": "Orange toys",
             "overlay_text": "",
             "bg_color": ""
@@ -408,7 +405,6 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "media_image": "shopify://shop_images/orange_toys_OT8028_40_fb06b9a2-ad2d-4823-a171-d423d7170f84.jpg",
             "overlay_style": "solid",
             "category_shape": "shape_2",
             "category_text": "Age ++ 0-1",
@@ -440,7 +436,6 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "media_image": "shopify://shop_images/orange_toys_OT8003_20_3dac00d4-e4e2-4940-822b-0a055b4f38d8.jpg",
             "overlay_style": "solid",
             "category_shape": "shape_3",
             "category_text": "Age ++ 10-15",
@@ -472,7 +467,6 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
-            "media_image": "shopify://shop_images/orange_toys_OT5023_30B_8edd0c9c-295c-40ed-88ac-89d5d3005705.jpg",
             "overlay_style": "solid",
             "category_shape": "shape_1",
             "category_text": "",
@@ -563,14 +557,12 @@
         "image_WfWxyd": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/orange_toys_OT8034_22.jpg",
             "image_ratio": "landscape"
           }
         },
         "image_ANtnCX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/orange_toys_OT8031_38_773f4be9-3fb0-4678-879a-8f9f91bdcc8e.jpg",
             "image_ratio": "auto"
           }
         },
