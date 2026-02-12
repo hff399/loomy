@@ -3183,5 +3183,134 @@
         "tumblr": "თამბლერი"
       }
     }
+  },
+  "templates": {
+    "contact": {
+      "form": {
+        "error_heading": "გთხოვთ, შეასწოროთ შემდეგი:"
+      }
+    },
+    "404": {
+      "title": "გვერდი ვერ მოიძებნა",
+      "description": "გვერდი, რომელსაც ეძებდით, არ არსებობს. შესაძლოა, მისამართი არასწორად აკრიფეთ ან გვერდი გადაადგილდა."
+    }
+  },
+  "list-collections": {
+    "title": "კოლექციები"
+  },
+  "localization": {
+    "country_label": "ქვეყანა/რეგიონი",
+    "language_label": "ენა",
+    "update_language": "ენის განახლება",
+    "update_country": "ქვეყნის/რეგიონის განახლება",
+    "search": "ძიება",
+    "popular_countries_regions": "პოპულარული ქვეყნები/რეგიონები",
+    "country_results_count": "ნაპოვნია {{ count }} ქვეყანა/რეგიონი"
+  },
+  "customer": {
+    "account": {
+      "title": "ანგარიში",
+      "details": "ანგარიშის დეტალები",
+      "my_address": "ჩემი მისამართი",
+      "view_addresses": "მისამართების ნახვა",
+      "return": "ანგარიშის დეტალებზე დაბრუნება"
+    },
+    "account_fallback": "ანგარიში",
+    "activate_account": {
+      "title": "ანგარიშის გააქტიურება",
+      "subtext": "შექმენით თქვენი პაროლი თქვენი ანგარიშის გასააქტიურებლად.",
+      "password": "პაროლი",
+      "password_confirm": "დაადასტურეთ პაროლი",
+      "submit": "ანგარიშის გააქტიურება",
+      "cancel": "მოწვევის უარყოფა"
+    },
+    "addresses": {
+      "title": "მისამართები",
+      "default": "ნაგულისხმევი",
+      "add_new": "ახალი მისამართის დამატება",
+      "edit_address": "მისამართის რედაქტირება",
+      "name": "სახელი",
+      "first_name": "სახელი",
+      "last_name": "გვარი",
+      "company": "კომპანია",
+      "address1": "მისამართი 1",
+      "address2": "მისამართი 2",
+      "city": "ქალაქი",
+      "country": "ქვეყანა/რეგიონი",
+      "province": "პროვინცია",
+      "zip": "საფოსტო ინდექსი",
+      "phone": "ტელეფონი",
+      "set_default": "ნაგულისხმევ მისამართად დაყენება",
+      "add": "მისამართის დამატება",
+      "update": "მისამართის განახლება",
+      "cancel": "გაუქმება",
+      "edit": "რედაქტირება",
+      "delete": "წაშლა",
+      "delete_confirm": "დარწმუნებული ხართ, რომ გსურთ ამ მისამართის წაშლა?"
+    },
+    "log_in": "შესვლა",
+    "log_out": "გასვლა",
+    "login_page": {
+      "back_to_home": "დაბრუნება მთავარ გვერდზე",
+      "cancel": "გაუქმება",
+      "create_account": "რეგისტრაცია",
+      "email": "ელ. ფოსტა",
+      "forgot_password": "პაროლი დაგავიწყდათ?",
+      "guest_continue": "გაგრძელება",
+      "guest_title": "გაგრძელება სტუმრის სტატუსით",
+      "password": "პაროლი",
+      "title": "მომხმარებლის შესვლა",
+      "sign_in": "შესვლა",
+      "submit": "გაგზავნა",
+      "alternate_provider_separator": "ან",
+      "dont_account": "ანგარიში არ გაქვთ?",
+      "now": "ახლა"
+    },
+    "order": {
+      "title": "შეკვეთა {{ name }}",
+      "date_html": "განთავსდა {{ date }}",
+      "cancelled_html": "შეკვეთა გაუქმდა {{ date }}",
+      "cancelled_reason": "მიზეზი: {{ reason }}",
+      "billing_address": "გადახდის მისამართი",
+      "payment_status": "გადახდის სტატუსი",
+      "shipping_address": "მიწოდების მისამართი",
+      "fulfillment_status": "შესრულების სტატუსი",
+      "discount": "ფასდაკლება",
+      "shipping": "მიწოდება",
+      "tax": "გადასახადი",
+      "product": "პროდუქტი",
+      "price": "ფასი",
+      "quantity": "რაოდენობა",
+      "total": "სულ",
+      "total_refunded": "დაბრუნებული",
+      "fulfilled_at_html": "შესრულებულია {{ date }}",
+      "track_shipment": "გადაზიდვის თვალყურის დევნება",
+      "tracking_url": "თვალთვალის ბმული",
+      "tracking_company": "გადამზიდავი",
+      "tracking_number": "თვალთვალის ნომერი",
+      "subtotal": "ქვეჯამი",
+      "total_duties": "მოვალეობები"
+    },
+    "orders": {
+      "title": "შეკვეთების ისტორია",
+      "order_number": "შეკვეთა",
+      "order_number_link": "შეკვეთის ნომერი {{ number }}",
+      "date": "თარიღი",
+      "payment_status": "გადახდის სტატუსი",
+      "fulfillment_status": "შესრულების სტატუსი",
+      "total": "სულ",
+      "none": "თქვენ ჯერ არცერთი შეკვეთა არ გაგიკეთებიათ.",
+      "continue_shopping": "განაგრძეთ შოპინგი"
+    },
+    "recover_password": {
+      "title": "პაროლის აღდგენა",
+      "subtext": "პაროლის გადასაყენებლად ელ.წერილს გამოგიგზავნით",
+      "success": "ჩვენ გამოგიგზავნეთ ელ.წერილი პაროლის განახლების ბმულით."
+    },
+    "register": {
+      "title": "ანგარიშის შექმნა",
+      "first_name": "სახელი",
+      "last_name": "გვარი"
+    }
   }
 }
