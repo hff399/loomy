@@ -1567,7 +1567,16 @@
         "split_shipping_multiple_shipment_notice": "თქვენი შეკვეთა რამდენიმე ტვირთით ჩამოვა",
         "split_shipping_multiple_shipment_notice_one_time_purchase": "თქვენი შეკვეთა ჩამოვა %{quantity} ტვირთით",
         "split_shipping_more_shipping_options": "მეტი მიწოდების ვარიანტი",
-        "split_shipping_shipment_number": "გადაზიდვა %{number}"
+        "split_shipping_shipment_number": "გადაზიდვა %{number}",
+        "split_shipping_merchandise_quantity_label_inline_primary": "რაოდენობა: %{რაოდენობა}",
+        "split_shipping_merchandise_quantity_label_inline": "%{საქონლის_სათაური} ×%{რაოდენობა}",
+        "split_shipping_option_free": "უფასო მიწოდება",
+        "split_shipping_option_lowest_price": "ყველაზე დაბალი ფასი",
+        "split_shipping_option_fastest": "ყველაზე სწრაფი",
+        "split_shipping_option_recommended": "რეკომენდებული",
+        "split_shipping_option_custom": "მორგებული",
+        "add_shipping_address": "დაამატეთ მიწოდების მისამართი",
+        "choose_new_address": "აირჩიეთ ახალი მისამართი"
       },
       "wallets": {
         "return_to_store": "მაღაზიაში დაბრუნება",
@@ -1705,6 +1714,88 @@
         "foot": "ფუტი",
         "yard": "იარდი",
         "square_foot": "ფუტი²"
+      },
+      "localized_fields": {
+        "additional_information": {
+          "title": "დამატებითი ინფორმაცია",
+          "shipping_credential_kr": "პირადი საბაჟო კოდექსი",
+          "shipping_credential_cn": "რეზიდენტის ID ნომერი",
+          "tax_credential_it": "საგადასახადო კოდი (არასავალდებულო)",
+          "tax_email_it": "PEC (არასავალდებულო)",
+          "tax_credential_co": "სედულა/IVA",
+          "tax_credential_type_co": "ტიპო სედულა",
+          "shipping_credential_co": "სედულა/IVA",
+          "shipping_credential_type_co": "ტიპო სედულა",
+          "tax_credential_cr": "საიდენტიფიკაციო ნომერი/RUT",
+          "shipping_credential_cr": "საიდენტიფიკაციო ნომერი/RUT",
+          "tax_credential_my": "TIN/რეგისტრაციის ნომერი",
+          "shipping_credential_my": "TIN/რეგისტრაციის ნომერი",
+          "tax_credential_type_mx": "ფისკალური რეჟიმი",
+          "tax_credential_use_mx": "CFDI-ის გამოყენება",
+          "shipping_credential_tw": "ეროვნული პირადობის მოწმობის ნომერი/დღგ"
+        }
+      },
+      "payment": {
+        "network_card_payment_options": "აირჩიეთ ბარათის ქსელი",
+        "network_card_persistence_description": "არჩეული ქსელი შეინახება თქვენი გადახდის მეთოდთან ერთად მომავალი ტრანზაქციებისთვის.",
+        "amazon_payments_login_hint": "თქვენ მოგეთხოვებათ Amazon-ით შესვლა.",
+        "amazon_payments_logout": "გასვლა Amazon Pay-დან",
+        "amazon_payments_failed_mfa_challenge": "არჩეული გადახდის მეთოდის გამოყენება შეუძლებელია. აირჩიეთ სხვა მეთოდი ან დაუკავშირდით თქვენი ბანკის ან ბარათის გამცემს.",
+        "amazon_payments_abandoned_mfa_challenge": "თქვენი გადახდა ვერ დასრულდა. სცადეთ სხვა გადახდის მეთოდი ან დაუკავშირდით თქვენი ბანკის ან ბარათის გამცემს.",
+        "amazon_payments_could_not_enqueue_authorize": "თქვენი გადახდის დამუშავებისას პრობლემა წარმოიშვა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი.",
+        "title": "გადახდა",
+        "amount_left_to_pay_label": "გადასახდელია გადახდა:",
+        "discount_button_action_label": "ფასდაკლების კოდის გამოყენება",
+        "discount_codes_removed_summary": {
+          "one": "%{count} ფასდაკლების კოდი წაიშალა",
+          "other": "%{count} ფასდაკლების კოდი წაიშალა"
+        },
+        "discount_codes_modified_summary": {
+          "one": "%{count} ფასდაკლების კოდი შეიცვალა",
+          "other": "%{count} ფასდაკლების კოდი შეიცვალა"
+        },
+        "discount_codes_removed_or_modified_summary": {
+          "one": "%{count} ფასდაკლების კოდი წაიშალა ან შეიცვალა",
+          "other": "%{count} ფასდაკლების კოდი წაიშალა ან შეიცვალა"
+        },
+        "discount_show_more_warnings": {
+          "one": "კიდევ %{count}-ის ჩვენება",
+          "other": "კიდევ %{count}-ის ჩვენება"
+        },
+        "gift_card_code_label": "სასაჩუქრე ბარათის კოდი",
+        "apply_gift_card_button_label": "გამოყენება",
+        "gift_card_balance_label": "ბალანსი:",
+        "supported_card_brands_more_label": "და მეტი…",
+        "detected_card_brand": "აღმოჩენილი ბარათის ბრენდი: {brand}",
+        "credit_card_vaulting_sign_in_banner_title": "შეინახეთ თქვენი საკრედიტო ბარათი",
+        "credit_card_vaulting_sign_in_banner_info": "შედით სისტემაში ან შექმენით ანგარიში, რათა შეინახოთ თქვენი საკრედიტო ბარათი მომავალი შესყიდვებისთვის.",
+        "credit_card_vaulting_sign_in_banner_button_label": "შესვლა",
+        "ftd_vault_credit_card_label": "შეინახეთ ეს საკრედიტო ბარათი ჩემს ანგარიშზე უფრო სწრაფი გადახდისთვის",
+        "card_number_label": "ბარათის ნომერი",
+        "card_number_placeholder": "ბარათის ნომერი",
+        "card_pay_with": "გადაიხადეთ:",
+        "card_security_notice": "ყველა ტრანზაქცია უსაფრთხო და დაშიფრულია.",
+        "card_security_vault_notice": "თქვენი მონაცემები მომავალი გადახდებისთვის გვჭირდება. ყველა ტრანზაქცია უსაფრთხო და დაშიფრულია.",
+        "card_information_notice": "ყველა ტრანზაქცია უსაფრთხო და დაშიფრულია. საკრედიტო ბარათის ინფორმაცია არასდროს ინახება.",
+        "name_on_card_label": "სახელი ბარათზე",
+        "name_on_card_placeholder": "სახელი ბარათზე",
+        "card_nickname_label": "მეტსახელი (არასავალდებულო)",
+        "card_expired": "ვადაგასული",
+        "card_expiry_label": "ვადის გასვლის თარიღი (თვე / წელი)",
+        "card_expiry_placeholder": "ვადის გასვლის თარიღი (თვე / წელი)",
+        "credit_card_start_month": "დაწყების თვე",
+        "credit_card_start_year": "დაწყების წელი",
+        "delete_customer_mandate_modal_title": "გსურთ ამ გადახდის ბარათის წაშლა?",
+        "delete_customer_mandate_modal_body": "თუ ამ ბარათს წაშლით, გადახდებისთვის გამოყენებამდე მისი ხელახლა დამატება დაგჭირდებათ.",
+        "delete_customer_mandate_modal_confirm": "ბარათის წაშლა",
+        "delete_customer_mandate_modal_cancel": "გაუქმება",
+        "card_verification_value_label": "უსაფრთხოების კოდი",
+        "card_verification_value_placeholder": "უსაფრთხოების კოდი",
+        "card_verification_confirm": "დადასტურების მიზნით, შეიყვანეთ თქვენი ბარათის უსაფრთხოების კოდი.",
+        "card_expiry_date_explanation": "ბარათის ვადის გასვლის თარიღი ფორმატში: თვე, თვე, წელი, წელი",
+        "card_expiration_month_label": "ვადის გასვლის თვე",
+        "card_expiration_year_label": "ვადის გასვლის წელი",
+        "card_verification_value_explanation": "3-ნიშნა უსაფრთხოების კოდი, რომელიც ჩვეულებრივ ბარათის უკანა მხარეს არის მითითებული. American Express ბარათებს წინა მხარეს 4-ნიშნა კოდი აქვთ."
       }
     },
     "collections": {
