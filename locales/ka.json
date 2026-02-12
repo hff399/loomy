@@ -945,8 +945,50 @@
         },
         "payment_terms_totals": {
           "due_today": "დღეს გადასახდელი ჯამი",
-          "due_today_next": "დღეს გადასახდელია"
-        }
+          "due_today_next": "დღეს გადასახდელია",
+          "due_later": "საერთო გადასახდელი %{due_at}",
+          "due_on_fulfillment": "შესრულებისთვის გადასახდელი ჯამი",
+          "due_on_fulfillment_next": "შესრულებისთანავე გადასახდელი",
+          "due_on_receipt": "ქვითრის დროს გადასახდელი ჯამური თანხა",
+          "due_later_checkout_to_draft": "მოგვიანებით გადასახდელი ჯამი",
+          "total_paid": "სულ გადახდილი"
+        },
+        "maximum_discount_code_limit_reached": "თქვენ მიაღწიეთ ფასდაკლების კოდების მაქსიმალურ რაოდენობას. <strong style=\"text-transform:uppercase\">%{code}-</strong> ის გამოსაყენებლად წაშალეთ არსებული კოდი.",
+        "discount_code_application_failed": "<strong style=\"text-transform:uppercase\">%{code}</strong> ამჟამად არ მუშაობს. დახმარებისთვის დაგვიკავშირდით.",
+        "due_on_fulfillment": "შესრულებისთანავე გადასახდელი",
+        "gift_card_masked": "•••• %{ბოლო_სიმბოლოები}",
+        "subscriptions": "გამოწერები",
+        "duties_label": "მოვალეობები",
+        "duties_and_taxes_label": "გადასახადები და მოსაკრებლები",
+        "error_duties_tooltip": "ეს შეკვეთა სხვა ქვეყნიდან იგზავნება, ამიტომ მიწოდებისას შესაძლოა დაწესდეს გადასახადები და საბაჟო გადასახადები.",
+        "may_be_charged_on_delivery": "შესაძლოა, თანხა მიწოდებისას დაგერიცხოთ",
+        "total_updated_label_with_price": "განახლებული საერთო ფასი: %{totalPrice}",
+        "updated_shipping_method": "განახლებული მიწოდების მეთოდი: %{shipping_method}",
+        "recurring_payments": "განმეორებადი გადახდები",
+        "recurring_total_multiple_label": "ამ შეკვეთას რამდენიმე ნივთისთვის განმეორებითი გადასახადი აქვს.",
+        "deferred_total_due_date_label": "საერთო ჯამი გადასახდელია {{date}}",
+        "deferred_total_due_date_label_next": "ვადა %{თარიღი}",
+        "full_price": "სრული ფასი: %{price}",
+        "custom_discount": "ინდივიდუალური ფასდაკლება",
+        "expand_component_information": {
+          "one": "%{count} ერთეულის ჩვენება",
+          "other": "%{count} ერთეულის ჩვენება"
+        },
+        "collapse_component_information": {
+          "one": "%{count} ერთეულის დამალვა",
+          "other": "%{count} ერთეულის დამალვა"
+        },
+        "component_quantity_title": "%{რაოდენობა} × %{პროდუქტის_სათაური}",
+        "discount_discovery": {
+          "add_code": "ფასდაკლების დამატება",
+          "merchandise_quantity_label": {
+            "one": "%{count} ერთეული",
+            "other": "%{count} ერთეული"
+          }
+        },
+        "alternative_payment_currency_total": "ჩამოიჭრა %{amount_due}-ის სახით",
+        "pay_merchant_label": "გადაიხადეთ %{merchant_name}-ისთვის",
+        "discount_applies_to_subscription_items_only": "ეს ფასდაკლება ვრცელდება მხოლოდ სააბონენტო პროდუქტებზე"
       },
       "payment_errors": {
         "checkout_amount_changed": "თქვენი გადახდის დამუშავება ვერ მოხერხდა, რადგან გადახდისას გადასახდელი თანხა შეიცვალა. შეამოწმეთ თქვენი შეკვეთა და სცადეთ ხელახლა.",
@@ -1293,6 +1335,102 @@
         "duplicate_variant_id": "%{position} %{name} merchandise ინსტრუქცია შეიცავს დუბლიკატ ვარიანტ ID-ს %{variant_id}.",
         "invalid_variant_id_target": "%{name} merchandise ინსტრუქცია მიუთითებს ვარიანტის ID %{variant_id}-ზე, მაგრამ ეს ვარიანტი არ არის merchandise-ის ხაზებში.",
         "invalid_price_override_target": "%{stable_id} ხაზის ერთეულისთვის ფასის შეცვლის ინსტრუქცია არასწორია, რადგან ის პაკეტის კომპონენტია."
+      },
+      "shipping": {
+        "title": "მიწოდება",
+        "delivery_title": "მიწოდება",
+        "shipping_method_title": "მიწოდების მეთოდი",
+        "shipping_method_rollup_accessibility_label": "მიწოდების მეთოდის ვარიანტები",
+        "shipping_method_one_time_purchase_group_title": "ერთჯერადი შენაძენი",
+        "shipping_method_first_shipment_group_title": {
+          "one": "პირველი გადაზიდვა",
+          "other": "პირველი გადაზიდვები"
+        },
+        "shipping_method_subscription_group_title": "გამოწერა",
+        "shipping_method_recurring_shipments_group_title": {
+          "one": "განმეორებითი გადაზიდვა",
+          "other": "განმეორებითი გადაზიდვები"
+        },
+        "subscription_shipping": "გამოწერის მიწოდება",
+        "subscription_local_delivery": "ადგილობრივი მიწოდების გამოწერა",
+        "subscription_pickup": "გამოწერის აღება",
+        "waiting_on_rate_notice": "ხელმისაწვდომი მიწოდების ტარიფების მიღება…",
+        "waiting_on_pickup_location_notice": "მიმდინარეობს აყვანის ადგილების შერჩევა…",
+        "no_rates_for_cart_or_destination_notice": "თქვენი კალათისთვის ან მისამართისთვის მიწოდების მეთოდები არ არის ხელმისაწვდომი",
+        "no_pickup_location_notice": "თქვენი პროდუქტებიდან სულ მცირე ერთის ასაღებად მიწვდომაა",
+        "no_rates_for_country_notice": "ამ მისამართისთვის მიწოდების ტარიფები ვერ მოიძებნა.",
+        "no_rates_contact_notice": "დამატებითი ინფორმაციისთვის დაგვიკავშირდით",
+        "free_rate_label": "უფასო",
+        "cheapest_rate_label": "ყველაზე იაფი",
+        "estimated_delivery_date": {
+          "one": "%{count} სამუშაო დღე",
+          "other": "%{count} სამუშაო დღე"
+        },
+        "estimated_delivery_date_range": "%{მინიმუმ}-დან %{მაქსიმუმ} სამუშაო დღემდე",
+        "delivery_date_range": "%{მინ_დრო}–%{მაქს_დრო}",
+        "estimated_delivery_time": "მიწოდების სავარაუდო დრო %{time}",
+        "estimated_delivery_time_range": "მიწოდების სავარაუდო დრო %{min_time}–%{max_time}",
+        "delivery_today": "იმავე დღეს მიწოდება %{time}",
+        "delivery_tomorrow": "მომდევნო დღის მიწოდება %{time}",
+        "two_day_delivery": "2-დღიანი მიწოდება %{time}",
+        "delivery": "მიწოდება %{time}",
+        "delivery_to": "მიწოდება",
+        "arrives_time": "ჩამოდის %{time}",
+        "arrives_time_range": "ჩამოდის %{min_time}–%{max_time}",
+        "estimated_time": "სავარაუდო %{time}",
+        "estimated_time_range": "სავარაუდო %{min_time}–%{max_time}",
+        "default_description": "იგზავნება 1 სამუშაო დღეში",
+        "unbranded_default_description": "მზადაა გასაგზავნად",
+        "unbranded_description_same_day": "იგზავნება იმავე სამუშაო დღეს",
+        "unbranded_description_with_fulfillment_days": {
+          "one": "იგზავნება მომდევნო სამუშაო დღეს",
+          "other": "იგზავნება %{count} სამუშაო დღეში"
+        },
+        "unbranded_description_with_fulfillment_weeks": {
+          "one": "გაიგზავნება %{count} კვირაში",
+          "other": "გაიგზავნება %{count} კვირაში"
+        },
+        "shipping_line_phone_label": "მობილური ტელეფონის ნომერი (აუცილებელია)",
+        "shipping_line_phone": "შესაძლოა, თქვენმა კურიერმა ეს ნომერი თქვენთან დასაკავშირებლად გამოიყენოს.",
+        "shipping_line_delivery_phone_label": "მობილური ტელეფონის ნომერი",
+        "shipping_line_delivery_phone": "შესაძლოა, დაგიკავშირდნენ თქვენი მიწოდების შესახებ განახლებული ინფორმაციის მისაღებად.",
+        "optional_shipping_line_delivery_instructions_label": "მიწოდების ინსტრუქციები (არასავალდებულო)",
+        "shipping_line_delivery_instructions": "შეიყვანეთ საჭირო ინფორმაცია, როგორიცაა კარის კოდები ან ჩაბარების ინსტრუქციები.",
+        "other_method": {
+          "zero": "სხვა მეთოდები არ არის ხელმისაწვდომი",
+          "one": "სხვა მეთოდი ხელმისაწვდომია %{count}-ზე",
+          "other": "სხვა %{count} მეთოდი ხელმისაწვდომია, დაწყებული"
+        },
+        "shipping_rate_discounted_amount": "იყო: %{original_amount}. ახლა: %{amount}",
+        "local_delivery": "ადგილობრივი მიწოდება",
+        "prime_not_available": {
+          "default": "თქვენი შეკვეთისთვის Prime Delivery მიუწვდომელია. თქვენი მიწოდების ვარიანტები განახლდა."
+        },
+        "subscription_delivery_description": {
+          "free_shipping_cycles": {
+            "one": "უფასო მიწოდება %{count}-ით მეტი მიწოდების შემთხვევაში",
+            "other": "უფასო მიწოდება %{count} დამატებით მიწოდებაზე"
+          },
+          "free_shipping_cycles_delivery_not_included": {
+            "one": "უფასო მიწოდება %{count} მიწოდებისთვის",
+            "other": "უფასო მიწოდება %{count} მიწოდებისთვის"
+          },
+          "first_n_order_free_with_cycle": {
+            "one": "უფასო მიწოდება %{count}-ით მეტი მიწოდების შემთხვევაში, შემდეგ %{recurring_order_shipping_price}",
+            "other": "უფასო მიწოდება %{count} დამატებითი მიწოდების შემთხვევაში, შემდეგ %{recurring_order_shipping_price}"
+          },
+          "first_n_order_free_with_cycle_delivery_not_included": {
+            "one": "უფასო მიწოდება %{count} მიწოდების შემთხვევაში, შემდეგ %{recurring_order_shipping_price}",
+            "other": "უფასო მიწოდება %{count} მიწოდების შემთხვევაში, შემდეგ %{recurring_order_shipping_price}"
+          },
+          "max_cycles_base_shipping": {
+            "one": "%{count} დამატებითი მიწოდება %{shipping_price}-ად",
+            "other": "%{count} დამატებითი მიწოდება %{shipping_price}-ად თითოეული"
+          },
+          "max_cycles_base_shipping_delivery_not_included": {
+            "one": "%{count} მიწოდება %{shipping_price}-ად"
+          }
+        }
       }
     }
   },
