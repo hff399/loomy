@@ -151,6 +151,137 @@
         "share_on_facebook": "Поделиться в Facebook",
         "share_on_twitter": "Поделиться на X",
         "share_on_pinterest": "Закрепить на Pinterest"
+      },
+      "links": {
+        "twitter": "X (Твиттер)",
+        "facebook": "Фейсбук",
+        "pinterest": "Пинтерест",
+        "instagram": "Инстаграм",
+        "tiktok": "ТикТок"
+      }
+    },
+    "continue_shopping": "Продолжить покупки",
+    "pagination": {
+      "label": "Пагинация",
+      "page": "Страница {{ number }}",
+      "next": "Следующая страница",
+      "previous": "Предыдущая страница"
+    },
+    "search": {
+      "search": "Поиск",
+      "reset": "Уточнить поисковый запрос",
+      "button": {
+        "results": "Посмотреть все результаты",
+        "view_details": "Просмотреть подробности"
+      }
+    },
+    "cart": {
+      "view": "Просмотреть корзину ( {{ count }} )",
+      "view_empty_cart": "Просмотреть корзину",
+      "item_added": "Товар добавлен в корзину"
+    },
+    "share": {
+      "close": "Закрыть акции",
+      "copy_to_clipboard": "Скопировать ссылку",
+      "share_url": "Связь",
+      "success_message": "Ссылка скопирована в буфер обмена"
+    },
+    "slider": {
+      "of": "из",
+      "next_slide": "Сдвиньте вправо",
+      "previous_slide": "Сдвиньте влево",
+      "name": "Ползунок"
+    }
+  },
+  "newsletter": {
+    "label": "Электронная почта",
+    "success": "Спасибо за подписку!",
+    "button_label": "Подписаться",
+    "error": "Адрес электронной почты недействителен или уже занят."
+  },
+  "accessibility": {
+    "skip_to_text": "Перейти к содержимому",
+    "skip_to_product_info": "Перейти к информации о продукте",
+    "close": "Закрывать",
+    "unit_price_separator": "за",
+    "vendor": "Продавец:",
+    "error": "Ошибка",
+    "refresh_page": "Выбор элемента приводит к полному обновлению страницы.",
+    "link_messages": {
+      "new_window": "Открывается в новом окне.",
+      "external": "Открывает внешний веб-сайт."
+    },
+    "loading": "Загрузка...",
+    "total_reviews": "общее количество отзывов",
+    "star_reviews_info": "{{ rating_value }} из {{ rating_max }} звезд",
+    "collapsible_content_title": "Сворачиваемое содержимое",
+    "complementary_products": "Дополнительные продукты"
+  },
+  "blogs": {
+    "article": {
+      "blog": "Блог",
+      "read_more": "Читать далее",
+      "read_more_title": "Подробнее: {{ title }}",
+      "comments": {
+        "one": "{{ count }} комментарий",
+        "other": "{{ count }} комментариев"
+      },
+      "moderated": "Обратите внимание: комментарии проходят модерацию перед публикацией.",
+      "comment_form_title": "Оставьте комментарий",
+      "name": "Имя",
+      "email": "Электронная почта",
+      "message": "Комментарий",
+      "post": "Оставить комментарий",
+      "back_to_blog": "Вернуться в блог",
+      "share": "Поделитесь этой статьей",
+      "success": "Ваш комментарий успешно опубликован! Спасибо!",
+      "success_moderated": "Ваш комментарий успешно опубликован. Мы опубликуем его чуть позже, так как наш блог модерируется."
+    }
+  },
+  "onboarding": {
+    "product_title": "Пример названия товара",
+    "collection_title": "Коллекция",
+    "blog_title": "Запись в блоге",
+    "blog_desc": "Предоставьте своим клиентам краткое изложение вашей статьи в блоге.",
+    "blog_date": "ДД ММ ГГГГ"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Добавить в корзину — Купить сейчас",
+      "quick_view": "Быстрый просмотр",
+      "choose_options": "Выберите варианты",
+      "choose_product_options": "Выберите параметры для {{ product_name }}",
+      "description": "Описание",
+      "inventory_in_stock": "В наличии",
+      "inventory_in_stock_show_count": "{{ quantity }} в наличии",
+      "inventory_low_stock": "Низкий запас",
+      "inventory_low_stock_show_count": "Осталось мало товара: {{ quantity }}",
+      "inventory_out_of_stock": "Распродано",
+      "inventory_out_of_stock_continue_selling": "В наличии",
+      "sku": "Артикул",
+      "on_sale": "Распродажа",
+      "product_variants": "Варианты продукции",
+      "size_chart": "Таблица размеров",
+      "media": {
+        "gallery_viewer": "Просмотр галереи",
+        "load_image": "Загрузить изображение {{ index }} в режиме галереи",
+        "load_model": "Загрузить 3D-модель {{ index }} в режиме галереи",
+        "load_video": "Воспроизвести видео {{ index }} в режиме галереи",
+        "image_available": "Изображение {{ index }} теперь доступно в режиме галереи.",
+        "open_media": "Открыть медиафайл {{ index }} в модальном окне",
+        "play_video": "Воспроизвести видео"
+      },
+      "quantity": {
+        "label": "Количество",
+        "input_label": "Количество для {{ product }}",
+        "increase": "Увеличьте количество для {{ product }}",
+        "decrease": "Уменьшить количество для {{ product }}",
+        "minimum_of": "Минимум {{ quantity }}",
+        "maximum_of": "Максимум из {{ quantity }}",
+        "multiples_of": "Приращения {{ quantity }}",
+        "min_of": "{{ quantity }}",
+        "max_of": "Максимальное количество {{ quantity }}",
+        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> в корзине"
       }
     }
   }
