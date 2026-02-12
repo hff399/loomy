@@ -671,6 +671,154 @@
         "description_switch_later": "გადართვა ყოველთვის შეგიძლიათ მოგვიანებით",
         "list_accessibility_label": "მდებარეობების სია"
       }
+    },
+    "ui_components": {
+      "sunday": "კვირა",
+      "mondayAbbreviation": "თვე",
+      "tuesdayAbbreviation": "სამ",
+      "wednesdayAbbreviation": "ჩვენ",
+      "thursdayAbbreviation": "ხუთ",
+      "fridayAbbreviation": "ფრ",
+      "saturdayAbbreviation": "შაბ",
+      "sundayAbbreviation": "კვ",
+      "showNextMonth": "შემდეგი თვის ჩვენება, {{month}} {{year}}",
+      "showPreviousMonth": "წინა თვის ჩვენება, {{month}} {{year}}",
+      "rangeStart": "დიაპაზონის დასაწყისი",
+      "inRange": "დიაპაზონში",
+      "rangeEnd": "დიაპაზონის დასასრული",
+      "autocompleteOptionsAvailable": {
+        "one": "ხელმისაწვდომია {{count}} ერთეული",
+        "other": "ხელმისაწვდომია {{count}} ერთეული"
+      },
+      "removeItem": "{{label}} -ის წაშლა",
+      "removeTag": "თეგის წაშლა",
+      "month": {
+        "one": "თვე",
+        "other": "თვეები"
+      },
+      "mapClusterTitle": {
+        "one": "{{number}} მარკერის კლასტერი",
+        "other": "{{number}} მარკერების კლასტერი"
+      },
+      "expandSheet": "გაფართოება",
+      "qrCode": "QR კოდი",
+      "addFile": "ფაილის დამატება",
+      "dropzoneInvalidFileType": "ფაილის ტიპი მხარდაჭერილი არ არის",
+      "dropzoneDraggedOver": "ასატვირთად ჩააგდეთ ფაილი"
+    },
+    "profile_preview_bar": {
+      "customize_button": "პერსონალიზაცია",
+      "hide_bar": "დამალვის ზოლი",
+      "navigate_to_admin": "გადასვლა ადმინისტრატორზე",
+      "close_preview": "გადახედვის დახურვა",
+      "previewing": "თქვენ წინასწარ ათვალიერებთ:",
+      "saved_at": "შენახულია {{date}} {{time}} ზე",
+      "viewing": "თქვენ ათვალიერებთ:",
+      "not_available": "პროფილის მონაცემები მიუწვდომელია",
+      "actions_button": "მოქმედებები"
+    },
+    "active_inspector": {
+      "extension": {
+        "select": "აირჩიეთ გაფართოება სახელწოდებით {{extensionName}}",
+        "unselect": "მოხსენით {{extensionName}} სახელით გაფართოების მონიშვნა",
+        "move_down": "გაფართოების გადატანა შემდეგ პოზიციაზე",
+        "move_up": "გაფართოების წინა პოზიციაზე გადატანა",
+        "remove": "გაფართოების წაშლა",
+        "move_down_tooltip": "შემდეგ პოზიციაზე გადასვლა",
+        "move_up_tooltip": "წინა პოზიციაზე გადასვლა",
+        "remove_tooltip": "წაშლა"
+      }
+    },
+    "editor": {
+      "link_new_tab_confirmation": "ამ ბმულის რედაქტორში გახსნა შეუძლებელია. ის ახალ ფანჯარაში გაიხსნება ( {{resolved_to_link}} ). გასაგრძელებლად დააჭირეთ ღილაკს „კარგი“."
+    },
+    "settings": {
+      "title": "პარამეტრები",
+      "loading_accessibility_message": "პარამეტრების გვერდი იტვირთება.",
+      "log_out_everywhere": {
+        "title": "გასვლა ყველგან",
+        "description": "თუ მოწყობილობა დაკარგეთ ან უსაფრთხოებასთან დაკავშირებული პრობლემები გაქვთ, თქვენი ანგარიშის უსაფრთხოების უზრუნველსაყოფად ყველგან გამოდით სისტემიდან.",
+        "button": "გასვლა ყველგან",
+        "warning_message": "ასევე, ამ მოწყობილობაზე სისტემიდან გამოხვალთ."
+      }
+    },
+    "shop_ads": {
+      "title": "სხვა პროდუქტები, რომლებიც შეიძლება მოგეწონოთ",
+      "subtitle": "ხელმისაწვდომია შეზღუდული დროით",
+      "button": "მაღაზიაში დათვალიერება",
+      "previous_button": "წინა",
+      "next_button": "შემდეგი"
+    },
+    "knowledge_base": {
+      "self_serve_returns": {
+        "enabled": "მომხმარებლებს შეუძლიათ თავად მოითხოვონ და მართონ დაბრუნება.",
+        "disabled": "დაბრუნების მოთხოვნისთვის მომხმარებლებმა უნდა დაუკავშირდნენ გამყიდველს."
+      }
+    },
+    "subscriptions": {
+      "update_payment_instrument": {
+        "title": "გადახდის მეთოდის შეცვლა",
+        "loading": "გადახდის მეთოდები იტვირთება. მიმდინარეობს გადახდის მეთოდების ჩატვირთვა.",
+        "no_payment_methods_available": "გადახდის მეთოდები მიუწვდომელია",
+        "select_new_payment_method": "აირჩიეთ ახალი გადახდის მეთოდი",
+        "current_method": "მიმდინარე",
+        "cancel": "გაუქმება",
+        "save": "შენახვა",
+        "success": "გადახდის მეთოდი განახლდა",
+        "use_new_payment_method": "+ გამოიყენეთ ახალი გადახდის მეთოდი"
+      }
+    },
+    "intents": {
+      "subscription_replace_payment_method": {
+        "card_number": "ბარათის ნომერი",
+        "title": "გადახდის მეთოდის შეცვლა",
+        "replace_with": "ჩანაცვლება",
+        "add_new_payment_method": "ახლის დამატება",
+        "save_button": "შენახვა",
+        "close_button": "დახურვა",
+        "loading": "გადახდის მეთოდის ჩანაცვლების რეჟიმი იტვირთება",
+        "success": "გადახდის მეთოდი განახლდა",
+        "invalid_subscription_contract": "გამოწერის პოვნა შეუძლებელია",
+        "expiry_date": "ვადა {{expiryDate}}",
+        "edit_current_payment_method": "მიმდინარე გადახდის მეთოდის რედაქტირება",
+        "edit_selected_payment_method": "არჩეული გადახდის მეთოდის რედაქტირება"
+      }
+    },
+    "sign_in": {
+      "brand_logo_alt_text": "%{shop_name}-ის ლოგო",
+      "processing": "დამუშავება…",
+      "step_one": {
+        "page_title": "შესვლა - %{shop_name}",
+        "heading": "შესვლა",
+        "subheading": "შეიყვანეთ თქვენი ელ. ფოსტა და ჩვენ გამოგიგზავნით დამადასტურებელ კოდს",
+        "subheading_with_sign_in_options": "შედით სისტემაში ან შექმენით ანგარიში",
+        "input_field_label": "ელ. ფოსტა",
+        "button": "გაგრძელება",
+        "or": "ან"
+      },
+      "step_two": {
+        "page_title": "შეიყვანეთ კოდი - %{shop_name}",
+        "heading": "შეიყვანეთ კოდი",
+        "subheading": "გაიგზავნა %{email}-ზე",
+        "restart_link": "შედით სხვა ელ. ფოსტით",
+        "input_field_label": "6-ნიშნა კოდი",
+        "button": "გაგზავნა"
+      },
+      "error": {
+        "invalid": {
+          "invalid_email": "შეიყვანეთ სწორი ელექტრონული ფოსტის მისამართი",
+          "invalid_code": "შეიყვანეთ სწორი 6-ნიშნა კოდი"
+        }
+      }
+    }
+  },
+  "sections": {
+    "announcements": {
+      "previous_announcement": "წინა განცხადება",
+      "next_announcement": "შემდეგი განცხადება",
+      "carousel": "კარუსელი",
+      "announcement": "განცხადება",
+      "announcement_bar": "განცხადებების ზოლი"
     }
   }
 }
