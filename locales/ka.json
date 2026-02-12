@@ -547,7 +547,8 @@
       },
       "pickup_point": {
         "number_of_pickup_points_near_location": {
-          "other": "%{count} აღების წერტილი თქვენს მდებარეობასთან ახლოს"
+          "other": "%{count} აღების წერტილი თქვენს მდებარეობასთან ახლოს",
+          "one": "%{count} აღების წერტილი თქვენს მდებარეობასთან ახლოს"
         },
         "change": "მდებარეობის შეცვლა",
         "waiting_on_pickup_point_location_notice": "აყვანის წერტილების ძიება...",
@@ -557,6 +558,41 @@
             "unsuported_by_browser": "გეოლოკაციის მიღებას თქვენი ბრაუზერი არ უჭერს მხარს. სცადეთ ხელახლა ან გამოიყენეთ სხვა ბრაუზერი.",
             "permission_not_allowed": "თქვენი მდებარეობის გაზიარების ნებართვა.",
             "permission_denied": "თქვენი მდებარეობის დადგენა ვერ მოხერხდა. სცადეთ ხელახლა."
+          }
+        },
+        "location_is_currently_closed": "დახურულია",
+        "business_hours": "სამუშაო საათები",
+        "no_business_hours": "სამუშაო საათები არ არის ხელმისაწვდომი",
+        "open_twenty_four_hours": "ღიაა 24/7",
+        "title": "აღების წერტილი",
+        "or": "ან",
+        "search_button": "ძიება",
+        "address_label": "მისამართი",
+        "selector_tabs": "აღების წერტილის ამომრჩევი",
+        "selector_tab_map": "რუკა",
+        "selector_tab_list": "სია",
+        "could_not_resolve_address": "თქვენი მისამართის პოვნა ვერ მოხერხდა. სცადეთ ხელახლა ან გამოიყენეთ სხვა მისამართი",
+        "no_pickup_points_near_you": "არჩეულ მისამართთან ახლოს აღების პუნქტები ვერ მოიძებნა",
+        "no_pickup_points_near_location": "თქვენს მდებარეობასთან ახლოს აღების პუნქტები ვერ მოიძებნა",
+        "pickup_unavailable_banner_title": {
+          "one": "თქვენი ნივთისთვის აღების ქულები არ არის ხელმისაწვდომი",
+          "other": "თქვენი ნივთებისთვის აღების ქულები არ არის ხელმისაწვდომი"
+        },
+        "no_pickup_points_found": "აღების პუნქტები ვერ მოიძებნა",
+        "paginator": {
+          "next_accessibility_label": "შემდეგი გვერდი",
+          "previous_accessibility_label": "წინა გვერდი",
+          "header": {
+            "one": "ნაჩვენებია %{count} პუნქტის %{first} - %{last}",
+            "other": "ნაჩვენებია %{count} პუნქტიდან %{first} - %{last}"
+          },
+          "selected_pickup_point_label": {
+            "one": "%{pickup_point_index} %{count} პუნქტიდან",
+            "other": "%{pickup_point_index} %{count} ქულისგან"
+          },
+          "selected_page": {
+            "one": "%{first} - %{last}, %{count} პუნქტიდან",
+            "other": "%{first} - %{last}, %{count} პუნქტიდან"
           }
         }
       },
@@ -1231,7 +1267,13 @@
         "pay_now": "გადაიხადეთ ახლავე"
       },
       "change_currency": {
-        "currency_button_label": "%{ვალუტა} (%{ვალუტის_სიმბოლო})"
+        "currency_button_label": "%{ვალუტა} (%{ვალუტის_სიმბოლო})",
+        "credit_card_will_be_charged_html": "თქვენი საკრედიტო ბარათიდან ჩამოიჭრება %{amount}",
+        "payment_total_label": "გადახდის ჯამი",
+        "conversion_rate": "1 %{ვალუტის_კოდიდან} = %{კურსი} %{ვალუტის_კოდამდე}",
+        "change_currency_link": "შეცვლა %{currency_name}-ზე",
+        "card_provider_fx_charges_warning": "თქვენი ბარათის პროვაიდერმა შესაძლოა %{currency_code} ტრანზაქციებზე საკომისიო დააწესოს.",
+        "currency_not_supported_by_shop": "თქვენს მიერ არჩეული ვალუტა აღარ არის ხელმისაწვდომი. ყველა ფასი ახლა %{currency_code}-შია მოცემული."
       },
       "field_errors": {
         "address_country_blank": "აირჩიეთ ქვეყანა/რეგიონი",
@@ -1903,6 +1945,131 @@
         "change_currency_section_description": "აირჩიეთ ვალუტის ვარიანტი",
         "no_real_orders_dev_store": "ეს მაღაზია ვერ იღებს რეალურ შეკვეთებს ან რეალურ გადახდებს.",
         "waiting_on_payment_methods": "ხელმისაწვდომი გადახდის მეთოდების მიღება..."
+      },
+      "change_country": {
+        "cart_updated_based_on_country": "თქვენი კალათა განახლდა თქვენი მიწოდების ქვეყნის მიხედვით.",
+        "cart_and_currency_updated_based_on_country": "თქვენი კალათა და ვალუტა განახლდა თქვენი მიწოდების ქვეყნის მიხედვით.",
+        "currency_updated_for_country": "ვალუტა განახლდა %{country}-ისთვის"
+      },
+      "change_cart_localization": {
+        "verify_shipping_address": "თქვენი ქვეყანა/რეგიონი განახლდა. შეკვეთის გასაგრძელებლად შეიყვანეთ თქვენი მიწოდების მისამართი."
+      },
+      "tips": {
+        "title": "დაამატეთ ჩაის ფული",
+        "description": "გამოხატეთ თქვენი მხარდაჭერა %{shop_name}-ის გუნდის მიმართ",
+        "presets_description": "აირჩიეთ ჩაის პროცენტი",
+        "custom_label": "მორგებული ჩაის ფული",
+        "add_tip": "დაამატეთ ჩაის ფული",
+        "update_tip": "განახლების რჩევა",
+        "message": "გმადლობთ, ჩვენ ამას ვაფასებთ.",
+        "no_tip_label": "არცერთი"
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "zero": "შეიძინეთ %{product_name}",
+          "one": "შეიძინეთ %{product_name} და %{count} სხვა ნივთი",
+          "other": "შეიძინეთ %{product_name} და %{count} სხვა ნივთი"
+        }
+      },
+      "subscriptions": {
+        "recurring_total_intervals": {
+          "day": {
+            "one": "დღე",
+            "other": "%{count} დღე"
+          },
+          "week": {
+            "one": "კვირა",
+            "other": "%{count} კვირა"
+          },
+          "month": {
+            "one": "თვე",
+            "other": "%{count} თვე"
+          },
+          "year": {
+            "one": "წელი",
+            "other": "%{count} წელი"
+          }
+        },
+        "recurring_totals": "%{total_price} ყოველ %{interval}-ზე",
+        "recurring_totals_with_initial_order_shipping_discount": "პირველი გადახდა %{total_price_with_discount}, შემდეგ %{recurring_total}",
+        "recurring_totals_with_policies": {
+          "first_cycles": {
+            "one": "პირველი გადახდა %{total_price}",
+            "other": "პირველი %{count} გადახდა %{total_price} თითოეული"
+          },
+          "following_cycles": ", შემდეგ %{total_price} ყოველ %{interval}-ზე"
+        },
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "one": ", შემდეგ %{count} გადახდა %{total_price}-ით",
+            "other": ", შემდეგ %{count} გადახდა %{total_price}-ად თითოეული"
+          }
+        }
+      },
+      "customer_payment_methods": {
+        "page_title": "გადახდის მეთოდები",
+        "title": "გადახდის მეთოდები",
+        "update_card_button_label": "ბარათის განახლება",
+        "delete_customer_mandate": {
+          "generic_error": "თქვენი მოთხოვნის დამუშავებისას პრობლემა წარმოიშვა.",
+          "success_message": "თქვენი გადახდის მეთოდი წარმატებით წაიშალა"
+        }
+      },
+      "throttle": {
+        "too_many_attempts": {
+          "message": "ძალიან ბევრი მცდელობა",
+          "description": "სცადეთ ხელახლა რამდენიმე წუთში"
+        },
+        "line_to_check_out": "რიგში ხართ გასვლისთვის",
+        "cart_summary_heading": "თქვენი კალათა",
+        "merchandise": {
+          "available": "ხელმისაწვდომია",
+          "sold_out": "გაყიდულია"
+        },
+        "inventory": {
+          "partial_inventory_banner": "თქვენი კალათის ნაწილი გაყიდულია და შეკვეთის გაფორმებისას მისი შეძენა შეუძლებელი იქნება.",
+          "sold_out": {
+            "heading": "თქვენი კალათა გაყიდულია",
+            "storefront_body": "შოპინგისთვის დაბრუნდით მაღაზიაში",
+            "no_storefront_body": "სამწუხაროდ, თქვენთვის სასურველი ნივთი აღარ არის ხელმისაწვდომი.",
+            "link": "მაღაზიაში დაბრუნება"
+          }
+        },
+        "title": "რიგი",
+        "time_to_checkout_title": "დროა, გახვიდეთ - {{shopName}}",
+        "estimated_wait_time": {
+          "calculating": "სავარაუდო ლოდინის დროის გამოთვლა",
+          "less_than_one": "სავარაუდო ლოდინის დრო: წუთზე ნაკლები",
+          "one": "სავარაუდო ლოდინის დრო: {{count}} წუთი",
+          "other": "სავარაუდო ლოდინის დრო: {{count}} წუთი"
+        },
+        "last_checked": "(ბოლოს შემოწმებულია: {{time}} )",
+        "footer": {
+          "heading": "არ განაახლოთ ეს გვერდი, ის ავტომატურად განახლდება.",
+          "body": "თქვენს კალათაში არსებული ნივთები არ არის დაჯავშნილი შეკვეთის დასრულებამდე."
+        }
+      },
+      "cart_checkout_validation": {
+        "runtime_error": "თქვენი მოთხოვნის დამუშავებისას პრობლემა წარმოიშვა. დაუკავშირდით მაღაზიის მფლობელს."
+      },
+      "no_address_location": {
+        "title": "მისამართის გარეშე მდებარეობა",
+        "header": "ამ მდებარეობისთვის მიწოდების მისამართი არ გაქვთ",
+        "alt_header": "მიწოდების მისამართი აკლია",
+        "message": "დაგვიკავშირდით ამ ადგილმდებარეობის მისამართის დასამატებლად და შეკვეთის დასასრულებლად.",
+        "email_us_button_label": "გამოგვიგზავნეთ ელ.წერილი"
+      },
+      "order_errors": {
+        "creation_failure": "თქვენი შეკვეთის შექმნისას პრობლემა წარმოიშვა. სცადეთ ხელახლა ან დაგვიკავშირდით დამატებითი დეტალებისთვის.",
+        "network_failure": "თქვენი შეკვეთის გაგზავნა ვერ მოხერხდა ქსელის შეცდომის გამო. შეამოწმეთ თქვენი კავშირი და სცადეთ ხელახლა.",
+        "inventory_reservation_failure": "ზოგიერთი ნივთი აღარ არის ხელმისაწვდომი."
+      },
+      "session_errors": {
+        "session_not_unique": "თქვენი შეკვეთის დამუშავებისას პრობლემა წარმოიშვა. მაღაზიაში დასაბრუნებლად განაახლეთ ეს გვერდი.",
+        "session_already_finished": "ეს შეკვეთა უკვე გაგზავნილია. შეგიძლიათ დაბრუნდეთ მაღაზიაში ახალი შეკვეთის დასაწყებად."
+      },
+      "artifact_errors": {
+        "artifact_dissatisfaction_without_violation": "თქვენი შეკვეთის დამუშავებისას პრობლემა წარმოიშვა. სცადეთ ხელახლა რამდენიმე წუთში."
       }
     },
     "collections": {
