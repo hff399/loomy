@@ -74,16 +74,67 @@
             "promo_link": ""
           }
         },
-        "reima_nav_tab_eTQi9R": {
+        "reima_nav_tab_RXxchf": {
           "type": "reima_nav_tab",
           "settings": {
-            "tab_title": "2026 Spring",
-            "tab_link": "shopify://collections/girls",
+            "tab_title": "Age",
+            "tab_link": "",
             "is_sale": false,
             "has_dropdown": true,
-            "col1_title": "SHOP BY CATEGORY",
-            "col1_menu": "boys-categories",
-            "col2_title": "example 2",
+            "col1_title": "",
+            "col1_menu": "",
+            "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
+        "reima_nav_tab_j6irGK": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "Weather",
+            "tab_link": "",
+            "is_sale": false,
+            "has_dropdown": true,
+            "col1_title": "",
+            "col1_menu": "",
+            "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
+        "reima_nav_tab_3D6zgE": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "Accessories",
+            "tab_link": "",
+            "is_sale": false,
+            "has_dropdown": true,
+            "col1_title": "",
+            "col1_menu": "",
+            "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
+        "reima_nav_tab_XWjEze": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "Technology",
+            "tab_link": "",
+            "is_sale": false,
+            "has_dropdown": true,
+            "col1_title": "",
+            "col1_menu": "",
+            "col2_title": "",
             "col2_menu": "",
             "col3_title": "",
             "col3_menu": "",
@@ -101,6 +152,23 @@
             "col1_title": "Brands",
             "col1_menu": "brands-header",
             "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
+        "reima_nav_tab_eTQi9R": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "2026 Spring",
+            "tab_link": "shopify://collections/girls",
+            "is_sale": false,
+            "has_dropdown": true,
+            "col1_title": "SHOP BY CATEGORY",
+            "col1_menu": "boys-categories",
+            "col2_title": "example 2",
             "col2_menu": "",
             "col3_title": "",
             "col3_menu": "",
@@ -149,8 +217,12 @@
       "block_order": [
         "reima_nav_tab_cTC33K",
         "reima_nav_tab_Lka7D4",
-        "reima_nav_tab_eTQi9R",
+        "reima_nav_tab_RXxchf",
+        "reima_nav_tab_j6irGK",
+        "reima_nav_tab_3D6zgE",
+        "reima_nav_tab_XWjEze",
         "reima_nav_tab_xY3jdB",
+        "reima_nav_tab_eTQi9R",
         "reima_nav_tab_hhNYXR",
         "category_mega_menus_THjyfA"
       ],
