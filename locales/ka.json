@@ -7,4 +7,250 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "shopify": {
+    "sentence": {
+      "two_words_connector": " და ",
+      "last_word_connector": "და "
+    },
+    "checkout": {
+      "general": {
+        "page_title": "გადახდა",
+        "error_page_title": "შეცდომა",
+        "skip_to_content": "გადასვლა კონტენტზე",
+        "breadcrumb": "პურის ნამცეცები",
+        "continue_button_label": "გაგრძელება",
+        "complete_purchase_button_label": "შეკვეთის დასრულება",
+        "pay_now_button_label": "გადაიხადეთ ახლავე",
+        "authenticate_purchase_button_label": "გადახდის ავთენტიფიკაცია",
+        "edit_link_label": "რედაქტირება",
+        "all_rights_reserved": "ყველა უფლება დაცულია %{shop_name}",
+        "print_policies_link_label": "ბეჭდვა",
+        "cart": "კალათა",
+        "close_modal_label": "დახურვა",
+        "close_notice_label": "დახურვა",
+        "expand_notice_label": "მეტის ნახვა",
+        "continue_to_shipping_method": "განაგრძეთ მიწოდება",
+        "continue_to_payment_method": "გადახდაზე გადასვლა",
+        "continue_to_review": "შეკვეთის გადახედვა",
+        "back_to_cart": "კალათაში დაბრუნება",
+        "back_to_contact_information": "ინფორმაციაზე დაბრუნება",
+        "back_to_shipping_method": "დაბრუნება მიწოდებაში",
+        "back_to_payment_method": "გადახდაზე დაბრუნება",
+        "choose_shipping_method": "აირჩიეთ მიწოდების მეთოდი",
+        "choose_payment_method": "აირჩიეთ გადახდის მეთოდი",
+        "choose_billing_address": "აირჩიეთ გადახდის მისამართი",
+        "contact_us_html": "დამატებითი ინფორმაციისთვის დაგვიკავშირდით",
+        "autocomplete_title": "წინადადებები",
+        "autocomplete_single_item": "ხელმისაწვდომია 1 ერთეული",
+        "autocomplete_multi_item": "ხელმისაწვდომია {{number}} ერთეული",
+        "autocomplete_close": "დახურეთ შეთავაზებები",
+        "forwarding_indicator": {
+          "new_window": "იხსნება ახალ ფანჯარაში.",
+          "external": "ხსნის გარე ვებსაიტს.",
+          "external_and_new_window": "გარე ვებსაიტს ახალ ფანჯარაში ხსნის."
+        },
+        "checkout_context": {
+          "step_one": "%{shop_name} - შეკვეთის გაფორმება"
+        },
+        "tooltip_accessibility_label": "მეტი ინფორმაცია",
+        "qr_code": "QR კოდი",
+        "errors": {
+          "only_empty_terms_accepted": "ეს პოლიტიკა მხოლოდ ცარიელ პირობებს იღებს.",
+          "session_identifier_not_unique_error": "თქვენს შეკვეთასთან დაკავშირებით რაღაც პრობლემა წარმოიშვა, სცადეთ ხელახლა გადახდა.",
+          "line_item_limit_reached": "ხაზის ერთეულების მაქსიმალური რაოდენობა მიღწეულია.",
+          "session_is_already_finished": "ეს შეკვეთის სესია უკვე დასრულებულია.",
+          "merchandise": {
+            "only_value_constraint": "საქონლის შეყვანაში დაშვებულია მხოლოდ ზუსტი მნიშვნელობები.",
+            "merchandise_not_found": "პროდუქტი ვერ მოიძებნა.",
+            "merchandise_variant_not_found": "პროდუქტის ვარიანტი ვერ მოიძებნა.",
+            "merchandise_not_applicable": "პროდუქტის ვარიანტის შეძენა შეუძლებელია.",
+            "mixed_currencies": "შეკვეთის გაფორმება შეიცავს სხვადასხვა ვალუტით გათვლილ ერთეულებს.",
+            "bundle_products_not_supported_for_b2b": "ამ მდებარეობისთვის B2B შეკვეთებში შეფუთული ნივთების დამატება შეუძლებელია.",
+            "gift_card_quantity_mismatch": "სასაჩუქრე ბარათის კოდების მითითებისას, ხაზის პუნქტის რაოდენობა და სასაჩუქრე ბარათის კოდების რაოდენობა უნდა ემთხვეოდეს.",
+            "gift_card_not_supported": "სასაჩუქრე ბარათები ამ შეკვეთაზე მხარდაჭერილი არ არის.",
+            "gift_card_not_unique": "სასაჩუქრე ბარათი კოდით {{code}} ამ შეკვეთის გაფორმებისას ერთზე მეტჯერ გვხვდება. კოდები შედარებამდე ფორმატირებულია.",
+            "gift_card_used": "სასაჩუქრე ბარათის კოდი {{code}} უკვე მინიჭებულია სასაჩუქრე ბარათზე. კოდები ფორმატირებულია შედარებამდე.",
+            "gift_card_invalid": "სასაჩუქრე ბარათის კოდი {{code}} არასწორია.",
+            "gift_card_code_changed": "სასაჩუქრე ბარათის კოდი {{proposed_code}} შეიცვალა {{formatted_code}} ით ფორმატირების წესების შესაბამისად.",
+            "gift_card_with_attributes_not_supported": "ამ გადახდისას მორგებული ატრიბუტების მქონე სასაჩუქრე ბარათები არ არის მხარდაჭერილი.",
+            "gift_card_with_components_not_supported": "კომპონენტებიანი სასაჩუქრე ბარათები ამ შეკვეთაზე მხარდაჭერილი არ არის.",
+            "selling_plan_mismatch": "გამოწერა განახლდა.",
+            "selling_plan_not_supported": "გამოწერები არ არის მხარდაჭერილი.",
+            "selling_plan_not_supported_b2b": "B2B გადახდისთვის გამოწერები არ არის მხარდაჭერილი.",
+            "price_mismatch": "ამ საქონლის ადრე შემოთავაზებული ფასი არასწორი იყო და განახლდა.",
+            "inventory_not_found": "ამ საქონლის ინვენტარი ვერ მოიძებნა.",
+            "product_not_published": "პროდუქტი არ არის გამოქვეყნებული.",
+            "product_not_published_in_buyer_location": "პროდუქტი არ არის გამოქვეყნებული მყიდველის მდებარეობაში.",
+            "duplicated_stable_id": "ამ სასაქონლო ხაზს იგივე სტაბილური ID აქვს, რაც სხვა ხაზს.",
+            "minimum_quantity_not_met": "ზოგიერთი ნივთის რაოდენობა არ აკმაყოფილებს საჭირო მინიმალურ რაოდენობას.",
+            "maximum_quantity_exceeded": "ზოგიერთი ნივთის რაოდენობა აღემატება დასაშვებ მაქსიმალურ რაოდენობას.",
+            "quantity_increment_not_met": "ზოგიერთი ნივთის რაოდენობა არ აკმაყოფილებს შეკვეთის ლიმიტს.",
+            "quantity_rules_not_met": "ზოგიერთი ნივთის რაოდენობა არ აკმაყოფილებს შეკვეთის ლიმიტს.",
+            "bundle_requires_components": "ამ პაკეტურ პროდუქტს არ აქვს კომპონენტები.",
+            "title_too_long": "საქონლის სათაური ძალიან გრძელია.",
+            "title_empty": "საქონლის სათაური ცარიელია."
+          },
+          "buyer_identity": {
+            "business_customer_does_not_match_company": "კომპანიის საკონტაქტო პირს კომპანიასთან წვდომა არ აქვს.",
+            "customer_account_required": "გასაგრძელებლად უნდა გაიაროთ ავტორიზაცია.",
+            "company_location_required": "მომხმარებელმა უნდა აირჩიოს კომპანიის მდებარეობა გასაგრძელებლად.",
+            "company_purchase_permission_required": "მომხმარებელს არ აქვს კომპანიის შეკვეთების განთავსების უფლება.",
+            "personal_order_not_allowed": "ამ მაღაზიაში პირადი შეკვეთები არ არის დაშვებული.",
+            "lost_access_to_company": "მომხმარებელმა დაკარგა წვდომა ნებისმიერ კომპანიაზე.",
+            "contact_info_does_not_match_customer_account": "საკონტაქტო ინფორმაცია უნდა ემთხვეოდეს იმ ანგარიშს, რომელშიც შესული ხართ.",
+            "phone_number_does_not_match_expected_pattern": "მითითებული ტელეფონის ნომერი არ ემთხვევა მოსალოდნელ ნიმუშს.",
+            "email_required": "ელექტრონული ფოსტის მისამართი სავალდებულოა, როდესაც საქონელი შეძენილია გამოწერის გამოყენებით.",
+            "email_domain_is_invalid": "ამ მითითებული დომენის ამოხსნა შეუძლებელია.",
+            "missing_contact_method": "სწორი დაკავშირების მეთოდი აკლია.",
+            "checkout_completion_target_is_missing": "შეკვეთის დასრულების მიზანი აკლია.",
+            "invalid_customer_profile": "მოწოდებული იყო არასწორი მომხმარებლის პროფილი.",
+            "customer_profile_access_restricted": "Checkout-ს არ აქვს მომხმარებლის პროფილზე წვდომის ნებართვა.",
+            "checkout_completion_target_is_invalid_proc": "არასწორი შეკვეთის დასრულების მიზანი.",
+            "buyer_identity_presentment_currency_does_not_match": "თქვენი შეკვეთის დამუშავებისას პრობლემა წარმოიშვა. სცადეთ ხელახლა რამდენიმე წუთში."
+          },
+          "delivery": {
+            "only_one_delivery_line_allowed": "კალათას მხოლოდ ერთი მიწოდების ხაზი უნდა ჰქონდეს.",
+            "wrong_number_of_delivery_lines": "საქონლის თითოეული ჯგუფისთვის უნდა იყოს მითითებული მიწოდების ხაზი.",
+            "external_delivery_promise_error": "გარე მიწოდების დაპირების მოძიების შეცდომა.",
+            "options_instructions_invalid": "მითითებული ინსტრუქციები არ ემთხვევა მოსალოდნელ ნიმუშს.",
+            "destination_address_required": "გასაგრძელებლად საჭიროა დანიშნულების მისამართი.",
+            "pickup_points_unavailable": "აღების პუნქტები ამჟამად მიუწვდომელია.",
+            "local_pickup_delivery_line_detail_changed": "გასაგრძელებლად, ადგილობრივი მიწოდების ამჟამინდელი სტრატეგია უნდა შეიცვალოს.",
+            "selected_pickup_option_no_longer_available": "ადრე არჩეული აღების ვარიანტი აღარ არის ხელმისაწვდომი.",
+            "local_pickup_no_delivery_strategy_available": "ადგილობრივი მიწოდების სტრატეგია ადგილზე აღების შესაძლებლობით ვერ მოიძებნა.",
+            "origin_location_id_required": "საცალო მიწოდების მეთოდის მოთხოვნისას საჭიროა წარმოშობის მდებარეობის ID.",
+            "invalid_origin_location_id": "საწყისი მდებარეობის ID-ის შესაბამისი მდებარეობა ვერ მოიძებნა.",
+            "origin_location_id_not_allowed": "მოთხოვნილი მიწოდების მეთოდები არ უჭერს მხარს საწყისი მდებარეობის ID-ს."
+          }
+        }
+      },
+      "contact": {
+        "optional_phone_label": "ტელეფონი (არასავალდებულო)",
+        "phone_placeholder": "ტელეფონი",
+        "phone_tooltip": "იმ შემთხვევაში, თუ თქვენი შეკვეთის შესახებ დაგვიკავშირდებით",
+        "zip_code_label": "საფოსტო ინდექსი",
+        "optional_zip_code_label": "საფოსტო ინდექსი (არასავალდებულო)",
+        "zip_code_placeholder": "საფოსტო ინდექსი",
+        "postal_code_label": "საფოსტო ინდექსი",
+        "optional_postal_code_label": "საფოსტო ინდექსი (არასავალდებულო)",
+        "postal_code_placeholder": "საფოსტო ინდექსი",
+        "postcode_label": "საფოსტო ინდექსი",
+        "optional_postcode_label": "საფოსტო ინდექსი (არასავალდებულო)",
+        "postcode_placeholder": "საფოსტო ინდექსი",
+        "pincode_label": "PIN კოდი",
+        "optional_pincode_label": "PIN კოდი (არასავალდებულო)",
+        "pincode_placeholder": "PIN კოდი",
+        "civic_number_warning": "დაამატეთ სახლის ნომერი, თუ გაქვთ",
+        "optional_last_name_label": "გვარი (არასავალდებულო)",
+        "different_shipping_address_label": "სხვა მისამართზე გაგზავნა",
+        "different_shipping_address_text": "ამ შეკვეთისთვის გამოიყენეთ ერთჯერადი მისამართი",
+        "change_company_location_link_label": "კომპანიის მდებარეობის შეცვლა",
+        "change_location_link_label": "მდებარეობის შეცვლა",
+        "ship_to_company": "გაგზავნა {{companyName}} -ში"
+      },
+      "delivery_options": {
+        "free_total_label": "უფასო",
+        "ship": "გემი",
+        "ship_to_address": "მისამართზე გაგზავნა",
+        "shipping_address": "მიწოდების მისამართი",
+        "pick_up": "აიღეთ",
+        "pick_up_from_store": "მაღაზიაში აღება",
+        "pick_up_locations": "აღების ადგილები",
+        "pickup_point_map_title": "აღების წერტილის რუკა",
+        "pick_up_in_one_hour": "როგორც წესი, მზად არის 1 საათში",
+        "pick_up_in_two_hours": "როგორც წესი, მზად არის 2 საათში",
+        "pick_up_in_four_hours": "როგორც წესი, მზად არის 4 საათში",
+        "pick_up_in_twenty_four_hours": "როგორც წესი, მზად არის 24 საათში",
+        "pick_up_in_two_to_four_days": "როგორც წესი, მზად არის 2-4 დღეში",
+        "pick_up_in_five_or_more_days": "როგორც წესი, მზად არის 5+ დღეში",
+        "pick_up_in_zero_to_two_hours": "მზადაა ასაღებად 2 საათში",
+        "pick_up_in_two_to_four_hours": "მზადაა ასაღებად 4 საათში",
+        "pick_up_immediately": "მზადაა ასაღებად",
+        "pick_up_next_day": "მზადაა მეორე დღეს ასაღებად",
+        "pickup_point_method_definition": "გაგზავნეთ აღების წერტილამდე",
+        "retail_method_definition": "საცალო გადაზიდვები",
+        "company_location_no_address_banner": "შეკვეთები, რომლებიც გაიგზავნება იმ ადგილებში, რომლებსაც არ აქვთ მისამართი, გადაეგზავნებათ განსახილველად.",
+        "none_method_definition": "მიწოდება არ არის",
+        "subscription_pickup_information": "მიწოდების ეს მეთოდი გავრცელდება ამ შეკვეთის ყველა ნივთზე და ამ გამოწერის ყველა მომავალ შეკვეთაზე."
+      },
+      "customer_account": {
+        "not_user_label": "%{first_name} არ ხარ?",
+        "have_an_account_label": "გაქვთ ანგარიში?",
+        "sign_in_link_label": "შესვლა",
+        "sign_out_link_label": "გასვლა",
+        "save_my_information_label": "შეინახეთ ეს ინფორმაცია შემდეგი ჯერისთვის",
+        "invalid_address": "არჩეული მისამართი არასწორია. %{update_address_link} ან აირჩიეთ სხვა მისამართი.",
+        "incomplete_address": "არჩეული მისამართი არასრულია. %{update_address_link} ან აირჩიეთ სხვა მისამართი.",
+        "rollup_label": "ანგარიში",
+        "rollup_accessibility_label": "ანგარიშის პარამეტრები",
+        "invalid_shipping_method_summary": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად აირჩიეთ სწორი მიწოდების მისამართი",
+        "saved_address_option_description": {
+          "one": "თქვენ გაქვთ {{count}} შენახული მისამართი.",
+          "other": "თქვენ გაქვთ {{count}} შენახული მისამართი."
+        },
+        "saved_address_option_link": "შენახული მისამართის გამოყენება",
+        "saved_address_modal_title": "გამოიყენეთ ჩემი შენახული მისამართი"
+      },
+      "remote_merchandise_only": {
+        "title": "დაასრულეთ თქვენი შენაძენი",
+        "remote_only_notice": "ეს ნივთები იყიდება და იგზავნება სხვა მაღაზიებში. შესყიდვის დასასრულებლად, შეამოწმეთ თითოეული მაღაზია.",
+        "return_to_store_label": "მაღაზიაში დაბრუნება",
+        "detail_item_label": {
+          "one": "{{count}} ერთეული",
+          "other": "{{count}} ერთეული"
+        },
+        "checkout_on_shop_label": "შეიძინეთ %{shop_name}-ზე",
+        "single_shop_transition": "გადამისამართდებით %{advertiser}-ზე შესყიდვის დასასრულებლად."
+      },
+      "stock": {
+        "page_title": "ინვენტარიზაციის პრობლემები",
+        "title": "მარაგში არ არის",
+        "items_unavailable_notice": "ზოგიერთი ნივთი აღარ არის ხელმისაწვდომი.",
+        "product_column_header": "პროდუქტები",
+        "quantity_column_header": "რაოდენობა",
+        "price_column_header": "ფასი",
+        "status_column_header": "სტატუსი",
+        "removed_from_cart_notice": "კალათიდან ამოღებულია",
+        "sold_out_label": "გაყიდულია",
+        "reduced_label": "შემცირებული",
+        "reduced_with_quantity_label": "მხოლოდ %{quantity_available} დარჩა",
+        "remove_from_cart_button_label": "კალათიდან ამოღება",
+        "continue_shopping_button_label": "გაგრძელება",
+        "go_back_to_cart_button_label": "დაბრუნება ჩემს კალათაში",
+        "remove": "წაშლა",
+        "return_to_store_label": "მაღაზიაში დაბრუნება",
+        "continue_cta_label": "განაგრძეთ გადახდა",
+        "item_label": {
+          "one": "{{count}} ერთეული",
+          "other": "{{count}} ერთეული"
+        },
+        "empty_cart_label": "თქვენი კალათა ცარიელია",
+        "quantity_update": {
+          "page_title": "რაოდენობრივი განახლება",
+          "title": "რაოდენობრივი განახლება",
+          "description": "ამ ნივთების ხელმისაწვდომი რაოდენობები შეიცვალა და განახლებულია თქვენს კალათაში."
+        },
+        "unpurchasable_product": {
+          "title": "შეუძლებელი პროდუქტი",
+          "header": "ზოგიერთი ნივთი თქვენი კალათიდან წაიშალა",
+          "message": "ეს ნივთები B2B შეკვეთებისთვის მიუწვდომელია.",
+          "status_column_header": "მიუწვდომელია"
+        },
+        "unpurchasable_product_generic": {
+          "title": "შეუძლებელი პროდუქტი",
+          "header": "ზოგიერთი ნივთი თქვენი კალათიდან წაიშალა",
+          "message": "ეს ნივთები არ არის ხელმისაწვდომი.",
+          "status_column_header": "მიუწვდომელია"
+        },
+        "unfulfillable_product": {
+          "title": "მიწოდება შეუძლებელია",
+          "message": {
+            "one": "%{delivery_method} ამ ნივთისთვის აღარ არის ხელმისაწვდომი.",
+            "other": "%{delivery_method} აღარ არის ხელმისაწვდომი ამ ერთეულებისთვის."
+          }
+        }
+      }
+    }
+  }
+}
