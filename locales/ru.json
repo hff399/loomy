@@ -1,0 +1,157 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "announcements": {
+      "previous_announcement": "Предыдущее объявление",
+      "next_announcement": "Следующее объявление",
+      "carousel": "Карусель",
+      "announcement": "Объявление",
+      "announcement_bar": "Панель объявлений"
+    },
+    "header": {
+      "announcement": "Объявление",
+      "menu": "Меню",
+      "cart_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} товаров"
+      }
+    },
+    "cart": {
+      "title": "Ваша корзина",
+      "item_count": "{{ count }} Элементов",
+      "caption": "Товары в корзине",
+      "remove_title": "Удалить {{ title }}",
+      "order_summary": "Сводка заказа",
+      "sub_total": "Итого",
+      "estimated_total": "общий итог",
+      "new_estimated_total": "Новая оценочная общая сумма",
+      "add_note": "Добавить примечание",
+      "note": "Специальные инструкции к заказу",
+      "note_save": "Сохранять",
+      "estimate_shipping": "Расчет стоимости доставки",
+      "estimate_shipping_rate": "Ориентировочные тарифы на доставку",
+      "view_cart": "Просмотреть корзину",
+      "checkout": "Проверить",
+      "we_accept": "Мы принимаем",
+      "empty": "Ваша корзина пуста",
+      "cart_error": "Произошла ошибка при обновлении вашей корзины. Пожалуйста, попробуйте еще раз.",
+      "cart_quantity_error_html": "В корзину можно добавить только {{ quantity }} этого товара.",
+      "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Пошлины и налоги включены в стоимость. Скидки и <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">стоимость доставки</a> рассчитываются при оформлении заказа.",
+      "duties_and_taxes_included_shipping_at_checkout_without_policy": "Пошлины и налоги включены в стоимость. Скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "Налоги включены. Скидки и <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">стоимость доставки</a> рассчитываются при оформлении заказа.",
+      "taxes_included_shipping_at_checkout_without_policy": "Налоги включены. Скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "В стоимость включены пошлины. Налоги, скидки и <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">стоимость доставки</a> рассчитываются при оформлении заказа.",
+      "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "В стоимость включены пошлины. Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Налоги, скидки и <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">стоимость доставки</a> рассчитываются при оформлении заказа.",
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "headings": {
+        "product": "Продукт",
+        "price": "Цена",
+        "total": "Общий",
+        "quantity": "Количество",
+        "image": "Изображение товара",
+        "remove": "Действие"
+      },
+      "update": "Обновлять",
+      "login": {
+        "title": "У вас есть аккаунт?",
+        "paragraph_html": "Для более быстрой оплаты <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\" class=\"link underlined-link\">войдите в систему</a> ."
+      }
+    },
+    "countdown": {
+      "days": "Дни",
+      "hours": "Часы",
+      "minutes": "Протокол",
+      "seconds": "Секунды",
+      "time_expire": "Обратный отсчет"
+    },
+    "footer": {
+      "payment": "Способы оплаты"
+    },
+    "featured_blog": {
+      "view_all": "Просмотреть все",
+      "onboarding_date": "ДД ММ ГГГГ",
+      "onboarding_title": "Запись в блоге",
+      "onboarding_content": "Предоставьте своим клиентам краткое изложение вашей статьи в блоге."
+    },
+    "featured_collection": {
+      "view_all": "Просмотреть все",
+      "view_all_label": "Просмотреть все товары в коллекции {{ collection_name }}"
+    },
+    "collection_list": {
+      "view_all": "Просмотреть все"
+    },
+    "collection_template": {
+      "empty": "Товары не найдены",
+      "title": "Коллекция",
+      "use_fewer_filters_html": "Используйте меньше фильтров или <a class=\"&lt;span class='notranslate'&gt;{{ class }}&lt;/span&gt;\" href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">удалите все.</a>"
+    },
+    "video": {
+      "load_video": "Загрузить видео: {{ description }}"
+    },
+    "slideshow": {
+      "load_slide": "Загрузить слайд",
+      "previous_slideshow": "Предыдущий слайд",
+      "next_slideshow": "Следующий слайд",
+      "pause_slideshow": "Приостановить слайд-шоу",
+      "play_slideshow": "Воспроизвести слайд-шоу",
+      "carousel": "Карусель",
+      "slide": "Слайд"
+    },
+    "page": {
+      "title": "Заголовок страницы"
+    },
+    "quick_order_list": {
+      "product_total": "Итого по товарам",
+      "view_cart": "Просмотреть корзину",
+      "each": "{{ money }} /ea",
+      "product": "Продукт",
+      "variant": "Вариант",
+      "variant_total": "Вариант всего",
+      "items_added": {
+        "one": "{{ quantity }} добавлен товар",
+        "other": "Добавлено {{ quantity }} товаров"
+      },
+      "items_removed": {
+        "one": "{{ quantity }} товар удален",
+        "other": "{{ quantity }} удаленных товаров"
+      },
+      "product_variants": "Варианты продукции",
+      "total_items": "Всего товаров",
+      "remove_all_single_item_confirmation": "Удалить 1 товар из корзины?",
+      "remove_all_items_confirmation": "Удалить все {{ quantity }} товаров из корзины?",
+      "remove_all": "Удалить все",
+      "cancel": "Отмена",
+      "min_error": "Минимальное количество этого товара составляет {{ min }}",
+      "max_error": "Максимальное количество этого элемента составляет {{ max }}",
+      "step_error": "Этот элемент можно добавлять только с шагом {{ step }}"
+    }
+  },
+  "general": {
+    "password_page": {
+      "login_form_heading": "Войдите в магазин, используя пароль:",
+      "login_password_button": "Войдите, используя пароль.",
+      "login_form_password_label": "Пароль",
+      "login_form_password_placeholder": "Ваш пароль",
+      "login_form_error": "Неверный пароль!",
+      "login_form_submit": "Входить",
+      "admin_link_html": "Вы владелец магазина? <a href=\"/admin\" class=\"link text-button\">Войдите здесь.</a>",
+      "powered_by_shopify_html": "Этот магазин будет работать на платформе {{ shopify }}"
+    },
+    "social": {
+      "alt_text": {
+        "share_on_facebook": "Поделиться в Facebook",
+        "share_on_twitter": "Поделиться на X",
+        "share_on_pinterest": "Закрепить на Pinterest"
+      }
+    }
+  }
+}
