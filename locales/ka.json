@@ -250,6 +250,426 @@
             "other": "%{delivery_method} აღარ არის ხელმისაწვდომი ამ ერთეულებისთვის."
           }
         }
+      },
+      "thank_you": {
+        "ready_for_delivery_title": "თქვენი შეკვეთა მიწოდებისთვის მზადაა",
+        "ready_for_delivery_description": "ჩვენ თქვენი შეკვეთა მოვამზადეთ.",
+        "order_updates_title": "შეკვეთის განახლებები",
+        "shop_phone_description": "თქვენ მიიღებთ ტექსტურ შეტყობინებას Shop აპლიკაციის ბმულით, რაც დაგეხმარებათ თქვენი შეკვეთის თვალყურის დევნებაში.",
+        "order_updates_description_html": "განახლებები გაიგზავნება %{customer_contact}-ზე",
+        "order_updates_current_step_prefix": "მიმდინარე ნაბიჯი: ",
+        "order_updates_past_step_prefix": "წარსული ნაბიჯი: ",
+        "order_updates_upcoming_step_prefix": "მომავალი ნაბიჯი: ",
+        "in_transit": "გზაშია",
+        "in_transit_title": "თქვენი შეკვეთა გზაშია",
+        "in_transit_description": "თქვენ მიიღებთ განახლებულ ინფორმაციას მისი პროგრესის შესახებ.",
+        "in_transit_description_days": "თქვენი შეკვეთა მომდევნო %{number} დღეში უნდა მიიღოთ.",
+        "in_transit_description_today": "შეკვეთა დღეს უნდა მიიღოთ.",
+        "in_transit_description_tomorrow": "შეკვეთა მეორე დღეს უნდა მიიღოთ.",
+        "no_tracking_number": "ამ შეკვეთას თვალთვალის ნომერი არ აქვს.",
+        "out_for_delivery": "მიწოდებისთვის გამოსულია",
+        "out_for_delivery_title": "თქვენი შეკვეთა მიწოდებისთვისაა",
+        "out_for_delivery_description_html": "თქვენი შეკვეთა გზაშია და დღეს უნდა მივიდეს. თუ ის მომდევნო 2 დღის განმავლობაში არ მოგეწოდებათ, %{contact_us}.",
+        "out_for_delivery_local_title": "თქვენი შეკვეთა მიწოდებისთვისაა",
+        "out_for_delivery_local_description_html": "თქვენი შეკვეთა მალე ჩამოვა.",
+        "attempted_delivery": "მიწოდების მცდელობა",
+        "attempted_delivery_title": "თქვენი შეკვეთის მიწოდების მცდელობა განხორციელდა",
+        "attempted_delivery_description_html": "თქვენი შეკვეთის მიწოდების მცდელობა განხორციელდა, მაგრამ წარუმატებლად დასრულდა. %{contact_us} დაგვიკავშირდით კიდევ ერთი მიწოდების მცდელობის მოსაწყობად.",
+        "attempted_delivery_local_title": "გამოტოვებული მიწოდება",
+        "attempted_delivery_local_description_html": "თქვენი შეკვეთის მიწოდება ვერ შევძელით. სხვა მიწოდების დასაგეგმად, %{contact_us}.",
+        "delivered": "მიწოდებული",
+        "delivered_title": "თქვენი შეკვეთა მიწოდებულია",
+        "delivered_description_html": "თქვენი შეკვეთა თქვენს მიერ მითითებულ მისამართზე მიწოდებულია. თუ ის ჯერ არ მიგიღიათ ან სხვა პრობლემები გაქვთ, %{contact_us}-ს დაგვიკავშირდით.",
+        "delivered_local_title": "თქვენი შეკვეთა მიწოდებულია",
+        "delivered_local_description_html": "შეკვეთა არ მიგიღიათ? %{let_us_know}.",
+        "choose_payment_method_later": "გადახდის მეთოდის არჩევა მოგვიანებით",
+        "picked_up_title": "თქვენი შეკვეთა აღებულია",
+        "picked_up_description_html": "თქვენი შეკვეთა აიღეს %{location_name}-დან %{date}-ში.",
+        "contact_us": "დაგვიკავშირდით",
+        "contact_us_lowercase": "დაგვიკავშირდით",
+        "contact_us_html": "დახმარება გჭირდებათ? %{contact_us}",
+        "updated_time": "განახლდა %{time_ago}-ის წინ",
+        "failure": "არ არის მიწოდებული",
+        "failed_title": "თქვენი შეკვეთის მიწოდება ვერ მოხერხდა",
+        "failed_contact_merchant": "მიწოდების მოსაწყობად დაუკავშირდით %{company}-ს.",
+        "failed_contact_merchant_no_company": "დაგვიკავშირდით მიწოდების დასაგეგმად.",
+        "non_shippable_title": "თქვენი შეკვეთა დასრულებულია",
+        "let_us_know": "შეგვატყობინეთ",
+        "login_title": "შეკვეთის ყველა დეტალის სანახავად შედით სისტემაში",
+        "login_description": "შეკვეთის ნომრის ნახვა შეგიძლიათ ელექტრონული ფოსტით მიღებულ ქვითარში.",
+        "login_description_phone": "შეკვეთის ნომრის პოვნა შეგიძლიათ ტექსტური შეტყობინებით მიღებულ ქვითარში.",
+        "login_not_customer_html": "არ ხართ %{name}? თქვენ შეგიძლიათ %{link}",
+        "login_reorder_link_text": {
+          "one": "ეს პროდუქტიც იყიდე",
+          "other": "ეს პროდუქტებიც იყიდეთ"
+        },
+        "customer_information_hidden_fields_message": "შედით სისტემაში მომხმარებლის ყველა ინფორმაციის სანახავად.",
+        "cancelled_title": "თქვენი შეკვეთა გაუქმდა",
+        "cancelled_description": "თქვენი შეკვეთა გაუქმდა %{date}-ში. დაგვიკავშირდით, თუ გაქვთ რაიმე შეკითხვა.",
+        "order_number_label": "შეკვეთის ნომერი",
+        "customer_validation_error": "შეიყვანეთ სწორი ელ. ფოსტის მისამართი ან შეკვეთის ნომერი.",
+        "customer_validation_error_phone": "შეიყვანეთ სწორი ტელეფონის ნომერი ან შეკვეთის ნომერი.",
+        "login": "შესვლა",
+        "unfulfilled_items_title": "გადაზიდვისთვის მზადება",
+        "unfulfilled_items_description": "ამჟამად ამ ნივთებს გადასაზიდად ვამზადებთ.",
+        "marker": {
+          "current": "მიმდინარე გადაზიდვის ადგილმდებარეობა",
+          "shipping": "მიწოდების მისამართი"
+        },
+        "pick_up_in_store_marker": {
+          "current": "მიმდინარე გადაზიდვის ადგილმდებარეობა",
+          "shipping": "აღების ადგილი"
+        },
+        "fulfillment": {
+          "fulfilled_table_title": "ამ ტვირთის ნივთები",
+          "unfulfilled_table_title": "ნივთების გადაზიდვისთვის მომზადება",
+          "product_image_label": "პროდუქტის სურათი",
+          "description_label": "აღწერა",
+          "quantity_label": "რაოდენობა"
+        },
+        "order_updates_description_missing": "თქვენ არ იღებთ მიწოდების განახლებებს.",
+        "order_updates_subscribe_to_email_notifications": "მიიღეთ მიწოდების განახლებები ელექტრონული ფოსტით.",
+        "order_updates_subscribe_to_email_or_phone_notifications": "მიიღეთ მიწოდების შესახებ განახლებები ელექტრონული ფოსტით ან SMS-ით.",
+        "order_updates_subscribe_to_phone_notifications": "მიიღეთ მიწოდების შესახებ განახლებები SMS-ით.",
+        "order_updates_submit_subscription": "გაგზავნა",
+        "track_shipment": "გადაზიდვის თვალყურის დევნება",
+        "other_options": "სხვა ვარიანტები",
+        "delivery_information_label": "მიწოდების ინფორმაცია:",
+        "gift_card_sent_confirmation": "სასაჩუქრე ბარათები გაიგზავნა",
+        "qr_code": {
+          "send_link_to_phone": "ან გამოაგზავნეთ ბმული თქვენს ტელეფონზე",
+          "title": "თვალყური ადევნეთ თქვენს ტელეფონზე"
+        },
+        "shop_qr_with_sms_upsell": {
+          "qr_code": {
+            "title": "დაასკანირეთ თქვენი ტელეფონით"
+          },
+          "sms": {
+            "title": "ან გამოაგზავნეთ ბმული თქვენს ტელეფონზე"
+          }
+        },
+        "view_business_customer_account": "ანგარიშის ნახვა",
+        "breadcrumbs_submitted": "წარდგენილია",
+        "breadcrumbs_in_review": "მიმოხილვაში",
+        "breadcrumbs_confirmed": "დადასტურებულია",
+        "missing_shipping_address_banner": {
+          "title": "შეკვეთას არ აქვს მიწოდების მისამართი",
+          "text_html": "%{contact_us} თქვენი მისამართის დასამატებლად",
+          "contact_us": "დაგვიკავშირდით"
+        },
+        "first_payment_complete": "პირველი გადახდა დასრულებულია",
+        "in_store_purchase": "მაღაზიაში შეძენა",
+        "company_location_section_title": "კომპანია და მდებარეობა",
+        "thank_you_ready_for_picked_up": "თქვენი შეკვეთა აიღეს %{address}-დან.",
+        "ready_for_delivery": "მიწოდებისთვის მზადაა",
+        "order_updates_subscribe_to_email_notifications_failed": "ამ ელფოსტის განახლებებისთვის შენახვა შეუძლებელია. სცადეთ ხელახლა ან გამოიყენეთ სხვა ელფოსტა.",
+        "order_updates_subscribe_to_email_notifications_email_already_exists": "თქვენს მიერ შეყვანილი ელ. ფოსტა უკვე არსებობს.",
+        "subscriptions_management": {
+          "title": "გამოწერა",
+          "description": "თქვენი გამოწერების სანახავად და სამართავად გადადით თქვენს ანგარიშზე.",
+          "button_label": "თქვენი გამოწერის მართვა"
+        },
+        "manage_order_label": "თქვენი შეკვეთის მართვა",
+        "gift_card_confirmation_by_text_typ": {
+          "one": "რამდენიმე წუთში მიიღებთ ტექსტურ შეტყობინებას თქვენი სასაჩუქრე ბარათით.",
+          "other": "რამდენიმე წუთში მიიღებთ ტექსტურ შეტყობინებას თქვენი სასაჩუქრე ბარათებით."
+        }
+      },
+      "pickup_point": {
+        "number_of_pickup_points_near_location": {
+          "other": "%{count} აღების წერტილი თქვენს მდებარეობასთან ახლოს"
+        },
+        "change": "მდებარეობის შეცვლა",
+        "waiting_on_pickup_point_location_notice": "აყვანის წერტილების ძიება...",
+        "geolocation": {
+          "shared_location_button": "ჩემი მდებარეობის გამოყენება",
+          "errors": {
+            "unsuported_by_browser": "გეოლოკაციის მიღებას თქვენი ბრაუზერი არ უჭერს მხარს. სცადეთ ხელახლა ან გამოიყენეთ სხვა ბრაუზერი.",
+            "permission_not_allowed": "თქვენი მდებარეობის გაზიარების ნებართვა.",
+            "permission_denied": "თქვენი მდებარეობის დადგენა ვერ მოხერხდა. სცადეთ ხელახლა."
+          }
+        }
+      },
+      "error_page": {
+        "terminal": {
+          "title": "ჩვენი შეკვეთის გაფორმებისას პრობლემა წარმოიშვა",
+          "message": "განაახლეთ ეს გვერდი ან სცადეთ ხელახლა რამდენიმე წუთში",
+          "action": {
+            "cta": "გვერდის განახლება"
+          },
+          "request_id": "მოთხოვნის ID: {{requestId}}"
+        },
+        "embed_errors": {
+          "storefront_password_required": "ეს მაღაზია პაროლით არის დაცული",
+          "customer_account_required": "შეკვეთის დასასრულებლად საჭიროა მომხმარებლის ანგარიში",
+          "cart_completed": "ეს შეკვეთა უკვე დასრულებულია",
+          "invalid_cart": "კალათა აღარ არის ვალიდური",
+          "not_authorized": "გადახდის ავტორიზაცია ვერ მოხერხდა. გადაამოწმეთ თქვენი აპლიკაციის ავტორიზაციის მონაცემები.",
+          "killswitch_enabled": "გადახდა დროებით მიუწვდომელია",
+          "policy_violation": "შეკვეთის დასრულება შეუძლებელია პოლიტიკის კონფიგურაციის შეზღუდვების გამო",
+          "unrecoverable_failure": "შეკვეთის გაფორმების ჩატვირთვა შეუძლებელია. სცადეთ ხელახლა."
+        }
+      },
+      "notice_banner": {
+        "return_to_cart_link_text": "კალათაში დაბრუნება",
+        "return_to_cart_to_update_quantities": "რაოდენობების განახლებისთვის გამოიყენეთ %{return_to_cart_link_text}",
+        "subscription_changed": "თქვენი ერთ-ერთი გამოწერა შეიცვალა.",
+        "company_location_changed": "თქვენი კალათა განახლდა. გაგზავნამდე გადახედეთ თქვენს შეკვეთას.",
+        "company_location_changed_product_removed": "თქვენი კალათა განახლდა, ​​რადგან ზოგიერთი პროდუქტი ამ ადგილას არ არის ხელმისაწვდომი. გადახედეთ თქვენს შეკვეთას გაგზავნამდე.",
+        "violations_title": "{{violation}} აკლია ან არასწორია",
+        "individual_violations_title": {
+          "DeliveryViolations": "მიწოდების მისამართი",
+          "PaymentViolations": "გადახდის მისამართი",
+          "OtherViolations": "შეკვეთის ინფორმაცია",
+          "UnhandledViolations": "შეკვეთის ინფორმაცია"
+        },
+        "all_violations_content": "ამ ინფორმაციის განახლებისა და შეკვეთის დასასრულებლად დაგვიკავშირდით ან მოგვწერეთ {{emailLink}} :",
+        "all_violations_email_link": "ელ.ფოსტა",
+        "editable_shipping_address_violations_message_title": "შეკვეთის დასასრულებლად დაამატეთ ეს ინფორმაცია:",
+        "editable_shipping_address_violations_message_footer": "ამ მდებარეობის მისამართის სამუდამოდ განახლებისთვის, {{emailLink}} .",
+        "editable_shipping_address_violations_email_link": "დაგვიკავშირდით",
+        "shipping_address_incomplete_title": "მიწოდების მისამართი არასრულია",
+        "calculating_shipping": "მიწოდების საფასური ჯერ კიდევ გამოითვლება. სცადეთ ხელახლა რამდენიმე წამში. თქვენგან თანხა არ ჩამოგეჭრათ.",
+        "calculating_taxes": "გადასახადების გამოთვლა ჯერ კიდევ მიმდინარეობს. სცადეთ ხელახლა რამდენიმე წამში. თქვენგან თანხა არ ჩამოგეჭრათ.",
+        "generic_processing_error": {
+          "title": "თქვენი შეკვეთის დამუშავებისას პრობლემა წარმოიშვა",
+          "body": "თანხა არ ჩამოგეჭრათ. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი."
+        },
+        "payment_method_not_available_with_payment_terms": "თქვენს მიერ არჩეული გადახდის მეთოდი აღარ არის ხელმისაწვდომი, რადგან ამ შეკვეთის გადახდა ახლა {{paymentTerms}} პირობებით ხორციელდება.",
+        "payment_method_not_available_with_fulfillment_terms": "თქვენს მიერ არჩეული გადახდის მეთოდი აღარ არის ხელმისაწვდომი, რადგან ამ შეკვეთის გადახდა ახლა შესრულებისთანავეა საჭირო.",
+        "payment_method_not_available_with_fixed_terms": "თქვენს მიერ არჩეული გადახდის მეთოდი აღარ არის ხელმისაწვდომი, რადგან ამ შეკვეთის გადახდა მოგვიანებით უნდა მოხდეს.",
+        "payment_method_not_available_with_review_requirement": "თქვენს მიერ არჩეული გადახდის მეთოდი აღარ არის ხელმისაწვდომი, რადგან გადახდა თქვენი შეკვეთის დადასტურების შემდეგ მოხდება.",
+        "contact_information": {
+          "title": "საკონტაქტო ინფორმაცია არასწორია",
+          "header": "თქვენი ინფორმაციის განახლებისთვის, {{emailLink}} .",
+          "email_link": "დაგვიკავშირდით"
+        }
+      },
+      "review_address_modal": {
+        "title": "მისამართის მიმოხილვა",
+        "subtitle": {
+          "one": "ეს შეკვეთა გაიგზავნება {{merchant}} ის მიერ მითითებულ მისამართზე.",
+          "other": "ეს შეკვეთა გაიგზავნება {{merchant}} ის მიერ მოწოდებულ მისამართზე. აირჩიეთ მიწოდების მისამართი."
+        },
+        "subtitle_no_match": "ეს მისამართი თქვენს მიერ შენახული მისამართებიდან არცერთს არ ემთხვევა.",
+        "subtitle_must_use": "თქვენი შეკვეთა გაიგზავნება ამ მისამართზე.",
+        "continue": "გააგრძელეთ ამ მისამართით",
+        "use_saved_address": "გამოიყენეთ სხვა მისამართი",
+        "return_to_cart": "კალათაში დაბრუნება"
+      },
+      "marketplaces": {
+        "legal_notice": {
+          "legal_text": "მიმოხილვა",
+          "link_label": "{{partnerDisplayName}} ის წესები და პირობები"
+        }
+      },
+      "online_store_chat": {
+        "title": "კითხვები გაქვთ? დაგვიკავშირდით ჩატში ჩატის მეშვეობით? გაქვთ კითხვები?"
+      },
+      "local_pickup": {
+        "location_address_search_label": "მისამართი",
+        "location_address_search_placeholder": "%{postal_code_label} ან მისამართი",
+        "location_information": {
+          "one": "თქვენს მახლობლად არის %{count} ლოკაცია საწყობით",
+          "other": "თქვენს მახლობლად არის %{count} ლოკაცია, სადაც საწყობია"
+        },
+        "toggle_location": "მდებარეობის შეცვლა",
+        "or": "ან",
+        "cancel": "გაუქმება",
+        "your_location": "თქვენი მდებარეობა",
+        "search_button": "მაღაზიების პოვნა",
+        "no_stores_found": "მაღაზიები ვერ მოიძებნა",
+        "all_stores_far_away": {
+          "title": "უახლოესი ადგილები %{distance}-ზე მეტი მანძილითაა დაშორებული",
+          "description": "აირჩიეთ მდებარეობა ან %{ship_to_address_link}",
+          "ship_to_address_link": "მისამართზე გაგზავნა",
+          "change_location_link": "შეცვალეთ თქვენი მდებარეობა"
+        },
+        "selected_pickup_option_no_longer_available": {
+          "title": "თქვენს მიერ ადრე არჩეული მდებარეობა აღარ არის ხელმისაწვდომი",
+          "description": "აირჩიეთ ახალი მდებარეობა ან %{ship_to_address_link}",
+          "ship_to_address_link": "მისამართზე გაგზავნა"
+        },
+        "could_not_resolve_address": "თქვენი მისამართის პოვნა ვერ მოხერხდა. სცადეთ ხელახლა ან გამოიყენეთ სხვა მისამართი",
+        "paginator": {
+          "accessibility_label": "ადგილობრივი აღების გვერდების დახარისხება",
+          "previous": "წინა გვერდი",
+          "next": "შემდეგი გვერდი",
+          "label": {
+            "one": "%{first} - %{last} %{count} მაღაზიიდან",
+            "other": "%{first} - %{last} %{count} მაღაზიიდან"
+          }
+        },
+        "reveal_more_label": {
+          "one": "კიდევ %{count} მდებარეობის ჩვენება",
+          "other": "აჩვენეთ კიდევ %{count} ადგილმდებარეობა"
+        }
+      },
+      "split_delivery": {
+        "pickup_all_items": "აიღეთ ყველა ნივთი",
+        "items_for_pickup": "ასაღები ნივთები",
+        "delivery_method": "გაყოფილი მიწოდების მეთოდი",
+        "delivery_method_menu": "გაყოფილი მიწოდების მეთოდის მენიუ"
+      },
+      "captcha": {
+        "title": "გასაგრძელებლად შეავსეთ CAPTCHA",
+        "errors": {
+          "not_solved": "გასაგრძელებლად შეავსეთ CAPTCHA"
+        }
+      },
+      "clipboard": {
+        "copied": "კოპირებულია",
+        "failed_to_copy": "კოპირება ვერ მოხერხდა"
+      },
+      "discount_errors": {
+        "generic_error": "თქვენი შეკვეთის დამუშავება ვერ მოხერხდა, რადგან თქვენი ფასდაკლების კოდი აღარ არის ხელმისაწვდომი. გადახედეთ თქვენი შეკვეთის ჯამურ რაოდენობას და სცადეთ ხელახლა."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "თქვენ აღარ გაქვთ B2B შეკვეთების განთავსების უფლება. პირადი შეკვეთის განსათავსებლად გამოიყენეთ %{logout_url}.",
+        "log_out_link_text": "გასვლა",
+        "lost_permissions_subtitle": "თქვენ აღარ გაქვთ B2B შეკვეთების განთავსების უფლება. პირადი შეკვეთის განსათავსებლად გამოდით სისტემიდან.",
+        "lost_permissions_title": "მდებარეობის ნებართვები არ არის"
+      },
+      "shop_pay_external": {
+        "title": "Shop Pay-ის გადახდა",
+        "errors": {
+          "problem_loading": "Shop Pay-ის ჩატვირთვისას პრობლემაა",
+          "try_again_later": "შეამოწმეთ თქვენი კავშირი ან დახურეთ ეს ფანჯარა და რამდენიმე წამში სცადეთ ხელახლა.",
+          "checkout_has_expired": "თქვენი შეკვეთის ვადა ამოიწურა. დახურეთ ეს ფანჯარა და სცადეთ ხელახლა შეკვეთის გაფორმება {{shopName}} დან."
+        },
+        "return_to_store": "დაბრუნება {{shopName}}"
+      }
+    }
+  },
+  "customer_accounts": {
+    "addresses": {
+      "default_address": {
+        "title_accessibility_label": "ნაგულისხმევი მისამართი: {{address}}"
+      },
+      "delete_button": "წაშლა",
+      "delete_button_accessibility_label": "წაშალეთ {{address}}",
+      "delete_confirmation_button": "მისამართის წაშლა",
+      "delete_confirmation_button_accessibility_label": "წაშალეთ {{address}}",
+      "delete_confirmation_message": "მისამართის წაშლა? არსებულ შეკვეთებზე გავლენა არ მოხდება.",
+      "delete_confirmation_title": "მისამართის წაშლა?",
+      "delete_confirmation_description": "არსებულ შეკვეთებზე გავლენა არ მოხდება.",
+      "edit_button": "რედაქტირება",
+      "edit_button_accessibility_label": "{{address}} ის რედაქტირება",
+      "edit_section_accessibility_label": "{{address}} ის რედაქტირება",
+      "edit_modal_title": {
+        "default": "მისამართის რედაქტირება",
+        "billing": "გადახდის მისამართის რედაქტირება",
+        "shipping": "მიწოდების მისამართის რედაქტირება"
+      },
+      "loading_accessibility_message": "მისამართი იტვირთება",
+      "loading_addresses_accessibility_message": "მისამართების ჩატვირთვა მიმდინარეობს.",
+      "loading_billing_accessibility_message": "გადახდის მისამართი იტვირთება. მიმდინარეობს გადახდის მისამართის ჩატვირთვა.",
+      "loading_finished_accessibility_message": "მისამართების ახალი გვერდი ჩაიტვირთა",
+      "loading_shipping_accessibility_message": "მიწოდების მისამართი იტვირთება. მიმდინარეობს მიწოდების მისამართის ჩატვირთვა.",
+      "pagination": {
+        "load_more": "მეტის ჩატვირთვა",
+        "load_more_accessibility_label": "მეტი მისამართის ჩატვირთვა"
+      },
+      "save_new_address_accessibility_label": "მისამართის შენახვა",
+      "title": "მისამართები",
+      "billing_address_dropdown_placeholder": "გადახდის მისამართი"
+    },
+    "address_form": {
+      "attention": "ყურადღება",
+      "attention_company": "კომპანია/ყურადღება",
+      "attention_help_text": "პირის ან დეპარტამენტის სახელი",
+      "auto_complete_close_accessibility_label": "დახურეთ შეთავაზებები",
+      "auto_complete_title": "წინადადებები",
+      "billing_address": "გამოიყენეთ როგორც გადახდის მისამართი",
+      "cancel": "გაუქმება",
+      "cancel_accessibility_label": "მისამართის {{address}} რედაქტირების გაუქმება",
+      "creation_success_notification": "მისამართი დამატებულია",
+      "default_address": "ეს ჩემი ნაგულისხმევი მისამართია",
+      "default_address_creation_success_notification": "ნაგულისხმევი მისამართი დამატებულია",
+      "default_address_update_success_notification": "ნაგულისხმევი მისამართი განახლდა",
+      "loading_add_form_accessibility_message": "ახალი მისამართის ფორმის ჩატვირთვა მიმდინარეობს.",
+      "loading_edit_form_accessibility_message": "მისამართის რედაქტირების ფორმის ჩატვირთვა მიმდინარეობს.",
+      "loading_form_accessibility_message": "მისამართის ფორმის ჩატვირთვა მიმდინარეობს",
+      "loading_finished_accessibility_message": "მისამართის ფორმა ჩაიტვირთა",
+      "save": "შენახვა",
+      "save_accessibility_label": "მისამართის შენახვა {{address}}",
+      "section_title_accessibility_label": "მისამართის დამატება",
+      "update_success_notification": "მისამართი განახლდა"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "sheet_title": "შედით სისტემაში ან შექმენით ანგარიში",
+        "section_divider": "შესვლის მეტი გზა",
+        "alternate_divider": "ან",
+        "email_field_label": "ელ. ფოსტა",
+        "orders_button": "შეკვეთები",
+        "profile_button": "პროფილი",
+        "shop_login_button": "შესვლა მაღაზიაში",
+        "continue_with_google": "გააგრძელეთ Google-ით",
+        "continue_with_facebook": "გააგრძელეთ Facebook-ით"
+      },
+      "signed_in_state": {
+        "greeting_with_name": "გამარჯობა, {{first_name}}",
+        "greeting_without_name": "ანგარიში",
+        "orders_button": "შეკვეთები",
+        "profile_button": "პროფილი"
+      },
+      "location_picker": {
+        "sheet_title": "მდებარეობები",
+        "search_field_placeholder": "ძიება"
+      },
+      "aria_labels": {
+        "close_menu": "მენიუს დახურვა",
+        "back_to_main_menu": "დაბრუნება მთავარ მენიუში {{title}} დან",
+        "open_submenu": "{{title}} , ხსნის ქვემენიუს",
+        "loading_menu": "მენიუ იტვირთება",
+        "account": "ანგარიში",
+        "sign_in_with_email": "შედით ელფოსტით",
+        "sign_in": "შესვლა"
+      }
+    },
+    "B2B": {
+      "account_information": {
+        "company_card_name_label": "კომპანიის სახელი",
+        "company_card_section_accessibility_label": "კომპანია"
+      },
+      "locations": {
+        "contact_email": "ელ. ფოსტა",
+        "contact_list_title": "ხალხი",
+        "contact_name": "სახელი",
+        "contact_permissions": "ნებართვები",
+        "contact_phone_number": "ტელეფონის ნომერი",
+        "location_picker_label": "მდებარეობის სახელი",
+        "location_picker_accessibility_label": "ადგილმდებარეობის დასახელება: {{locationName}}",
+        "net_payment_terms_description": "{{name}} : გადახდები უნდა განხორციელდეს {{numberOfDays}} დღის განმავლობაში",
+        "deposit_percentage": "{{percentage}} დეპოზიტი",
+        "own_role_contact_name": "შენ",
+        "pagination": {
+          "load_more": "მეტის ჩატვირთვა",
+          "load_more_accessibility_label": "მეტი მდებარეობის ჩატვირთვა"
+        },
+        "payment_details_title": "გადახდის დეტალები",
+        "payment_terms": "გადახდის პირობები",
+        "permissions_label": "თქვენი ნებართვები",
+        "permissions_title": "ნებართვები",
+        "section_title": "მდებარეობა",
+        "shipping_address_required": "შეკვეთების განთავსების დასაწყებად დაამატეთ ამ მდებარეობას მიწოდების მისამართი.",
+        "staff_and_permissions_title": "პერსონალი და ნებართვები",
+        "tax_details_title": "საგადასახადო დეტალები",
+        "tax_id": "საგადასახადო ID",
+        "tax_exemptions": "საგადასახადო შეღავათები",
+        "multiple_tax_exemptions": "{{taxExemptionsCount}} კიდევ",
+        "multiple_tax_exemptions_and": "და",
+        "tax_exemptions_modal_close": "დახურვა",
+        "taxes_none": "არცერთი",
+        "tax_exemption_not_applicable": "არ არის ხელმისაწვდომი",
+        "tax_exemptions_modal_button_accessibility_label": "იხილეთ ყველა საგადასახადო შეღავათი"
+      },
+      "location_selection": {
+        "continue_to_store": "შენახვის გაგრძელება",
+        "description": "თუ თქვენს კალათაში უკვე გაქვთ ნივთები, მდებარეობის შეცვლამ შესაძლოა გავლენა მოახდინოს კალათის ფასებსა და რაოდენობაზე.",
+        "description_switch_later": "გადართვა ყოველთვის შეგიძლიათ მოგვიანებით",
+        "list_accessibility_label": "მდებარეობების სია"
       }
     }
   }
