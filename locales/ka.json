@@ -1428,9 +1428,145 @@
             "other": "%{count} დამატებითი მიწოდება %{shipping_price}-ად თითოეული"
           },
           "max_cycles_base_shipping_delivery_not_included": {
-            "one": "%{count} მიწოდება %{shipping_price}-ად"
+            "one": "%{count} მიწოდება %{shipping_price}-ად",
+            "other": "%{count} დამატებითი მიწოდება %{shipping_price}-ად თითოეული"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "one": "უფასო მიწოდება პირველი %{cycle}-ისთვის, რასაც მოჰყვება %{recurring_order_shipping_price}",
+            "other": "უფასო მიწოდება პირველი %{cycle}-ისთვის, რასაც მოჰყვება %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "one": "%{shipping_price} %{count} დამატებით მიწოდებაზე",
+            "other": "%{shipping_price} %{count} დამატებით მიწოდებისთვის (%{per_delivery_cost})"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "one": "%{shipping_price} %{count} მიწოდებისთვის",
+            "other": "%{shipping_price} %{count} მიწოდებისთვის (%{per_delivery_cost})"
+          },
+          "prepaid_order_no_cycle": {
+            "one": "%{shipping_price} %{count} დამატებითი მიწოდებისთვის, რასაც მოჰყვება %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} %{count} დამატებითი მიწოდებისთვის (%{per_delivery_cost}), რასაც მოჰყვება %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "one": "%{shipping_price} %{count} მიწოდებისთვის, რასაც მოჰყვება %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} %{count} მიწოდებისთვის (%{per_delivery_cost}), რასაც მოჰყვება %{recurring_order_shipping_price}"
+          },
+          "subscription_free_with_frequency_label": "უფასო მიწოდება %{delivery_frequency}",
+          "prepaid_delivery_frequency": {
+            "one": "%{count} მიწოდებისთვის",
+            "other": "%{count} მიწოდებისთვის"
+          },
+          "subscription_delivery_frequency": {
+            "day": {
+              "one": "ყოველდღე",
+              "other": "ყოველ %{count} დღეში"
+            },
+            "week": {
+              "one": "ყოველ კვირას",
+              "other": "ყოველ %{count} კვირაში"
+            },
+            "month": {
+              "one": "ყოველთვიურად",
+              "other": "ყოველ %{count} თვეში"
+            },
+            "year": {
+              "one": "ყოველ წელს",
+              "other": "ყოველ %{count} წელიწადში"
+            }
+          },
+          "multiple_subscriptions_shipping_price_label": "%{shipping_price} თითო მიწოდებაზე",
+          "prepaid_shipping_price_label": "%{shipping_price} თითო მიწოდებაზე x %{delivery_interval_count}",
+          "initial_order_discounted": "ჯერ მიწოდების ღირებულება %{discounted_shipping_cost}, შემდეგ %{frequency_description}",
+          "prepaid_initial_order_discounted": "პირველი მიწოდების ღირებულება %{discounted_shipping_price} %{prepaid_delivery_frequency}",
+          "prepaid_initial_order_discounted_with_per_delivery_price": "პირველი მიწოდების ღირებულება %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery})",
+          "prepaid_initial_order_discounted_with_renewal": "ჯერ მიწოდების ღირებულება %{discounted_shipping_price} %{prepaid_delivery_frequency}, შემდეგ %{shipping_price} %{billing_cycle}",
+          "prepaid_initial_order_discounted_with_per_delivery_price_and_renewal": "ჯერ მიწოდების ღირებულება %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery}), შემდეგ %{shipping_price} %{billing_cycle}",
+          "shipping_price_included": "შედის",
+          "recurring_order_shipping_price": "შემდეგ მოჰყვება %{recurring_order_shipping_price}",
+          "first_order_shipping_price_included": "პირველი შეკვეთა შედის, შემდეგ კი %{recurring_order_shipping_price}",
+          "first_order_different_shipping_price": "%{first_order_shipping_price} (%{per_delivery_price} თითო მიწოდებაზე), რასაც მოჰყვება %{recurring_order_shipping_price}",
+          "first_n_order_free": {
+            "one": "პირველი შეკვეთა უფასოა",
+            "other": "პირველი %{count} შეკვეთა უფასოა"
+          },
+          "free_for_first_n_order": {
+            "one": "პირველი შეკვეთისთვის",
+            "other": "პირველი %{count} შეკვეთისთვის"
           }
-        }
+        },
+        "one_time_purchase_shipping": "ერთჯერადი მიწოდება",
+        "duties_and_taxes_title": "გადასახადები და მოსაკრებლები",
+        "shipping_information_required_notice": "მიწოდების ინფორმაცია აუცილებელია. {{link}} .",
+        "shipping_information_redirect_link": "შეიყვანეთ თქვენი ინფორმაცია აქ",
+        "loading_progressive_rates": "მეტი ტარიფის ძიება…",
+        "no_other_methods_available": "სხვა მეთოდები არ არის ხელმისაწვდომი",
+        "duties_and_taxes_options": {
+          "ddu_title": "გადახდა მიწოდებისას",
+          "ddu_caption": "შესაძლოა დამატებითი საკომისიო დაწესდეს",
+          "ddp_title": "გადაიხადეთ ახლავე",
+          "ddp_caption": "მიწოდებისას დამატებითი საკომისიო არ არის"
+        },
+        "shipping_method_combinations": {
+          "without_separator": "%{პირველიმეთოდი}, %{მეორემეთოდი}",
+          "with_separator": "%{დარჩენილი}, %{მიმდინარე},",
+          "combination": "%{rest} და %{current}"
+        },
+        "shipping_used_as_billing_notice": "ეს ასევე გამოყენებული იქნება, როგორც თქვენი გადახდის მისამართი ამ შეკვეთისთვის.",
+        "address_update": "მისამართის განახლება",
+        "shipping_address_title": "გაგზავნა",
+        "shipping_address_rollup_accessibility_label": "მისამართზე მიწოდების ვარიანტები",
+        "third_party_address_timeout": "მისამართების ჩატვირთვა შეუძლებელია. სცადეთ ხელახლა ან გამოიყენეთ სხვა მისამართი.",
+        "third_party_address_error": "მისამართის შერჩევის ჩატვირთვისას შეცდომა მოხდა. ქვემოთ ხელით შეიყვანეთ თქვენი მისამართი.",
+        "third_party_payment_timeout": "გადახდის მეთოდების ჩატვირთვა შეუძლებელია. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი.",
+        "third_party_payment_error": "გადახდის შერჩევის ჩატვირთვისას შეცდომა მოხდა. გამოიყენეთ გადახდის სხვა მეთოდი.",
+        "add_address": "გამოიყენეთ სხვა მისამართი",
+        "add_delivery_instructions": "დაამატეთ მიწოდების ინსტრუქციები",
+        "edit": "რედაქტირება",
+        "delete": "წაშლა",
+        "back": "უკან",
+        "address_more": "ამ მისამართისთვის მეტი მოქმედება",
+        "address_edit": "მისამართის რედაქტირება",
+        "address_delete": "მისამართის წაშლა",
+        "address_confirm": "დარწმუნებული ხართ, რომ გსურთ ამ მისამართის წაშლა თქვენი ანგარიშიდან?",
+        "address_default": "ნაგულისხმევად დაყენება",
+        "address_form": {
+          "add_address": "მისამართის დამატება",
+          "save": "შენახვა",
+          "cancel": "გაუქმება",
+          "edit": "მისამართის რედაქტირება",
+          "update": "ცვლილებების შენახვა",
+          "generic_error": "თქვენი მისამართის შენახვისას პრობლემა წარმოიშვა. სცადეთ ხელახლა.",
+          "one_time_address_subtitle": "ამ შეკვეთისთვის გამოიყენეთ ერთჯერადი მისამართი"
+        },
+        "different_shipping_method_summary": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად შეიყვანეთ სხვა მიწოდების მისამართი",
+        "invalid_shipping_method_summary": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად შეიყვანეთ სწორი მიწოდების მისამართი",
+        "invalid_shipping_method_summary_selected": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად აირჩიეთ სხვა მიწოდების მისამართი",
+        "method_summary": {
+          "incomplete_address_entered": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად შეიყვანეთ სრული მიწოდების მისამართი",
+          "incomplete_address_selected": "ხელმისაწვდომი მიწოდების მეთოდების სანახავად აირჩიეთ სრული მიწოდების მისამართი"
+        },
+        "local_pickup": {
+          "search_address": "მისამართის ძიება",
+          "rollup_title": "აღების ადგილი",
+          "rollup_accessibility_label": "აყვანის ადგილმდებარეობის ვარიანტები"
+        },
+        "missing_shipping_address": "მიწოდების მისამართი აკლია",
+        "split_shipping_merchandise_quantity_label_standard": "%{რაოდენობა} ერთეული",
+        "split_shipping_merchandise_quantity_label_additional": "+%{რაოდენობა} მეტი",
+        "split_shipping_merchandise_shipment_number": "გადაზიდვა %{number} სულ %{total}-დან",
+        "pre_order_ships_now": "იგზავნება ახლა",
+        "pre_order_ships_later": "მოგვიანებით გაიგზავნება",
+        "pre_order_ships_date": "გადაზიდვები %{date}",
+        "split_shipping_shipped_by_shop": "გამოგზავნილია %{shop_name}-ის მიერ",
+        "split_shipping_multiple_shipment_label": "მრავალი გადაზიდვა",
+        "split_shipping_shipping_label": "მეთოდი",
+        "split_shipping_shipment_notice": "თქვენი შეკვეთა ჩამოვა %{quantity_shipments}-ში",
+        "split_shipping_first_shipment_notice": "თქვენი პირველი შეკვეთა ჩამოვა %{quantity_shipments}-ში",
+        "split_shipping_multiple_shipment_quantity_label": "%{quantity} გადაზიდვები",
+        "split_shipping_multiple_shipment_notice": "თქვენი შეკვეთა რამდენიმე ტვირთით ჩამოვა",
+        "split_shipping_multiple_shipment_notice_one_time_purchase": "თქვენი შეკვეთა ჩამოვა %{quantity} ტვირთით",
+        "split_shipping_more_shipping_options": "მეტი მიწოდების ვარიანტი",
+        "split_shipping_shipment_number": "გადაზიდვა %{number}"
       }
     },
     "collections": {
