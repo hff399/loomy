@@ -270,7 +270,7 @@
 .section-main-collection .product-card-media-inner,
 .products-grid-products-content-inner .product-card-media-inner {
   --image-ratio: 125% !important;
-  background-color: #f5f5f5 !important;
+  background-color: transparent !important;
   border-radius: 0 !important;
   overflow: hidden !important;
 }
@@ -579,7 +579,7 @@
   /* Mobile image styling - clean, no radius */
   .section-main-collection .product-card-media-inner {
     --image-ratio: 125% !important;
-    background-color: #f5f5f5 !important;
+    background-color: transparent !important;
     border-radius: 0 !important;
   }
 
