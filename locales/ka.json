@@ -685,7 +685,128 @@
         "cart_does_not_meet_discount_requirements_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი არ არის მოქმედი თქვენს კალათაში არსებული ნივთებისთვის",
         "discount_requires_customer_notice": "შეიყვანეთ თქვენი მიწოდების ინფორმაცია <strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდის გამოსაყენებლად",
         "customer_does_not_meet_discount_requirements_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი ამჟამად თქვენთვის ხელმისაწვდომი არ არის",
-        "eligible_customer_missing_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდისთვის საჭიროა შესაბამისი მომხმარებელი."
+        "eligible_customer_missing_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდისთვის საჭიროა შესაბამისი მომხმარებელი.",
+        "shipping_information_does_not_meet_discount_requirements_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი თქვენი მიწოდების მისამართისთვის მიუწვდომელია",
+        "customer_already_used_once_per_customer_discount_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი უკვე გამოყენებულია",
+        "subtotal_label": "ქვეჯამი",
+        "subtotal_label_with_quantity": {
+          "one": "ქვეჯამი · %{count} ერთეული",
+          "other": "ქვეჯამი · %{count} ერთეული"
+        },
+        "shipping_label": "მიწოდება",
+        "pickup_label": "მაღაზიაში აღება",
+        "no_pickup_location": "ადგილზე აღების ადგილები არ არის.",
+        "pickup_unavailable_banner_title": {
+          "one": "თქვენი ნივთით მაღაზიები ხელმისაწვდომი არ არის",
+          "other": "თქვენი ნივთებით მაღაზიები ხელმისაწვდომი არ არის"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "one": "თქვენი ნივთით %{country}-ში მაღაზიები არ არის ხელმისაწვდომი",
+          "other": "თქვენი ნივთებით %{country}-ში მაღაზიები არ არის ხელმისაწვდომი"
+        },
+        "pickup_unavailable_banner_body": {
+          "ship_to_address": "მისამართზე გაგზავნა",
+          "ship_to_address_instead_html": "%{link}-ის ნაცვლად"
+        },
+        "tip_label": "რჩევა",
+        "unconfirmed_label": "დაუდასტურებელი",
+        "calculating_shipping": "გამოთვლა…",
+        "calculating": "გამოთვლა…",
+        "shipping_default_value": "გამოთვლილია შემდეგ ეტაპზე",
+        "shipping_discount_title": "მიწოდების ფასდაკლება",
+        "shipping_pending_message": "ჯერ არ არის ხელმისაწვდომი",
+        "shipping_policy_link": "მიწოდების ხარჯები",
+        "taxes_label": "გადასახადები",
+        "estimated_taxes_label": "სავარაუდო გადასახადები",
+        "estimated_taxes_label_short": "სავარაუდო",
+        "information_estimated_taxes_label": "გადასახადები (სავარაუდო)",
+        "estimated_taxes_finalization_tooltip_content": "საბოლოო გადასახადი და ჯამური თანხა დადასტურდება ელექტრონული ფოსტით ან ტექსტური შეტყობინებით შეკვეთის განთავსების შემდეგ.",
+        "estimated_taxes_finalization_tooltip_content_short": "გადასახადი გადახდის შემდეგ დასრულდა",
+        "order_total_label": "შეკვეთის ჯამი",
+        "price_before_discount_aria_text": "საწყისი ფასი",
+        "price_after_discount_aria_text": "ფასდაკლებული ფასი",
+        "discount_code_aria_text": "ფასდაკლების კოდი",
+        "total_savings": "სულ დანაზოგი",
+        "total_label": "სულ",
+        "total_due_label": "საერთო ჯამი",
+        "total_paid_label": "სულ გადახდილი",
+        "total_price_label": "საერთო ფასი",
+        "total_outstanding_label": "გადასახდელი თანხა",
+        "deposit_label": "დეპოზიტი",
+        "total_due_today_label": "დღეს გადასახდელი ჯამი",
+        "total_due_later_label": "მოგვიანებით გადასახდელი ჯამი",
+        "partial_total_label": "სულ",
+        "free_total_label": "უფასო",
+        "free_shipping_total_label": "უფასო",
+        "paid_label": "გადახდილი",
+        "payment_due_label": "გადასახდელი გადახდა",
+        "vat_label_html": "გადასახადებში %{amount}-ის ჩათვლით",
+        "duties_included_label": "ჯამურ ფასში შედის გადასახადები და მოსაკრებლები. მიწოდებაზე დამატებითი გადასახადი არ არის.",
+        "discount_and_gift_card_savings_notice": "ფასდაკლებების %{discount_amount}-ის და სასაჩუქრე ბარათების %{gift_card_amount}-ის შემდეგ",
+        "discount_savings_notice": "%{discount_amount} ფასდაკლებების შემდეგ",
+        "gift_card_savings_notice": "სასაჩუქრე ბარათებში %{gift_card_amount}-ის შემდეგ",
+        "cost_table_title": "ხარჯების შეჯამება",
+        "cost_table_item_column_header": "ნივთი",
+        "cost_table_value_column_header": "ღირებულება",
+        "description_label": "აღწერა",
+        "price_label": "ფასი",
+        "price_per_item": {
+          "accessibility_label": "%{price} თითო ერთეულზე",
+          "label": "%{price}/თითო"
+        },
+        "quantity_label": "რაოდენობა",
+        "product_change_label": "ცვლილება",
+        "product_image_label": "პროდუქტის სურათი",
+        "product_image_quantity_label": "რაოდენობა",
+        "scroll_order_summary": "გადაახვიეთ მეტი ერთეულისთვის",
+        "expand_order_summary_short": "ჩვენება",
+        "collapse_order_summary_short": "დამალვა",
+        "expand_order_summary": "შეკვეთის შეჯამების ჩვენება",
+        "collapse_order_summary": "შეკვეთის შეჯამების დამალვა",
+        "original_price": "საწყისი ფასი",
+        "sale_price": "გასაყიდი ფასი",
+        "compare_at_sale": "გაყიდვა (%{sale_amount})",
+        "total_updated_label": "განახლებული საერთო ფასი:",
+        "order_total_updated_label": "განახლებული ჯამური",
+        "total_already_paid_label": "გადახდილი",
+        "unit_price": {
+          "accessible_separator": "თითო",
+          "per_item": {
+            "single": "%{price} თითოეული",
+            "one": "%{price} %{count} ერთეულზე",
+            "other": "%{price} თითო %{count} ერთეულზე"
+          },
+          "per_unit": {
+            "single": "%{ფასი}/%{ერთეული}",
+            "plural": "%{ფასი}/%{count}%{ერთეული}"
+          }
+        },
+        "gift_card_ending": "სასაჩუქრე ბარათი, რომელიც მთავრდება %{last_characters}-ით",
+        "estimated_tax_label": "სავარაუდო გადასახადი",
+        "multiple_shipping_lines_label": "მიწოდების ჯამური ღირებულება",
+        "recurring_subtotal_label": "განმეორებადი ქვეჯამი",
+        "recurring_total_label": "განმეორებადი ჯამი",
+        "recurring_total_tooltip": "არ მოიცავს მიწოდებას, გადასახადებს, მოსაკრებლებს ან რაიმე შესაბამის ფასდაკლებას.",
+        "confirmation_number_label": "დადასტურება #%{დადასტურების_ნომერი}",
+        "higher_value_discount_applied": "<strong style=\"text-transform:uppercase\">%{code}-</strong> ის გამოყენება თქვენს არსებულ ფასდაკლებებთან ვერ მოხერხდა.",
+        "percent_off_shipping": "მიწოდებაზე %{percent}%-იანი ფასდაკლება",
+        "amount_off_shipping": "მიწოდებაზე %{amount} ფასდაკლება",
+        "deferred_payment_info": {
+          "title": "%{amount_due}-ის გადახდა უნდა მოხდეს %{due_at}-ში",
+          "description_html": "თქვენს შეკვეთასთან დაკავშირებული კითხვების შემთხვევაში, %{contact_us}.",
+          "paid_today": "სულ გადახდილია დღეს",
+          "paid_today_next": "გადახდილია დღეს",
+          "due_on_fulfillment_title": "შესრულებისას გადასახდელია %{amount_due}",
+          "due_on_receipt_title": "%{amount_due}-ის გადახდა უნდა მოხდეს ქვითრისთანავე"
+        },
+        "deferred_balance_info": {
+          "title": "{{amount_due}} -ის ბალანსის გადახდის თარიღია {{due_at}}",
+          "due_on_fulfillment_title": "{{amount_due}} -ის ბალანსი შესრულებისას გადასახდელია"
+        },
+        "payment_terms_totals": {
+          "due_today": "დღეს გადასახდელი ჯამი",
+          "due_today_next": "დღეს გადასახდელია"
+        }
       },
       "payment_errors": {
         "checkout_amount_changed": "თქვენი გადახდის დამუშავება ვერ მოხერხდა, რადგან გადახდისას გადასახდელი თანხა შეიცვალა. შეამოწმეთ თქვენი შეკვეთა და სცადეთ ხელახლა.",
