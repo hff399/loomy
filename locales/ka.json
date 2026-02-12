@@ -829,7 +829,147 @@
         "continue_to_store": "შენახვის გაგრძელება",
         "description": "თუ თქვენს კალათაში უკვე გაქვთ ნივთები, მდებარეობის შეცვლამ შესაძლოა გავლენა მოახდინოს კალათის ფასებსა და რაოდენობაზე.",
         "description_switch_later": "გადართვა ყოველთვის შეგიძლიათ მოგვიანებით",
-        "list_accessibility_label": "მდებარეობების სია"
+        "list_accessibility_label": "მდებარეობების სია",
+        "list_item_without_address_accessibility_label": "{{name}} : მისამართი არ არის",
+        "list_loading_accessibility_message": "მდებარეობების სია იტვირთება",
+        "list_loading_address_accessibility_message": "მისამართის ჩატვირთვა {{locationName}} ისთვის",
+        "list_loading_finished_accessibility_message": "მდებარეობების სია ჩაიტვირთა",
+        "loading_store_accessibility_message": "მაღაზიაში მივდივარ",
+        "no_location_title": "მხოლოდ პირადი შეკვეთები",
+        "no_location_description": "თქვენ აღარ გაქვთ {{company}} -სთვის შეკვეთების განთავსების უფლება. თქვენ კვლავ შეგიძლიათ პირადი შეკვეთების განთავსება.",
+        "no_locations_found": "მდებარეობები ვერ მოიძებნა",
+        "search": "მდებარეობების ძიება",
+        "search_location_title": "აირჩიეთ მდებარეობა",
+        "selection_cancel_button": "გაუქმება",
+        "selection_confirmation_button": "აირჩიეთ მდებარეობა",
+        "selection_continue_button": "გაგრძელება",
+        "title": "რომელი ლოკაციისთვის ყიდულობთ?",
+        "title_choose_location": "აირჩიეთ მდებარეობა",
+        "clear_search": "ძიების გასუფთავება",
+        "try_new_search": "სცადეთ ახალი ძიება"
+      },
+      "addresses": {
+        "add_billing_address_button": "დაამატეთ გადახდის მისამართი",
+        "add_billing_address_section_accessibility_label": "დაამატეთ გადახდის მისამართი",
+        "add_shipping_address_button": "დაამატეთ მიწოდების მისამართი",
+        "add_shipping_address_section_accessibility_label": "დაამატეთ მიწოდების მისამართი",
+        "billing_address_card_title": "გადახდის მისამართი",
+        "cancel_adding_billing_address_accessibility_label": "გადახდის მისამართის დამატების გაუქმება",
+        "cancel_adding_shipping_address_accessibility_label": "მიწოდების მისამართის დამატების გაუქმება",
+        "save_new_billing_address_accessibility_label": "შეინახეთ გადახდის მისამართი",
+        "save_new_shipping_address_accessibility_label": "შეინახეთ მიწოდების მისამართი",
+        "shipping_address_card_title": "მიწოდების მისამართი"
+      },
+      "orders": {
+        "draft_order_list": {
+          "hide_all": "ყველას დამალვა",
+          "show_all": "ყველას ჩვენება",
+          "hide_all_accessibility_label": "მიმოხილვის პროცესში არსებული ყველა შეკვეთის დამალვა",
+          "show_all_accessibility_label": "ყველა განხილული შეკვეთის ჩვენება",
+          "show_all_orders_in_review": "ყველა განხილული შეკვეთის ჩვენება",
+          "show_less_orders_in_review": "მიმოხილვაში ნაკლები შეკვეთის ჩვენება",
+          "title": "მოლოდინის რეჟიმშია",
+          "pending_tab_accessibility_label": {
+            "no_pending_orders": "თქვენ არ გაქვთ მომლოდინე შეკვეთები",
+            "pending_orders": {
+              "one": "თქვენ გაქვთ {{count}} მომლოდინე შეკვეთა",
+              "other": "თქვენ გაქვთ {{count}} მომლოდინე შეკვეთა"
+            },
+            "more_than_pagination_length": "თქვენ გაქვთ {{count}} -ზე მეტი მომლოდინე შეკვეთა"
+          },
+          "pending_orders_count_more_than_pagination_length": "{{count}} +",
+          "pagination": {
+            "nav_accessibility_label": "განხილვის პროცესში მყოფი შეკვეთების ნავიგაციის ღილაკები"
+          }
+        },
+        "order_list_column_headers_location": "მდებარეობა",
+        "order_list_column_headers_contact": "კონტაქტი",
+        "order_list_column_headers_status": "სტატუსი",
+        "removed_company_contact_tooltip": "კომპანიიდან ამოღებულია"
+      },
+      "draft_order_details": {
+        "draft_order_subtitle": "დადასტურებულია {{date}} შეკვეთიდან {{draftOrderName}}",
+        "loading": "შეკვეთის დეტალები იტვირთება. მიმდინარეობს შეკვეთის დეტალების ჩატვირთვა.",
+        "loading_finished_accessibility_message": "შეკვეთის დეტალები ჩაიტვირთა",
+        "payment_status": {
+          "pending": {
+            "banner_overdue": {
+              "one": "თქვენი გადახდა {{count}} დღით დაგვიანებულია",
+              "other": "თქვენი გადახდა {{count}} დღით დაგვიანებულია"
+            },
+            "banner_due": {
+              "one": "თქვენი გადახდის ვადაა {{count}} დღე",
+              "other": "თქვენი გადახდის ვადაა {{count}} დღე"
+            },
+            "banner_due_today": "თქვენი გადახდის ვადა დღეს არის",
+            "banner_due_today_for_multiple_fulfillments": "გადახდა დღეს უნდა მოხდეს {{count}} შესრულებისთვის",
+            "banner_overdue_for_multiple_fulfillments": "გადახდა {{count}} შესრულებისთვის",
+            "title": "გადასახდელი გადახდა",
+            "title_with_date": "გადახდის ვადაა {{date}}",
+            "title_due_on_receipt": "გადახდა ჯერ არ არის გადასახდელი",
+            "title_due_on_fulfillment": "გადახდა შესრულებისას",
+            "description_overdue": "თქვენი გადახდა დაგვიანებულია.",
+            "description_partially_paid": "ეს შეკვეთა ნაწილობრივ გადახდილია. თქვენ გაქვთ დარჩენილი ბალანსი.",
+            "description_authorized": "თქვენი გადახდის მეთოდიდან თანხა ჩამოიჭრება გადახდის ვადის ამოწურვის დღეს, ან შეგიძლიათ გადაიხადოთ ახლავე.",
+            "description_waiting_for_manual_payment": "ამ შეკვეთას გადახდა ელოდება. ბალანსი განახლდება გადახდის მიღებისთანავე.",
+            "description_due_on_receipt": "გადახდის ვადის ამოწურვისას ინვოისს მიიღებთ.",
+            "description_due_on_receipt_partially_paid": "ეს შეკვეთა ნაწილობრივ გადახდილია. თქვენ გაქვთ დარჩენილი ბალანსი. გადახდის ვადის ამოწურვისას მიიღებთ ინვოისს.",
+            "description_due_on_fulfillment": "გადახდა ხდება ამ შეკვეთაში მოცემული ყველა პუნქტის შესრულების შემდეგ.",
+            "description_due_on_fulfillment_partially_paid": "ეს შეკვეთა ნაწილობრივ გადახდილია. თქვენ გაქვთ დარჩენილი ბალანსი. გადახდა უნდა მოხდეს მას შემდეგ, რაც ამ შეკვეთაში შემავალი ყველა ნივთი შესრულდება.",
+            "description_due_on_fulfillment_partially_paid_next": "ეს შეკვეთა ნაწილობრივ გადახდილია. თქვენ გაქვთ დარჩენილი ბალანსი."
+          },
+          "draft": {
+            "description": "გადახდის დეტალები განისაზღვრება შეკვეთის დადასტურების შემდეგ.",
+            "title": "გადახდა ჯერ არ არის გადასახდელი",
+            "in_review": {
+              "description": "გადახდის დეტალები განისაზღვრება შეკვეთის დადასტურების შემდეგ.",
+              "title": "გადახდა ჯერ არ არის გადასახდელი"
+            },
+            "submitted": {
+              "description": "ამ შეკვეთის დასადასტურებლად გადაიხადეთ.",
+              "title": "გადაიხადეთ დასადასტურებლად",
+              "deposit": {
+                "title": "გადახდა გადასახდელია",
+                "due_later": "ბალანსი {{translatedName}} პირობებით არის დაფარული და გადახდის თარიღია {{dueDate}} .",
+                "due_on_fulfillment": "ბალანსი გადასახდელია ამ შეკვეთის ყველა პუნქტის შესრულების შემდეგ.",
+                "due_on_receipt": "დარჩენილი ბალანსისთვის მიიღებთ ინვოისს.",
+                "due_on_date": "ნაშთი გადასახდელია {{dueDate}} ში."
+              }
+            },
+            "deposit": {
+              "due_later": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი იქნება {{translatedName}} პირობებით.",
+              "due_on_fulfillment": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი გადასახდელი იქნება შეკვეთის შესრულების შემდეგ.",
+              "due_on_receipt": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი მოგვიანებით.",
+              "due_on_date": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი გადასახდელი იქნება {{dueDate}} ში."
+            }
+          },
+          "paid": {
+            "title": "გადახდილი",
+            "title_with_date": "გადახდილია {{date}}",
+            "description": "თქვენი შეკვეთა სრულად გადახდილია."
+          },
+          "refund": {
+            "title": "დაბრუნებული",
+            "title_with_date": "დაბრუნებული თანხა {{date}}",
+            "description_full_refund": "თქვენ მიიღეთ ამ შეკვეთის სრული თანხის დაბრუნება.",
+            "description_single_refund": "თქვენ მიიღეთ ამ შეკვეთის თანხის ნაწილობრივი დაბრუნება.",
+            "description_multiple_refunds": "თქვენ მიიღეთ ამ შეკვეთის თანხის ნაწილობრივი დაბრუნება."
+          },
+          "canceled": {
+            "title": "გადახდა გაუქმდა",
+            "description": "ბრალი არ წაგიყენებიათ."
+          },
+          "due_date": "ვადა {{date}}",
+          "total_balance": "სრული ბალანსი",
+          "pay_now": "გადაიხადეთ ახლავე",
+          "pay_now_accessibility_label": "გადაიხადეთ ახლავე შეკვეთისთვის {{orderName}}",
+          "title": "გადახდის სტატუსი"
+        },
+        "order_timeline": {
+          "expand_events_label": "დეტალების ჩვენება",
+          "expand_events_accessibility_label": "შეკვეთის მონახაზის დეტალების ჩვენება",
+          "hide_events_label": "დეტალების დამალვა"
+        }
       }
     },
     "ui_components": {
