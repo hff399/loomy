@@ -683,6 +683,7 @@
 
  .header-localization-item .localization-form-box {
      margin: 0;
+     padding-left: 10px;
  }
 
  .header-localization-item .custom-select-button {
