@@ -264,6 +264,7 @@
         "image_KGfBGK",
         "image_BXBk6M"
       ],
+      "disabled": true,
       "name": "t:sections.animated-text.presets.name",
       "settings": {
         "section_visibility": "large",
@@ -423,6 +424,7 @@
         "category_D4DR6k",
         "category_6f9GKx"
       ],
+      "disabled": true,
       "name": "t:sections.shop-by-category.presets.name",
       "settings": {
         "section_visibility": "always",
