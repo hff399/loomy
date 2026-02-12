@@ -162,7 +162,7 @@
         "marquee_content_NAXXxW": {
           "type": "marquee-content",
           "settings": {
-            "marquee_text": "── Free delivery on orders over 300 GEL ── 10% off your first order — Code: WELCOME10",
+            "marquee_text": "── Free delivery on orders over 400 GEL ── 10% off your first order, code: WELCOME10",
             "image_visibility": "default"
           }
         }
