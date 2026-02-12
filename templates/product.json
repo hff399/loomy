@@ -17,7 +17,7 @@
         "color_scheme": "nonary",
         "desktop_bar_height": "45px",
         "mobile_bar_height": "30px",
-        "countdown_text": "Genie 50% OFF on Summer Fashion 💫 Save on ALL official merch!",
+        "countdown_text": "🚚 Free delivery on orders 300+ GEL | 🔄 Easy 14-day returns",
         "enable_countdown": false,
         "year": 2025,
         "months": "10",
@@ -53,7 +53,7 @@
           "settings": {
             "heading": "",
             "heading_size": "h3",
-            "content": "<p>Our clothing is made from high-quality, premium fabrics that ensure your child stays comfortable all day long. </p>",
+            "content": "<p>Quality brands chosen for active kids and modern families. Designed for comfort, safety, and lasting joy.</p>",
             "content_size": "text-sm"
           }
         },
@@ -93,9 +93,9 @@
           "type": "inventory_status",
           "settings": {
             "minimun_inventory": 10,
-            "inventory_available_status": "In stock, ready to be shipped",
-            "inventory_less_status": "[inventory] items available",
-            "inventory_unavailable_status": "Out of stock"
+            "inventory_available_status": "✅ In stock - Ships today",
+            "inventory_less_status": "🔥 Only [inventory] left in stock!",
+            "inventory_unavailable_status": "Out of stock - Check back soon"
           }
         },
         "divider_zUMDfQ": {
@@ -116,7 +116,7 @@
           "type": "collapsible_content",
           "settings": {
             "heading": "Overview",
-            "description": "<p>Feel so relaxed and inspired after the visit to your beauty salon! Thank you for your professional treatment and excellent treatment your beauty salon!<br/><br/>Temperature range:    From +10 to+32</p><p>Insulation:    Tech-Polyfill 100  gr.</p><p>Collection:    Fall 2025</p><p>Composition:    100% polyester</p>",
+            "description": "<p>Feel so relaxed and inspired after the visit to your beauty salon! Thank you for your professional treatment and excellent treatment your beauty salon!<br/><br/>Temperature range:    From +10 to+32</p><p>Insulation:    Tech-Polyfill 100  gr.</p><p>Collection:    Fall 2025</p><p>Composition:    100% polyester</p>",
             "collapsible_page_content": ""
           }
         },
@@ -190,21 +190,21 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "Features & Specifications",
-            "content": "<p><strong>High-Quality Materials:</strong> Our kids’ products are made from soft, durable, and child-safe fabrics and materials to ensure comfort and safety. <br/><br/><strong>Variety of Styles:</strong> From casual everyday wear to playful and trendy designs, we offer a wide range of clothing to suit all tastes and occasions.<br/><br/><strong>Perfect Fit:</strong> Designed with careful attention to size and fit, our clothes ensure freedom of movement and lasting comfort.<br/><br/><strong>Easy Care:</strong> Most items are machine washable and designed to withstand the rigors of active kids.<br/><br/><strong>Vibrant Colors & Patterns:</strong> Bright, fun colors and kid-friendly patterns make dressing fun and exciting.<br/><br/><strong>Safety First:</strong> All products comply with safety regulations and standards, free from harmful chemicals and irritants.<br/><br/><br/><br/><br/><br/></p>"
+            "content": "<p><strong>High-Quality Materials:</strong> Our kids' products are made from soft, durable, and child-safe fabrics and materials to ensure comfort and safety. <br/><br/><strong>Variety of Styles:</strong> From casual everyday wear to playful and trendy designs, we offer a wide range of clothing to suit all tastes and occasions.<br/><br/><strong>Perfect Fit:</strong> Designed with careful attention to size and fit, our clothes ensure freedom of movement and lasting comfort.<br/><br/><strong>Easy Care:</strong> Most items are machine washable and designed to withstand the rigors of active kids.<br/><br/><strong>Vibrant Colors & Patterns:</strong> Bright, fun colors and kid-friendly patterns make dressing fun and exciting.<br/><br/><strong>Safety First:</strong> All products comply with safety regulations and standards, free from harmful chemicals and irritants.<br/><br/><br/><br/><br/><br/></p>"
           }
         },
         "collapsible_row_Ptm3iY": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Material & Impact",
-            "content": "<p><strong>Premium, Safe Materials:</strong> At our kids’ store, we prioritize the use of premium-quality materials that are safe, comfortable, and gentle on your child’s delicate skin. Every product is thoughtfully crafted from fabrics such as organic cotton, bamboo fibers, and recycled polyester, ensuring softness, breathability.</p><p><strong>Environmentally Responsible Choices: </strong>We carefully select materials that minimize environmental harm. Organic cotton is grown without harmful pesticides or synthetic fertilizers, promoting healthier soil and ecosystems. Bamboo fabric offers natural antibacterial properties and requires less water and fewer chemicals during cultivation.</p><p><strong>Ethical Manufacturing: </strong>Our commitment goes beyond materials. We partner with manufacturers who adhere to strict ethical labor practices, ensuring safe working conditions and fair treatment of workers. </p><p><strong>Reducing Environmental Impact: </strong>From production to packaging, we aim to minimize our environmental footprint. Our manufacturing processes focus on energy efficiency, and we use recycled or biodegradable packaging materials wherever possible. </p><p></p>"
+            "content": "<p><strong>Premium, Safe Materials:</strong> At our kids' store, we prioritize the use of premium-quality materials that are safe, comfortable, and gentle on your child's delicate skin. Every product is thoughtfully crafted from fabrics such as organic cotton, bamboo fibers, and recycled polyester, ensuring softness, breathability.</p><p><strong>Environmentally Responsible Choices: </strong>We carefully select materials that minimize environmental harm. Organic cotton is grown without harmful pesticides or synthetic fertilizers, promoting healthier soil and ecosystems. Bamboo fabric offers natural antibacterial properties and requires less water and fewer chemicals during cultivation.</p><p><strong>Ethical Manufacturing: </strong>Our commitment goes beyond materials. We partner with manufacturers who adhere to strict ethical labor practices, ensuring safe working conditions and fair treatment of workers. </p><p><strong>Reducing Environmental Impact: </strong>From production to packaging, we aim to minimize our environmental footprint. Our manufacturing processes focus on energy efficiency, and we use recycled or biodegradable packaging materials wherever possible. </p><p></p>"
           }
         },
         "collapsible_row_FWb8FT": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Delivery & Returns",
-            "content": "<p><strong>Fast and Reliable Delivery:</strong> We understand how important it is to receive your child’s essentials promptly. That’s why we offer fast and reliable delivery services with multiple shipping options to suit your needs. Orders are processed quickly, and you’ll receive tracking information to stay updated every step of the way.</p><p><strong>Shipping Areas:</strong> We proudly ship to most regions nationwide, with select international shipping options available. Delivery times may vary depending on the destination, and any applicable customs fees or taxes for international orders are the customer’s responsibility.</p><p><strong>Easy and Hassle-Free Returns:</strong> Your satisfaction is our priority. If you’re not completely happy with your purchase, we offer a straightforward return policy. Items can be returned within 30 days of delivery, provided they are unused, unwashed, and in their original packaging with tags attached.</p><p><strong>How to Initiate a Return: </strong>To start a return, simply contact our customer service team with your order details and reason for return. We’ll guide you through the process and provide instructions for sending the item back. Once the return is received and inspected, we’ll process your refund or exchange promptly.</p><p></p>"
+            "content": "<p><strong>Fast and Reliable Delivery:</strong> We understand how important it is to receive your child's essentials promptly. That's why we offer fast and reliable delivery services with multiple shipping options to suit your needs. Orders are processed quickly, and you'll receive tracking information to stay updated every step of the way.</p><p><strong>Shipping Areas:</strong> We proudly ship to most regions nationwide, with select international shipping options available. Delivery times may vary depending on the destination, and any applicable customs fees or taxes for international orders are the customer's responsibility.</p><p><strong>Easy and Hassle-Free Returns:</strong> Your satisfaction is our priority. If you're not completely happy with your purchase, we offer a straightforward return policy. Items can be returned within 30 days of delivery, provided they are unused, unwashed, and in their original packaging with tags attached.</p><p><strong>How to Initiate a Return: </strong>To start a return, simply contact our customer service team with your order details and reason for return. We'll guide you through the process and provide instructions for sending the item back. Once the return is received and inspected, we'll process your refund or exchange promptly.</p><p></p>"
           }
         }
       },
@@ -358,9 +358,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Winter Jackets",
+            "description": "Waterproof & warm",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         },
@@ -368,9 +368,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Fleece & Mid-layers",
+            "description": "Cozy mid-layers",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         },
@@ -378,9 +378,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Boots & Shoes",
+            "description": "Hats, gloves & more",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         },
@@ -388,9 +388,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Scooters",
+            "description": "Boots & shoes",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         },
@@ -398,9 +398,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Plush Toys",
+            "description": "Thermal comfort",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         },
@@ -408,9 +408,9 @@
           "type": "category",
           "settings": {
             "crad_collection": "",
-            "heading": "Heading",
-            "description": "",
-            "button_text": "Button text",
+            "heading": "Outdoor Toys",
+            "description": "Up to 30% off",
+            "button_text": "Shop Now",
             "button_link": "shopify://collections/all"
           }
         }
@@ -433,12 +433,12 @@
         "corner_radius": 20,
         "blur_background_image": false,
         "overlay_style": "solid",
-        "heading": "[Gentle] Care for Your ++ <strong>Little Bundle</strong> [of Joy!]",
+        "heading": "[Complete] the Look — ++ <strong>More from</strong> [Loomy]",
         "heading_size": "h3",
         "seo_heading": "h3",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Whether it’s snuggly sleepwear, soft blankets, or everyday essentials, each item supports your child’s well-being while offering parents peace of mind.",
+        "description": "Pair it with more favorites from our curated collection of quality brands.",
         "description_size": "text-sm",
         "button_text": "",
         "button_link": "",
@@ -474,7 +474,7 @@
         "image_ratio": "portrait",
         "products_to_show": 5,
         "desktop_to_show": 4,
-        "heading": "Related [products]",
+        "heading": "Complete the [Look]",
         "heading_size": "h3",
         "seo_heading": "h3",
         "heading_font": "heading-font",

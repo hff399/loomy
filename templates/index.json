@@ -21,20 +21,20 @@
             "overlay_style": "solid",
             "image_ratio": "landscape",
             "enable_collapse": true,
-            "heading": "Adorable [Finds] for++ Awesome [Kids]",
+            "heading": "Chosen by [Parents.]++ Tested by [Kids.]",
             "heading_size": "h2",
             "seo_heading": "h1",
             "heading_font": "heading-font",
             "markers_font": "accent-font",
             "heading_font_weight": "font-medium",
-            "description": "From playful outfits to fun accessories, these handpicked finds \nare perfect for every awesome kid’s daily adventures.",
+            "description": "Tbilisi's premier destination for quality children's brands — from Finnish outerwear to Swiss scooters and beyond.",
             "description_size": "text",
             "content_width": "small",
             "desktop_content_position": "d-bottom-left",
             "desktop_text_alignment": "left",
             "mobile_content_position": "m-center",
             "mobile_text_alignment": "center",
-            "button_text": "Shop Now",
+            "button_text": "Explore the Store",
             "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
@@ -49,21 +49,21 @@
             "overlay_style": "solid",
             "image_ratio": "landscape",
             "enable_collapse": false,
-            "heading": "Slide [heading]",
+            "heading": "Keep Them [Warm.] Let Them [Play.]",
             "heading_size": "h2",
             "seo_heading": "h2",
             "heading_font": "heading-font",
             "markers_font": "accent-font",
             "heading_font_weight": "font-normal",
-            "description": "Add short description for this Slide.",
+            "description": "Reima — Finland's #1 children's outerwear. Waterproof, breathable, built for adventure.",
             "description_size": "text",
             "content_width": "small",
             "desktop_content_position": "d-bottom-left",
             "desktop_text_alignment": "left",
             "mobile_content_position": "m-center",
             "mobile_text_alignment": "center",
-            "button_text": "Button text",
-            "button_link": "",
+            "button_text": "Shop Reima",
+            "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -77,21 +77,21 @@
             "overlay_style": "solid",
             "image_ratio": "landscape",
             "enable_collapse": false,
-            "heading": "Slide [heading]",
+            "heading": "Winter [Final Sale] — Up to++ [30% Off]",
             "heading_size": "h2",
             "seo_heading": "h2",
             "heading_font": "heading-font",
             "markers_font": "accent-font",
             "heading_font_weight": "font-normal",
-            "description": "Add short description for this Slide.",
+            "description": "Premium jackets, snowsuits, and boots at the best prices of the season. Limited stock.",
             "description_size": "text",
             "content_width": "small",
             "desktop_content_position": "d-bottom-left",
             "desktop_text_alignment": "left",
             "mobile_content_position": "m-center",
             "mobile_text_alignment": "center",
-            "button_text": "Button text",
-            "button_link": "",
+            "button_text": "Shop Sale",
+            "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -104,20 +104,20 @@
             "overlay_style": "solid",
             "image_ratio": "landscape",
             "enable_collapse": true,
-            "heading": "Comfort & [Fun] for ++Every [Little Star]",
+            "heading": "Swiss [Precision.] Endless++ [Adventures.]",
             "heading_size": "h2",
             "seo_heading": "h2",
             "heading_font": "heading-font",
             "markers_font": "accent-font",
             "heading_font_weight": "font-normal",
-            "description": "Explore our collection designed to bring comfort, joy, and playful \nstyle to your child’s everyday adventures.",
+            "description": "Micro scooters — trusted worldwide for safety, quality, and smooth riding.",
             "description_size": "text",
             "content_width": "small",
             "desktop_content_position": "d-bottom-left",
             "desktop_text_alignment": "left",
             "mobile_content_position": "m-center",
             "mobile_text_alignment": "center",
-            "button_text": "SHOP NOW",
+            "button_text": "Shop Micro",
             "button_link": "shopify://collections",
             "button_style": "solid",
             "button_size": "button-sm"
@@ -533,7 +533,7 @@
         "heading_ejMhkU": {
           "type": "heading",
           "settings": {
-            "heading": "[Play] Learn, and Grow with the ++ <strong>Best for your</strong> [Little Ones]",
+            "heading": "Cuddles that [Last] ++Premium [Orange Toys]",
             "heading_size": "h3",
             "seo_heading": "h3",
             "heading_font": "heading-font",
@@ -543,7 +543,7 @@
         "button_Dq3n4k": {
           "type": "button",
           "settings": {
-            "button_text": "Button Text",
+            "button_text": "Shop Plush Toys",
             "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
@@ -556,7 +556,7 @@
         "text_hmWtQ7": {
           "type": "text",
           "settings": {
-            "description": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<br/><br/></p>",
+            "description": "<p>Handcrafted plush companions that spark imagination and bring comfort. Made with premium materials, designed to be cherished for years.<br/><br/></p>",
             "description_size": "text-sm"
           }
         },
@@ -723,7 +723,7 @@
         "seo_heading": "h3",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Designed with comfort, durability, and style in mind—perfect for kids \nwho love to explore the world around them.",
+        "description": "Designed with comfort, durability, and style in mind-perfect for kids \nwho love to explore the world around them.",
         "description_size": "text-sm",
         "content_alignment": "text-center",
         "button_text": "",
@@ -899,7 +899,7 @@
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store’s happy clients.",
+            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
             "description_size": "text-sm"
           }
         },
@@ -910,7 +910,7 @@
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store’s happy clients.",
+            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
             "description_size": "text-sm"
           }
         },
@@ -921,7 +921,7 @@
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store’s happy clients.",
+            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
             "description_size": "text-sm"
           }
         },
@@ -932,7 +932,7 @@
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store’s happy clients.",
+            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
             "description_size": "text-sm"
           }
         },
@@ -943,7 +943,7 @@
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store’s happy clients.",
+            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
             "description_size": "text-sm"
           }
         }
@@ -1074,7 +1074,7 @@
         "seo_heading": "h3",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Designed with delicate skin in mind, our products offer the perfect blend of quality, comfort, and care—because your bundle of joy deserves nothing but the best!",
+        "description": "Designed with delicate skin in mind, our products offer the perfect blend of quality, comfort, and care-because your bundle of joy deserves nothing but the best!",
         "description_size": "text-sm",
         "button_text": "",
         "button_link": "",
@@ -1393,7 +1393,7 @@
         "seo_heading": "h2",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Whether you're looking for stylish outfits, fun playtime essentials, or cozy home furnishings, we’ve got the\nperfect picks to make your shopping experience effortless and enjoyable",
+        "description": "Whether you're looking for stylish outfits, fun playtime essentials, or cozy home furnishings, we've got the\nperfect picks to make your shopping experience effortless and enjoyable",
         "description_size": "text-sm",
         "alignment": "center",
         "shape": "none",

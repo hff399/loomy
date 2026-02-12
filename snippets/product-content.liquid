@@ -316,6 +316,7 @@
                         </div>
                       {% endunless %}
                     </div>
+                    {% render 'trust-badges-product' %}
                   {%- when 'social_sharing' -%}
                     {% unless block.settings.show_in_the_last %}
                       {% if show_with_share_icons == true and help_block_heading == true %}
