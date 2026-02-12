@@ -1500,36 +1500,43 @@
         "collapse_content_9bEFXX": {
           "type": "collapse-content",
           "settings": {
-            "collapsible_content_heading": "Collapse heading",
-            "collapsible_content_description": "<p>Add short description for this block.</p>"
+            "collapsible_content_heading": "What brands does Loomy carry?",
+            "collapsible_content_description": "<p>Loomy is a curated concept store featuring carefully selected international brands: Reima (Finnish children's outerwear), Micro (Swiss scooters), Waboba (outdoor toys), and Orange Toys (plush companions). Every brand is chosen for quality, safety, and durability.</p>"
           }
         },
         "collapse_content_bAg3yR": {
           "type": "collapse-content",
           "settings": {
-            "collapsible_content_heading": "Collapse heading",
-            "collapsible_content_description": "<p>Add short description for this block.</p>"
+            "collapsible_content_heading": "Are all products original and authentic?",
+            "collapsible_content_description": "<p>Yes — 100% authentic products from official distributors. Loomy is the authorized retailer for Reima, Micro, Waboba, and Orange Toys in Georgia.</p>"
           }
         },
         "collapse_content_VfrF7h": {
           "type": "collapse-content",
           "settings": {
-            "collapsible_content_heading": "Collapse heading",
-            "collapsible_content_description": "<p>Add short description for this block.</p>"
+            "collapsible_content_heading": "How do I choose the right size for Reima clothing?",
+            "collapsible_content_description": "<p>We recommend measuring your child and using our size guide. Reima designs with \"room to grow\" — many items fit for two seasons. Visit our Tbilisi store for personalized fitting help.</p>"
           }
         },
         "collapse_content_eDerew": {
           "type": "collapse-content",
           "settings": {
-            "collapsible_content_heading": "Collapse heading",
-            "collapsible_content_description": "<p>Add short description for this block.</p>"
+            "collapsible_content_heading": "What is your return policy?",
+            "collapsible_content_description": "<p>We offer hassle-free returns within 14 days for unused items with original tags. See our Return Policy page for full details.</p>"
           }
         },
         "collapse_content_dt4g73": {
           "type": "collapse-content",
           "settings": {
-            "collapsible_content_heading": "Collapse heading",
-            "collapsible_content_description": "<p>Add short description for this block.</p>"
+            "collapsible_content_heading": "Do you deliver across Georgia?",
+            "collapsible_content_description": "<p>Yes! We deliver nationwide. Orders over 400 GEL qualify for free delivery. Standard shipping takes 2-5 business days.</p>"
+          }
+        },
+        "collapse_content_exN8mm": {
+          "type": "collapse-content",
+          "settings": {
+            "collapsible_content_heading": "Can I visit your store in person?",
+            "collapsible_content_description": "<p>Absolutely! Our concept store is at 60 Zakaria Paliashvili Street, Tbilisi 0179. Come see, touch, and try everything. Our team is ready to help you find exactly what you need.</p>"
           }
         }
       },
@@ -1538,7 +1545,8 @@
         "collapse_content_bAg3yR",
         "collapse_content_VfrF7h",
         "collapse_content_eDerew",
-        "collapse_content_dt4g73"
+        "collapse_content_dt4g73",
+        "collapse_content_exN8mm"
       ],
       "name": "t:sections.collapsible.presets.name",
       "settings": {
@@ -1548,16 +1556,16 @@
         "section_container_width": "container-sm",
         "corner_style": "none",
         "corner_radius": 70,
-        "enable_background_animation": true,
+        "enable_background_animation": false,
         "background_animation_visibility": "large",
         "heading": "Frequently Asked [Questions]",
         "heading_size": "h2",
         "seo_heading": "h2",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Add short description for this section.",
+        "description": "Everything you need to know",
         "description_size": "text-sm",
-        "alignment": "center",
+        "alignment": "left",
         "block_heading_size": "h6",
         "block_description_size": "text",
         "top_space_desktop": 70,
@@ -1607,7 +1615,7 @@
         "section_container_width": "global",
         "corner_style": "none",
         "corner_radius": 30,
-        "heading": "Where Little [Smiles Begin!]",
+        "heading": "Read our blog",
         "heading_size": "h3",
         "seo_heading": "h2",
         "heading_font": "heading-font",
