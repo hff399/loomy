@@ -1944,7 +1944,151 @@
         "purchase_options_agreement_label_wallets": "გადახდის გაგრძელებით, თქვენ ეთანხმებით ამ გვერდზე მითითებულ სამომავლო გადასახადებს და გაუქმების პოლიტიკას.",
         "change_currency_section_description": "აირჩიეთ ვალუტის ვარიანტი",
         "no_real_orders_dev_store": "ეს მაღაზია ვერ იღებს რეალურ შეკვეთებს ან რეალურ გადახდებს.",
-        "waiting_on_payment_methods": "ხელმისაწვდომი გადახდის მეთოდების მიღება..."
+        "waiting_on_payment_methods": "ხელმისაწვდომი გადახდის მეთოდების მიღება...",
+        "apple_pay_payment_error": "თქვენი გადახდა ვერ დასრულდა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი.",
+        "taxes_not_included": "გადასახადები არ შედის",
+        "no_taxes_banner_content": "ამ შეკვეთაზე გადასახადები არ დაგერიცხებათ. გადახდის აღების შემდეგ, გადასახადების დამატება აღარ იქნება შესაძლებელი.",
+        "paypal": {
+          "connect": "დააწკაპუნეთ თქვენი PayPal ანგარიშის დასაკავშირებლად"
+        },
+        "apple": {
+          "connect": "დააწკაპუნეთ თქვენი Apple Pay ანგარიშის დასაკავშირებლად",
+          "not_available": "Apple Pay ამ ბრაუზერში მიუწვდომელია. თქვენი Apple Pay ანგარიშის დასაკავშირებლად, თქვენ უნდა გამოიყენოთ Safari Apple მოწყობილობაზე."
+        },
+        "google": {
+          "connect": "დააწკაპუნეთ თქვენს Google Pay ანგარიშთან დასაკავშირებლად",
+          "error_authorizing": "გადახდის ავტორიზაციისას შეცდომა მოხდა"
+        },
+        "account_connected": "ანგარიში დაკავშირებულია.",
+        "mor_disclaimer_html": "ქვემოთ დაწკაპუნებით და შეკვეთის დასრულებით, თქვენ ეთანხმებით, რომ შეიძინოთ თქვენი ნივთი(ები) Global-e-დან, როგორც რეგისტრირებული გამყიდველი.\n ამ ტრანზაქციისთვის, Global-e-ს <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{mor_terms}\" href=\"%{terms_href}\">წესებისა და პირობების</a> შესაბამისად\n და <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{privacy_policy}\" href=\"%{policy_href}\">კონფიდენციალურობის პოლიტიკა</a> . Global-e არის საერთაშორისო\n შესრულების სერვისის პროვაიდერი %{shop_name}-ისთვის\n",
+        "pending_payment": {
+          "due_notice": "თქვენი გადახდის %{amount_due} ვადაა %{due_date}.",
+          "multibanco": {
+            "buyer_action_info": "თქვენი გადახდის ვადაა %{amount_due}.",
+            "instruction_html": "განახორციელეთ გადახდა Multibanco-ში ან ონლაინ, ქვემოთ მოცემული ინფორმაციის გამოყენებით. კითხვების შემთხვევაში ან გადახდის დეტალების განახლებისთვის, %{contact_us}.",
+            "entity": "ერთეული",
+            "reference": "მითითება",
+            "amount": "თანხა",
+            "find_nearest_atm": "უახლოესი ბანკომატის პოვნა"
+          }
+        },
+        "update_payment_method": "გადახდის მეთოდის განახლება",
+        "order_covered_by_store_credit_notice": "თქვენი შეკვეთა დაფარულია თქვენი მაღაზიის კრედიტით.",
+        "order_covered_by_redeemables_notice": "თქვენი შეკვეთა დაფარულია.",
+        "store_credit": {
+          "label": "მაღაზიის კრედიტი",
+          "apply_label": "მაღაზიის კრედიტის გამოყენება",
+          "add_label": "მაღაზიის კრედიტის დამატება",
+          "manage_label": "მაღაზიის კრედიტის მართვა",
+          "buying_gift_card": "სასაჩუქრე ბარათის შესაძენად მაღაზიის კრედიტის გამოყენება შეუძლებელია",
+          "no_fixed_selling_plans": "გადავადებული შესყიდვის ვარიანტებით მაღაზიის კრედიტის გამოყენება შეუძლებელია"
+        },
+        "clear": "გასუფთავება",
+        "billing_must_match_shipping_notice": "თქვენი გადახდის მეთოდის გადახდის მისამართი უნდა ემთხვეოდეს მიწოდების მისამართს.",
+        "same_billing_address_checkbox_label": "გამოიყენეთ მიწოდების მისამართი, როგორც გადახდის მისამართი",
+        "location_billing_address_label": "მდებარეობის გადახდის მისამართი",
+        "fact_billing_address_label": "გადახდის მისამართი",
+        "location_shipping_address_label": "მდებარეობის მიწოდების მისამართი",
+        "use_order_billing_address_label": "შეკვეთის გადახდის მისამართის გამოყენება",
+        "use_location_billing_address_label": "გამოიყენეთ მდებარეობის გადახდის მისამართი",
+        "use_location_shipping_address_label": "გამოიყენეთ მდებარეობის მიწოდების მისამართი",
+        "no_working_method_error": "ამ მაღაზიას ამჟამად გადახდების მიღება არ შეუძლია. განაახლეთ ეს გვერდი ან დაბრუნდით მოგვიანებით.",
+        "brand_not_available": "ეს მაღაზია არ იღებს {{brand}} . გადახდისთვის გამოიყენეთ სხვა ბარათი.",
+        "shipping_rate_updated": "ხელმისაწვდომი მიწოდების მეთოდები განახლდა. შეკვეთის გაფორმებამდე დაადასტურეთ თქვენი არჩევანი.",
+        "billing_address_invalid_phone": "გასაგრძელებლად განაახლეთ თქვენს გადახდის მისამართში მითითებული ტელეფონის ნომერი {{label}} {{last_digits}} -ისთვის.",
+        "billing_address_invalid_phone_no_card": "გასაგრძელებლად განაახლეთ თქვენს გადახდის მისამართში მითითებული ტელეფონის ნომერი.",
+        "preview_not_available": {
+          "title": "გადახედვა მიუწვდომელია",
+          "content": "არ ინერვიულოთ, ეს ექსპრეს გადახდის სისტემა თქვენი მომხმარებლებისთვის მუშაობს.",
+          "button": "კარგი"
+        },
+        "card_fields": {
+          "errors": {
+            "required": {
+              "issue_date": "შეიყვანეთ გამოშვების სწორი თარიღი",
+              "issue_number": "შეიყვანეთ სწორი გამოცემის ნომერი"
+            },
+            "invalid": {
+              "verification_value": "შეიყვანეთ მოქმედი CVV ან უსაფრთხოების კოდი"
+            }
+          }
+        },
+        "simulated_checkout": "წინასწარი გადახედვა მალე გამოვა",
+        "simulated_express_checkout": "საფულეები რედაქტორის წინასწარი გადახედვისას მიუწვდომელია თქვენი რეგიონის ან ბრაუზერის გამო",
+        "vaulting_agreement_label": "შეინახეთ ჩემი გადახდის ინფორმაცია %{company}-თან უფრო სწრაფი გადახდისთვის.",
+        "business_customer_vaulting_payment_label": "შეინახეთ ეს გადახდის მეთოდი შეკვეთის გაფორმებისას და მიანიჭეთ %{company}-ს უფლებამოსილება, რომ ამ მდებარეობიდან მომავალი შესყიდვებისთვის თანხა ჩამოჭრას. ამ მდებარეობაზე მინიჭებული ყველა კონტაქტი შეძლებს გადახდის მეთოდის გამოყენებას.",
+        "business_customer_with_bank_account_vaulting_payment_label": "შეინახეთ ეს გადახდის მეთოდი შეკვეთის გაფორმებისას და ავტორიზაცია გაუკეთეთ %{company}-ს, ჩამოჭრას თანხა თქვენი ანგარიშიდან ამ მდებარეობისთვის დამტკიცებული მომავალი შესყიდვებისთვის, სანამ არ გააუქმებთ. ამ მდებარეობაზე მინიჭებულ ყველა კონტაქტს შეუძლია გამოიყენოს გადახდის მეთოდი.",
+        "purchase_options_and_vaulting_agreement_label": "თქვენს კალათაში ერთი ან მეტი ნივთი არის გადავადებული ან სააბონენტო შენაძენი. გადახდის გაგრძელებით, თქვენ ეთანხმებით, რომ თქვენი გადახდის მეთოდიდან ავტომატურად ჩამოიჭრება თანხა ამ გვერდზე მითითებული ფასითა და სიხშირით, სანამ ის არ დასრულდება ან თქვენ არ გააუქმებთ. ყველა გაუქმება ექვემდებარება %{cancellation_policy_label}-ს.",
+        "purchase_options_cancellation_policy_label": "გაუქმების პოლიტიკა",
+        "use_different_credit_card_label": "გამოიყენეთ სხვა ბარათი",
+        "saved_credit_card": "თქვენი შენახული საკრედიტო ბარათი",
+        "saved_credit_card_info": "ბოლო ოთხი ციფრი",
+        "saved_credit_card_cvv_verification": "დადასტურების მიზნით, შეიყვანეთ თქვენი ბარათის უსაფრთხოების კოდი.",
+        "saved_credit_card_actions": {
+          "edit": "რედაქტირება",
+          "delete": "წაშლა"
+        },
+        "saved_credit_cards_modal": {
+          "view_all_label": "ყველა შენახული ბარათის ნახვა",
+          "done": "დასრულებულია",
+          "cancel": "გაუქმება"
+        },
+        "add_credit_card_modal": {
+          "title": "ბარათის დამატება",
+          "save": "შენახვა",
+          "cancel": "გაუქმება"
+        },
+        "delete_credit_card_modal": {
+          "title": "ბარათის წაშლა",
+          "confirmation": "დარწმუნებული ხართ, რომ გსურთ წაშალოთ {{brandName}} რომელიც {{lastDigits}} ზე მთავრდება?",
+          "cancel": "გაუქმება",
+          "delete": "წაშლა"
+        },
+        "edit_credit_card_modal": {
+          "title": "ბარათის რედაქტირება",
+          "done": "დასრულებულია",
+          "cancel": "გაუქმება",
+          "description": "თქვენ შეგიძლიათ შეცვალოთ მხოლოდ თქვენი ბარათის გადახდის მისამართი.",
+          "fields": {
+            "default": "ნაგულისხმევად დაყენება",
+            "card_number": "ბარათის ნომერი",
+            "expiry": "ვადის გასვლის თარიღი",
+            "security_code": "უსაფრთხოების კოდი",
+            "name": "სახელი ბარათზე",
+            "billing": "ანგარიშის წარდგენა"
+          }
+        },
+        "expired_cards_info": {
+          "one": "არსებობს %{count} ვადაგასული ბარათი, რომლის ნახვა და რედაქტირება თქვენს ანგარიშში შეგიძლიათ.",
+          "other": "არსებობს %{count} ვადაგასული ბარათი, რომელთა ნახვა და რედაქტირება თქვენს ანგარიშში შეგიძლიათ."
+        },
+        "local_payment_method_receiver_notice": "შეკვეთის განთავსების შემდეგ, თქვენ მიიღებთ გადახდის დეტალებს. გადახდა განახორციელეთ ბანკომატით ან ონლაინ {{dueDays}} დღის განმავლობაში.",
+        "order_edit_banner_title": "საჭიროა {{amount_owed}} -ის გადახდა",
+        "order_edit_banner_subtitle": "თქვენი შეკვეთა {{order_number}} განახლდა. გადახედეთ ამ ცვლილებებს და შემდეგ გადაიხადეთ შეკვეთის დასადასტურებლად.",
+        "order_edit_banner_items_added": {
+          "one": "დამატებულია",
+          "other": "დამატებულია %{count}"
+        },
+        "order_edit_banner_items_removed": {
+          "in_full": "წაშლილია",
+          "with_quantities": "წაშლილია {{delta}} {{quantity}} დან"
+        },
+        "order_edit_banner_items_returned": {
+          "in_full": "დაბრუნებული {{quantity}}",
+          "with_quantities": "დაბრუნებულია {{delta}} {{quantity}} დან"
+        },
+        "order_edit_banner_items_return_line_item_removed": {
+          "in_full": "ამოღებულია დაბრუნებიდან",
+          "with_quantities": "{{delta}} ამოღებულია return-დან"
+        },
+        "order_edit_banner_single_item_added": "დამატებულია",
+        "order_edit_banner_multiple_items_added": "დამატებულია {{amount}}",
+        "order_edit_banner_single_item_removed": "წაშლილია",
+        "order_edit_banner_multiple_items_removed": "წაშლილია {{amount}}",
+        "order_edit_banner_single_item_returned": "დაბრუნებული",
+        "order_edit_banner_multiple_items_returned": "დაბრუნებული {{amount}}",
+        "order_edit_banner_single_item_return_line_item_removed": "ამოღებულია დაბრუნებიდან",
+        "order_edit_banner_multiple_items_return_line_item_removed": "{{amount}} ამოღებულია დაბრუნებიდან"
       },
       "change_country": {
         "cart_updated_based_on_country": "თქვენი კალათა განახლდა თქვენი მიწოდების ქვეყნის მიხედვით.",
