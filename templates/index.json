@@ -208,7 +208,7 @@
           "settings": {
             "collection": "aw25-final-sale",
             "image": "shopify://shop_images/Sale.jpg",
-            "button_text": "Reima SALE",
+            "button_text": "Reima",
             "overlay_text": "",
             "bg_color": ""
           }
@@ -217,7 +217,7 @@
           "type": "category",
           "settings": {
             "collection": "",
-            "button_text": "Reima winter collection",
+            "button_text": "Micro",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
           }
@@ -226,7 +226,7 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
-            "button_text": "",
+            "button_text": "Waboba",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
           }
@@ -235,7 +235,7 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
-            "button_text": "Orange toys",
+            "button_text": "Orange Toys",
             "overlay_text": "",
             "bg_color": ""
           }
@@ -246,6 +246,103 @@
         "cat_block_1",
         "cat_block_2",
         "cat_block_4"
+      ],
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "heading": "The Brands We Love",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "alignment": "left",
+        "column_count": 3,
+        "columns_gap": 15,
+        "card_radius": 20,
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "category_carousel_ETyY9a": {
+      "type": "category-carousel",
+      "blocks": {
+        "category_YUJ9yi": {
+          "type": "category",
+          "settings": {
+            "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/Sale.jpg",
+            "button_text": "Reima SALE",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_K7d9G8": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "Clothing",
+            "overlay_text": "",
+            "bg_color": "rgba(0,0,0,0)"
+          }
+        },
+        "category_MR7qke": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "button_text": "Footwear",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_YECepJ": {
+          "type": "category",
+          "settings": {
+            "collection": "aw25-final-sale",
+            "button_text": "Accessories",
+            "overlay_text": "",
+            "bg_color": "rgba(0,0,0,0)"
+          }
+        },
+        "category_BhwADn": {
+          "type": "category",
+          "settings": {
+            "collection": "orange-toys",
+            "button_text": "Mobility",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_UfKkYd": {
+          "type": "category",
+          "settings": {
+            "collection": "orange-toys",
+            "button_text": "Toys & Play",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_EHRMha": {
+          "type": "category",
+          "settings": {
+            "collection": "orange-toys",
+            "button_text": "Special",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_YUJ9yi",
+        "category_K7d9G8",
+        "category_MR7qke",
+        "category_YECepJ",
+        "category_BhwADn",
+        "category_UfKkYd",
+        "category_EHRMha"
       ],
       "settings": {
         "section_visibility": "always",
@@ -276,12 +373,12 @@
         "section_container_width": "global",
         "corner_style": "none",
         "corner_radius": 20,
-        "heading": "Clothing & [Accessories]",
+        "heading": "New & Noteworthy",
         "heading_size": "h3",
         "seo_heading": "h2",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "",
+        "description": "Fresh arrivals handpicked for your family",
         "description_size": "text",
         "alignment": "left",
         "button_text": "",
@@ -313,8 +410,8 @@
         "blur_background_image": false,
         "overlay_style": "solid",
         "animation_effect": "none",
-        "plane_with_sale_text": true,
-        "sale_text": "",
+        "plane_with_sale_text": false,
+        "sale_text": "Final Winter Sale — Ends Soon!",
         "enable_glass_effect": true,
         "countdown_style": "square",
         "year": 2026,
@@ -325,12 +422,12 @@
         "time_expire": "",
         "layout_style": "horizontal",
         "sub_heading": "",
-        "heading": "[Final] Winter Sale",
+        "heading": "Final Winter Sale — Ends Soon!",
         "heading_size": "h3",
         "seo_heading": "h2",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Premium Reima outerwear at unbeatable prices. Don't miss out — limited stock available.",
+        "description": "Premium Reima outerwear at unbeatable prices.\nDon't miss out — limited stock available.",
         "description_size": "text",
         "alignment": "left",
         "button_text": "Shop Sale",
@@ -503,12 +600,12 @@
         "section_container_width": "global",
         "corner_style": "none",
         "corner_radius": 50,
-        "heading": "Playful [Picks]",
+        "heading": "Shop by Age",
         "heading_size": "h3",
         "seo_heading": "h3",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "",
+        "description": "Every age has its adventures",
         "description_size": "text",
         "alignment": "left",
         "desktop_row_height": 190,
@@ -527,7 +624,7 @@
         "heading_ejMhkU": {
           "type": "heading",
           "settings": {
-            "heading": "Cuddles that [Last] ++Premium [Orange Toys]",
+            "heading": "Micro — Swiss Scooter Excellence",
             "heading_size": "h3",
             "seo_heading": "h3",
             "heading_font": "heading-font",
@@ -537,7 +634,7 @@
         "button_Dq3n4k": {
           "type": "button",
           "settings": {
-            "button_text": "Shop Plush Toys",
+            "button_text": "Shop Micro Scooters",
             "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
@@ -550,7 +647,7 @@
         "text_hmWtQ7": {
           "type": "text",
           "settings": {
-            "description": "<p>Handcrafted plush companions that spark imagination and bring comfort. Made with premium materials, designed to be cherished for years.<br/><br/></p>",
+            "description": "<p>From first scooters to commuter favorites, Micro sets the global standard. Swiss-designed with premium materials, every scooter delivers smooth steering, lasting durability, and that perfect balance of fun and safety.<br/><br/>Perfect for:</p><p>- 🛴 First riders learning balance</p><p>- 🛴 School-age kids zipping around</p><p>- 🛴 Family rides through the park</p>",
             "description_size": "text-sm"
           }
         },
@@ -956,7 +1053,7 @@
         "corner_radius": 20,
         "blur_background_image": false,
         "overlay_style": "solid",
-        "heading": "Love from [Our Customers]",
+        "heading": "What Families Are Saying",
         "heading_size": "h3",
         "seo_heading": "h2",
         "heading_font": "heading-font",
@@ -1061,12 +1158,12 @@
         "corner_radius": 20,
         "blur_background_image": false,
         "overlay_style": "solid",
-        "heading": "[Gentle] Care for Your ++ <strong>Little Bundle</strong> [of Joy!]",
+        "heading": "Micro — Swiss Scooter Excellence",
         "heading_size": "h3",
         "seo_heading": "h3",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Designed with delicate skin in mind, our products offer the perfect blend of quality, comfort, and care-because your bundle of joy deserves nothing but the best!",
+        "description": "From first scooters to commuter favorites, Micro sets the global standard. Swiss-designed with premium materials, every scooter delivers smooth steering, lasting durability, and that perfect balance of fun and safety.\n\nPerfect for:\n- 🛴 First riders learning balance\n- 🛴 School-age kids zipping around\n- 🛴 Family rides through the park",
         "description_size": "text-sm",
         "button_text": "",
         "button_link": "",
@@ -1633,6 +1730,7 @@
     "slideshow",
     "marquee_fKPhhJ",
     "category_carousel_main",
+    "category_carousel_ETyY9a",
     "featured_collection_gbtmWC",
     "countdown_iiURpF",
     "shapes_YnKYD9",
