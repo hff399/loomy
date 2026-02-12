@@ -248,8 +248,38 @@
           "message": {
             "one": "%{delivery_method} ამ ნივთისთვის აღარ არის ხელმისაწვდომი.",
             "other": "%{delivery_method} აღარ არის ხელმისაწვდომი ამ ერთეულებისთვის."
+          },
+          "default_message": {
+            "one": "არჩეული მიწოდების მეთოდი ამ ნივთისთვის აღარ არის ხელმისაწვდომი.",
+            "other": "არჩეული მიწოდების მეთოდი აღარ არის ხელმისაწვდომი ამ ნივთებისთვის."
           }
-        }
+        },
+        "unshippable_product": {
+          "title": "მიწოდება შეუძლებელია",
+          "header": {
+            "one": "%{count} ნივთისთვის მიწოდება შეუძლებელია",
+            "other": "%{count} ნივთისთვის მიწოდება შეუძლებელია"
+          },
+          "message": {
+            "one": "ეს ნივთი თქვენი კალათიდან წაიშლება, რადგან თქვენს მისამართზე მიწოდების მეთოდები არ არის ხელმისაწვდომი.",
+            "other": "ეს ნივთები თქვენი კალათიდან წაიშლება, რადგან თქვენს მისამართზე მიწოდების მეთოდები არ არის ხელმისაწვდომი."
+          },
+          "status_column_header": "მიწოდება არ არის"
+        },
+        "price_update": {
+          "title": "ფასის განახლება",
+          "description": "ამ ნივთების ფასები შეიცვალა და განახლებულია თქვენს კალათაში.",
+          "updated_price": "განახლებული ფასი"
+        },
+        "price_and_quantity_update": {
+          "title": "ფასისა და რაოდენობის განახლება",
+          "description": "ამ ნივთების ფასები და ხელმისაწვდომი რაოდენობები შეიცვალა და განახლებულია თქვენს კალათაში."
+        },
+        "out_of_stock": {
+          "description": "ეს ნივთები აღარ არის ხელმისაწვდომი და თქვენი კალათიდან ამოღებულია.",
+          "items_unavailable": "ზოგიერთი ნივთი აღარ არის ხელმისაწვდომი და თქვენი კალათიდან ამოღებულია."
+        },
+        "out_of_stock_in_context_label": "ეს პროდუქტი თქვენს ქვეყანაში/რეგიონში არ არის ხელმისაწვდომი."
       },
       "thank_you": {
         "ready_for_delivery_title": "თქვენი შეკვეთა მიწოდებისთვის მზადაა",
@@ -538,6 +568,124 @@
           "checkout_has_expired": "თქვენი შეკვეთის ვადა ამოიწურა. დახურეთ ეს ფანჯარა და სცადეთ ხელახლა შეკვეთის გაფორმება {{shopName}} დან."
         },
         "return_to_store": "დაბრუნება {{shopName}}"
+      },
+      "contextual_availability": {
+        "title": {
+          "one": "მიუწვდომელი პროდუქტი",
+          "other": "მიუწვდომელი პროდუქტები"
+        },
+        "products_not_available": {
+          "one": "ეს პროდუქტი თქვენი კალათიდან წაიშლება, რადგან ის თქვენს ქვეყანაში/რეგიონში არ არის ხელმისაწვდომი.",
+          "other": "ეს პროდუქტები თქვენი კალათიდან წაიშლება, რადგან ისინი თქვენს ქვეყანაში/რეგიონში არ არის ხელმისაწვდომი."
+        },
+        "all_products_in_cart_unavailable": {
+          "one": "ეს პროდუქტი თქვენს ქვეყანაში/რეგიონში არ არის ხელმისაწვდომი.",
+          "other": "ეს პროდუქტები თქვენს ქვეყანაში/რეგიონში არ არის ხელმისაწვდომი."
+        },
+        "unavailable_label": "მიუწვდომელია"
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "banner_title": {
+          "some_products_one": "ეს პროდუქტი %{location_name}-ში მიწოდებისთვის მიუწვდომელია.",
+          "some_products_other": "ეს პროდუქტები %{location_name}-ში მიწოდებისთვის მიუწვდომელია.",
+          "all_products_one": "თქვენს კალათაში არსებული პროდუქტი არ არის ხელმისაწვდომი %{location_name}-ში მიწოდებისთვის.",
+          "all_products_other": "თქვენს კალათაში არსებული პროდუქტები %{location_name}-ში მიწოდებისთვის მიუწვდომელია."
+        },
+        "missing_country_fallback": "შენი ქვეყანა",
+        "indeterminate_location_fallback": "თქვენი მდებარეობა",
+        "cart_updated": "თქვენი კალათა განახლდა.",
+        "change_address_only": "გასაგრძელებლად შეცვალეთ მიწოდების მისამართი.",
+        "change_address_or_remove": "მიწოდების მისამართის შეცვლა ან %{remove_action}.",
+        "remove_items_action": {
+          "one": "მიუწვდომელი ნივთის წაშლა",
+          "other": "მიუწვდომელი ნივთების წაშლა"
+        },
+        "empty_cart_action": "დაცარიელეთ კალათა და დააბრუნეთ მაღაზიაში",
+        "unavailable_line_item": "%{პროდუქტის_სახელი} / %{ვარიანტი_ეტიკეტი}"
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "one": "%{count} ნივთისთვის მიწოდება შეუძლებელია",
+            "other": "%{count} ნივთისთვის მიწოდება შეუძლებელია"
+          },
+          "message": {
+            "one": "ეს ნივთი თქვენი კალათიდან წაიშლება, რადგან თქვენს მისამართზე მიწოდების მეთოდები არ არის ხელმისაწვდომი.",
+            "other": "ეს ნივთები თქვენი კალათიდან წაიშლება, რადგან თქვენს მისამართზე მიწოდების მეთოდები არ არის ხელმისაწვდომი."
+          },
+          "label": "მიწოდება არ არის"
+        }
+      },
+      "order_summary": {
+        "title": "შეკვეთის შეჯამება",
+        "group_title_label": "„%{group_title}“-ის ნაწილი",
+        "for_add_on": "%{group_title}-ისთვის",
+        "from_shop_heading": "%{shop_name}-დან",
+        "from_other_stores_heading": "სხვა მაღაზიებიდან",
+        "from_multiple_stores_heading": "რამდენიმე მაღაზიიდან",
+        "number_items": {
+          "one": "%{count} ერთეული",
+          "other": "%{count} ერთეული"
+        },
+        "view_all_items": {
+          "one": "%{count} ერთეულის ნახვა",
+          "other": "ყველა %{count} ერთეულის ნახვა"
+        },
+        "more_items_modal": {
+          "search_item": "ძიება",
+          "clear_search": "ძიების გასუფთავება",
+          "empty_results": "„%{searchText}“-ისთვის შედეგები ვერ მოიძებნა. შეამოწმეთ მართლწერა ან გამოიყენეთ სხვა სიტყვა ან ფრაზა.",
+          "number_items_shown": "%{shownNumber} ერთეული %{totalNumber}-დან"
+        },
+        "order_name_label": "შეკვეთა %{name}",
+        "shopping_cart_label": "სავაჭრო კალათა",
+        "discount_title": "ფასდაკლება",
+        "discount_title_stacking": {
+          "one": "ფასდაკლება",
+          "other": "ფასდაკლებები"
+        },
+        "discount_order_stacking": {
+          "one": "შეკვეთის ფასდაკლება",
+          "other": "შეკვეთის ფასდაკლებები"
+        },
+        "discount_label": "ფასდაკლების კოდი",
+        "discount_not_found": "შეყვანილი კოდის შესაბამისი მოქმედი ფასდაკლების პოვნა ვერ მოხერხდა",
+        "discount_placeholder": "ფასდაკლების კოდი",
+        "discount_code_applied": "ფასდაკლების კოდი გამოყენებულია",
+        "discount_code_applied_with_code": "ფასდაკლების კოდი %{code} გამოყენებულია",
+        "discount_code_removed": "ფასდაკლების კოდი %{code} წაიშალა",
+        "discount_code_replaced": "ფასდაკლების კოდი %{old_code} წაიშალა და %{code} გამოყენებულია",
+        "discount_code_replaced_multiple": "რამდენიმე ფასდაკლების კოდი წაიშალა და გამოყენებულია %{code}",
+        "discount_code_allocations_mismatch": "თქვენი <strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი შეიცვალა. გადახედეთ თქვენს კალათას და სცადეთ ხელახლა.",
+        "order_discounts_apply_to_local_shop": "შეკვეთის ფასდაკლება ვრცელდება მხოლოდ %{shop_name}-ის პროდუქტებზე",
+        "gift_card_applied": "სასაჩუქრე ბარათი გამოყენებულია",
+        "enter_shipping_address": "შეიყვანეთ მიწოდების მისამართი",
+        "gift_card_title": "სასაჩუქრე ბარათი",
+        "gift_card_label": "სასაჩუქრე ბარათი",
+        "gift_card_placeholder": "სასაჩუქრე ბარათი",
+        "gift_card_and_discount_title": "ფასდაკლების კოდი ან სასაჩუქრე ბარათი",
+        "gift_card_and_discount_label": "ფასდაკლების კოდი ან სასაჩუქრე ბარათი",
+        "gift_card_and_discount_placeholder": "ფასდაკლების კოდი ან სასაჩუქრე ბარათი",
+        "gift_cards_apply_to_local_shop": "სასაჩუქრე ბარათები მხოლოდ %{shop_name}-ის პროდუქტებზე ვრცელდება",
+        "add_discount_or_gift_card": "დაამატეთ ფასდაკლების კოდი ან სასაჩუქრე ბარათი",
+        "remove_gift_card_label": "სასაჩუქრე ბარათის გასუფთავება",
+        "remove_discount_label": "ფასდაკლების წაშლა",
+        "return_restocking_fee_label": "მარაგების შევსების საფასური",
+        "return_shipping_fee_label": "დაბრუნების მიწოდება",
+        "free_shipping_discount_label": "უფასო მიწოდება",
+        "applied_free_shipping_discount_label": "გამოყენებული",
+        "apply_discount_button_label": "გამოყენება",
+        "applied_discount_message": "%{amount} ფასდაკლება შეკვეთის მთლიან ფასზე",
+        "discount_has_been_applied": "ფასდაკლება გამოყენებულია",
+        "discount_has_been_removed": "ფასდაკლება გაუქმდა",
+        "gift_card_has_been_applied": "სასაჩუქრე ბარათი გამოყენებულია",
+        "gift_card_has_been_removed": "სასაჩუქრე ბარათი წაიშალა",
+        "gift_card_subscriptions_notice": "სასაჩუქრე ბარათები მხოლოდ თქვენს პირველ გადახდაზე იმოქმედებს",
+        "discount_already_applied": "ამ შეკვეთაზე ფასდაკლება გამოყენებულია. სხვა ფასდაკლების დამატება შეუძლებელია.",
+        "cart_does_not_meet_discount_requirements_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი არ არის მოქმედი თქვენს კალათაში არსებული ნივთებისთვის",
+        "discount_requires_customer_notice": "შეიყვანეთ თქვენი მიწოდების ინფორმაცია <strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდის გამოსაყენებლად",
+        "customer_does_not_meet_discount_requirements_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდი ამჟამად თქვენთვის ხელმისაწვდომი არ არის",
+        "eligible_customer_missing_notice": "<strong style=\"text-transform:uppercase\">%{code}</strong> ფასდაკლების კოდისთვის საჭიროა შესაბამისი მომხმარებელი."
       }
     }
   },
