@@ -31,6 +31,9 @@
               {%- if settings.is_country_selector %} / {% endif -%}
               {{- localization.language.iso_code | upcase -}}
             {%- endif -%}
+            {%- unless settings.is_country_selector or settings.is_language_selector -%}
+              {{ localization.country.currency.iso_code }} / {{ localization.language.iso_code | upcase }}
+            {%- endunless -%}
           </span>
         </span>
         <span class="header-menu-icon">
@@ -158,7 +161,7 @@
               <input type="hidden" name="form_type" value="localization">
               <input type="hidden" name="utf8" value="✓">
               <input type="hidden" name="_method" value="put">
-              <input type="hidden" name="return_to" value="/">
+              <input type="hidden" name="return_to" value="{{ request.path }}">
               <input
                 type="hidden"
                 name="language_code"

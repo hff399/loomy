@@ -675,3 +675,60 @@
          justify-self: start !important;
      }
  }
+
+ /* Header Localization Button */
+ .header-localization-item .localization-form-content {
+     justify-content: center;
+ }
+
+ .header-localization-item .custom-select-button {
+     display: inline-flex;
+     align-items: center;
+     gap: 4px;
+     padding: 4px 8px;
+     font-size: 13px;
+     font-weight: 500;
+     white-space: nowrap;
+     cursor: pointer;
+     background: none;
+     border: 1px solid rgba(0, 0, 0, 0.15);
+     border-radius: 4px;
+     transition: border-color 0.2s;
+ }
+
+ .header-localization-item .custom-select-button:hover {
+     border-color: rgba(0, 0, 0, 0.4);
+ }
+
+ .header-localization-item .select-countryflags {
+     display: inline-flex;
+     align-items: center;
+ }
+
+ .header-localization-item .select-countryflags img {
+     width: 18px;
+     height: auto;
+     border-radius: 2px;
+ }
+
+ .header-localization-item .current-countrylanguage {
+     font-size: 12px;
+     letter-spacing: 0.03em;
+ }
+
+ .header-localization-item .header-menu-icon {
+     display: inline-flex;
+     align-items: center;
+     margin-left: 2px;
+ }
+
+ .header-localization-item .header-menu-icon svg {
+     width: 8px;
+     height: 5px;
+ }
+
+ .header-localization-item .custom-select-content {
+     right: 0;
+     left: auto;
+     min-width: 200px;
+ }

@@ -6,6 +6,9 @@
 %}
 <div class="header-right-icons">
   <ul class="header-buttons-list d-flex align-items-center justify-content-end icon-background-{{ section.settings.enable_icon_background }}">
+    <li class="header-button-item header-localization-item">
+      {% render 'localization-form', section: section %}
+    </li>
     <li class="header-button-item{% if hide_search %} small-search-icon{% endif %}">
       <list-set class="d-block" data-source="search-drawer" data-behaviour="{{ search_behaviour }}">
         <a
