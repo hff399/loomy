@@ -1,0 +1,186 @@
+{% comment %}
+  Product Benefits - Quick scannable benefits for product pages
+  Uses product metafields or falls back to generic benefits
+{% endcomment %}
+
+<style>
+  .product-benefits {
+    margin: 1rem 0;
+    padding: 0;
+  }
+  
+  .product-benefits__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .product-benefits__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.4;
+  }
+  
+  .product-benefits__icon {
+    color: #22c55e;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  .product-benefits__text strong {
+    color: #000;
+  }
+</style>
+
+<div class="product-benefits">
+  <ul class="product-benefits__list">
+    {% comment %} Check for product-specific benefits in metafields {% endcomment %}
+    {% if product.metafields.custom.benefits %}
+      {% assign benefits = product.metafields.custom.benefits | split: '|' %}
+      {% for benefit in benefits %}
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text">{{ benefit }}</span>
+        </li>
+      {% endfor %}
+    {% else %}
+      {% comment %} Default benefits based on vendor/tags {% endcomment %}
+      {% if product.vendor == 'Reima' %}
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Finnish quality</strong> — designed for extreme conditions</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Tested by kids</strong> — built for active play</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Sustainable materials</strong> — eco-friendly choice</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Easy care</strong> — machine washable</span>
+        </li>
+      {% elsif product.vendor == 'Micro' or product.vendor == 'Micro Mobility' %}
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Swiss precision</strong> — engineered for safety</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>#1 worldwide</strong> — trusted by millions of families</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Award-winning design</strong> — Red Dot & iF Design awards</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Grows with your child</strong> — adjustable height</span>
+        </li>
+      {% elsif product.vendor == 'Orange Toys' %}
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Premium quality</strong> — handcrafted with care</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Super soft</strong> — perfect for cuddles</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Safe materials</strong> — child-friendly fabrics</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Gift-ready</strong> — beautiful presentation</span>
+        </li>
+      {% else %}
+        {% comment %} Generic benefits {% endcomment %}
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Premium quality</strong> — built to last</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Safe for kids</strong> — meets safety standards</span>
+        </li>
+        <li class="product-benefits__item">
+          <span class="product-benefits__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="product-benefits__text"><strong>Official retailer</strong> — authentic products</span>
+        </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+</div>

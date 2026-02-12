@@ -188,6 +188,9 @@
 
 <script src="{{ 'variant-images.js' | asset_url }}"></script>
 
+{% comment %} Sticky Add to Cart for Mobile {% endcomment %}
+{% render 'sticky-add-to-cart', product: product %}
+
 {% schema %}
   {
     "name": "t:sections.main-product.name",

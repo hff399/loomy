@@ -162,7 +162,7 @@
         "marquee_content_NAXXxW": {
           "type": "marquee-content",
           "settings": {
-            "marquee_text": "── Get 10% Off ── Your First Order!",
+            "marquee_text": "── Free delivery on orders over 300 GEL ── 10% off your first order — Code: WELCOME10",
             "image_visibility": "default"
           }
         }
@@ -333,10 +333,10 @@
         "seo_heading": "h2",
         "heading_font": "heading-font",
         "markers_font": "accent-font",
-        "description": "Hurry! Limited time offer, expiring soon.",
+        "description": "Premium Reima outerwear at unbeatable prices. Don't miss out — limited stock available.",
         "description_size": "text",
         "alignment": "left",
-        "button_text": "Button",
+        "button_text": "Shop Sale",
         "button_link": "",
         "button_style": "solid",
         "button_size": "button-regular",

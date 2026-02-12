@@ -1,0 +1,182 @@
+{% comment %}
+  Sticky Add to Cart Bar for Mobile
+  Shows at bottom of screen when main Add to Cart is out of view
+{% endcomment %}
+
+<style>
+  .sticky-atc-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    padding: 12px 16px;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sticky-atc-bar.is-visible {
+    display: flex;
+    transform: translateY(0);
+  }
+  
+  .sticky-atc-bar__image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .sticky-atc-bar__info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .sticky-atc-bar__title {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+  
+  .sticky-atc-bar__price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin: 2px 0 0;
+  }
+  
+  .sticky-atc-bar__btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  
+  .sticky-atc-bar__btn:hover {
+    background: #333;
+  }
+  
+  .sticky-atc-bar__btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Hide on desktop */
+  @media (min-width: 768px) {
+    .sticky-atc-bar {
+      display: none !important;
+    }
+  }
+  
+  /* Add padding to body to prevent content being hidden behind sticky bar */
+  body.sticky-atc-active {
+    padding-bottom: 80px;
+  }
+</style>
+
+<div class="sticky-atc-bar" id="sticky-add-to-cart" data-product-url="{{ product.url }}">
+  {% if product.featured_image %}
+    <img 
+      class="sticky-atc-bar__image" 
+      src="{{ product.featured_image | image_url: width: 100 }}" 
+      alt="{{ product.title | escape }}"
+      loading="lazy"
+    >
+  {% endif %}
+  
+  <div class="sticky-atc-bar__info">
+    <p class="sticky-atc-bar__title">{{ product.title }}</p>
+    <p class="sticky-atc-bar__price" data-sticky-price>
+      {{ product.selected_or_first_available_variant.price | money }}
+    </p>
+  </div>
+  
+  <button 
+    type="button" 
+    class="sticky-atc-bar__btn"
+    id="sticky-atc-btn"
+    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+  >
+    {% if product.selected_or_first_available_variant.available %}
+      Buy Now
+    {% else %}
+      Sold Out
+    {% endif %}
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('sticky-add-to-cart');
+    const stickyBtn = document.getElementById('sticky-atc-btn');
+    const mainAddToCart = document.querySelector('.product-buy-buttons-wrapper');
+    
+    if (!stickyBar || !mainAddToCart) return;
+    
+    // Scroll to main Add to Cart or submit form
+    stickyBtn.addEventListener('click', function() {
+      // Scroll to the main product form
+      mainAddToCart.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Focus on the add to cart button after scroll
+      setTimeout(() => {
+        const mainBtn = mainAddToCart.querySelector('button[type="submit"], .add-to-cart-btn');
+        if (mainBtn) mainBtn.focus();
+      }, 500);
+    });
+    
+    // Show/hide based on scroll position
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          stickyBar.classList.remove('is-visible');
+          document.body.classList.remove('sticky-atc-active');
+        } else {
+          stickyBar.classList.add('is-visible');
+          document.body.classList.add('sticky-atc-active');
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '-100px 0px 0px 0px'
+    });
+    
+    observer.observe(mainAddToCart);
+    
+    // Update price when variant changes
+    document.addEventListener('variant:change', function(e) {
+      if (e.detail && e.detail.variant) {
+        const priceEl = stickyBar.querySelector('[data-sticky-price]');
+        if (priceEl && e.detail.variant.price) {
+          priceEl.textContent = Shopify.formatMoney(e.detail.variant.price);
+        }
+        
+        // Update button state
+        if (e.detail.variant.available) {
+          stickyBtn.disabled = false;
+          stickyBtn.textContent = 'Buy Now';
+        } else {
+          stickyBtn.disabled = true;
+          stickyBtn.textContent = 'Sold Out';
+        }
+      }
+    });
+  });
+</script>

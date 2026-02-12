@@ -253,6 +253,8 @@
                       , product: product
                       , currentVariant: currentVariant
                       , block: block %}
+                    {% comment %} Product Benefits - scannable bullet points {% endcomment %}
+                    {% render 'product-benefits', product: product %}
                   {%- when 'variant_picker' -%}
 
                     {% unless product.has_only_default_variant %}
@@ -502,6 +504,8 @@
                         {% endif %}
                       </div>
                     {%- endif -%}
+                    {% comment %} Product FAQ section {% endcomment %}
+                    {% render 'product-faq', product: product %}
                   {%- when 'collapsible_content' -%}
                     {% if block.settings.heading != blank and block.settings.description != blank and collapsible_content_style == 'accordion' %}
                       <div class="product-collapsible-content-box{% if section.settings.accordion_style == 'border' %} collapsible-style-border{% endif %}" {{ block.shopify_attributes }}>

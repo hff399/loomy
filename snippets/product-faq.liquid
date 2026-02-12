@@ -1,0 +1,188 @@
+{% comment %}
+  Product FAQ Section
+  Displays common questions to reduce purchase hesitation
+{% endcomment %}
+
+<style>
+  .product-faq {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .product-faq__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .product-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .product-faq__item {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .product-faq__item:last-child {
+    border-bottom: none;
+  }
+  
+  .product-faq__question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .product-faq__question:hover {
+    color: #333;
+  }
+  
+  .product-faq__icon {
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  
+  .product-faq__item.is-open .product-faq__icon {
+    transform: rotate(180deg);
+  }
+  
+  .product-faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .product-faq__item.is-open .product-faq__answer {
+    max-height: 500px;
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="product-faq">
+  <h3 class="product-faq__title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+    Frequently Asked Questions
+  </h3>
+  
+  <div class="product-faq__list">
+    {% comment %} Shipping FAQ {% endcomment %}
+    <div class="product-faq__item">
+      <button class="product-faq__question" type="button" aria-expanded="false">
+        How long does delivery take?
+        <svg class="product-faq__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="product-faq__answer">
+        Orders are processed within 1-2 business days. Delivery within Tbilisi takes 1-2 days, and across Georgia 2-5 days. Free delivery on orders over 300 GEL.
+      </div>
+    </div>
+    
+    {% comment %} Returns FAQ {% endcomment %}
+    <div class="product-faq__item">
+      <button class="product-faq__question" type="button" aria-expanded="false">
+        What's your return policy?
+        <svg class="product-faq__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="product-faq__answer">
+        We offer a 14-day return policy on all items. Products must be unworn, unwashed, and in original packaging with tags attached. Visit our store or contact us to initiate a return.
+      </div>
+    </div>
+    
+    {% comment %} Size FAQ - only show for clothing {% endcomment %}
+    {% if product.type contains 'clothing' or product.type contains 'Clothing' or product.tags contains 'clothing' or product.vendor == 'Reima' %}
+    <div class="product-faq__item">
+      <button class="product-faq__question" type="button" aria-expanded="false">
+        How do I choose the right size?
+        <svg class="product-faq__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="product-faq__answer">
+        {% if product.vendor == 'Reima' %}
+        Reima sizes are designed with room for growth and layering. We recommend ordering your child's regular size. Check the size chart above for detailed measurements, or visit our Tbilisi store for a fitting.
+        {% else %}
+        Check the size chart above for detailed measurements. When in between sizes, we recommend sizing up for comfort and room to grow. Visit our store for a fitting if you're unsure.
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    
+    {% comment %} Authenticity FAQ {% endcomment %}
+    <div class="product-faq__item">
+      <button class="product-faq__question" type="button" aria-expanded="false">
+        Are your products authentic?
+        <svg class="product-faq__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="product-faq__answer">
+        Yes! Loomy is an authorized retailer for all brands we carry including Reima, Micro, Waboba, and Orange Toys. Every product comes with original packaging and manufacturer warranty.
+      </div>
+    </div>
+    
+    {% comment %} Store visit FAQ {% endcomment %}
+    <div class="product-faq__item">
+      <button class="product-faq__question" type="button" aria-expanded="false">
+        Can I see products in person?
+        <svg class="product-faq__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="product-faq__answer">
+        Absolutely! Visit our store at 60 Zakaria Paliashvili Street, Tbilisi. Our team can help with sizing, product recommendations, and answer any questions. Contact us at +995 511 456 787.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.product-faq__item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.product-faq__question');
+      
+      question.addEventListener('click', function() {
+        const isOpen = item.classList.contains('is-open');
+        
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('is-open');
+          otherItem.querySelector('.product-faq__question').setAttribute('aria-expanded', 'false');
+        });
+        
+        // Toggle current item
+        if (!isOpen) {
+          item.classList.add('is-open');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
