@@ -1935,6 +1935,49 @@
           "refunded": "დაბრუნებული"
         }
       }
+    },
+    "page_titles": {
+      "search": "ძიება",
+      "search_results": {
+        "one": "ძიება: მოიძებნა %{count} შედეგი „%{terms}“-ისთვის",
+        "other": "ძიება: მოიძებნა %{count} შედეგი „%{terms}“-ისთვის"
+      },
+      "collections": "კოლექციები",
+      "not_found": "404 ვერ მოიძებნა",
+      "challenge": "გამოწვევა",
+      "checkpoint": "საკონტროლო პუნქტი"
+    },
+    "cart": {
+      "discounts_with_count": "გამოყენებულია %{count} ფასდაკლება"
+    },
+    "challenge": {
+      "message": "გასაგრძელებლად, შეგვატყობინეთ, რომ რობოტი არ ხართ.",
+      "error": "თქვენი პასუხი არასწორი იყო, გთხოვთ, სცადოთ ხელახლა.",
+      "submit_button_text": "გაგზავნა"
+    },
+    "checkpoint": {
+      "message": "გასაგრძელებლად გადაჭერით Captcha",
+      "error": "Captcha-ს ვალიდაცია ვერ მოხერხდა.",
+      "submit_button_text": "გაგზავნა"
+    },
+    "store_availability": {
+      "pick_up_time": {
+        "one_hour": "როგორც წესი, მზად არის 1 საათში",
+        "two_hours": "როგორც წესი, მზად არის 2 საათში",
+        "four_hours": "როგორც წესი, მზად არის 4 საათში",
+        "twenty_four_hours": "როგორც წესი, მზად არის 24 საათში",
+        "two_to_four_days": "როგორც წესი, მზად არის 2-4 დღეში",
+        "five_or_more_days": "როგორც წესი, მზად არის 5+ დღეში",
+        "zero_to_two_hours": "როგორც წესი, მზად არის 2 საათში",
+        "two_to_four_hours": "როგორც წესი, მზად არის 4 საათში",
+        "immediately": "მზადაა ახლავე ასაღებად",
+        "next_day": "მზადაა მეორე დღეს ასაღებად"
+      }
+    },
+    "subscriptions": {
+      "buyer_consent_product": "ეს ნივთი წარმოადგენს განმეორებად ან გადავადებულ შენაძენს. გაგრძელებით, ვეთანხმები %{cancellationPolicyLink}-ს და გაძლევთ უფლებამოსილებას, ჩამომაჭრათ თანხა ჩემი გადახდის მეთოდიდან ამ გვერდზე მითითებული ფასებით, სიხშირითა და თარიღებით, სანამ ჩემი შეკვეთა არ შესრულდება ან არ გავაუქმებ, თუ ეს დაშვებულია.",
+      "buyer_consent_cart": "თქვენს კალათაში არსებული ერთი ან მეტი ნივთი წარმოადგენს განმეორებად ან გადავადებულ შენაძენს. გაგრძელებით, ვეთანხმები %{cancellationPolicyLink}-ს და გაძლევთ უფლებამოსილებას, ჩამომაჭრათ თანხა ჩემი გადახდის მეთოდიდან ამ გვერდზე მითითებული ფასებით, სიხშირითა და თარიღებით, სანამ ჩემი შეკვეთა არ შესრულდება ან არ გავაუქმებ, თუ ნებადართულია.",
+      "cancellation_policy": "გაუქმების პოლიტიკა"
     }
   },
   "customer_accounts": {
@@ -2472,6 +2515,103 @@
       "due_on_date": "ვადა {{date}}",
       "due_on_fulfillment": "შესრულებისთანავე გადასახდელი",
       "due_on_receipt": "გადახდის თარიღი ქვითარი"
+    },
+    "callback": {
+      "try_again": "ხელახლა სცადეთ"
+    },
+    "date": {
+      "humanize": {
+        "lessThanOneHourAgo": {
+          "one": "{{count}} წუთის წინ",
+          "other": "{{count}} წუთის წინ"
+        },
+        "lessThanOneMinuteAgo": "ახლახან",
+        "yesterday": "გუშინ {{time}} საათზე",
+        "today": "დღეს {{time}}",
+        "tomorrow": "ხვალ {{time}}"
+      }
+    },
+    "enable_javascript": "თქვენი ანგარიშის სანახავად, ჩართეთ JavaScript თქვენი ბრაუზერის პარამეტრებში ან შედით სისტემაში სხვა ბრაუზერით.",
+    "navigation_and_structure": {
+      "account_menu": {
+        "hide_accessibility_label": "ანგარიშის დამალვის მენიუ",
+        "label": "ანგარიში",
+        "show_accessibility_label": "ანგარიშის მენიუს ჩვენება",
+        "nav_accessibility_label": "ანგარიშის ნავიგაცია",
+        "open_menu_accessibility_label": "ანგარიშის ნავიგაციის გახსნა",
+        "close_menu_accessibility_label": "ანგარიშის ნავიგაციის დახურვა",
+        "loading_message": "ანგარიშის ნავიგაცია იტვირთება"
+      },
+      "action_menu_accessibility_label": "მეტი მოქმედება",
+      "close_menu_accessibility_label": "მთავარი ნავიგაციის დახურვა",
+      "contact_email_subject": "კონტაქტი {{shopName}} ონლაინ მაღაზიიდან",
+      "contact_link": "საკონტაქტო ინფორმაცია",
+      "delete_confirmation": {
+        "cancel": "გაუქმება",
+        "delete": "წაშლა"
+      },
+      "dismiss_toast": "დახურვა",
+      "document_title": "{{sectionName}} - {{shopName}} - ანგარიში",
+      "go_to_store_link": "მაღაზიაში გადასვლა",
+      "loading_message": "იტვირთება",
+      "loading_policy_content_accessibility_label": "პოლიტიკის კონტენტის ჩატვირთვა მიმდინარეობს",
+      "policy_load_error": "{{policyName}} ის ჩატვირთვა ვერ მოხერხდა",
+      "policy_try_again": "ხელახლა სცადეთ",
+      "log_out_link": "გასვლა",
+      "logout_overlay_label": "გასვლა...",
+      "nav_label_accessibility_label": "მთავარი ნავიგაცია",
+      "navigation_accessibility_message": "თქვენ გადახვედით {{sectionName}} ზე",
+      "open_menu_accessibility_label": "მთავარი ნავიგაციის გახსნა",
+      "orders_link_label": "შეკვეთები",
+      "shop_logo_accessibility_label": "{{shopName}} ლოგო",
+      "subscriptions_link_label": "გამოწერები",
+      "settings_link": "პარამეტრები",
+      "country_switcher_toast_message": "ქვეყანა შეიცვალა {{countryName}} ით",
+      "switch_country": "ქვეყნის შეცვლა",
+      "no_countries_found": "ქვეყნები ვერ მოიძებნა",
+      "location_switcher_toast_message": "მდებარეობა შეიცვალა {{locationName}} ით",
+      "switch_location": "მდებარეობის შეცვლა",
+      "no_locations_found": "მდებარეობები ვერ მოიძებნა",
+      "try_new_search": "სცადეთ ახალი ძიება",
+      "view_details": "დეტალების ნახვა",
+      "company_location": "კომპანიის მდებარეობა",
+      "search": "ძიება",
+      "skip_to_content": "გადასვლა კონტენტზე"
+    },
+    "announcement_bar": {
+      "expand_label": "განცხადებების ზოლის გაფართოება",
+      "collapse_label": "განცხადებების ზოლის ჩაკეცვა",
+      "close_label": "განცხადებების ზოლის დახურვა"
+    },
+    "account_information": {
+      "loading_accessibility_message": "ანგარიშის ინფორმაციის ჩატვირთვა მიმდინარეობს.",
+      "loading_finished_accessibility_message": "ანგარიშის ინფორმაცია ჩაიტვირთა",
+      "profile_card": {
+        "cancel": "გაუქმება",
+        "cancel_accessibility_label": "პროფილის რედაქტირების გაუქმება",
+        "edit": "რედაქტირება",
+        "edit_accessibility_label": "პროფილის რედაქტირება",
+        "email_help_text": "ელფოსტის რედაქტირება შეუძლებელია",
+        "editable_email_help_text": "ეს ელ. ფოსტა გამოიყენება შესვლისა და შეკვეთის განახლებებისთვის.",
+        "first_name": "სახელი",
+        "last_name": "გვარი",
+        "email": "ელ. ფოსტა",
+        "no_name_provided_accessibility_label": "სახელი არ დამატებულა",
+        "phone_number_help_text": "ტელეფონის ნომრის რედაქტირება შეუძლებელია",
+        "save": "შენახვა",
+        "save_accessibility_label": "პროფილის შენახვა",
+        "title": "პროფილი",
+        "errors": {
+          "name_too_long": "{{fieldName}} ძალიან გრძელია (მაქსიმუმ 255 სიმბოლო)",
+          "name_cannot_contain_url": "{{fieldName}} არ შეიძლება შეიცავდეს URL-ს",
+          "name_cannot_contain_html_tags": "{{fieldName}} არ შეიძლება შეიცავდეს HTML თეგებს",
+          "email_cant_be_blank": "ელ. ფოსტა არ შეიძლება იყოს ცარიელი",
+          "invalid_email_format": "შეიყვანეთ სწორი ელ. ფოსტა"
+        }
+      },
+      "verify_new_email_modal": {
+        "title": "ელფოსტის დადასტურება"
+      }
     }
   },
   "sections": {
