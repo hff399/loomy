@@ -112,7 +112,7 @@
           "type": "reima_nav_tab",
           "settings": {
             "tab_title": "Accessories",
-            "tab_link": "",
+            "tab_link": "shopify://collections/accessories",
             "is_sale": false,
             "has_dropdown": true,
             "col1_title": "",
