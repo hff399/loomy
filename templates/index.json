@@ -35,7 +35,7 @@
             "mobile_content_position": "m-bottom-left",
             "mobile_text_alignment": "left",
             "button_text": "Shop Sale",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/final-sale",
             "button_style": "solid",
             "button_size": "button-sm"
           }
