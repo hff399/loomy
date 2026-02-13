@@ -3160,6 +3160,154 @@
           "text": "საკრედიტო და სადებეტო ბარათებით გადახდა ამჟამად მიუწვდომელია."
         }
       }
+    },
+    "orders": {
+      "order_list": {
+        "sort": {
+          "order_number": {
+            "descending": "შეკვეთის ნომერი (მაღალიდან დაბალამდე)"
+          },
+          "order_total": {
+            "ascending": "შეკვეთის ჯამური ღირებულება (დაბალიდან მაღალამდე)",
+            "descending": "შეკვეთის ჯამური ღირებულება (მაღალიდან დაბალამდე)"
+          }
+        },
+        "location_filter_picker": {
+          "all_location": "ყველა ადგილმდებარეობა",
+          "current_location": "მიმდინარე მდებარეობა",
+          "switch_view": "ხედის გადართვა"
+        },
+        "filter_title": "ფილტრი",
+        "filter": {
+          "clear_section": "გასუფთავებული სექციები",
+          "clear_all": "ყველაფრის გასუფთავება",
+          "apply": "გამოყენება",
+          "date": {
+            "start_date": "დაწყების თარიღი",
+            "end_date": "დასრულების თარიღი",
+            "title": "შეკვეთის თარიღი",
+            "today": "დღეს",
+            "last_7_days": "ბოლო 7 დღე",
+            "last_30_days": "ბოლო 30 დღე",
+            "last_90_days": "ბოლო 90 დღე",
+            "last_365_days": "ბოლო 12 თვე",
+            "custom": "მორგებული"
+          }
+        },
+        "show_order_actions_accessibility_label": "შეკვეთის მოქმედებების ჩვენება {{name}} შეკვეთისთვის",
+        "view_order": "შეკვეთის ნახვა",
+        "view_order_accessibility_label": "შეკვეთის ნახვა {{orderName}}"
+      },
+      "order_status": {
+        "attempted_delivery_label": "მიწოდების მცდელობა",
+        "attempted_to_deliver_label": "მიწოდების მცდელობა",
+        "preparing_for_shipping_label": "გადაზიდვისთვის მზადება",
+        "ready_for_pickup_label": "მზადაა ასაღებად",
+        "ready_for_pickup_description": "ეს ნივთები მზადაა ასაღებად. გთხოვთ, შეკვეთის აღებისას თან იქონიოთ შეკვეთის დადასტურება.",
+        "ready_for_pickup_location": "თქვენი შეკვეთა მზადაა ადგილზე ასაღებად",
+        "picked_up_label": "აიღეს",
+        "canceled_label": "გაუქმებულია",
+        "canceled_title": "თქვენი შეკვეთა გაუქმდა",
+        "come_back": "თქვენი გადაზიდვის სტატუსის შესახებ განახლებული ინფორმაციის მისაღებად, დაბრუნდით ამ გვერდზე.",
+        "company_tracking_number": "{{company}} თვალთვალის ნომერი:",
+        "confirmed_label": "დადასტურებულია",
+        "confirmed_title": "თქვენი შეკვეთა დადასტურებულია",
+        "confirmed_description_pickup": "როდესაც თქვენი შეკვეთა მზად იქნება ასაღებად, თქვენ მიიღებთ ელ.წერილს.",
+        "confirmed_description_digital": "როდესაც თქვენი შეკვეთა მზად იქნება, თქვენ მიიღებთ ელ.წერილს.",
+        "confirmed_description_gift_card_text": "როდესაც თქვენი შეკვეთა მზად იქნება, თქვენ მიიღებთ ტექსტურ შეტყობინებას.",
+        "complete_label": "დასრულებული",
+        "delivered_label": "მიწოდებული",
+        "delivered_description_gift_card": {
+          "one": "სასაჩუქრე ბარათი ელექტრონული ფოსტით გაიგზავნა.",
+          "other": "სასაჩუქრე ბარათები ელექტრონული ფოსტით გაიგზავნა."
+        },
+        "delivered_description_gift_card_text": {
+          "one": "სასაჩუქრე ბარათი SMS-ით გაიგზავნა.",
+          "other": "სასაჩუქრე ბარათები ტექსტური შეტყობინებით გაიგზავნა."
+        },
+        "gift_card_label": {
+          "one": "სასაჩუქრე ბარათი",
+          "other": "სასაჩუქრე ბარათები"
+        },
+        "gift_card_resend_button": {
+          "one": "სასაჩუქრე ბარათის ხელახლა გაგზავნა",
+          "other": "სასაჩუქრე ბარათების ხელახლა გაგზავნა"
+        },
+        "gift_resend_success": {
+          "one": "სასაჩუქრე ბარათი ხელახლა გაიგზავნა",
+          "other": "სასაჩუქრე ბარათები ხელახლა გაიგზავნა"
+        },
+        "gift_resend_failure": {
+          "one": "თქვენი სასაჩუქრე ბარათის ხელახლა გაგზავნისას პრობლემა წარმოიშვა. სცადეთ ხელახლა ან დაგვიკავშირდით.",
+          "other": "სასაჩუქრე ბარათების ხელახლა გაგზავნისას პრობლემა წარმოიშვა. სცადეთ ხელახლა ან დაგვიკავშირდით."
+        },
+        "confirmed_gift_card_additional_description": {
+          "one": "სასაჩუქრე ბარათი გამოგეგზავნებათ ცალკე ელფოსტით.",
+          "other": "თითოეული სასაჩუქრე ბარათი ცალკე ელფოსტით გაიგზავნება."
+        },
+        "confirmed_gift_card_additional_description_text": {
+          "one": "სასაჩუქრე ბარათი გამოგეგზავნებათ ცალკე ტექსტური შეტყობინებით.",
+          "other": "თითოეული სასაჩუქრე ბარათი გაიგზავნება ცალკე ტექსტური შეტყობინებით."
+        },
+        "status_timestamp": "განახლებულია {{date}}",
+        "estimated_delivery": "მოსალოდნელია {{date}}",
+        "expected_by": "მოსალოდნელია {{date}} მდე",
+        "was_expected_by": "მოსალოდნელი იყო {{date}} სთვის",
+        "delivered": "ჩამოვიდა {{date}}",
+        "buy_with_prime_logo_accessibility_label": "Amazon Buy Prime-ის ლოგოთი",
+        "in_review_label": "მიმოხილვაში",
+        "in_review_title": "თქვენი შეკვეთა განიხილება",
+        "last_updated": "ბოლო განახლება {{date}}",
+        "multiple_shipments_label": "მრავალი გადაზიდვა",
+        "multiple_statuses_label": "შეკვეთის მრავალი სტატუსი",
+        "no_tracking_number": "ამ ტვირთს თვალთვალის ნომერი არ აქვს.",
+        "tracking_number": {
+          "one": "თვალთვალის ნომერი",
+          "other": "თვალთვალის ნომრები"
+        },
+        "on_its_way_label": "გზაშია",
+        "out_for_delivery_label": "მიწოდებისთვის გამოსულია",
+        "resume_tracking": "განაახლეთ თვალყურის დევნება",
+        "submitted_label": "წარდგენილია",
+        "submitted_description": "გადახედეთ შეკვეთისა და გადახდის დეტალებს.",
+        "there_was_a_problem_label": "პრობლემა იყო",
+        "track_shipment": "გადაზიდვის თვალყურის დევნება",
+        "request_return": "დაბრუნების მოთხოვნა",
+        "view_order_for_details": "დეტალებისთვის იხილეთ შეკვეთა",
+        "external_promise_manage_button_label": {
+          "buy_with_prime": "მართვა Amazon-ზე"
+        },
+        "amazon_buy_with_prime": {
+          "order_tracking_link": {
+            "text": "მართვა Amazon-ის მეშვეობით",
+            "new_window_disclaimer": "(იხსნება ახალი ფანჯარა)"
+          }
+        },
+        "delivery_promise_v2": {
+          "promise_line": {
+            "shop_promise_brand_label": "მიწოდება გარანტირებულია",
+            "external_promise_brand_label": "მიწოდება",
+            "not_delivered_by_label": "მიწოდება {{date}} ის შემდეგ",
+            "delivery_guarantee_expired_label": "მიწოდების გარანტია ვადაგასულია",
+            "modal_accessibility_button_label": "მიწოდების დაპირების დეტალები",
+            "download_shop_app_button_label": "ჩამოტვირთეთ მაღაზია თვალყურის დევნებისთვის",
+            "track_with_shop_button_label": "თვალყურის დევნება მაღაზიასთან",
+            "claim_shop_cash_button_label": "მოითხოვეთ მაღაზიის ნაღდი ფული"
+          },
+          "details_modal": {
+            "title": "მიწოდების გარანტია",
+            "active_delivery_guarantee_label": "მიწოდება {{date}} მდე",
+            "expired_delivery_guarantee_description": "ამ შეკვეთის 30-დღიანი Shop Promise გარანტია ამოიწურა.",
+            "expired_badge_label": "ვადაგასული",
+            "order_includes_guarantees_label": "თქვენი შეკვეთა მოიცავს {{deliveryAgreementsCount}} გარანტიებს",
+            "order_includes_guarantees_description": "Shop Promise გარანტიას იძლევა სწრაფ და საიმედო მიწოდებაზე. მოითხოვეთ Shop Cash, თუ თქვენი შეკვეთა {{date}} ის შემდეგ ჩამოვა.",
+            "delivered_after_label": "მიწოდება {{date}} ის შემდეგ",
+            "delivered_after_description": "რადგან თქვენი შეკვეთა დაგვიანებით მოვიდა, თქვენ გაქვთ უფლება მოითხოვოთ {{amount}} Shop Cash.",
+            "claimed_shop_cash_description": "რადგან ეს შეკვეთა დაგვიანებით მოვიდა, თქვენ მოითხოვეთ {{amount}} Shop Cash.",
+            "eligible_to_claim_shop_cash_description": "რადგან თქვენი შეკვეთა დაგვიანებით მოვიდა, თქვენ გაქვთ უფლება მოითხოვოთ {{amount}} Shop Cash."
+          }
+        }
+      }
     }
   },
   "sections": {
