@@ -505,6 +505,7 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
+            "media_image": "shopify://shop_images/hf_20260213_183128_b8f3e705-2b35-4d25-ba64-4eeabc07fa1c.png",
             "overlay_style": "solid",
             "category_shape": "shape_2",
             "category_text": "Age ++ 0-1",
@@ -536,6 +537,7 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
+            "media_image": "shopify://shop_images/hf_20260213_183114_a28179e2-0b1e-4c34-9cad-55eb38b0704e.png",
             "overlay_style": "solid",
             "category_shape": "shape_3",
             "category_text": "Age ++ 10-15",
@@ -567,6 +569,7 @@
             "row": 2,
             "column_mobile": "2",
             "row_mobile": "2",
+            "media_image": "shopify://shop_images/hf_20260213_182619_508e32b0-509e-4501-812e-82759d3c9911.png",
             "overlay_style": "solid",
             "category_shape": "shape_1",
             "category_text": "",
@@ -657,17 +660,20 @@
         "image_WfWxyd": {
           "type": "image",
           "settings": {
-            "image_ratio": "landscape"
+            "image": "shopify://shop_images/SPR27GRN_1_ac23bb26-3dad-4f22-a451-ca0554b05928.jpg",
+            "image_ratio": "square"
           }
         },
         "image_ANtnCX": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/MIM11PLE_NEW_1.jpg",
             "image_ratio": "auto"
           }
         },
         "shape_4Ax3cf": {
           "type": "shape",
+          "disabled": true,
           "settings": {
             "icon_visibility": "large",
             "shape": "unicorn",
@@ -696,7 +702,7 @@
         "section_container_width": "global",
         "corner_style": "none",
         "corner_radius": 20,
-        "enable_falling_stars": true,
+        "enable_falling_stars": false,
         "stars_trigger": "once",
         "animation_colors_opacity": 1,
         "alignment": "left",
