@@ -1047,30 +1047,46 @@ body:has(.custom-select-content.show) {
 
 /* Mobile menu utility links (search & account) */
 .mobile-menu-utility-links {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid rgba(var(--border-color, 0,0,0), 0.1);
-    padding: 0 0 12px;
-    margin-bottom: 12px;
+    display: flex !important;
+    gap: 0 !important;
+    border-bottom: 1px solid #eee !important;
+    padding: 0 20px 8px !important;
+    margin: 0 0 4px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 2 !important;
+    background: #fff !important;
 }
 
 .mobile-menu-utility-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--heading-color, #000);
-    text-decoration: none;
-    flex: 1;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 12px 0 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+    flex: 1 !important;
+}
+
+.mobile-menu-utility-link span {
+    color: #1a1a1a !important;
 }
 
 .mobile-menu-utility-link svg {
-    flex-shrink: 0;
-    opacity: 0.7;
+    flex-shrink: 0 !important;
+    color: #1a1a1a !important;
+    fill: #1a1a1a !important;
+    width: 20px !important;
+    height: 20px !important;
 }
 
 .mobile-menu-utility-link:hover {
-    opacity: 0.7;
+    opacity: 0.7 !important;
+}
+
+/* Ensure hamburger wrapper shows utility links */
+.hamburger-menu-content-wrapper:has(.mobile-menu-utility-links) {
+    overflow: visible !important;
 }
