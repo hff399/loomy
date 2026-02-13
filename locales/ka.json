@@ -3030,6 +3030,136 @@
       "verify_new_email_modal": {
         "title": "ელფოსტის დადასტურება"
       }
+    },
+    "payment_methods": {
+      "store_credit": {
+        "details_modal": {
+          "balance_label": "ბალანსი",
+          "expiration_date_label": "ვადის გასვლის თარიღი",
+          "amount_label": "თანხა",
+          "date_label": "თარიღი",
+          "event_label": "ღონისძიება",
+          "events": {
+            "adjustment": "რეგულირება",
+            "order_payment": "შეკვეთის გადახდა",
+            "order_refund": "შეკვეთის დაბრუნება",
+            "payment_failure": "გადახდის წარუმატებლობა",
+            "payment_returned": "გადახდა დაბრუნდა",
+            "order_cancellation": "შეკვეთის გაუქმება",
+            "tax_finalization": "გადასახადების დასრულება"
+          },
+          "expirable_balance_info": "თქვენი ბალანსის ნაწილის ვადა მომავალში იწურება",
+          "expirable_amount_label": "ვადაგასული მთლიანი თანხა",
+          "expirable_amounts_info": "უფრო ადრე ვადაგასული თანხები პირველ რიგში გამოიყენება გადახდისას",
+          "expirable_amounts_button": "ნახვა",
+          "expired_amounts_button": "ვადაგასული თანხების ნახვა",
+          "pagination": {
+            "load_more_label": "მეტის ჩატვირთვა",
+            "load_more_accessibility_label": "მეტი ვადაგასული თანხის ჩატვირთვა"
+          }
+        }
+      },
+      "payment_details": {
+        "title": "გადახდის მეთოდის დეტალები",
+        "credit_card_details_accessibility_label": "მთავრდება {{lastDigits}}",
+        "billing_title": "გადახდის მისამართი",
+        "card_info_title": "ბარათის ინფორმაცია",
+        "payment_method_expiring_on": "ვადა იწურება {{expiryDate}} ში",
+        "payment_method_expired_on": "ვადა ამოიწურა {{expiryDate}} ში",
+        "preauthorized_payments": "წინასწარ ავტორიზებული გადახდები",
+        "close_payment_modal": "დახურვა",
+        "close_payment_modal_accessibility_label": "გადახდის მეთოდის დეტალების მოდალის დახურვა",
+        "payment_method_not_found_error": "გადახდის მეთოდის პოვნა შეუძლებელია",
+        "payment_details_loading": "გადახდის მეთოდის დეტალები იტვირთება. მიმდინარეობს გადახდის მეთოდის დეტალების ჩატვირთვა.",
+        "pre_authorized_payments": "წინასწარ ავტორიზებული გადახდები",
+        "total_amount_of_subscription_line_items_left": "და კიდევ {{total}}",
+        "total_amount_of_subscription_line_items_left_accessibility_label": "სულ {{totalItems}} ერთეული, ნაჩვენებია {{totalItemsToDisplay}} ერთეული.",
+        "next_payment_due": "შემდეგი გადახდის ვადაა {{dueDateInMonthDayYear}}",
+        "edit_payment_method_button": "რედაქტირება",
+        "edit_payment_method_button_accessibility_label": "გადახდის მეთოდის რედაქტირება, რომელიც {{lastDigits}} ზე მთავრდება",
+        "loading_shop_pay": "Shop Pay-ის ჩატვირთვა",
+        "invalid_payment_method": "არასწორი გადახდის მეთოდი",
+        "invalid_payment_method_message": "მომავალი შეკვეთების მისაღებად გამოიყენეთ ახალი საკრედიტო ბარათი.",
+        "replace_payment_method": "გადახდის მეთოდის შეცვლა",
+        "checkout_card_banner": "ამ გადახდის მეთოდის გამოყენება შესაძლებელია მხოლოდ წინასწარ ავტორიზებული გადახდებისთვის. ის არ გამოჩნდება შეკვეთისას, თუ შესული ხართ ამ მაღაზიაში. ",
+        "default_checkbox": "ნაგულისხმევად დაყენება",
+        "default_checkbox_accessibility_label": "ამ გადახდის მეთოდის ნაგულისხმევად დაყენება",
+        "replace_payment_method_button": "ჩანაცვლება"
+      },
+      "edit_payment_method": {
+        "title": "გადახდის მეთოდის რედაქტირება",
+        "save_payment_method_button": "შენახვა",
+        "cancel_edit_payment_method_button": "გაუქმება",
+        "payment_method_updated_toast": "გადახდის მეთოდი განახლდა",
+        "billing_address": "გადახდის მისამართი",
+        "billing_address_add_new": "ახლის დამატება",
+        "billing_address_choose_from_list": "აირჩიეთ სიიდან",
+        "future_purchases_notice": "ეს გადახდის მეთოდი შეინახება მომავალი შესყიდვებისთვის.",
+        "generic_error": "განახლებისას პრობლემა წარმოიშვა. გთხოვთ, სცადოთ ხელახლა."
+      },
+      "update_payment_method": {
+        "title": "გადახდის მეთოდის განახლება",
+        "button_title": "განახლება",
+        "billing_address": "გადახდის მისამართი",
+        "disclaimer": "ეს გადახდის მეთოდი შეინახება მომავალი შესყიდვებისთვის და შეიძლება გამოყენებულ იქნას ნებისმიერი განმეორებადი ან გადავადებული შესყიდვისთვის.",
+        "error_message": "გადახდის მეთოდის განახლება შეუძლებელია",
+        "current": "მიმდინარე",
+        "subscriptions_title": "გამოწერები",
+        "subscriptions_list_accessibility_label": "სააბონენტო პროდუქტების სია",
+        "pre_orders_title": "მომავალი",
+        "pre_orders_list_accessibility_label": "შეკვეთის მომლოდინე პროდუქტების სია",
+        "resources_list_accessibility_label": "ამ გადახდის მეთოდის გამოყენებით გამოწერის პროდუქტები და შეკვეთის მომლოდინე პროდუქტები",
+        "resources_card_scroll": "გადაახვიეთ მეტი ერთეულისთვის",
+        "resources_card_show_more": "მეტის ჩვენება",
+        "resources_card_show_less": "ნაკლების ჩვენება",
+        "loading_form_accessibility_message": "გადახდის მეთოდის განახლების ფორმის ჩატვირთვა მიმდინარეობს. მიმდინარეობს გადახდის მეთოდის განახლების ფორმის ჩატვირთვა.",
+        "loading_current_payment_method": "მიმდინარე გადახდის მეთოდი იტვირთება.",
+        "loading_digital_wallets": "ციფრული საფულის ვარიანტების ჩატვირთვა მიმდინარეობს. მიმდინარეობს ციფრული საფულის ვარიანტების ჩატვირთვა.",
+        "loading_card_fields": "საკრედიტო ბარათის ველების ჩატვირთვა მიმდინარეობს.",
+        "loading_resources": "იტვირთება გამოწერები და მომავალი შეკვეთები"
+      },
+      "link_expired": {
+        "message": "თქვენი გადახდის მეთოდის განახლების ეს ბმული ვადაგასულია.",
+        "update_message": "თქვენი გადახდის მეთოდის განახლების ეს ბმული ვადაგასულია.",
+        "add_message": "გადახდის მეთოდის დამატების ეს ბმული ვადაგასულია.",
+        "return_home_button": "დაბრუნება მთავარ გვერდზე"
+      },
+      "update_success": {
+        "title": "გადახდის მეთოდი განახლდა",
+        "done_button": "განაგრძეთ შოპინგი"
+      },
+      "add_success": {
+        "title": "გადახდის მეთოდი დაემატა",
+        "done_button": "განაგრძეთ შოპინგი"
+      },
+      "card_fields": {
+        "card_number_label": "ბარათის ნომერი",
+        "card_number_placeholder": "ბარათის ნომერი",
+        "name_on_card_label": "სახელი ბარათზე",
+        "name_on_card_placeholder": "სახელი ბარათზე",
+        "card_expiry_label": "ვადის გასვლის თარიღი (თვე / წელი)",
+        "card_expiry_placeholder": "ვადის გასვლის თარიღი (თვე / წელი)",
+        "card_verification_value_label": "უსაფრთხოების კოდი",
+        "card_verification_value_placeholder": "უსაფრთხოების კოდი",
+        "card_start_label": "გაცემის თარიღი (თვე / წელი)",
+        "card_start_placeholder": "გაცემის თარიღი (თვე / წელი)",
+        "tooltip": {
+          "tooltip_accessibility_label": "მეტი ინფორმაცია",
+          "card_verification_value_explanation_amex": "4-ნიშნა უსაფრთხოების კოდი თქვენი ბარათის წინა მხარეს",
+          "card_verification_value_explanation_other": "3-ნიშნა უსაფრთხოების კოდი თქვენი ბარათის უკანა მხარეს",
+          "card_verification_value_explanation": "3-ნიშნა უსაფრთხოების კოდი, რომელიც ჩვეულებრივ ბარათის უკანა მხარეს არის მითითებული. American Express ბარათებს წინა მხარეს 4-ნიშნა კოდი აქვთ.",
+          "card_security_notice": "ყველა ტრანზაქცია უსაფრთხო და დაშიფრულია."
+        },
+        "field_errors": {
+          "credit_card_name_invalid": "შეიყვანეთ თქვენი სახელი ზუსტად ისე, როგორც ის ბარათზეა დაწერილი",
+          "credit_card_number_invalid": "შეიყვანეთ ბარათის სწორი ნომერი",
+          "credit_card_expiry_invalid": "შეიყვანეთ ბარათის ვადის გასვლის მოქმედი თარიღი",
+          "credit_card_verification_value_blank": "შეიყვანეთ თქვენს ბარათზე მითითებული CVV კოდი ან უსაფრთხოების კოდი"
+        },
+        "unavailable": {
+          "text": "საკრედიტო და სადებეტო ბარათებით გადახდა ამჟამად მიუწვდომელია."
+        }
+      }
     }
   },
   "sections": {
