@@ -497,7 +497,7 @@
             "content_alignment": "left",
             "content_width": "large",
             "button_text": "SHOP NOW",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/toddlers",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -529,7 +529,7 @@
             "content_alignment": "left",
             "content_width": "large",
             "button_text": "SHOP NOW",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/baby",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -561,7 +561,7 @@
             "content_alignment": "left",
             "content_width": "large",
             "button_text": "SHOP NOW",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/big-kids",
             "button_style": "solid",
             "button_size": "button-sm"
           }
