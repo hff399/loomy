@@ -2827,7 +2827,8 @@
         "desktop_qr_code_content": {
           "title": "შეხსენებების სკანირება",
           "description": "მიიღეთ შეხსენებები თქვენი განვადებების შესახებ Shop-ის მეშვეობით."
-        }
+        },
+        "paid_with_shop_pay_installments": "გადახდა Shop Pay-ის განვადებით"
       },
       "refunded_amount": "დაბრუნებული",
       "request_return_failed": "თქვენი მოთხოვნის დამუშავებისას პრობლემა წარმოიშვა. გთხოვთ, სცადოთ ხელახლა.",
@@ -2932,7 +2933,100 @@
       "adjusted_total": "კორექტირებული ჯამი",
       "due_on_date": "ვადა {{date}}",
       "due_on_fulfillment": "შესრულებისთანავე გადასახდელი",
-      "due_on_receipt": "გადახდის თარიღი ქვითარი"
+      "due_on_receipt": "გადახდის თარიღი ქვითარი",
+      "shipment_timeline": {
+        "expand_events_label": "დეტალების ჩვენება",
+        "expand_events_accessibility_label": "შეკვეთის გადაზიდვის დეტალების ჩვენება",
+        "hide_events_label": "დეტალების დამალვა",
+        "hide_events_accessibility_label": "შეკვეთის გადაზიდვის დეტალების დამალვა"
+      },
+      "addresses_section_title": "ანგარიშსწორება და მიწოდება",
+      "order_details": "შეკვეთის დეტალები",
+      "order_details_skeleton_accessibility_label": "შეკვეთის ყველა დეტალის სანახავად შედით სისტემაში.",
+      "billing_address": "გადახდის მისამართი",
+      "card_ending_with": "მთავრდება {{lastDigits}} ით",
+      "contact": "კონტაქტი",
+      "contact_information": "საკონტაქტო ინფორმაცია",
+      "company": "კომპანია",
+      "company_and_location": "კომპანია და მდებარეობა",
+      "fully_refunded_label": "დაბრუნებულია",
+      "group_title_label": "ნაწილი: {{groupTitle}}",
+      "group_title_label_with_parent": "{{groupTitle}} -ისთვის",
+      "view_controls": {
+        "gallery": "გალერეა",
+        "list": "სია"
+      },
+      "grouped_view_components": {
+        "expand_line_items": "{{count}} ერთეულის ჩვენება",
+        "collapse_line_items": "{{count}} ერთეულის დამალვა",
+        "line_item_summary_list_accessibility_label": "ნივთები {{productTitle}} პაკეტში"
+      },
+      "discount": "ფასდაკლება",
+      "compare_at_sale": "გაყიდვა ( {{saleAmount}} )",
+      "hide_items": "ელემენტების დამალვა",
+      "loading": "შეკვეთის დეტალები იტვირთება. მიმდინარეობს შეკვეთის დეტალების ჩატვირთვა.",
+      "loading_finished_accessibility_message": "შეკვეთის დეტალები ჩაიტვირთა",
+      "location": "მდებარეობა",
+      "image_gallery": {
+        "next": "შემდეგი ერთეულების ჩვენება",
+        "previous": "წინა ერთეულების ჩვენება",
+        "load_more_items": {
+          "one": "ჩატვირთეთ კიდევ {{count}} ერთეული",
+          "other": "ჩატვირთეთ კიდევ {{count}} ერთეული"
+        }
+      },
+      "mobile_summary_toggle_button": {
+        "open": "შეკვეთის შეჯამების ჩვენება",
+        "closed": "შეკვეთის შეჯამების დამალვა"
+      },
+      "no_data": "არცერთი",
+      "no_data_provided_accessibility_label": "{{fieldName}} ცარიელია",
+      "not_applicable": "არ არის ხელმისაწვდომი",
+      "paid_amount": "გადახდილი",
+      "partially_refunded_label": "ნაწილობრივ დაბრუნებული",
+      "payment_confirmation": {
+        "payment_received": "გმადლობთ! თქვენი {{amount}} გადახდა მიღებულია.",
+        "full_payment_received": "გმადლობთ! თქვენი {{amount}} გადახდა მიღებულია და ეს შეკვეთა სრულად გადახდილია.",
+        "payment_authorized": "გმადლობთ! ბალანსი განახლდება გადახდის მიღებისთანავე.",
+        "dismiss_label": "გადახდის დადასტურების გაუქმება"
+      },
+      "payment": {
+        "status_in_review": "გადახდა განხილვის შემდეგ",
+        "status_unpaid": "გადახდის თარიღი: {{date}}",
+        "title": "გადახდა",
+        "payment_type": {
+          "gift_card": "სასაჩუქრე ბარათი",
+          "store_credit": "მაღაზიის კრედიტი",
+          "money_order": "ფულადი გზავნილი",
+          "cash_on_delivery": "ნაღდი ანგარიშსწორება მიწოდებისას (COD)",
+          "bank_deposit": "საბანკო დეპოზიტი",
+          "manual": "სახელმძღვანელო"
+        },
+        "card_payment_details": "დამთავრებული {{lastDigits}} -ით - {{formattedTransactionAmount}}",
+        "gift_card_payment_details": "დამთავრებული {{lastDigits}} -ით - {{formattedTransactionAmount}}",
+        "store_credit_payment_details": "მაღაზიის კრედიტი - {{formattedTransactionAmount}}",
+        "shop_pay_installments": {
+          "paid_in_installments": "გადახდა Shop Pay-ის განვადებით",
+          "view_schedule": "გრაფიკის ნახვა"
+        },
+        "manual_payment_methods": {
+          "money_order": "ფულადი გზავნილი - {{formattedTransactionAmount}}",
+          "cash_on_delivery": "ნაღდი ანგარიშსწორება მიწოდებისას (COD) - {{formattedTransactionAmount}}",
+          "bank_deposit": "საბანკო დეპოზიტი - {{formattedTransactionAmount}}",
+          "manual": "ხელით - {{formattedTransactionAmount}}"
+        },
+        "transactions": {
+          "show_all": "ყველას ჩვენება",
+          "show_less": "ნაკლების ჩვენება",
+          "details": "დეტალები",
+          "payment_details": "გადახდის დეტალები"
+        },
+        "emv_details": {
+          "auth": "ავტორიზაცია:",
+          "aid": "დახმარება:",
+          "source": "წყარო:"
+        }
+      }
     },
     "callback": {
       "try_again": "ხელახლა სცადეთ"
@@ -3304,10 +3398,52 @@
             "delivered_after_label": "მიწოდება {{date}} ის შემდეგ",
             "delivered_after_description": "რადგან თქვენი შეკვეთა დაგვიანებით მოვიდა, თქვენ გაქვთ უფლება მოითხოვოთ {{amount}} Shop Cash.",
             "claimed_shop_cash_description": "რადგან ეს შეკვეთა დაგვიანებით მოვიდა, თქვენ მოითხოვეთ {{amount}} Shop Cash.",
-            "eligible_to_claim_shop_cash_description": "რადგან თქვენი შეკვეთა დაგვიანებით მოვიდა, თქვენ გაქვთ უფლება მოითხოვოთ {{amount}} Shop Cash."
+            "eligible_to_claim_shop_cash_description": "რადგან თქვენი შეკვეთა დაგვიანებით მოვიდა, თქვენ გაქვთ უფლება მოითხოვოთ {{amount}} Shop Cash.",
+            "learn_more_button_label": "შეიტყვეთ მეტი",
+            "claim_shop_cash_button_label": "მოითხოვეთ მაღაზიის ნაღდი ფული",
+            "view_balance_in_shop_button_label": "ბალანსის ნახვა მაღაზიაში",
+            "scan_to_claim_shop_cash_label": "დაასკანირეთ {{amount}} ის მისაღებად ნაღდი ფულის შეძენა"
+          }
+        },
+        "delivery_promise": {
+          "promise_line": {
+            "single_brand_label": "მიწოდება უზრუნველყოფილია",
+            "mixed_brands_label": "მიწოდება გარანტირებულია",
+            "not_delivered_by_label": "არ არის მიწოდებული {{date}} მდე",
+            "modal_accessibility_button_label": "მიწოდების დაპირების დეტალები"
+          },
+          "claim_shop_cash_cta": {
+            "has_shop_app_label": "მოითხოვეთ თქვენი მაღაზიის ნაღდი ფული",
+            "no_shop_app_label": "{{appDownloadLink}} მაღაზიის ნაღდი ფულის მისაღებად",
+            "download_shop_app_label": "ჩამოტვირთვის მაღაზია"
+          },
+          "details_modal": {
+            "title": "მიწოდება უზრუნველყოფილია",
+            "modal_accessiblity_label": "მიწოდების დაპირების დეტალები",
+            "delivery_guarantee_label": "მიწოდების გარანტია",
+            "delivery_by_label": "მიწოდება {{date}} მდე",
+            "delivery_guaranteed_by_label": "მიწოდება გარანტირებულია {{date}} ის მიერ",
+            "shop_cash_claim": {
+              "may_be_eligible_label": "Shop Promise გარანტიას იძლევა სწრაფ და საიმედო მიწოდებაზე. მოითხოვეთ Shop Cash, თუ თქვენი შეკვეთა დაგვიანებით ჩამოვა.",
+              "may_be_eligible_not_authorized_label": "შესაძლოა, თქვენ გქონდეთ Shop Cash-ის მიღების უფლება, რადგან ეს შეკვეთა დაგვიანებით მოვიდა. დეტალების სანახავად შედით სისტემაში.",
+              "redeemed_label": "თქვენ უკვე მოითხოვეთ Shop Cash, რადგან ეს შეკვეთა დაგვიანებით მოვიდა.",
+              "expired_label": "ეს შეკვეთა არ ექვემდებარება დაგვიანებული მიწოდების პრეტენზიას, რადგან 30-დღიანი გარანტია ამოიწურა.",
+              "no_shop_cash_label": "ეს შეკვეთა არ ექვემდებარება დაგვიანებული მიწოდების პრეტენზიას, რადგან ის არ არის გადახდილი Shop Pay-ით.",
+              "no_longer_guaranteed_label": "ეს ნივთები აღარ არის უზრუნველყოფილი მიწოდების გარანტიით.",
+              "claim_shop_cash_title": "დაასკანირეთ, რომ მიიღოთ {{amount}} მაღაზიის ნაღდ ფულში",
+              "claim_shop_cash_description": "თქვენი Shop Cash-ის გამოყენება შეგიძლიათ Shop აპლიკაციაში მომავალ შესყიდვებზე."
+            }
           }
         }
-      }
+      },
+      "status_mark_as_delivered": "მონიშნეთ, როგორც მიწოდებული",
+      "fulfillment_status_title": "შესრულების სტატუსი: {{status}}",
+      "buy_again": "ხელახლა იყიდე",
+      "buy_again_accessibility_label": "ხელახლა იყიდეთ შეკვეთისთვის {{orderId}}",
+      "manage": "მართვა",
+      "manage_accessiblity_label": "შეკვეთის მართვა {{orderId}}",
+      "group_title_label": "ნაწილი: {{groupTitle}}",
+      "group_title_label_with_parent": "{{groupTitle}} -ისთვის"
     }
   },
   "sections": {
@@ -3458,8 +3594,41 @@
         "twitter": "X (ტვიტერი)",
         "facebook": "ფეისბუქი",
         "instagram": "ინსტაგრამი",
-        "tumblr": "თამბლერი"
+        "tumblr": "თამბლერი",
+        "tiktok": "ტიკტოკი"
       }
+    },
+    "continue_shopping": "განაგრძეთ შოპინგი",
+    "pagination": {
+      "label": "გვერდების დახარისხება",
+      "page": "გვერდი {{ number }}",
+      "next": "შემდეგი გვერდი",
+      "previous": "წინა გვერდი"
+    },
+    "search": {
+      "search": "ძიება",
+      "reset": "საძიებო ტერმინის გასუფთავება",
+      "button": {
+        "results": "ყველა შედეგის ნახვა",
+        "view_details": "დეტალების ნახვა"
+      }
+    },
+    "cart": {
+      "view": "კალათის ნახვა ( {{ count }} )",
+      "view_empty_cart": "კალათის ნახვა",
+      "item_added": "ნივთი დაემატა თქვენს კალათას"
+    },
+    "share": {
+      "close": "გაზიარების დახურვა",
+      "copy_to_clipboard": "ბმულის კოპირება",
+      "share_url": "ბმული",
+      "success_message": "ბმული კოპირებულია ბუფერში"
+    },
+    "slider": {
+      "of": "-ის",
+      "next_slide": "მარჯვნივ გადაფურცვლა",
+      "previous_slide": "მარცხნივ გადაფურცვლა",
+      "name": "სლაიდერი"
     }
   },
   "templates": {
@@ -3589,6 +3758,105 @@
       "title": "ანგარიშის შექმნა",
       "first_name": "სახელი",
       "last_name": "გვარი"
+    }
+  },
+  "newsletter": {
+    "label": "ელ. ფოსტა",
+    "success": "გმადლობთ გამოწერისთვის",
+    "button_label": "გამოწერა",
+    "error": "ელ. ფოსტა არასწორია ან უკვე დაკავებულია."
+  },
+  "accessibility": {
+    "skip_to_text": "გადასვლა კონტენტზე",
+    "skip_to_product_info": "გადასვლა პროდუქტის ინფორმაციაზე",
+    "close": "დახურვა",
+    "unit_price_separator": "თითო",
+    "vendor": "მომწოდებელი:",
+    "error": "შეცდომა",
+    "refresh_page": "არჩევანის გაკეთება იწვევს გვერდის სრულ განახლებას.",
+    "link_messages": {
+      "new_window": "იხსნება ახალ ფანჯარაში.",
+      "external": "ხსნის გარე ვებსაიტს."
+    },
+    "loading": "იტვირთება...",
+    "total_reviews": "მიმოხილვების ჯამი",
+    "star_reviews_info": "{{ rating_value }} ვარსკვლავი {{ rating_max }} -დან",
+    "collapsible_content_title": "დასაკეცი კონტენტი",
+    "complementary_products": "დამატებითი პროდუქტები"
+  },
+  "blogs": {
+    "article": {
+      "blog": "ბლოგი",
+      "read_more": "დაწვრილებით",
+      "read_more_title": "დამატებითი ინფორმაცია: {{ title }}",
+      "comments": {
+        "one": "{{ count }} კომენტარი",
+        "other": "{{ count }} კომენტარი"
+      },
+      "moderated": "გთხოვთ გაითვალისწინოთ, რომ კომენტარების გამოქვეყნებამდე მათი დამტკიცება აუცილებელია.",
+      "comment_form_title": "დატოვეთ კომენტარი",
+      "name": "სახელი",
+      "email": "ელ. ფოსტა",
+      "message": "კომენტარი",
+      "post": "კომენტარის გამოქვეყნება",
+      "back_to_blog": "ბლოგზე დაბრუნება",
+      "share": "გააზიარეთ ეს სტატია",
+      "success": "თქვენი კომენტარი წარმატებით გამოქვეყნდა! გმადლობთ!",
+      "success_moderated": "თქვენი კომენტარი წარმატებით გამოქვეყნდა. ჩვენ მას მალე გამოვაქვეყნებთ, რადგან ჩვენი ბლოგი მოდერირებულია."
+    }
+  },
+  "onboarding": {
+    "product_title": "პროდუქტის სათაურის მაგალითი",
+    "collection_title": "კოლექცია",
+    "blog_title": "ბლოგ პოსტი",
+    "blog_desc": "შესთავაზეთ თქვენს მომხმარებლებს თქვენი ბლოგპოსტის შეჯამება",
+    "blog_date": "დღე თვე წელი"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "კალათაში დამატება — იყიდე ახლავე",
+      "quick_view": "სწრაფი ხედი",
+      "choose_options": "აირჩიეთ ვარიანტები",
+      "choose_product_options": "აირჩიეთ {{ product_name }} ის ვარიანტები",
+      "description": "აღწერა",
+      "inventory_in_stock": "მარაგშია",
+      "inventory_in_stock_show_count": "{{ quantity }} მარაგშია",
+      "inventory_low_stock": "დაბალი მარაგი",
+      "inventory_low_stock_show_count": "მცირე მარაგი: დარჩენილია {{ quantity }}",
+      "inventory_out_of_stock": "მარაგში არ არის",
+      "inventory_out_of_stock_continue_selling": "მარაგშია",
+      "on_sale": "გაყიდვა",
+      "product_variants": "პროდუქტის ვარიანტები",
+      "size_chart": "ზომის ცხრილი",
+      "media": {
+        "gallery_viewer": "გალერეის მნახველი",
+        "load_image": "სურათის {{ index }} ჩატვირთვა გალერეის ხედში",
+        "load_model": "3D მოდელის {{ index }} ჩატვირთვა გალერეის ხედში",
+        "load_video": "ვიდეოს {{ index }} დაკვრა გალერეის ხედში",
+        "image_available": "სურათი {{ index }} ახლა ხელმისაწვდომია გალერეის ხედში",
+        "open_media": "გახსენით მედია {{ index }} მოდალურ ფორმატში",
+        "play_model": "3D Viewer-ის დაკვრა",
+        "play_video": "ვიდეოს დაკვრა"
+      },
+      "quantity": {
+        "label": "რაოდენობა",
+        "input_label": "{{ product }} -ის რაოდენობა",
+        "increase": "{{ product }} ის რაოდენობის გაზრდა",
+        "decrease": "{{ product }} ის რაოდენობის შემცირება",
+        "minimum_of": "მინიმუმ {{ quantity }}",
+        "maximum_of": "მაქსიმუმ {{ quantity }}",
+        "multiples_of": "{{ quantity }} -ის ნამატები",
+        "min_of": "მინ. {{ quantity }}",
+        "max_of": "მაქს {{ quantity }}",
+        "in_cart_html": "კალათაში <span class=\"quantity-cart\">{{ quantity }}</span>",
+        "note": "რაოდენობრივი წესების ნახვა"
+      },
+      "volume_pricing": {
+        "title": "მოცულობითი ფასები",
+        "note": "ხელმისაწვდომია მოცულობითი ფასები",
+        "minimum": "{{ quantity }} +",
+        "price_at_each": "{{ price }} / ცალი"
+      }
     }
   }
 }
