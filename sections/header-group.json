@@ -196,8 +196,8 @@
         "reima_nav_tab_hhNYXR": {
           "type": "reima_nav_tab",
           "settings": {
-            "tab_title": "Winter Sale",
-            "tab_link": "shopify://collections/girls",
+            "tab_title": "Final Sale",
+            "tab_link": "shopify://collections/final-sale",
             "is_sale": true,
             "has_dropdown": true,
             "col1_title": "SHOP BY CATEGORY",
