@@ -207,7 +207,7 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
-            "image": "shopify://shop_images/Sale.jpg",
+            "image": "shopify://shop_images/hf_20260213_181824_4684730e-a3cd-4d40-b655-12f2837a47e3.png",
             "button_text": "Reima",
             "overlay_text": "",
             "bg_color": ""
@@ -217,6 +217,7 @@
           "type": "category",
           "settings": {
             "collection": "",
+            "image": "shopify://shop_images/hf_20260213_182356_0548466e-de2d-4258-8256-175f8443bd47.png",
             "button_text": "Micro",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -226,6 +227,7 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/hf_20260213_181818_f651889f-82ed-45d5-949e-0c7ff820dbd8.png",
             "button_text": "Waboba",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -235,6 +237,7 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
+            "image": "shopify://shop_images/hf_20260213_181836_bb5c0c6c-5caa-4cfa-bdba-2fc3614ace35.png",
             "button_text": "Orange Toys",
             "overlay_text": "",
             "bg_color": ""
