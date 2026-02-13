@@ -82,7 +82,7 @@
             "is_sale": false,
             "has_dropdown": true,
             "col1_title": "Age",
-            "col1_menu": "",
+            "col1_menu": "age",
             "col2_title": "",
             "col2_menu": "",
             "col3_title": "",
@@ -127,6 +127,7 @@
         },
         "reima_nav_tab_XWjEze": {
           "type": "reima_nav_tab",
+          "disabled": true,
           "settings": {
             "tab_title": "Technology",
             "tab_link": "",
