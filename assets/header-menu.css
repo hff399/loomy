@@ -1044,3 +1044,33 @@ body:has(.custom-select-content.show) {
     }
 
 }
+
+/* Mobile menu utility links (search & account) */
+.mobile-menu-utility-links {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(var(--border-color, 0,0,0), 0.1);
+    padding: 0 0 12px;
+    margin-bottom: 12px;
+}
+
+.mobile-menu-utility-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--heading-color, #000);
+    text-decoration: none;
+    flex: 1;
+}
+
+.mobile-menu-utility-link svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.mobile-menu-utility-link:hover {
+    opacity: 0.7;
+}

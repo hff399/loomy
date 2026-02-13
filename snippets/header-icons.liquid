@@ -9,7 +9,7 @@
     <li class="header-button-item header-localization-item">
       {% render 'localization-form', section: section %}
     </li>
-    <li class="header-button-item{% if hide_search %} small-search-icon{% endif %}">
+    <li class="header-button-item header-desktop-only{% if hide_search %} small-search-icon{% endif %}">
       <list-set class="d-block" data-source="search-drawer" data-behaviour="{{ search_behaviour }}">
         <a
           href="{{ routes.search_url }}"
@@ -99,7 +99,7 @@
     </li>
 
     {% if shop.customer_accounts_enabled %}
-      <li class="header-button-item" data-source="account-drawer">
+      <li class="header-button-item header-desktop-only" data-source="account-drawer">
         <a
           href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
           class="header-button-action d-inline-flex align-items-center justify-content-center"

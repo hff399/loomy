@@ -732,3 +732,10 @@
      left: auto;
      min-width: 200px;
  }
+
+ /* Hide search and account on mobile, show only language + cart */
+ @media (max-width: 767px) {
+     .header-button-item.header-desktop-only {
+         display: none !important;
+     }
+ }
