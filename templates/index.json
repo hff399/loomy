@@ -1158,6 +1158,7 @@
         "category_d8xtLJ",
         "category_HLxjCt"
       ],
+      "disabled": true,
       "settings": {
         "section_visibility": "always",
         "color_scheme": "quinary",
@@ -1284,7 +1285,7 @@
         "corner_style": "none",
         "corner_radius": 30,
         "enable_sticky_content": false,
-        "product": "kuhmoinen-navy",
+        "product": "hattara-5300057b",
         "thumbnails_style": "vertical",
         "thumbnails_position": "inside_image",
         "image_ratio": "portrait",
