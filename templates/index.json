@@ -91,7 +91,7 @@
             "mobile_content_position": "m-bottom-left",
             "mobile_text_alignment": "left",
             "button_text": "Shop Reima",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/reima-finnish-kids-outerwear",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -118,7 +118,7 @@
             "mobile_content_position": "m-bottom-left",
             "mobile_text_alignment": "left",
             "button_text": "Shop Micro",
-            "button_link": "shopify://collections",
+            "button_link": "shopify://collections/micro-swiss-scooters-helmets",
             "button_style": "solid",
             "button_size": "button-sm"
           }
