@@ -1045,48 +1045,33 @@ body:has(.custom-select-content.show) {
 
 }
 
-/* Mobile menu utility links (search & account) */
+/* Mobile menu utility links (search & account in drawer header) */
 .mobile-menu-utility-links {
     display: flex !important;
-    gap: 0 !important;
-    border-bottom: 1px solid #eee !important;
-    padding: 0 20px 8px !important;
-    margin: 0 0 4px !important;
-    width: 100% !important;
-    position: relative !important;
-    z-index: 2 !important;
-    background: #fff !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .mobile-menu-utility-link {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
-    padding: 12px 0 !important;
-    font-size: 15px !important;
-    font-weight: 500 !important;
+    justify-content: center !important;
+    padding: 4px !important;
     color: #1a1a1a !important;
     text-decoration: none !important;
-    flex: 1 !important;
-}
-
-.mobile-menu-utility-link span {
-    color: #1a1a1a !important;
 }
 
 .mobile-menu-utility-link svg {
     flex-shrink: 0 !important;
+    width: 22px !important;
+    height: 22px !important;
     color: #1a1a1a !important;
-    fill: #1a1a1a !important;
-    width: 20px !important;
-    height: 20px !important;
+    stroke: #1a1a1a !important;
+    fill: none !important;
 }
 
 .mobile-menu-utility-link:hover {
     opacity: 0.7 !important;
-}
-
-/* Ensure hamburger wrapper shows utility links */
-.hamburger-menu-content-wrapper:has(.mobile-menu-utility-links) {
-    overflow: visible !important;
 }
