@@ -1333,6 +1333,7 @@
         "hot_spot_QRGCiF",
         "hot_spot_iY64Rw"
       ],
+      "disabled": true,
       "name": "t:sections.shop-the-look.presets.name",
       "settings": {
         "section_visibility": "always",
@@ -1611,6 +1612,7 @@
         "article_88a7jJ",
         "article_yKVhE7"
       ],
+      "disabled": true,
       "settings": {
         "section_visibility": "always",
         "color_scheme": "quinary",
@@ -1656,7 +1658,7 @@
           "type": "icon-with-text",
           "settings": {
             "icon_list": "global",
-            "heading": "Free [Shipping]",
+            "heading": "Fast [Shipping]",
             "description": "",
             "shape_color": "#ffffff",
             "icon_color": "#1a1a1a"
