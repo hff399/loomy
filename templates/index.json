@@ -287,6 +287,7 @@
           "type": "category",
           "settings": {
             "collection": "",
+            "image": "shopify://shop_images/hf_20260213_184513_77b4440d-35f1-4774-b847-ca682c054e6e.png",
             "button_text": "Clothing",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -296,6 +297,7 @@
           "type": "category",
           "settings": {
             "collection": "",
+            "image": "shopify://shop_images/hf_20260213_184515_74e7f35a-1499-474d-9f38-9fe73ced5cf9.png",
             "button_text": "Footwear",
             "overlay_text": "",
             "bg_color": ""
@@ -305,6 +307,7 @@
           "type": "category",
           "settings": {
             "collection": "aw25-final-sale",
+            "image": "shopify://shop_images/hf_20260213_184517_7d24de78-ccf6-486a-8941-5474f1653937.png",
             "button_text": "Accessories",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
@@ -314,6 +317,7 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
+            "image": "shopify://shop_images/hf_20260213_184520_aefb5b09-2adc-45cb-8ef3-8bb51c02d454.png",
             "button_text": "Mobility",
             "overlay_text": "",
             "bg_color": ""
@@ -323,6 +327,7 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
+            "image": "shopify://shop_images/hf_20260213_184522_8b869520-9da1-4a8c-b629-0c41ee1f81f5.png",
             "button_text": "Toys & Play",
             "overlay_text": "",
             "bg_color": ""
@@ -332,6 +337,7 @@
           "type": "category",
           "settings": {
             "collection": "orange-toys",
+            "image": "shopify://shop_images/hf_20260213_184524_73dce360-0539-4bcd-a65a-8d7b5ac90922.png",
             "button_text": "Special",
             "overlay_text": "",
             "bg_color": ""
