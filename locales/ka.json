@@ -123,6 +123,35 @@
             "invalid_origin_location_id": "საწყისი მდებარეობის ID-ის შესაბამისი მდებარეობა ვერ მოიძებნა.",
             "origin_location_id_not_allowed": "მოთხოვნილი მიწოდების მეთოდები არ უჭერს მხარს საწყისი მდებარეობის ID-ს."
           }
+        },
+        "back_button_label": "დაბრუნება",
+        "submit": "გაგზავნა",
+        "dates": {
+          "weekdays": {
+            "monday": "ორშაბათი",
+            "friday": "პარასკევი",
+            "sunday": "კვირა"
+          },
+          "weekdays_abbreviation": {
+            "monday": "თვე",
+            "tuesday": "სამ",
+            "wednesday": "ჩვენ",
+            "thursday": "ხუთ",
+            "friday": "ფრ",
+            "saturday": "შაბ",
+            "sunday": "კვ"
+          },
+          "months": {
+            "march": "მარტი",
+            "april": "აპრილი",
+            "may": "მაისი",
+            "june": "ივნისი",
+            "july": "ივლისი",
+            "august": "აგვისტო"
+          }
+        },
+        "sheet": {
+          "expand": "გაფართოება"
         }
       },
       "contact": {
@@ -147,7 +176,18 @@
         "different_shipping_address_text": "ამ შეკვეთისთვის გამოიყენეთ ერთჯერადი მისამართი",
         "change_company_location_link_label": "კომპანიის მდებარეობის შეცვლა",
         "change_location_link_label": "მდებარეობის შეცვლა",
-        "ship_to_company": "გაგზავნა {{companyName}} -ში"
+        "ship_to_company": "გაგზავნა {{companyName}} -ში",
+        "email_label": "ელ. ფოსტა",
+        "email_placeholder": "ელ. ფოსტა",
+        "city_label": "ქალაქი",
+        "suburb_label": "გარეუბანი",
+        "county_label": "ოლქი",
+        "county_placeholder": "ოლქი",
+        "state_label": "შტატი",
+        "state_placeholder": "შტატი",
+        "region_label": "რეგიონი",
+        "region_placeholder": "რეგიონი",
+        "phone_label": "ტელეფონი"
       },
       "delivery_options": {
         "free_total_label": "უფასო",
@@ -1755,7 +1795,8 @@
         "inch": "ში",
         "foot": "ფუტი",
         "yard": "იარდი",
-        "square_foot": "ფუტი²"
+        "square_foot": "ფუტი²",
+        "item": "ნივთი"
       },
       "localized_fields": {
         "additional_information": {
@@ -2214,6 +2255,25 @@
       },
       "artifact_errors": {
         "artifact_dissatisfaction_without_violation": "თქვენი შეკვეთის დამუშავებისას პრობლემა წარმოიშვა. სცადეთ ხელახლა რამდენიმე წუთში."
+      },
+      "billing": {
+        "edit": "რედაქტირება",
+        "delete": "წაშლა",
+        "address_form": {
+          "save": "შენახვა",
+          "cancel": "გაუქმება"
+        }
+      },
+      "payment_summary": {
+        "manual_payment_gateway_label": "სახელმძღვანელო",
+        "free_label": "უფასო"
+      },
+      "payment_gateway": {
+        "login_prompt": {
+          "no_access": {
+            "link": "შესვლა"
+          }
+        }
       }
     },
     "collections": {
@@ -2351,6 +2411,12 @@
           "partially_paid": "ნაწილობრივ გადახდილი",
           "partially_refunded": "ნაწილობრივ დაბრუნებული თანხა",
           "refunded": "დაბრუნებული"
+        },
+        "transaction_status": {
+          "error": "შეცდომა"
+        },
+        "cancel_reason": {
+          "other": "სხვა"
         }
       }
     },
@@ -2396,6 +2462,27 @@
       "buyer_consent_product": "ეს ნივთი წარმოადგენს განმეორებად ან გადავადებულ შენაძენს. გაგრძელებით, ვეთანხმები %{cancellationPolicyLink}-ს და გაძლევთ უფლებამოსილებას, ჩამომაჭრათ თანხა ჩემი გადახდის მეთოდიდან ამ გვერდზე მითითებული ფასებით, სიხშირითა და თარიღებით, სანამ ჩემი შეკვეთა არ შესრულდება ან არ გავაუქმებ, თუ ეს დაშვებულია.",
       "buyer_consent_cart": "თქვენს კალათაში არსებული ერთი ან მეტი ნივთი წარმოადგენს განმეორებად ან გადავადებულ შენაძენს. გაგრძელებით, ვეთანხმები %{cancellationPolicyLink}-ს და გაძლევთ უფლებამოსილებას, ჩამომაჭრათ თანხა ჩემი გადახდის მეთოდიდან ამ გვერდზე მითითებული ფასებით, სიხშირითა და თარიღებით, სანამ ჩემი შეკვეთა არ შესრულდება ან არ გავაუქმებ, თუ ნებადართულია.",
       "cancellation_policy": "გაუქმების პოლიტიკა"
+    },
+    "pagination": {
+      "next": "შემდეგი"
+    },
+    "feed": {
+      "more": "მეტი"
+    },
+    "attributes": {
+      "email": "ელ.ფოსტა",
+      "body": "სხეული"
+    },
+    "addresses": {
+      "region": "რეგიონი",
+      "state": "შტატი",
+      "county": "ოლქი"
+    },
+    "filters": {
+      "boolean": {
+        "true_label": "დიახ",
+        "false_label": "არა"
+      }
     }
   },
   "customer_accounts": {
@@ -2679,6 +2766,9 @@
           "expand_events_accessibility_label": "შეკვეთის მონახაზის დეტალების ჩვენება",
           "hide_events_label": "დეტალების დამალვა"
         }
+      },
+      "purchase_order_number": {
+        "save": "შენახვა"
       }
     },
     "ui_components": {
@@ -3152,8 +3242,10 @@
         }
       },
       "verify_new_email_modal": {
-        "title": "ელფოსტის დადასტურება"
-      }
+        "title": "ელფოსტის დადასტურება",
+        "verify_button": "დადასტურება"
+      },
+      "add_button": "დამატება"
     },
     "payment_methods": {
       "store_credit": {
@@ -3354,7 +3446,10 @@
       "three_d_secure": {
         "title": "3D უსაფრთხო",
         "verification_failed": "თქვენი გადახდის დადასტურება ვერ მოხერხდა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი."
-      }
+      },
+      "back_button": "უკან",
+      "generic_card": "ბარათი",
+      "or": "ან"
     },
     "orders": {
       "order_list": {
@@ -3391,7 +3486,25 @@
         },
         "show_order_actions_accessibility_label": "შეკვეთის მოქმედებების ჩვენება {{name}} შეკვეთისთვის",
         "view_order": "შეკვეთის ნახვა",
-        "view_order_accessibility_label": "შეკვეთის ნახვა {{orderName}}"
+        "view_order_accessibility_label": "შეკვეთის ნახვა {{orderName}}",
+        "column_headers": {
+          "order": "შეკვეთა",
+          "total": "სულ"
+        },
+        "carousel": {
+          "next": "შემდეგი"
+        },
+        "pagination": {
+          "next": "შემდეგი",
+          "previous": "წინა"
+        },
+        "payment_status": {
+          "list_view": {
+            "paid": "გადახდილი",
+            "due_without_date": "ვადა"
+          }
+        },
+        "sort_title": "დახარისხება"
       },
       "order_status": {
         "attempted_delivery_label": "მიწოდების მცდელობა",
@@ -3565,6 +3678,15 @@
     },
     "privacy_banner": {
       "cookie_preferences_link": "ქუქი-ფაილების პარამეტრები"
+    },
+    "errors": {
+      "load_orders_error": {
+        "retry_button": "ხელახლა ცდა"
+      },
+      "retry_action_label": "ხელახლა ცდა",
+      "load_extension_error": {
+        "title": "შეცდომა"
+      }
     }
   },
   "sections": {
@@ -3755,12 +3877,21 @@
   "templates": {
     "contact": {
       "form": {
-        "error_heading": "გთხოვთ, შეასწოროთ შემდეგი:"
+        "error_heading": "გთხოვთ, შეასწოროთ შემდეგი:",
+        "name": "სახელი",
+        "email": "ელ. ფოსტა",
+        "send": "გაგზავნა"
       }
     },
     "404": {
       "title": "გვერდი ვერ მოიძებნა",
       "description": "გვერდი, რომელსაც ეძებდით, არ არსებობს. შესაძლოა, მისამართი არასწორად აკრიფეთ ან გვერდი გადაადგილდა."
+    },
+    "search": {
+      "pages": "გვერდები"
+    },
+    "cart": {
+      "cart": "კალათა"
     }
   },
   "list-collections": {
@@ -3878,7 +4009,8 @@
     "register": {
       "title": "ანგარიშის შექმნა",
       "first_name": "სახელი",
-      "last_name": "გვარი"
+      "last_name": "გვარი",
+      "email": "ელ. ფოსტა"
     }
   },
   "newsletter": {
@@ -3977,7 +4109,35 @@
         "note": "ხელმისაწვდომია მოცულობითი ფასები",
         "minimum": "{{ quantity }} +",
         "price_at_each": "{{ price }} / ცალი"
+      },
+      "onboarding": {
+        "options": {
+          "option1": {
+            "label": "ფერი",
+            "value1": "წითელი",
+            "value2": "მწვანე",
+            "value3": "ლურჯი",
+            "value5": "ვარდისფერი"
+          },
+          "option2": {
+            "label": "ზომა"
+          }
+        }
       }
+    },
+    "facets": {
+      "apply": "გამოყენება",
+      "clear": "გასუფთავება",
+      "from": "-დან",
+      "reset": "გადატვირთვა",
+      "sort_button": "დახარისხება",
+      "to": "მდე"
+    }
+  },
+  "recipient": {
+    "form": {
+      "email": "ელ. ფოსტა",
+      "name": "სახელი"
     }
   }
 }
