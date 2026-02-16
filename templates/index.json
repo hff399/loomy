@@ -12,35 +12,6 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "slide_N8Pwgj": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "color_scheme": "secondary",
-            "desktop_slide_image": "shopify://shop_images/hf_20260213_180345_55a7b746-da59-49a5-97af-f17a4745a658.png",
-            "mobile_slide_image": "shopify://shop_images/hf_20260213_180611_008e670d-6142-4f65-a533-b6330b9148b4.png",
-            "overlay_style": "solid",
-            "image_ratio": "landscape",
-            "enable_collapse": false,
-            "heading": "Winter Final Sale — Up to 30% Off",
-            "heading_size": "h5",
-            "seo_heading": "h2",
-            "heading_font": "heading-font",
-            "markers_font": "accent-font",
-            "heading_font_weight": "font-normal",
-            "description": "Premium jackets, snowsuits, and boots at the best prices of the season. Limited stock.",
-            "description_size": "text",
-            "content_width": "small",
-            "desktop_content_position": "d-bottom-left",
-            "desktop_text_alignment": "left",
-            "mobile_content_position": "m-bottom-left",
-            "mobile_text_alignment": "left",
-            "button_text": "Shop Sale",
-            "button_link": "shopify://collections/final-sale",
-            "button_style": "solid",
-            "button_size": "button-sm"
-          }
-        },
         "slide_8Mn4WU": {
           "type": "slide",
           "settings": {
@@ -65,6 +36,34 @@
             "mobile_text_alignment": "left",
             "button_text": "Explore the Store",
             "button_link": "shopify://collections/all",
+            "button_style": "solid",
+            "button_size": "button-sm"
+          }
+        },
+        "slide_N8Pwgj": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "secondary",
+            "desktop_slide_image": "shopify://shop_images/hf_20260213_180345_55a7b746-da59-49a5-97af-f17a4745a658.png",
+            "mobile_slide_image": "shopify://shop_images/hf_20260213_180611_008e670d-6142-4f65-a533-b6330b9148b4.png",
+            "overlay_style": "solid",
+            "image_ratio": "landscape",
+            "enable_collapse": false,
+            "heading": "Winter Final Sale — Up to 30% Off",
+            "heading_size": "h5",
+            "seo_heading": "h2",
+            "heading_font": "heading-font",
+            "markers_font": "accent-font",
+            "heading_font_weight": "font-normal",
+            "description": "Premium jackets, snowsuits, and boots at the best prices of the season. Limited stock.",
+            "description_size": "text",
+            "content_width": "small",
+            "desktop_content_position": "d-bottom-left",
+            "desktop_text_alignment": "left",
+            "mobile_content_position": "m-bottom-left",
+            "mobile_text_alignment": "left",
+            "button_text": "Shop Sale",
+            "button_link": "shopify://collections/final-sale",
             "button_style": "solid",
             "button_size": "button-sm"
           }
@@ -126,8 +125,8 @@
         }
       },
       "block_order": [
-        "slide_N8Pwgj",
         "slide_8Mn4WU",
+        "slide_N8Pwgj",
         "slide_ef3P76",
         "slide_BLnrxD"
       ],
@@ -140,7 +139,7 @@
         "enable_sticky": false,
         "slideshow_corner_radius": 0,
         "animation_style": "slide",
-        "auto_rotate": false,
+        "auto_rotate": true,
         "change_slides_speed": 5,
         "carousel_navigation": "dots",
         "enable_border": false,
