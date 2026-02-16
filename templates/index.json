@@ -42,6 +42,7 @@
         },
         "slide_N8Pwgj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "color_scheme": "secondary",
             "desktop_slide_image": "shopify://shop_images/hf_20260213_180345_55a7b746-da59-49a5-97af-f17a4745a658.png",
@@ -140,7 +141,7 @@
         "slideshow_corner_radius": 0,
         "animation_style": "slide",
         "auto_rotate": true,
-        "change_slides_speed": 5,
+        "change_slides_speed": 3,
         "carousel_navigation": "dots",
         "enable_border": false,
         "desktop_height": "custom",
