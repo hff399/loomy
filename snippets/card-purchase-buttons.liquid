@@ -78,6 +78,9 @@
         {%- if preorder %}
           data-pre-order="true"
         {% endif -%}
+        {% if source != 'product-card' and source != 'product-card-layout' and page != 'collection-tabs' and page != 'featured-collection' %}
+          style="display:none !important"
+        {% endif %}
       >
 
       {% if source == 'product-card-layout' %}
@@ -108,6 +111,17 @@
         <span class="adding-loader">
           </span>
       </button>
+      {% if source != 'product-card' and source != 'product-card-layout' and page != 'collection-tabs' and page != 'featured-collection' %}
+        <a
+          href="/pages/contacts"
+          class="add-to-cart button button-block buttonHover button-medium"
+          style="text-align:center; text-decoration:none;"
+        >
+          <span data-product-button>
+            {{ 'products.product.add_to_cart' | t }}
+          </span>
+        </a>
+      {% endif %}
       {% if block.settings.show_dynamic_checkout %}
         {{ form | payment_button }}
       {% endif %}
