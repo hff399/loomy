@@ -647,7 +647,7 @@
           "type": "button",
           "settings": {
             "button_text": "Shop Micro Scooters",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/micro-swiss-scooters-helmets",
             "button_style": "solid",
             "button_size": "button-sm"
           }
