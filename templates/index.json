@@ -14,6 +14,7 @@
       "blocks": {
         "slide_N8Pwgj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "color_scheme": "secondary",
             "desktop_slide_image": "shopify://shop_images/hf_20260213_180345_55a7b746-da59-49a5-97af-f17a4745a658.png",
