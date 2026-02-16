@@ -197,6 +197,7 @@
         },
         "reima_nav_tab_hhNYXR": {
           "type": "reima_nav_tab",
+          "disabled": true,
           "settings": {
             "tab_title": "Final Sale",
             "tab_link": "shopify://collections/final-sale",
