@@ -86,7 +86,7 @@
           "type": "buy_button",
           "settings": {
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
+            "show_gift_card_recipient": true
           }
         },
         "inventory_status_KL3MHC": {
