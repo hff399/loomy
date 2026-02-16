@@ -121,10 +121,34 @@
             "local_pickup_no_delivery_strategy_available": "ადგილობრივი მიწოდების სტრატეგია ადგილზე აღების შესაძლებლობით ვერ მოიძებნა.",
             "origin_location_id_required": "საცალო მიწოდების მეთოდის მოთხოვნისას საჭიროა წარმოშობის მდებარეობის ID.",
             "invalid_origin_location_id": "საწყისი მდებარეობის ID-ის შესაბამისი მდებარეობა ვერ მოიძებნა.",
-            "origin_location_id_not_allowed": "მოთხოვნილი მიწოდების მეთოდები არ უჭერს მხარს საწყისი მდებარეობის ID-ს."
+            "origin_location_id_not_allowed": "მოთხოვნილი მიწოდების მეთოდები არ უჭერს მხარს საწყისი მდებარეობის ID-ს.",
+            "auto_fulfill_required": "ავტომატური შესრულება საჭიროა, როდესაც მოთხოვნილია RETAIL მიწოდების მეთოდი.",
+            "must_fulfill_from_constraint_not_satisfied": "შესრულების შეზღუდვები არ არის დაკმაყოფილებული, რადგან ელემენტების შესრულება შეუძლებელია საჭირო ადგილებიდან.",
+            "must_fulfill_from_same_location_constraint_not_satisfied": "შესრულების შეზღუდვები არ დაკმაყოფილდება, რადგან ელემენტების შესრულება ერთი და იგივე ადგილიდან შეუძლებელია.",
+            "delivery_strategy_conditions_not_satisfied": "ამ ადგილმდებარეობისთვის ხელმისაწვდომია მიწოდების სტრატეგიები, მაგრამ მათი პირობები არ არის დაკმაყოფილებული."
           },
           "tax": {
-            "value_required": "ველი „მნიშვნელობა“ აკლია."
+            "value_required": "ველი „მნიშვნელობა“ აკლია.",
+            "unresolvable_tax_terms": "შემოთავაზებული პირობების გადაუჭრელია მიმდინარე მოლაპარაკებების კონტექსტის გათვალისწინებით.",
+            "tax_inclusivity_mismatch": "ხელახლა მოლაპარაკება კონკრეტული totalTaxAndDutyAmount ან totalAmountIncludedInTarget მნიშვნელობით.",
+            "tax_exemption_not_supported": "მიმდინარე მოლაპარაკების სესიისთვის საგადასახადო შეღავათები მხარდაჭერილი არ არის.",
+            "line_splits_not_supported": "„საქონლის ხაზების“ ველი ისე უნდა დაიყოს, რომ გამყიდველის შეთავაზებაში თითოეულს ერთი ხაზის კომპონენტი ჰქონდეს."
+          },
+          "discount": {
+            "unsupported_expectation": "მოწოდებული ფასდაკლების ხაზი შეიცავდა მოლოდინს, რომლის ინტერპრეტაციაც პოლიტიკას არ შეეძლო."
+          },
+          "payment": {
+            "missing_retail_attributions": "საკრედიტო ბარათით ხელით შეყვანილი გადახდებისთვის საჭიროა საცალო ვაჭრობის ატრიბუციების მითითება.",
+            "saved_payment_methods_cvv_verification_disabled": "არჩეული გადახდის მეთოდი მოითხოვს CVV დადასტურებას, რომელიც ამ მაღაზიისთვის არ არის ჩართული. აირჩიეთ სხვა გადახდის მეთოდი.",
+            "store_credit_mismatched_currency": "მაღაზიის საკრედიტო ანგარიშის ვალუტა არ ემთხვევა გადახდის ვალუტას."
+          },
+          "sale_attribution": {
+            "unresolvable_target_merchandise_lines": "შემოთავაზებული გაყიდვის ატრიბუციები გადაუჭრელია მიმდინარე მოლაპარაკებების კონტექსტის გათვალისწინებით."
+          },
+          "captcha": {
+            "metadata_mismatch": "მოწოდებული captcha-ს პროვაიდერი და ტიპი არ ემთხვევა მოსალოდნელ მნიშვნელობებს.",
+            "token_expired": "მოწოდებული captcha ტოკენის ვადა ამოიწურა. შეკვეთის გასაგრძელებლად შეავსეთ ახალი captcha.",
+            "token_invalid": "მოწოდებული captcha ტოკენი არასწორი იყო. შეკვეთის გასაგრძელებლად შეავსეთ ახალი captcha."
           }
         },
         "back_button_label": "დაბრუნება",
@@ -1210,8 +1234,10 @@
         "wait": {
           "short": "თქვენი შეკვეთა დამუშავების პროცესშია.",
           "medium": {
-            "one": "თქვენი შეკვეთა მუშავდება. სავარაუდო ლოდინის დროა %{count} წუთი."
-          }
+            "one": "თქვენი შეკვეთა მუშავდება. სავარაუდო ლოდინის დროა %{count} წუთი.",
+            "other": "თქვენი შეკვეთა დამუშავების პროცესშია. სავარაუდო ლოდინის დროა %{count} წუთი."
+          },
+          "long": "შეკვეთის დამუშავებისთანავე მიიღებთ ელ.წერილს. ამჟამად შეკვეთების დიდი რაოდენობაა."
         },
         "remote_shops_payments_processing": "გადახდების დამუშავება",
         "remote_checkout_count": "%{მიმდინარე} %{სულ}-დან"
@@ -2170,7 +2196,12 @@
           "accessibility_label": "აირჩიეთ გადახდის ვარიანტი"
         },
         "bank_account_connect": "საბანკო ანგარიშის დაკავშირება",
-        "add_payment_method": "გადახდის მეთოდის დამატება"
+        "add_payment_method": "გადახდის მეთოდის დამატება",
+        "markets_pro_disclaimer_label": "შეკვეთის განთავსებით თქვენ ეთანხმებით Global-e-სგან შესყიდვას, როგორც რეგისტრირებულმა ვაჭარმა, Global-e-ს %{markets_pro_terms}-ისა და %{privacy_policy}-ის შესაბამისად და თქვენი ინფორმაციის გაზიარებას %{shop_name}-თან.",
+        "waiting_on_taxes_message": "თუ თქვენი გადასახადები მომდევნო რამდენიმე წამში არ გამოითვლება, განაახლეთ გვერდი.",
+        "gift_cards_unavailable": "თქვენი სასაჩუქრე ბარათის გამოყენება ამ შეკვეთაზე აღარ შეიძლება და ის წაიშალა.",
+        "new_bank_account_disclaimer": "შეკვეთის შესრულებით, თქვენ აძლევთ %{shop_name}-ს უფლებამოსილებას, ჩამოჭრას ქვემოთ მოცემული ანგარიშიდან მითითებული თანხა და მითითებული დროისთვის ACH-ის მეშვეობით.",
+        "separate_payments_label": "თქვენი ნივთები ერთზე მეტი მაღაზიიდანაა. თანხა ჩამოგეჭრებათ %{separate_payments_link}-ში."
       },
       "change_country": {
         "cart_updated_based_on_country": "თქვენი კალათა განახლდა თქვენი მიწოდების ქვეყნის მიხედვით.",
@@ -2313,10 +2344,19 @@
       "payment_gateway": {
         "login_prompt": {
           "no_access": {
-            "link": "შესვლა"
+            "link": "შესვლა",
+            "message": "შენახული გადახდის მეთოდების დასამატებლად ან გამოსაყენებლად, გადადით {{logIn}} ანგარიშზე, რომელსაც აქვს ამ მდებარეობაზე წვდომა."
           }
         },
-        "cash_on_delivery_label": "ნაღდი ანგარიშსწორება მიწოდებისას (COD)"
+        "cash_on_delivery_label": "ნაღდი ანგარიშსწორება მიწოდებისას (COD)",
+        "generic_payment_terms": "თქვენ {{translatedName}} ის პირობებით ხართ დაინტერესებული. თქვენი გადახდის ვადაა {{dueDate}} .",
+        "direct_payment_terms": "თქვენ {{translatedName}} ის პირობებით ხართ დაკავებული. თქვენი ბარათიდან თანხა ჩამოიჭრება {{dueDate}} ში.",
+        "order_deposit_due_now": "{{depositAmount}} დღეს არის გადახდის ვადა. ბალანსი {{translatedName}} პირობებით არის და გადახდის ვადაა {{dueDate}} .",
+        "order_deposit_due_on_fulfillment": "{{depositAmount}} დღეს არის გადასახდელი. ნაშთი გადაიხდება თქვენი შეკვეთის შესრულების შემდეგ.",
+        "order_deposit_due_on_fixed_date": "{{depositAmount}} დღეს არის გადახდის ვადა. ნაშთი გადაიხდება {{dueDate}} -ში.",
+        "draft_order_payment_due_on_fulfillment": "თქვენი გადახდა განხორციელდება მას შემდეგ, რაც თქვენი შეკვეთა დადასტურდება და შესრულდება.",
+        "draft_order_deposit_due_later": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი იქნება {{translatedName}} პირობებით.",
+        "draft_order_deposit_due_on_fulfillment": "{{depositAmount}} გადასახდელი იქნება თქვენი შეკვეთის დადასტურების შემდეგ. ნაშთი კი თქვენი შეკვეთის შესრულების შემდეგ დაგერიცხებათ."
       },
       "embed": {
         "payment": {
@@ -2330,11 +2370,23 @@
         "tax_details": "დამატებითი საგადასახადო დეტალები",
         "vat_number": {
           "field": {
-            "label": "დღგ-ს ნომერი (არასავალდებულო)"
+            "label": "დღგ-ს ნომერი (არასავალდებულო)",
+            "tooltip": "ადასტურებს დღგ-ს ნომერს და ავტომატურად იყენებს უკუღმა დარიცხვას შეკვეთებზე, თუ ეს შესაძლებელია."
           },
           "vaulted": "დღგ-ს ნომერი: %{number}",
-          "badge": "დღგ-ს ნომერი: %{number}"
+          "badge": "დღგ-ს ნომერი: %{number}",
+          "domestic_order": "უკუდაბეგვრისგან გათავისუფლება ვრცელდება მხოლოდ ევროკავშირის საზღვრებს გარეთ განხორციელებულ შეკვეთებზე. ადგილობრივი შეკვეთებისთვის დარიცხულია სტანდარტული დღგ."
         }
+      },
+      "payment_collection": {
+        "cancelled": "ეს გადახდა აღარ არის საჭირო. დეტალებისთვის ეწვიეთ შეკვეთის გვერდს.",
+        "paid": "ეს გადახდა უკვე განხორციელდა. დეტალებისთვის ეწვიეთ შეკვეთის გვერდს."
+      },
+      "failed_payment": {
+        "payment_not_processed_text": "თანხა არ ჩამოგეჭრათ. შესყიდვის დასასრულებლად დაბრუნდით თქვენს კალათაში."
+      },
+      "memberships": {
+        "items_split_across_locations_unsupported": "თქვენი შეკვეთისთვის Prime Delivery მიუწვდომელია. თქვენი მიწოდების ვარიანტები განახლდა."
       }
     },
     "collections": {
@@ -2484,7 +2536,9 @@
       "cart": {
         "link_no_longer_exists": "ბმული აღარ არსებობს.",
         "variant_not_found": "ვარიანტის პოვნა შეუძლებელია",
-        "cart_too_large": "კალათა ძალიან დიდია."
+        "cart_too_large": "კალათა ძალიან დიდია.",
+        "stock_problems_html": "ერთი ან მეტი ნივთი აღარ არის ხელმისაწვდომი. ჩვენ მოგაწოდეთ <a href=\"%{link}\">განახლებული კალათა</a> .",
+        "shipping_address_invalid": "მიწოდების ტარიფების გამოთვლისას პრობლემა წარმოიშვა. შეკვეთის დასრულებამდე გადადით გადახდის გვერდზე, რათა აირჩიოთ მიწოდების ტარიფი."
       }
     },
     "page_titles": {
@@ -2559,6 +2613,33 @@
       "sorting": {
         "price_ascending": "ფასი, დაბალიდან მაღალამდე",
         "price_descending": "ფასი, მაღალიდან დაბალამდე"
+      },
+      "error": "თქვენი ძიების შედეგების ჩატვირთვისას პრობლემა წარმოიშვა. გთხოვთ, განაახლოთ გვერდი ან სცადოთ მოგვიანებით."
+    },
+    "email_marketing": {
+      "unsubscribed": {
+        "disclaimer": "ჩვენგან მარკეტინგულ განახლებებს აღარ მიიღებთ. ნებისმიერ დროს შეგიძლიათ ხელახლა გამოიწეროთ."
+      },
+      "open_tracking": {
+        "opt_in": {
+          "visibility": "ელფოსტის გახსნის მაჩვენებლები ანონიმურად იქნება მოხსენებული. ჩვენ მხოლოდ იმას ვნახავთ, გახსნეთ თუ არა ელფოსტა ელფოსტის გახსნის ჯამური მაჩვენებლის ფარგლებში.",
+          "opt_out_html": "თუ არ გსურთ ამ ინფორმაციის გაზიარება, შეგიძლიათ <a style=\"text-decoration:underline;\" href=\"%{link}\">უარი თქვათ</a> ელფოსტის გახსნის თვალყურის დევნებაზე.",
+          "preview_bar": "თქვენ წინასწარ ათვალიერებთ, თუ რას ნახავენ მომხმარებლები, როდესაც ელფოსტის გახსნის თვალყურის დევნებას ჩართავენ."
+        },
+        "opt_out": {
+          "opt_in_html": "<a style=\"text-decoration:underline;\" href=\"%{link}\">დაეთანხმეთ</a> ელფოსტით გახსნის თვალყურის დევნებას.",
+          "preview_bar": "თქვენ წინასწარ ათვალიერებთ, თუ რას ნახავენ მომხმარებლები, როდესაც უარს იტყვიან ელფოსტის გახსნის თვალყურის დევნებაზე."
+        },
+        "no_longer_track": {
+          "privacy_policy": "ამ ელფოსტის გაგზავნის შემდეგ, ჩვენ განვაახლეთ ჩვენი კონფიდენციალურობის პოლიტიკა და თრექ-ოფნს აღარ ვაქვეყნებთ."
+        },
+        "track": {
+          "visibility": "ელფოსტის გახსნის საერთო მაჩვენებელში მხოლოდ იმას ვნახავთ, გახსნეთ თუ არა ელფოსტა."
+        },
+        "updated_policy": {
+          "visibility": "ჩვენ განვაახლეთ ჩვენი პოლიტიკა და ახლა უკვე შესაძლებელია ელფოსტის გახსნის თვალყურის დევნება. ელფოსტის გახსნის მაჩვენებლები ანონიმურად იქნება მოხსენებული. ჩვენ მხოლოდ იმას დავინახავთ, გახსნილი გაქვთ თუ არა ელფოსტა ელფოსტის გახსნის საერთო მაჩვენებლის ნაწილად.",
+          "opt_out_html": "თუ არ გსურთ ამ ინფორმაციის გაზიარება, შეგიძლიათ <a style=\"text-decoration:underline;\" href=\"%{link}\">გააუქმოთ გამოწერა.</a>"
+        }
       }
     }
   },
@@ -2852,6 +2933,10 @@
       "payment_methods": {
         "payment_details": {
           "draft_label": "შეკვეთის პროექტი {{name}}"
+        },
+        "payment_delete": {
+          "description_without_replacement": "ეს გადახდის მეთოდი აღარ იქნება ხელმისაწვდომი ამ მდებარეობიდან მომავალი შესყიდვებისთვის.",
+          "description_with_replacement": "ამ გადახდის მეთოდის წაშლა გავლენას მოახდენს ამ მდებარეობისთვის წინასწარ ავტორიზებული გადახდების განხორციელებაზე. მომავალი შეკვეთების მიღების გასაგრძელებლად, შეცვალეთ იგი ალტერნატიული გადახდის მეთოდით."
         }
       }
     },
@@ -3547,10 +3632,28 @@
       "credit_or_debit_card_title": "საკრედიტო ან სადებეტო ბარათი",
       "google_pay": {
         "loading_accessibility_message": "Google Pay იტვირთება. მიმდინარეობს Google Pay-ს ჩატვირთვა.",
-        "loading": "Google Pay იტვირთება. მიმდინარეობს Google Pay-ს ჩატვირთვა."
+        "loading": "Google Pay იტვირთება. მიმდინარეობს Google Pay-ს ჩატვირთვა.",
+        "errors": {
+          "generic": "Google Pay-სთან დაკავშირებით პრობლემა წარმოიშვა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი.",
+          "missing_billing_address": "Google Pay-სთვის საჭიროა გადახდის მისამართი. გთხოვთ, დაამატოთ ის თქვენს ანგარიშზე."
+        }
       },
       "apple_pay": {
-        "loading": "Apple Pay იტვირთება."
+        "loading": "Apple Pay იტვირთება.",
+        "errors": {
+          "generic": "Apple Pay-სთან დაკავშირებით პრობლემა წარმოიშვა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი.",
+          "missing_billing_address": "Apple Pay-სთვის საჭიროა გადახდის მისამართი. გთხოვთ, დაამატოთ ის თქვენს ანგარიშზე."
+        }
+      },
+      "add_payment_method_dropdown": {
+        "bank_account_consent": "გადახდის მეთოდის დამატებით, თქვენ აძლევთ უფლებას, რომ თქვენი ბარათიდან ჩამოიჭრას თანხა ან ჩამოიჭრას თანხა საბანკო ანგარიშიდან თქვენს მიერ დამტკიცებული მომავალი შესყიდვებისთვის, სანამ არ გააუქმებთ."
+      },
+      "expiration_warning_button_accessibility_label": "ვადის გასვლის გაფრთხილების ჩვენება {{paymentMethodName}} ისთვის, რომელიც მთავრდება {{lastDigits}} ზე",
+      "card_update_consent_subscriptions": "ეს გადახდის მეთოდი შეინახება მომავალი შესყიდვებისთვის და შეიძლება გამოყენებულ იქნას ნებისმიერი განმეორებადი ან გადავადებული შესყიდვისთვის.",
+      "pay_pal": {
+        "errors": {
+          "generic": "PayPal-თან დაკავშირებით პრობლემა წარმოიშვა. სცადეთ ხელახლა ან გამოიყენეთ გადახდის სხვა მეთოდი."
+        }
       }
     },
     "orders": {
@@ -3595,7 +3698,13 @@
         },
         "carousel": {
           "next": "შემდეგი",
-          "view_order_details": "შეკვეთის დეტალების ნახვა"
+          "view_order_details": "შეკვეთის დეტალების ნახვა",
+          "two_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}}",
+          "three_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}} , {{lineItemName3}} რაოდენობას {{lineItemQuantity3}}",
+          "four_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}} , {{lineItemName3}} რაოდენობას {{lineItemQuantity3}} , {{lineItemName4}} რაოდენობას {{lineItemQuantity4}}",
+          "five_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}} , {{lineItemName3}} რაოდენობას {{lineItemQuantity3}} , {{lineItemName4}} რაოდენობას {{lineItemQuantity4}} , {{lineItemName5}} რაოდენობას {{lineItemQuantity5}}",
+          "six_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}} , {{lineItemName3}} რაოდენობას {{lineItemQuantity3}} , {{lineItemName4}} რაოდენობას {{lineItemQuantity4}} , {{lineItemName5}} რაოდენობას {{lineItemQuantity5}} , {{lineItemName6}} რაოდენობას {{lineItemQuantity6}}",
+          "six_and_more_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} რაოდენობას {{lineItemQuantity1}} , {{lineItemName2}} რაოდენობას {{lineItemQuantity2}} , {{lineItemName3}} რაოდენობას {{lineItemQuantity3}} , {{lineItemName4}} რაოდენობას {{lineItemQuantity4}} , {{lineItemName5}} რაოდენობას {{lineItemQuantity5}} , {{lineItemName6}} რაოდენობას {{lineItemQuantity6}} და სხვა"
         },
         "pagination": {
           "next": "შემდეგი",
@@ -3625,7 +3734,11 @@
             "estimated_delivery": "სავარაუდო მიწოდება {{date}}"
           }
         },
-        "sort_by": "დალაგება: {{option}}"
+        "sort_by": "დალაგება: {{option}}",
+        "three_images_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} , {{lineItemName2}} , {{lineItemName3}}",
+        "four_images_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} , {{lineItemName2}} , {{lineItemName3}} , {{lineItemName4}}",
+        "more_than_three_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} , {{lineItemName2}} -ს და კიდევ {{numberOfAdditionalProducts}} პროდუქტს",
+        "more_than_four_products_accessibility_label": "შეკვეთა მოიცავს {{lineItemName1}} , {{lineItemName2}} , {{lineItemName3}} -ს და კიდევ {{numberOfAdditionalProducts}} პროდუქტს"
       },
       "order_status": {
         "attempted_delivery_label": "მიწოდების მცდელობა",
@@ -3808,6 +3921,21 @@
       "retry_action_label": "ხელახლა ცდა",
       "load_extension_error": {
         "title": "შეცდომა"
+      },
+      "address_deletion_error": {
+        "description": "ამ მისამართის წაშლისას პრობლემა წარმოიშვა. სცადეთ ხელახლა ან განაახლეთ გვერდი."
+      },
+      "failed_address_creation": {
+        "description": "თქვენი მისამართის შექმნისას პრობლემა წარმოიშვა. სცადეთ ამ გვერდის განახლება ან შეამოწმეთ თქვენი ინტერნეტ კავშირი."
+      },
+      "failed_address_update": {
+        "description": "თქვენი მისამართის განახლებისას პრობლემა წარმოიშვა. სცადეთ ამ გვერდის განახლება ან შეამოწმეთ თქვენი ინტერნეტ კავშირი."
+      },
+      "profile_update_error": {
+        "description": "თქვენი პროფილის განახლებისას პრობლემა წარმოიშვა. სცადეთ ამ გვერდის განახლება ან შეამოწმეთ თქვენი ინტერნეტ კავშირი."
+      },
+      "profile_name_update_error": {
+        "description": "თქვენი სახელის განახლებისას პრობლემა წარმოიშვა. სცადეთ ამ გვერდის განახლება ან შეამოწმეთ თქვენი ინტერნეტ კავშირი."
       }
     },
     "throttle": {
@@ -4034,7 +4162,8 @@
         "one": "{{ count }} შედეგი",
         "other": "{{ count }} შედეგი"
       },
-      "placeholder": "შემოთავაზებული ძიებები"
+      "placeholder": "შემოთავაზებული ძიებები",
+      "no_results": "„ {{ terms }} “-სთვის შედეგები ვერ მოიძებნა. შეამოწმეთ მართლწერა ან გამოიყენეთ სხვა სიტყვა ან ფრაზა."
     },
     "cart": {
       "cart": "კალათა"
@@ -4276,7 +4405,9 @@
       },
       "pickup_availability": {
         "heading": "ადგილზე აღების ხელმისაწვდომობა",
-        "view_store_info": "მაღაზიის ინფორმაციის ნახვა"
+        "view_store_info": "მაღაზიის ინფორმაციის ნახვა",
+        "pick_up_available_at_html": "ადგილზე მიტანა შესაძლებელია <span class=\"color-foreground\">{{ location_name }}</span> დან",
+        "pick_up_unavailable_at_html": "ამჟამად <span class=\"color-foreground\">{{ location_name }}</span> -ზე აღება შეუძლებელია"
       },
       "share": "გააზიარეთ ეს პროდუქტი",
       "view_full_details": "სრული დეტალების ნახვა",
