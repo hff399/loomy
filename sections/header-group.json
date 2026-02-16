@@ -179,6 +179,7 @@
         },
         "reima_nav_tab_eTQi9R": {
           "type": "reima_nav_tab",
+          "disabled": true,
           "settings": {
             "tab_title": "2026 Spring",
             "tab_link": "shopify://collections/girls",
