@@ -1,5 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
+    "favicon": "{{ shop.brand.logo }}",
+    "enable_variant_images": true,
+    "media_grouping_option": "Color",
     "header_bg_color": "#ffffff",
     "header_text_color": "#000000",
     "header_hover_color": "#000000",
@@ -740,9 +752,7 @@
           "icon_color": "#0f0f0f"
         }
       }
-    },
-    "enable_variant_images": true,
-    "media_grouping_option": "Color"
+    }
   },
   "installed_preset_name": "Genie",
   "presets": {
