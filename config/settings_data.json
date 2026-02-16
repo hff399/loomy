@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "favicon": "{{ shop.brand.logo }}",
+    "favicon": "shopify://shop_images/favicon-32x32.png",
     "enable_variant_images": true,
     "media_grouping_option": "Color",
     "header_bg_color": "#ffffff",
