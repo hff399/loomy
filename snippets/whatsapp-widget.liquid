@@ -18,11 +18,14 @@
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 9999;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, bottom 0.3s ease;
   }
   .whatsapp-widget:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  body.sticky-atc-active .whatsapp-widget {
+    bottom: 90px;
   }
   @media (max-width: 767px) {
     .whatsapp-widget {
@@ -30,6 +33,9 @@
       right: 16px;
       width: 52px;
       height: 52px;
+    }
+    body.sticky-atc-active .whatsapp-widget {
+      bottom: 90px;
     }
     .whatsapp-widget svg {
       width: 28px;
