@@ -40,6 +40,23 @@
     "header": {
       "type": "header",
       "blocks": {
+        "reima_nav_tab_f7wn9x": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "New summer arrivals ☀️",
+            "tab_link": "",
+            "is_sale": false,
+            "has_dropdown": true,
+            "col1_title": "",
+            "col1_menu": "",
+            "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
         "reima_nav_tab_cTC33K": {
           "type": "reima_nav_tab",
           "settings": {
@@ -235,6 +252,7 @@
         }
       },
       "block_order": [
+        "reima_nav_tab_f7wn9x",
         "reima_nav_tab_cTC33K",
         "reima_nav_tab_Lka7D4",
         "reima_nav_tab_RXxchf",
