@@ -40,6 +40,23 @@
     "header": {
       "type": "header",
       "blocks": {
+        "reima_nav_tab_QNVXQi": {
+          "type": "reima_nav_tab",
+          "settings": {
+            "tab_title": "Summer 2026 ☀️",
+            "tab_link": "shopify://collections/summer",
+            "is_sale": true,
+            "has_dropdown": true,
+            "col1_title": "",
+            "col1_menu": "summer-2026",
+            "col2_title": "",
+            "col2_menu": "",
+            "col3_title": "",
+            "col3_menu": "",
+            "promo_title": "",
+            "promo_link": ""
+          }
+        },
         "category_mega_menus_THjyfA": {
           "type": "category_mega_menus",
           "settings": {
@@ -62,6 +79,7 @@
         }
       },
       "block_order": [
+        "reima_nav_tab_QNVXQi",
         "category_mega_menus_THjyfA"
       ],
       "settings": {
