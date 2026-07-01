@@ -218,7 +218,7 @@
         "description": "Fresh arrivals handpicked for your family",
         "description_size": "text",
         "alignment": "left",
-        "button_text": "",
+        "button_text": "Go to Summer",
         "button_link": "shopify://collections/summer",
         "collection_featured": "summer",
         "collection_style": "stacked",
