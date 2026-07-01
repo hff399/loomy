@@ -1137,41 +1137,19 @@
     "shop_the_look_Gwmnz9": {
       "type": "shop-the-look",
       "blocks": {
-        "hot_spot_6J9gtk": {
+        "hot_spot_mVcrKM": {
           "type": "hot-spot",
           "settings": {
-            "product": "haave-grey-pink",
-            "horizontal": 33,
-            "vertical": 27,
+            "product": "boo-the-panda-20",
+            "horizontal": 20,
+            "vertical": 20,
             "horizontal_mobile": 20,
             "vertical_mobile": 20
-          }
-        },
-        "hot_spot_QRGCiF": {
-          "type": "hot-spot",
-          "settings": {
-            "product": "",
-            "horizontal": 66,
-            "vertical": 71,
-            "horizontal_mobile": 76,
-            "vertical_mobile": 30
-          }
-        },
-        "hot_spot_iY64Rw": {
-          "type": "hot-spot",
-          "settings": {
-            "product": "",
-            "horizontal": 63,
-            "vertical": 32,
-            "horizontal_mobile": 25,
-            "vertical_mobile": 51
           }
         }
       },
       "block_order": [
-        "hot_spot_6J9gtk",
-        "hot_spot_QRGCiF",
-        "hot_spot_iY64Rw"
+        "hot_spot_mVcrKM"
       ],
       "disabled": true,
       "name": "t:sections.shop-the-look.presets.name",
@@ -1215,51 +1193,6 @@
         "bottom_space_desktop": 0,
         "top_space_mobile": 0,
         "bottom_space_mobile": 0
-      }
-    },
-    "products_grid_PPCPgg": {
-      "type": "products-grid",
-      "name": "t:sections.products-grid.presets.name",
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "septenary",
-        "section_background": "gradient",
-        "section_container_width": "global",
-        "corner_style": "none",
-        "corner_radius": 70,
-        "heading": "Special [Offers]",
-        "heading_size": "h2",
-        "seo_heading": "h2",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "description": "Big joy, small prices! Treat your little ones with amazing value! Grab limited-time deals.\nExplore product deals and playful picks at pocket-friendly prices.",
-        "description_size": "text-sm",
-        "alignment": "center",
-        "button_text": "SHOP ALL",
-        "button_link": "shopify://collections/special-offers",
-        "button_style": "solid",
-        "button_size": "button-sm",
-        "collection": "special-offers",
-        "products_to_show": 6,
-        "image_ratio": "portrait",
-        "custom_images": "shopify://shop_images/Sale.jpg",
-        "overlay_style": "solid",
-        "custom_title": "Smart Sets for Smarter Shopping",
-        "custom_heading_size": "h4",
-        "custom_description": "",
-        "custom_description_size": "text",
-        "collection_button_text": "VIEW ALL PRODUCTS",
-        "collection_button_style": "solid",
-        "collection_button_size": "button-sm",
-        "content_width": "large",
-        "desktop_content_position": "d-bottom-center",
-        "desktop_text_alignment": "center",
-        "mobile_content_position": "m-bottom-center",
-        "mobile_text_alignment": "center",
-        "top_space_desktop": 60,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
       }
     },
     "best_categories_FGRxxT": {
@@ -1596,7 +1529,6 @@
     "shop_by_category_Ca7if9",
     "featured_product_6JbLGR",
     "shop_the_look_Gwmnz9",
-    "products_grid_PPCPgg",
     "best_categories_FGRxxT",
     "collapsible_BieYjw",
     "featured_blog_yQB349",
