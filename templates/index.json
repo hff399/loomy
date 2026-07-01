@@ -347,7 +347,7 @@
         "section_visibility": "always",
         "color_scheme": "quaternary",
         "section_background": "solid",
-        "section_container_width": "global",
+        "section_container_width": "container-sm",
         "heading": "Shop by category",
         "heading_size": "h3",
         "seo_heading": "h2",
@@ -357,9 +357,9 @@
         "column_count": 3,
         "columns_gap": 15,
         "card_radius": 20,
-        "top_space_desktop": 50,
+        "top_space_desktop": 25,
         "bottom_space_desktop": 60,
-        "top_space_mobile": 40,
+        "top_space_mobile": 15,
         "bottom_space_mobile": 40
       }
     },
