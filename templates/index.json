@@ -272,7 +272,7 @@
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "section_visibility": "always",
-        "color_scheme": "",
+        "color_scheme": "primary",
         "section_background": "solid",
         "section_container_width": "global",
         "corner_style": "none",
