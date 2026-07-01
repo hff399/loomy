@@ -381,7 +381,7 @@
         "description_size": "text",
         "alignment": "left",
         "button_text": "",
-        "button_link": "",
+        "button_link": "shopify://collections/summer",
         "collection_featured": "new-noteworthy",
         "collection_style": "carousel",
         "products_to_show": 8,
