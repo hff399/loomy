@@ -377,6 +377,105 @@
         "bottom_space_mobile": 40
       }
     },
+    "testimonials_7FmHbJ": {
+      "type": "testimonials",
+      "blocks": {
+        "quote_PbyyPL": {
+          "type": "quote",
+          "settings": {
+            "author": "Emily R.",
+            "author_name_size": "text",
+            "profile": "",
+            "rating": 5,
+            "message": "The quality exceeded my expectations. Fast delivery, beautiful packaging, and my daughter absolutely loves her new scooter. We’ll definitely be back!",
+            "description_size": "text-sm"
+          }
+        },
+        "quote_xLyN79": {
+          "type": "quote",
+          "settings": {
+            "author": "David M.",
+            "author_name_size": "text",
+            "profile": "",
+            "rating": 5,
+            "message": "Great selection of premium brands. Everything arrived exactly as described, and the customer service was incredibly helpful.",
+            "description_size": "text-sm"
+          }
+        },
+        "quote_GBX6DN": {
+          "type": "quote",
+          "settings": {
+            "author": "Anna K.",
+            "author_name_size": "text",
+            "profile": "",
+            "rating": 5,
+            "message": "I ordered a birthday gift, and it was perfect. The toy is beautifully made, and the whole shopping experience was smooth from start to finish.",
+            "description_size": "text-sm"
+          }
+        },
+        "quote_HYFmfH": {
+          "type": "quote",
+          "settings": {
+            "author": "Sophie L.",
+            "author_name_size": "text",
+            "profile": "",
+            "rating": 5,
+            "message": "Finally found a store that offers high-quality products for children in one place. Excellent service and very fast shipping.",
+            "description_size": "text-sm"
+          }
+        },
+        "quote_NiGJKE": {
+          "type": "quote",
+          "settings": {
+            "author": "Michael T.",
+            "author_name_size": "text",
+            "profile": "",
+            "rating": 5,
+            "message": "Outstanding quality and attention to detail. My son hasn’t stopped playing since the package arrived. Highly recommended!",
+            "description_size": "text-sm"
+          }
+        }
+      },
+      "block_order": [
+        "quote_PbyyPL",
+        "quote_xLyN79",
+        "quote_GBX6DN",
+        "quote_HYFmfH",
+        "quote_NiGJKE"
+      ],
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "corner_style": "none",
+        "corner_radius": 20,
+        "blur_background_image": false,
+        "overlay_style": "solid",
+        "heading": "What Families Are Saying",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "",
+        "description_size": "text",
+        "alignment": "left",
+        "testimonial_style": "carousel",
+        "card_style": "normal",
+        "card_alignment": "left",
+        "desktop_column_count": 3,
+        "desktop_gap": 40,
+        "mobile_swipe": true,
+        "rating_color": "#f2be1d",
+        "shape": "none",
+        "flip_shape": false,
+        "shape_position": "top",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 100,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "category_carousel_main": {
       "type": "category-carousel",
       "blocks": {
@@ -458,54 +557,6 @@
         "bottom_space_desktop": 25,
         "top_space_mobile": 20,
         "bottom_space_mobile": 20
-      }
-    },
-    "countdown_iiURpF": {
-      "type": "countdown",
-      "name": "t:sections.countdown.presets.name",
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "quaternary",
-        "section_background": "gradient",
-        "section_container_width": "global",
-        "corner_style": "both",
-        "corner_radius": 0,
-        "blur_background_image": false,
-        "overlay_style": "solid",
-        "animation_effect": "none",
-        "plane_with_sale_text": false,
-        "sale_text": "Final Winter Sale — Ends Soon!",
-        "enable_glass_effect": true,
-        "countdown_style": "square",
-        "year": 2026,
-        "months": "02",
-        "day": 31,
-        "hours": 23,
-        "minutes": 59,
-        "time_expire": "",
-        "layout_style": "horizontal",
-        "sub_heading": "",
-        "heading": "Final Winter Sale — Ends Soon!",
-        "heading_size": "h3",
-        "seo_heading": "h2",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "description": "Premium Reima outerwear at unbeatable prices.\nDon't miss out — limited stock available.",
-        "description_size": "text",
-        "alignment": "left",
-        "button_text": "Shop Sale",
-        "button_link": "shopify://collections/winter",
-        "button_style": "solid_animated",
-        "button_size": "button-regular",
-        "image_ratio": "portrait",
-        "desktop_column_count": 3,
-        "shape": "wavelong",
-        "flip_shape": false,
-        "shape_position": "bottom",
-        "top_space_desktop": 70,
-        "bottom_space_desktop": 70,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
       }
     },
     "text_with_multiple_images_JhgmXe": {
@@ -600,41 +651,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "video_KWNaL8": {
-      "type": "video",
-      "disabled": true,
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "quinary",
-        "section_background": "solid",
-        "section_container_width": "container-fullwidth",
-        "corner_style": "top",
-        "corner_radius": 40,
-        "video_corner_radius": 30,
-        "autoplay": false,
-        "autoplay_content_visibility": "always",
-        "video_height": "750px",
-        "mobile_video_height": "300px",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "overlay_style": "solid",
-        "heading": "",
-        "heading_size": "h3",
-        "seo_heading": "h3",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "description": "",
-        "description_size": "text",
-        "content_position": "flex-end",
-        "content_alignment": "center_center",
-        "shape": "none",
-        "flip_shape": false,
-        "shape_position": "top",
-        "top_space_desktop": 25,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 20,
-        "bottom_space_mobile": 0
-      }
-    },
     "collection_tabs_DmGwWk": {
       "type": "collection-tabs",
       "blocks": {
@@ -717,6 +733,54 @@
         "mobile_swipe": true,
         "top_space_desktop": 75,
         "bottom_space_desktop": 65,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "countdown_iiURpF": {
+      "type": "countdown",
+      "name": "t:sections.countdown.presets.name",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "gradient",
+        "section_container_width": "global",
+        "corner_style": "both",
+        "corner_radius": 0,
+        "blur_background_image": false,
+        "overlay_style": "solid",
+        "animation_effect": "none",
+        "plane_with_sale_text": false,
+        "sale_text": "Final Winter Sale — Ends Soon!",
+        "enable_glass_effect": true,
+        "countdown_style": "square",
+        "year": 2026,
+        "months": "02",
+        "day": 31,
+        "hours": 23,
+        "minutes": 59,
+        "time_expire": "",
+        "layout_style": "horizontal",
+        "sub_heading": "",
+        "heading": "Final Winter Sale — Ends Soon!",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "Premium Reima outerwear at unbeatable prices.\nDon't miss out — limited stock available.",
+        "description_size": "text",
+        "alignment": "left",
+        "button_text": "Shop Sale",
+        "button_link": "shopify://collections/winter",
+        "button_style": "solid_animated",
+        "button_size": "button-regular",
+        "image_ratio": "portrait",
+        "desktop_column_count": 3,
+        "shape": "wavelong",
+        "flip_shape": false,
+        "shape_position": "bottom",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 70,
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }
@@ -869,105 +933,6 @@
         "bottom_space_desktop": 70,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
-      }
-    },
-    "testimonials_7FmHbJ": {
-      "type": "testimonials",
-      "blocks": {
-        "quote_PbyyPL": {
-          "type": "quote",
-          "settings": {
-            "author": "Emily R.",
-            "author_name_size": "text",
-            "profile": "",
-            "rating": 5,
-            "message": "The quality exceeded my expectations. Fast delivery, beautiful packaging, and my daughter absolutely loves her new scooter. We’ll definitely be back!",
-            "description_size": "text-sm"
-          }
-        },
-        "quote_xLyN79": {
-          "type": "quote",
-          "settings": {
-            "author": "David M.",
-            "author_name_size": "text",
-            "profile": "",
-            "rating": 5,
-            "message": "Great selection of premium brands. Everything arrived exactly as described, and the customer service was incredibly helpful.",
-            "description_size": "text-sm"
-          }
-        },
-        "quote_GBX6DN": {
-          "type": "quote",
-          "settings": {
-            "author": "Anna K.",
-            "author_name_size": "text",
-            "profile": "",
-            "rating": 5,
-            "message": "I ordered a birthday gift, and it was perfect. The toy is beautifully made, and the whole shopping experience was smooth from start to finish.",
-            "description_size": "text-sm"
-          }
-        },
-        "quote_HYFmfH": {
-          "type": "quote",
-          "settings": {
-            "author": "Sophie L.",
-            "author_name_size": "text",
-            "profile": "",
-            "rating": 5,
-            "message": "Finally found a store that offers high-quality products for children in one place. Excellent service and very fast shipping.",
-            "description_size": "text-sm"
-          }
-        },
-        "quote_NiGJKE": {
-          "type": "quote",
-          "settings": {
-            "author": "Michael T.",
-            "author_name_size": "text",
-            "profile": "",
-            "rating": 5,
-            "message": "Outstanding quality and attention to detail. My son hasn’t stopped playing since the package arrived. Highly recommended!",
-            "description_size": "text-sm"
-          }
-        }
-      },
-      "block_order": [
-        "quote_PbyyPL",
-        "quote_xLyN79",
-        "quote_GBX6DN",
-        "quote_HYFmfH",
-        "quote_NiGJKE"
-      ],
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "quaternary",
-        "section_background": "solid",
-        "section_container_width": "global",
-        "corner_style": "none",
-        "corner_radius": 20,
-        "blur_background_image": false,
-        "overlay_style": "solid",
-        "heading": "What Families Are Saying",
-        "heading_size": "h3",
-        "seo_heading": "h2",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "description": "",
-        "description_size": "text",
-        "alignment": "left",
-        "testimonial_style": "carousel",
-        "card_style": "normal",
-        "card_alignment": "left",
-        "desktop_column_count": 3,
-        "desktop_gap": 40,
-        "mobile_swipe": true,
-        "rating_color": "#f2be1d",
-        "shape": "none",
-        "flip_shape": false,
-        "shape_position": "top",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 100,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
       }
     },
     "shop_by_category_Ca7if9": {
@@ -1476,15 +1441,14 @@
     "featured_collection_gbtmWC",
     "rich_text_JiiVcH",
     "category_carousel_ETyY9a",
+    "testimonials_7FmHbJ",
     "category_carousel_main",
     "shapes_YnKYD9",
-    "countdown_iiURpF",
     "text_with_multiple_images_JhgmXe",
-    "video_KWNaL8",
     "collection_tabs_DmGwWk",
+    "countdown_iiURpF",
     "animated_text_aRwq9i",
     "collections_carousel_k6Tbwx",
-    "testimonials_7FmHbJ",
     "shop_by_category_Ca7if9",
     "shop_the_look_Gwmnz9",
     "best_categories_FGRxxT",
