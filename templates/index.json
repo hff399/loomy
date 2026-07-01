@@ -1030,113 +1030,19 @@
         "bottom_space_mobile": 40
       }
     },
-    "featured_product_6JbLGR": {
-      "type": "featured-product",
-      "blocks": {
-        "title_JgnXKg": {
-          "type": "title",
-          "settings": {
-            "title_size": "h3",
-            "title_heading_font": "heading-font"
-          }
-        },
-        "custom_content_TEkhKt": {
-          "type": "custom_content",
-          "settings": {
-            "heading": "",
-            "heading_size": "h4",
-            "content": "<p>Our clothing is made from high-quality, premium fabrics that ensure your child stays comfortable all day long. </p>",
-            "content_size": "text-sm"
-          }
-        },
-        "price_deppLC": {
-          "type": "price",
-          "settings": {
-            "hide_shipping_content": false,
-            "hide_compare_price": true
-          }
-        },
-        "variant_picker_zdgbLW": {
-          "type": "variant_picker",
-          "settings": {
-            "variant_type": "button",
-            "active_button_style": "outline",
-            "show_selected_option": true,
-            "variants_style": "color_swatch",
-            "size_chart": "",
-            "custom_title": ""
-          }
-        },
-        "quantity_picker_EFht88": {
-          "type": "quantity_picker",
-          "settings": {
-            "show_quantity_picker_with_buybutton": false
-          }
-        },
-        "pickup_availability_GL3LmQ": {
-          "type": "pickup_availability",
-          "settings": {}
-        },
-        "buy_button_QfdKqm": {
-          "type": "buy_button",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": false
-          }
-        },
-        "social_sharing_NRHmc6": {
-          "type": "social_sharing",
-          "settings": {
-            "social_icons_style": "outline"
-          }
-        },
-        "query_form_8H4DWt": {
-          "type": "query_form",
-          "settings": {
-            "title": "Need help?",
-            "with_share_icons": true
-          }
-        }
-      },
-      "block_order": [
-        "title_JgnXKg",
-        "custom_content_TEkhKt",
-        "price_deppLC",
-        "variant_picker_zdgbLW",
-        "quantity_picker_EFht88",
-        "pickup_availability_GL3LmQ",
-        "buy_button_QfdKqm",
-        "social_sharing_NRHmc6",
-        "query_form_8H4DWt"
-      ],
-      "name": "t:sections.featured-product.presets.name",
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "duodenary",
-        "section_background": "solid",
-        "section_container_width": "container-md",
-        "corner_style": "none",
-        "corner_radius": 30,
-        "enable_sticky_content": false,
-        "product": "hattara-5300057b",
-        "thumbnails_style": "vertical",
-        "thumbnails_position": "inside_image",
-        "image_ratio": "portrait",
-        "images_fit_position": "center",
-        "enable_video_autoplay": false,
-        "enable_video_looping": false,
-        "hide_thumbnails_mobile": false,
-        "enable_images_border": false,
-        "enable_images_radius": true,
-        "top_space_desktop": 60,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
     "shop_the_look_Gwmnz9": {
       "type": "shop-the-look",
       "blocks": {
+        "hot_spot_a4fBxU": {
+          "type": "hot-spot",
+          "settings": {
+            "product": "",
+            "horizontal": 20,
+            "vertical": 20,
+            "horizontal_mobile": 20,
+            "vertical_mobile": 20
+          }
+        },
         "hot_spot_mVcrKM": {
           "type": "hot-spot",
           "settings": {
@@ -1149,6 +1055,7 @@
         }
       },
       "block_order": [
+        "hot_spot_a4fBxU",
         "hot_spot_mVcrKM"
       ],
       "disabled": true,
@@ -1527,7 +1434,6 @@
     "collections_carousel_k6Tbwx",
     "testimonials_7FmHbJ",
     "shop_by_category_Ca7if9",
-    "featured_product_6JbLGR",
     "shop_the_look_Gwmnz9",
     "best_categories_FGRxxT",
     "collapsible_BieYjw",
