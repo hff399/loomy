@@ -258,7 +258,7 @@
           "type": "button",
           "settings": {
             "button_text": "See now",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/summer",
             "button_style": "solid_animated",
             "button_size": "global"
           }
