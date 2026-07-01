@@ -12,34 +12,6 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "slide_i4hGz3": {
-          "type": "slide",
-          "settings": {
-            "color_scheme": "undenary",
-            "desktop_slide_image": "shopify://shop_images/Waboba_Moonshine-54_1512x_2c96ebec-b1a2-4fd8-9f8f-5d35f1499370.webp",
-            "mobile_slide_image": "shopify://shop_images/Waboba_Moonshine-54_1512x_2c96ebec-b1a2-4fd8-9f8f-5d35f1499370.webp",
-            "overlay_style": "solid",
-            "image_ratio": "landscape",
-            "enable_collapse": false,
-            "heading": "<strong>Skip into summer</strong>",
-            "heading_size": "h1",
-            "seo_heading": "h2",
-            "heading_font": "heading-font",
-            "markers_font": "body-font",
-            "heading_font_weight": "font-bold",
-            "description": "Balls, games and outdoor fun made to keep every summer day in motion.",
-            "description_size": "text-xl",
-            "content_width": "small",
-            "desktop_content_position": "d-bottom-left",
-            "desktop_text_alignment": "left",
-            "mobile_content_position": "m-center",
-            "mobile_text_alignment": "center",
-            "button_text": "Shop Waboba",
-            "button_link": "https://loomy.ge/collections/waboba-outdoor-fun-toys",
-            "button_style": "solid",
-            "button_size": "button-sm"
-          }
-        },
         "slide_8Mn4WU": {
           "type": "slide",
           "settings": {
@@ -123,13 +95,41 @@
             "button_style": "solid_animated",
             "button_size": "button-regular"
           }
+        },
+        "slide_i4hGz3": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "undenary",
+            "desktop_slide_image": "shopify://shop_images/Waboba_Moonshine-54_1512x_2c96ebec-b1a2-4fd8-9f8f-5d35f1499370.webp",
+            "mobile_slide_image": "shopify://shop_images/Waboba_Moonshine-54_1512x_2c96ebec-b1a2-4fd8-9f8f-5d35f1499370.webp",
+            "overlay_style": "solid",
+            "image_ratio": "landscape",
+            "enable_collapse": false,
+            "heading": "<strong>Skip into summer</strong>",
+            "heading_size": "h1",
+            "seo_heading": "h2",
+            "heading_font": "heading-font",
+            "markers_font": "body-font",
+            "heading_font_weight": "font-bold",
+            "description": "Balls, games and outdoor fun made to keep every summer day in motion.",
+            "description_size": "text-xl",
+            "content_width": "small",
+            "desktop_content_position": "d-bottom-left",
+            "desktop_text_alignment": "left",
+            "mobile_content_position": "m-center",
+            "mobile_text_alignment": "center",
+            "button_text": "Shop Waboba",
+            "button_link": "https://loomy.ge/collections/waboba-outdoor-fun-toys",
+            "button_style": "solid_animated",
+            "button_size": "button-regular"
+          }
         }
       },
       "block_order": [
-        "slide_i4hGz3",
         "slide_8Mn4WU",
         "slide_ef3P76",
-        "slide_BLnrxD"
+        "slide_BLnrxD",
+        "slide_i4hGz3"
       ],
       "settings": {
         "section_visibility": "always",
