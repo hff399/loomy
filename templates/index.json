@@ -274,22 +274,12 @@
     "category_carousel_ETyY9a": {
       "type": "category-carousel",
       "blocks": {
-        "category_YUJ9yi": {
-          "type": "category",
-          "settings": {
-            "collection": "aw25-final-sale",
-            "image": "shopify://shop_images/Sale.jpg",
-            "button_text": "Reima SALE",
-            "overlay_text": "",
-            "bg_color": ""
-          }
-        },
         "category_K7d9G8": {
           "type": "category",
           "settings": {
-            "collection": "clothing",
+            "collection": "baby",
             "image": "shopify://shop_images/hf_20260213_184513_77b4440d-35f1-4774-b847-ca682c054e6e.png",
-            "button_text": "Clothing",
+            "button_text": "Babies",
             "overlay_text": "",
             "bg_color": "rgba(0,0,0,0)"
           }
@@ -346,7 +336,6 @@
         }
       },
       "block_order": [
-        "category_YUJ9yi",
         "category_K7d9G8",
         "category_MR7qke",
         "category_YECepJ",
