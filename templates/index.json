@@ -234,6 +234,57 @@
         "bottom_space_mobile": 40
       }
     },
+    "rich_text_JiiVcH": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_X39gVY": {
+          "type": "heading",
+          "settings": {
+            "heading": "Go to Summer 2026",
+            "heading_size": "h2",
+            "seo_heading": "h2",
+            "heading_font": "heading-font",
+            "markers_font": "accent-font"
+          }
+        },
+        "text_MqVRHd": {
+          "type": "text",
+          "settings": {
+            "description": "<p>Fresh arrivals and Summer favorites to make every day brighter!</p>",
+            "description_size": "text"
+          }
+        },
+        "button_xzYtxj": {
+          "type": "button",
+          "settings": {
+            "button_text": "Button",
+            "button_link": "shopify://collections/all",
+            "button_style": "global",
+            "button_size": "global"
+          }
+        }
+      },
+      "block_order": [
+        "heading_X39gVY",
+        "text_MqVRHd",
+        "button_xzYtxj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "corner_style": "none",
+        "corner_radius": 70,
+        "text_alignment": "center",
+        "content_width": "small",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "category_carousel_ETyY9a": {
       "type": "category-carousel",
       "blocks": {
@@ -1423,6 +1474,7 @@
     "slideshow",
     "marquee_fKPhhJ",
     "featured_collection_gbtmWC",
+    "rich_text_JiiVcH",
     "category_carousel_ETyY9a",
     "category_carousel_main",
     "shapes_YnKYD9",
