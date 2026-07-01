@@ -1417,6 +1417,41 @@
         "top_space_mobile": 20,
         "bottom_space_mobile": 20
       }
+    },
+    "video_UxUxE9": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "primary",
+        "section_background": "solid",
+        "section_container_width": "container-md",
+        "corner_style": "both",
+        "corner_radius": 40,
+        "video_corner_radius": 30,
+        "autoplay": false,
+        "autoplay_content_visibility": "always",
+        "video_height": "550px",
+        "mobile_video_height": "300px",
+        "video_url": "http://youtube.com/watch?v=SkAhowKxDvY",
+        "overlay_style": "solid",
+        "heading": "<strong>Waboba</strong>",
+        "heading_size": "h4",
+        "seo_heading": "h3",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "",
+        "description_size": "text",
+        "content_position": "flex-end",
+        "content_alignment": "center_center",
+        "shape": "none",
+        "flip_shape": false,
+        "shape_position": "top",
+        "top_space_desktop": 15,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
+      }
     }
   },
   "order": [
@@ -1438,6 +1473,7 @@
     "best_categories_FGRxxT",
     "collapsible_BieYjw",
     "featured_blog_yQB349",
-    "icon_with_text_CyUftA"
+    "icon_with_text_CyUftA",
+    "video_UxUxE9"
   ]
 }
