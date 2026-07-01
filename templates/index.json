@@ -236,10 +236,10 @@
         "column_count": 3,
         "columns_gap": 15,
         "card_radius": 20,
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 25
       }
     },
     "category_carousel_ETyY9a": {
