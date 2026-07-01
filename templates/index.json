@@ -859,22 +859,22 @@
         "quote_HYFmfH": {
           "type": "quote",
           "settings": {
-            "author": "Author name",
+            "author": "Sophie L.",
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
+            "message": "Finally found a store that offers high-quality products for children in one place. Excellent service and very fast shipping.",
             "description_size": "text-sm"
           }
         },
         "quote_NiGJKE": {
           "type": "quote",
           "settings": {
-            "author": "Author name",
+            "author": "Michael T.",
             "author_name_size": "text",
             "profile": "",
             "rating": 5,
-            "message": "Add client reviews & testimonials to showcase your store's happy clients.",
+            "message": "Outstanding quality and attention to detail. My son hasn’t stopped playing since the package arrived. Highly recommended!",
             "description_size": "text-sm"
           }
         }
