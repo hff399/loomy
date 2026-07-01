@@ -257,9 +257,9 @@
         "button_xzYtxj": {
           "type": "button",
           "settings": {
-            "button_text": "Button",
+            "button_text": "See now",
             "button_link": "shopify://collections/all",
-            "button_style": "global",
+            "button_style": "solid_animated",
             "button_size": "global"
           }
         }
