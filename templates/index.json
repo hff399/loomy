@@ -253,9 +253,9 @@
       ],
       "settings": {
         "section_visibility": "always",
-        "color_scheme": "quaternary",
+        "color_scheme": "septenary",
         "section_background": "solid",
-        "section_container_width": "global",
+        "section_container_width": "container-sm",
         "heading": "The Brands We Love",
         "heading_size": "h3",
         "seo_heading": "h2",
