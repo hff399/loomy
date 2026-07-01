@@ -201,6 +201,131 @@
         "bottom_space_mobile": 15
       }
     },
+    "featured_collection_gbtmWC": {
+      "type": "featured-collection",
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "global",
+        "corner_style": "none",
+        "corner_radius": 20,
+        "heading": "Ready for Summer 2026",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "description": "Fresh arrivals handpicked for your family",
+        "description_size": "text",
+        "alignment": "left",
+        "button_text": "",
+        "button_link": "shopify://collections/summer",
+        "collection_featured": "summer",
+        "collection_style": "stacked",
+        "products_to_show": 8,
+        "desktop_column_count": 4,
+        "desktop_gap": 20,
+        "mobile_gap": 10,
+        "image_ratio": "auto",
+        "mobile_swipe": true,
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "category_carousel_ETyY9a": {
+      "type": "category-carousel",
+      "blocks": {
+        "category_UfKkYd": {
+          "type": "category",
+          "settings": {
+            "collection": "toys",
+            "image": "shopify://shop_images/orange_toys_LD2_082.webp",
+            "button_text": "Toys & Play",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_K7d9G8": {
+          "type": "category",
+          "settings": {
+            "collection": "baby",
+            "image": "shopify://shop_images/Orange_toys_1_page_2.jpg",
+            "button_text": "Baby",
+            "overlay_text": "",
+            "bg_color": "rgba(0,0,0,0)"
+          }
+        },
+        "category_MR7qke": {
+          "type": "category",
+          "settings": {
+            "collection": "footwear-1",
+            "image": "shopify://shop_images/Reima_footwear.jpg",
+            "button_text": "Footwear",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_YECepJ": {
+          "type": "category",
+          "settings": {
+            "collection": "accessories",
+            "image": "shopify://shop_images/reima_accessories.webp",
+            "button_text": "Accessories",
+            "overlay_text": "",
+            "bg_color": "rgba(0,0,0,0)"
+          }
+        },
+        "category_BhwADn": {
+          "type": "category",
+          "settings": {
+            "collection": "micro-swiss-scooters-helmets",
+            "image": "shopify://shop_images/hf_20260213_184520_aefb5b09-2adc-45cb-8ef3-8bb51c02d454.png",
+            "button_text": "Mobility",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        },
+        "category_EHRMha": {
+          "type": "category",
+          "settings": {
+            "collection": "new-arrivals",
+            "image": "shopify://shop_images/hf_20260213_184524_73dce360-0539-4bcd-a65a-8d7b5ac90922.png",
+            "button_text": "Special",
+            "overlay_text": "",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_UfKkYd",
+        "category_K7d9G8",
+        "category_MR7qke",
+        "category_YECepJ",
+        "category_BhwADn",
+        "category_EHRMha"
+      ],
+      "settings": {
+        "section_visibility": "always",
+        "color_scheme": "quaternary",
+        "section_background": "solid",
+        "section_container_width": "container-sm",
+        "heading": "Shop by category",
+        "heading_size": "h3",
+        "seo_heading": "h2",
+        "heading_font": "heading-font",
+        "markers_font": "accent-font",
+        "alignment": "left",
+        "column_count": 3,
+        "columns_gap": 15,
+        "card_radius": 20,
+        "top_space_desktop": 25,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 40
+      }
+    },
     "category_carousel_main": {
       "type": "category-carousel",
       "blocks": {
@@ -271,129 +396,17 @@
         "bottom_space_mobile": 25
       }
     },
-    "category_carousel_ETyY9a": {
-      "type": "category-carousel",
-      "blocks": {
-        "category_K7d9G8": {
-          "type": "category",
-          "settings": {
-            "collection": "baby",
-            "image": "shopify://shop_images/Orange_toys_1_page_2.jpg",
-            "button_text": "Baby",
-            "overlay_text": "",
-            "bg_color": "rgba(0,0,0,0)"
-          }
-        },
-        "category_MR7qke": {
-          "type": "category",
-          "settings": {
-            "collection": "footwear-1",
-            "image": "shopify://shop_images/Reima_footwear.jpg",
-            "button_text": "Footwear",
-            "overlay_text": "",
-            "bg_color": ""
-          }
-        },
-        "category_YECepJ": {
-          "type": "category",
-          "settings": {
-            "collection": "accessories",
-            "image": "shopify://shop_images/reima_accessories.webp",
-            "button_text": "Accessories",
-            "overlay_text": "",
-            "bg_color": "rgba(0,0,0,0)"
-          }
-        },
-        "category_BhwADn": {
-          "type": "category",
-          "settings": {
-            "collection": "micro-swiss-scooters-helmets",
-            "image": "shopify://shop_images/hf_20260213_184520_aefb5b09-2adc-45cb-8ef3-8bb51c02d454.png",
-            "button_text": "Mobility",
-            "overlay_text": "",
-            "bg_color": ""
-          }
-        },
-        "category_UfKkYd": {
-          "type": "category",
-          "settings": {
-            "collection": "toys",
-            "image": "shopify://shop_images/orange_toys_LD2_082.webp",
-            "button_text": "Toys & Play",
-            "overlay_text": "",
-            "bg_color": ""
-          }
-        },
-        "category_EHRMha": {
-          "type": "category",
-          "settings": {
-            "collection": "new-arrivals",
-            "image": "shopify://shop_images/hf_20260213_184524_73dce360-0539-4bcd-a65a-8d7b5ac90922.png",
-            "button_text": "Special",
-            "overlay_text": "",
-            "bg_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "category_K7d9G8",
-        "category_MR7qke",
-        "category_YECepJ",
-        "category_BhwADn",
-        "category_UfKkYd",
-        "category_EHRMha"
-      ],
+    "shapes_YnKYD9": {
+      "type": "shapes",
+      "name": "t:sections.shapes.presets.name",
       "settings": {
-        "section_visibility": "always",
         "color_scheme": "quaternary",
-        "section_background": "solid",
-        "section_container_width": "container-sm",
-        "heading": "Shop by category",
-        "heading_size": "h3",
-        "seo_heading": "h2",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "alignment": "left",
-        "column_count": 3,
-        "columns_gap": 15,
-        "card_radius": 20,
-        "top_space_desktop": 25,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 15,
-        "bottom_space_mobile": 40
-      }
-    },
-    "featured_collection_gbtmWC": {
-      "type": "featured-collection",
-      "settings": {
-        "section_visibility": "always",
-        "color_scheme": "quaternary",
-        "section_background": "solid",
-        "section_container_width": "global",
-        "corner_style": "none",
-        "corner_radius": 20,
-        "heading": "Ready for Summer 2026",
-        "heading_size": "h3",
-        "seo_heading": "h2",
-        "heading_font": "heading-font",
-        "markers_font": "accent-font",
-        "description": "Fresh arrivals handpicked for your family",
-        "description_size": "text",
-        "alignment": "left",
-        "button_text": "",
-        "button_link": "shopify://collections/summer",
-        "collection_featured": "summer",
-        "collection_style": "stacked",
-        "products_to_show": 8,
-        "desktop_column_count": 4,
-        "desktop_gap": 20,
-        "mobile_gap": 10,
-        "image_ratio": "auto",
-        "mobile_swipe": true,
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
+        "shape": "wave",
+        "flip_shape": false,
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 25,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
       }
     },
     "countdown_iiURpF": {
@@ -442,19 +455,6 @@
         "bottom_space_desktop": 70,
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
-      }
-    },
-    "shapes_YnKYD9": {
-      "type": "shapes",
-      "name": "t:sections.shapes.presets.name",
-      "settings": {
-        "color_scheme": "quaternary",
-        "shape": "wave",
-        "flip_shape": false,
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 25,
-        "top_space_mobile": 20,
-        "bottom_space_mobile": 20
       }
     },
     "text_with_multiple_images_JhgmXe": {
@@ -1422,11 +1422,11 @@
   "order": [
     "slideshow",
     "marquee_fKPhhJ",
-    "category_carousel_main",
-    "category_carousel_ETyY9a",
     "featured_collection_gbtmWC",
-    "countdown_iiURpF",
+    "category_carousel_ETyY9a",
+    "category_carousel_main",
     "shapes_YnKYD9",
+    "countdown_iiURpF",
     "text_with_multiple_images_JhgmXe",
     "video_KWNaL8",
     "collection_tabs_DmGwWk",
