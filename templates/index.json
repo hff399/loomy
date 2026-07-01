@@ -34,7 +34,7 @@
             "desktop_text_alignment": "right",
             "mobile_content_position": "m-bottom-left",
             "mobile_text_alignment": "left",
-            "button_text": "Explore the Store",
+            "button_text": "Shop Reima",
             "button_link": "shopify://collections/all",
             "button_style": "solid",
             "button_size": "button-sm"
